@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>jbossews</groupId>
     <artifactId>jbossews</artifactId>
@@ -61,16 +61,42 @@
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>3.2</version>
+        </dependency>
     </dependencies>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.flywaydb</groupId>
+					<artifactId>flyway-core</artifactId>
+					<version>3.2</version>
+					<configuration>
+						<url>${flyWay.urlBaseDados}</url>
+						<user>${usuario.banco.jenkins}</user>
+						<password>${senha.banco.jenkins}</password>
+						<schemas>
+							<schema>${flyway.schema}</schema>
+						</schemas>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
     <profiles>
         <profile>
             <!-- When built in OpenShift the 'openshift' profile will be used when 
-                invoking mvn. -->
+            invoking mvn. -->
             <!-- Use this profile for any OpenShift specific customization your app 
-                will need. -->
+            will need. -->
             <!-- By default that is to put the resulting archive into the 'webapps' 
-                folder. -->
+            folder. -->
             <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
             <id>openshift</id>
             <build>
@@ -91,7 +117,7 @@
 
         <profile>
             <id>glassfish</id>
-           <build>
+            <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
