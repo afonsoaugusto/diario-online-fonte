@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PurchaseOrderCreateDlg" widgetVar="PurchaseOrderCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreatePurchaseOrderTitle}" closeOnEscape="true">
+
+            <h:form id="PurchaseOrderCreateForm">
+
+                <h:panelGroup id="display" rendered="#{purchaseOrderController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreatePurchaseOrderLabel_orderNum}" for="orderNum" />
+                        <h:panelGroup>
+                            <p:inputText id="orderNum" value="#{purchaseOrderController.selected.orderNum}" title="#{myBundle.CreatePurchaseOrderTitle_orderNum}" required="true" requiredMessage="#{myBundle.CreatePurchaseOrderRequiredMessage_orderNum}"/>
+                            <p:tooltip for="orderNum" value="#{purchaseOrderController.getComponentMessages('orderNum', myBundle.CreatePurchaseOrderHelpText_orderNum)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreatePurchaseOrderLabel_quantity}" for="quantity" />
+                        <h:panelGroup>
+                            <p:inputText id="quantity" value="#{purchaseOrderController.selected.quantity}" title="#{myBundle.CreatePurchaseOrderTitle_quantity}"/>
+                            <p:tooltip for="quantity" value="#{purchaseOrderController.getComponentMessages('quantity', myBundle.CreatePurchaseOrderHelpText_quantity)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreatePurchaseOrderLabel_shippingCost}" for="shippingCost" />
+                        <h:panelGroup>
+                            <p:inputText id="shippingCost" value="#{purchaseOrderController.selected.shippingCost}" title="#{myBundle.CreatePurchaseOrderTitle_shippingCost}"/>
+                            <p:tooltip for="shippingCost" value="#{purchaseOrderController.getComponentMessages('shippingCost', myBundle.CreatePurchaseOrderHelpText_shippingCost)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreatePurchaseOrderLabel_salesDate}" for="salesDate" />
+                        <h:panelGroup>
+                            <p:calendar id="salesDate" pattern="MM/dd/yyyy" value="#{purchaseOrderController.selected.salesDate}" title="#{myBundle.CreatePurchaseOrderTitle_salesDate}"  showOn="button"/>
+                            <p:tooltip for="salesDate" value="#{purchaseOrderController.getComponentMessages('salesDate', myBundle.CreatePurchaseOrderHelpText_salesDate)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreatePurchaseOrderLabel_shippingDate}" for="shippingDate" />
+                        <h:panelGroup>
+                            <p:calendar id="shippingDate" pattern="MM/dd/yyyy" value="#{purchaseOrderController.selected.shippingDate}" title="#{myBundle.CreatePurchaseOrderTitle_shippingDate}"  showOn="button"/>
+                            <p:tooltip for="shippingDate" value="#{purchaseOrderController.getComponentMessages('shippingDate', myBundle.CreatePurchaseOrderHelpText_shippingDate)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreatePurchaseOrderLabel_freightCompany}" for="freightCompany" />
+                        <h:panelGroup>
+                            <p:inputText id="freightCompany" value="#{purchaseOrderController.selected.freightCompany}" title="#{myBundle.CreatePurchaseOrderTitle_freightCompany}" size="30" maxlength="30"/>
+                            <p:tooltip for="freightCompany" value="#{purchaseOrderController.getComponentMessages('freightCompany', myBundle.CreatePurchaseOrderHelpText_freightCompany)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreatePurchaseOrderLabel_productId}" for="productId" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="productId" value="#{purchaseOrderController.selected.productId}" required="true" requiredMessage="#{myBundle.CreatePurchaseOrderRequiredMessage_productId}" converter="productConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{productController.items}"
+                                               var="productIdItem"
+                                               itemValue="#{productIdItem}"
+                                               itemLabel="#{productIdItem.description.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="productId" value="#{purchaseOrderController.getComponentMessages('productId', myBundle.CreatePurchaseOrderHelpText_productId)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{myBundle.CreatePurchaseOrderLabel_customerId}" for="customerId" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="customerId" value="#{purchaseOrderController.selected.customerId}" required="true" requiredMessage="#{myBundle.CreatePurchaseOrderRequiredMessage_customerId}" converter="customerConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{customerController.items}"
+                                               var="customerIdItem"
+                                               itemValue="#{customerIdItem}"
+                                               itemLabel="#{customerIdItem.name.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="customerId" value="#{purchaseOrderController.getComponentMessages('customerId', myBundle.CreatePurchaseOrderHelpText_customerId)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{purchaseOrderController.saveNew}" value="#{myBundle.Save}" update="display,:PurchaseOrderListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PurchaseOrderCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PF('PurchaseOrderCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
