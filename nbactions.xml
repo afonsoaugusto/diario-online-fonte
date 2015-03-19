@@ -11,4 +11,35 @@
                 <goal>glassfish</goal>
             </goals>
         </action>
+        <action>
+            <actionName>rebuild</actionName>
+            <packagings>
+                <packaging>*</packaging>
+            </packagings>
+            <goals>
+                <goal>-U</goal>
+                <goal>clean</goal>
+                <goal>install</goal>
+                
+                
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-flyway</actionName>
+            <displayName>flyway</displayName>
+            <goals>
+                <goal>compile</goal>
+                <goal>flyway:init</goal>
+                
+                
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-flyway-migrate</actionName>
+            <displayName>flyway-migrate</displayName>
+            <goals>
+                <goal>compile</goal>
+                <goal>flyway:migrate</goal>
+            </goals>
+        </action>
     </actions>
