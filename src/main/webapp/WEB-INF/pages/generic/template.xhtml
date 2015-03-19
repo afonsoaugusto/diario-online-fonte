@@ -16,17 +16,24 @@
         <p:growl id="growl" life="3000" globalOnly="true"/>
 
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="100" header="#{myBundle.AppName}">
+            <p:layoutUnit position="north" size="125" header="#{myBundle.AppName}">
                 <!-- Menu here. Also a layout and a way to log a user out -->
-                <ui:include src="/WEB-INF/pages/generic/appmenu.xhtml"/>
             </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
+            <p:layoutUnit position="west" resizable="true" size="175" minSize="40" maxSize="250">
+                <ui:include src="/WEB-INF/pages/generic/appmenu.xhtml"/>
             </p:layoutUnit>
 
             <p:layoutUnit position="center">
                 <ui:insert name="body"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="east" header="#{myBundle.AppName}">
+                <ui:insert name="action"/>
+            </p:layoutUnit> 
+            
+             <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
             </p:layoutUnit>
 
         </p:layout>
