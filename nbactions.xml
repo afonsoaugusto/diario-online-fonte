@@ -40,6 +40,8 @@
             <goals>
                 <goal>compile</goal>
                 <goal>flyway:migrate</goal>
+                <goal>-P</goal>
+                <goal>local</goal>
             </goals>
         </action>
     </actions>
