@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MenuCreateDlg" widgetVar="MenuCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateMenuTitle}" closeOnEscape="true">
+
+            <h:form id="MenuCreateForm">
+
+                <h:panelGroup id="display" rendered="#{menuController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateMenuLabel_numOrdem}" for="numOrdem" />
+                        <h:panelGroup>
+                            <p:inputText id="numOrdem" value="#{menuController.selected.numOrdem}" title="#{messages.CreateMenuTitle_numOrdem}" required="true" requiredMessage="#{messages.CreateMenuRequiredMessage_numOrdem}"/>
+                            <p:tooltip for="numOrdem" value="#{menuController.getComponentMessages('numOrdem', messages.CreateMenuHelpText_numOrdem)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.CreateMenuLabel_txtTitulo}" for="txtTitulo" />
+                        <h:panelGroup>
+                            <p:inputText id="txtTitulo" value="#{menuController.selected.txtTitulo}" title="#{messages.CreateMenuTitle_txtTitulo}" required="true" requiredMessage="#{messages.CreateMenuRequiredMessage_txtTitulo}" size="80" maxlength="80"/>
+                            <p:tooltip for="txtTitulo" value="#{menuController.getComponentMessages('txtTitulo', messages.CreateMenuHelpText_txtTitulo)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.CreateMenuLabel_txtAcesso}" for="txtAcesso" />
+                        <h:panelGroup>
+                            <p:inputText id="txtAcesso" value="#{menuController.selected.txtAcesso}" title="#{messages.CreateMenuTitle_txtAcesso}" size="255" maxlength="255"/>
+                            <p:tooltip for="txtAcesso" value="#{menuController.getComponentMessages('txtAcesso', messages.CreateMenuHelpText_txtAcesso)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.CreateMenuLabel_txtVisao}" for="txtVisao" />
+                        <h:panelGroup>
+                            <p:inputText id="txtVisao" value="#{menuController.selected.txtVisao}" title="#{messages.CreateMenuTitle_txtVisao}" size="80" maxlength="80"/>
+                            <p:tooltip for="txtVisao" value="#{menuController.getComponentMessages('txtVisao', messages.CreateMenuHelpText_txtVisao)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.CreateMenuLabel_sitAtivo}" for="sitAtivo" />
+                        <h:panelGroup>
+                            <p:inputText id="sitAtivo" value="#{menuController.selected.sitAtivo}" title="#{messages.CreateMenuTitle_sitAtivo}" required="true" requiredMessage="#{messages.CreateMenuRequiredMessage_sitAtivo}"/>
+                            <p:tooltip for="sitAtivo" value="#{menuController.getComponentMessages('sitAtivo', messages.CreateMenuHelpText_sitAtivo)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.CreateMenuLabel_txtUrl}" for="txtUrl" />
+                        <h:panelGroup>
+                            <p:inputText id="txtUrl" value="#{menuController.selected.txtUrl}" title="#{messages.CreateMenuTitle_txtUrl}" size="255" maxlength="255"/>
+                            <p:tooltip for="txtUrl" value="#{menuController.getComponentMessages('txtUrl', messages.CreateMenuHelpText_txtUrl)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.CreateMenuLabel_seqMenuPai}" for="seqMenuPai" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="seqMenuPai" value="#{menuController.selected.seqMenuPai}"  converter="menuConverter">
+                                <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                                <f:selectItems value="#{menuController.items}"
+                                               var="seqMenuPaiItem"
+                                               itemValue="#{seqMenuPaiItem}"
+                                               itemLabel="#{seqMenuPaiItem.seqMenu.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="seqMenuPai" value="#{menuController.getComponentMessages('seqMenuPai', messages.CreateMenuHelpText_seqMenuPai)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{menuController.saveNew}" value="#{messages.Save}" update="display,:MenuListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MenuCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('MenuCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

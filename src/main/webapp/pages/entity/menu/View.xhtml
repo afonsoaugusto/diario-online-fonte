@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MenuViewDlg" widgetVar="MenuViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewMenuTitle}" closeOnEscape="true">
+
+            <h:form id="MenuViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{menuController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewMenuLabel_seqMenu}"/>
+                        <h:outputText value="#{menuController.selected.seqMenu}" title="#{messages.ViewMenuTitle_seqMenu}"/>
+
+                        <h:outputText value="#{messages.ViewMenuLabel_numOrdem}"/>
+                        <h:outputText value="#{menuController.selected.numOrdem}" title="#{messages.ViewMenuTitle_numOrdem}"/>
+
+                        <h:outputText value="#{messages.ViewMenuLabel_txtTitulo}"/>
+                        <h:outputText value="#{menuController.selected.txtTitulo}" title="#{messages.ViewMenuTitle_txtTitulo}"/>
+
+                        <h:outputText value="#{messages.ViewMenuLabel_txtAcesso}"/>
+                        <h:outputText value="#{menuController.selected.txtAcesso}" title="#{messages.ViewMenuTitle_txtAcesso}"/>
+
+                        <h:outputText value="#{messages.ViewMenuLabel_txtVisao}"/>
+                        <h:outputText value="#{menuController.selected.txtVisao}" title="#{messages.ViewMenuTitle_txtVisao}"/>
+
+                        <h:outputText value="#{messages.ViewMenuLabel_sitAtivo}"/>
+                        <h:outputText value="#{menuController.selected.sitAtivo}" title="#{messages.ViewMenuTitle_sitAtivo}"/>
+
+                        <h:outputText value="#{messages.ViewMenuLabel_txtUrl}"/>
+                        <h:outputText value="#{menuController.selected.txtUrl}" title="#{messages.ViewMenuTitle_txtUrl}"/>
+
+                        <h:outputText value="#{messages.ViewMenuLabel_seqMenuPai}"/>
+                        <h:outputText value="#{menuController.selected.seqMenuPai.seqMenu}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('MenuViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

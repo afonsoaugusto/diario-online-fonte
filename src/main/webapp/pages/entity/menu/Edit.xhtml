@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="MenuEditDlg" widgetVar="MenuEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditMenuTitle}" closeOnEscape="true">
+
+            <h:form id="MenuEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{menuController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditMenuLabel_seqMenu}" for="seqMenu" />
+                        <h:panelGroup>
+                            <h:outputText id="seqMenu" value="#{menuController.selected.seqMenu}" />
+                            <p:tooltip for="seqMenu" value="#{menuController.getComponentMessages('seqMenu', messages.EditMenuHelpText_seqMenu)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.EditMenuLabel_numOrdem}" for="numOrdem" />
+                        <h:panelGroup>
+                            <p:inputText id="numOrdem" value="#{menuController.selected.numOrdem}" title="#{messages.EditMenuTitle_numOrdem}" required="true" requiredMessage="#{messages.EditMenuRequiredMessage_numOrdem}"/>
+                            <p:tooltip for="numOrdem" value="#{menuController.getComponentMessages('numOrdem', messages.EditMenuHelpText_numOrdem)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.EditMenuLabel_txtTitulo}" for="txtTitulo" />
+                        <h:panelGroup>
+                            <p:inputText id="txtTitulo" value="#{menuController.selected.txtTitulo}" title="#{messages.EditMenuTitle_txtTitulo}" required="true" requiredMessage="#{messages.EditMenuRequiredMessage_txtTitulo}" size="80" maxlength="80"/>
+                            <p:tooltip for="txtTitulo" value="#{menuController.getComponentMessages('txtTitulo', messages.EditMenuHelpText_txtTitulo)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.EditMenuLabel_txtAcesso}" for="txtAcesso" />
+                        <h:panelGroup>
+                            <p:inputText id="txtAcesso" value="#{menuController.selected.txtAcesso}" title="#{messages.EditMenuTitle_txtAcesso}" size="255" maxlength="255"/>
+                            <p:tooltip for="txtAcesso" value="#{menuController.getComponentMessages('txtAcesso', messages.EditMenuHelpText_txtAcesso)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.EditMenuLabel_txtVisao}" for="txtVisao" />
+                        <h:panelGroup>
+                            <p:inputText id="txtVisao" value="#{menuController.selected.txtVisao}" title="#{messages.EditMenuTitle_txtVisao}" size="80" maxlength="80"/>
+                            <p:tooltip for="txtVisao" value="#{menuController.getComponentMessages('txtVisao', messages.EditMenuHelpText_txtVisao)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.EditMenuLabel_sitAtivo}" for="sitAtivo" />
+                        <h:panelGroup>
+                            <p:inputText id="sitAtivo" value="#{menuController.selected.sitAtivo}" title="#{messages.EditMenuTitle_sitAtivo}" required="true" requiredMessage="#{messages.EditMenuRequiredMessage_sitAtivo}"/>
+                            <p:tooltip for="sitAtivo" value="#{menuController.getComponentMessages('sitAtivo', messages.EditMenuHelpText_sitAtivo)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.EditMenuLabel_txtUrl}" for="txtUrl" />
+                        <h:panelGroup>
+                            <p:inputText id="txtUrl" value="#{menuController.selected.txtUrl}" title="#{messages.EditMenuTitle_txtUrl}" size="255" maxlength="255"/>
+                            <p:tooltip for="txtUrl" value="#{menuController.getComponentMessages('txtUrl', messages.EditMenuHelpText_txtUrl)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{messages.EditMenuLabel_seqMenuPai}" for="seqMenuPai" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="seqMenuPai" value="#{menuController.selected.seqMenuPai}"  converter="menuConverter">
+                                <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                                <f:selectItems value="#{menuController.items}"
+                                               var="seqMenuPaiItem"
+                                               itemValue="#{seqMenuPaiItem}"
+                                               itemLabel="#{seqMenuPaiItem.seqMenu.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="seqMenuPai" value="#{menuController.getComponentMessages('seqMenuPai', messages.EditMenuHelpText_seqMenuPai)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{menuController.save}" value="#{messages.Save}" update="display,:MenuListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MenuEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('MenuEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

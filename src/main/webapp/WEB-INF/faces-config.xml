@@ -6,7 +6,7 @@
     <application>
         <resource-bundle>
             <base-name>/messages</base-name>
-            <var>myBundle</var>
+            <var>messages</var>
         </resource-bundle>
     </application>
 </faces-config>

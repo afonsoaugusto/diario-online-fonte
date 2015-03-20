@@ -44,4 +44,21 @@
                 <goal>local</goal>
             </goals>
         </action>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>war</packaging>
+                <packaging>ear</packaging>
+                <packaging>ejb</packaging>
+            </packagings>
+            <goals>
+                <goal>package</goal>
+                <goal>-XX:MaxPermSize=128m</goal>
+                <goal>-Xms64m</goal>
+                <goal>-Xmx512m</goal>
+            </goals>
+            <properties>
+                <netbeans.deploy>true</netbeans.deploy>
+            </properties>
+        </action>
     </actions>
