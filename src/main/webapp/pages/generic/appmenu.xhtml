@@ -8,12 +8,7 @@
 
     <ui:composition>
         <h:form id="menuForm">
-            <p:menubar>
-                <p:menuitem value="#{messages.Home}" outcome="/index" icon="ui-icon-home"/>
-                <p:submenu label="#{messages.Maintenance}">
-                    <p:menuitem value="#{messages.MenuHeading}..." outcome="/pages/prime/menu/index" />
-                </p:submenu>
-            </p:menubar>
+            <!--p:menu model="#{menuView.model}" toggleable="true"/-->
         </h:form>
     </ui:composition>
 

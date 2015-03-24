@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class MenuFacade extends AbstractFacade<Menu> {
-    @PersistenceContext(unitName = "app_Mysql.0PU")
+    @PersistenceContext(unitName = "app_do_1.0PU")
     private EntityManager em;
 
     @Override

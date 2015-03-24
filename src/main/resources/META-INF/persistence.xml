@@ -4,34 +4,31 @@
    xsi:schemaLocation="
         http://java.sun.com/xml/ns/persistence
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-   <persistence-unit name="primary">
-      <!-- If you are running in a production environment, add a managed 
-         data source, this example data source is just for development and testing! -->
-      <!-- The datasource is deployed as WEB-INF/kitchensink-quickstart-ds.xml, you
-         can find it in the source at src/main/webapp/WEB-INF/kitchensink-quickstart-ds.xml -->
-      <jta-data-source>java:jboss/datasources/KitchensinkQuickstartDS</jta-data-source>
-      <properties>
-         <!-- Properties for Hibernate -->
-         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-         <property name="hibernate.show_sql" value="false" />
-      </properties>
-   </persistence-unit>
-   <persistence-unit name="app_Mysql.0PU" transaction-type="JTA">
-        <jta-data-source>Mysqldb4Free</jta-data-source>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <properties/>
-    </persistence-unit>
-    
+   
     <persistence-unit name="app_do_1.0PU" transaction-type="JTA">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>br.com.diario.escolar.model.entity.Menu</class>
-        <properties>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        <properties>            
+            <!-- DADOS CONEXAO -->  
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />  
+            <property name="hibernate.connection.username" value="diarioonlinedb" />  
+            <property name="hibernate.connection.password" value="diarioonlinedb" />             
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://www.db4free.net:3306/diarioonlinedb"/>
-            <property name="javax.persistence.jdbc.user" value="diarioonlinedb"/>
-            <property name="javax.persistence.jdbc.password" value="diarioonlinedb"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.default_schema" value="diarioonlinedb"/>  
+          
+            <!-- CONFIGURACAO -->  
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />  
+            <!--property name="hibernate.hbm2ddl.auto" value="update" /-->  
+            <property name="hibernate.show_sql" value="true" />  
+            <property name="hibernate.format_sql" value="true" />  
+            <property name="hibernate.archive.autodetection" value="class" />  
+              
+            <!-- POOL -->  
+            <property name="hibernate.c3p0.min_size" value="5"/>  
+            <property name="hibernate.c3p0.max_size" value="20"/>  
+            <property name="hibernate.c3p0.timeout" value="300"/>  
+            <property name="hibernate.c3p0.max_statements" value="50"/>  
+            <property name="hibernate.c3p0.idle_test_period" value="3000"/> 
             <!--property name="hibernate.hbm2ddl.auto" value="create"/-->
         </properties>
     </persistence-unit>
