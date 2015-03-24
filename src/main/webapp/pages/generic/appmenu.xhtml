@@ -8,7 +8,20 @@
 
     <ui:composition>
         <h:form id="menuForm">
-            <!--p:menu model="#{menuView.model}" toggleable="true"/-->
+            <p:growl id="messages" showDetail="false"/>
+            <p:menu toggleable="true">
+                <p:submenu label="#{messages.MenuAdministracao}">
+                    <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
+                    <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                </p:submenu>
+                <p:submenu label="#{messages.MenuDiario}">
+                    <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
+                    <p:menuitem value="Internal" outcome="/mobile/index" icon="ui-icon-star"/>
+                </p:submenu>
+                <p:submenu label="#{messages.MenuSeguranca}">
+                    <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" icon="ui-icon-close" />
+                </p:submenu>
+            </p:menu>
         </h:form>
     </ui:composition>
 

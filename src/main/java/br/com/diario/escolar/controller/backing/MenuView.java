@@ -5,6 +5,9 @@
  */
 package br.com.diario.escolar.controller.backing;
 
+import br.com.diario.escolar.model.entity.Menu;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,42 +21,43 @@ import org.primefaces.model.menu.MenuModel;
 public class MenuView {
 
     private MenuModel model;
+    private List<Menu> listaMenu;
 
     @PostConstruct
     public void init() {
         model = new DefaultMenuModel();
-
+        generateMenu(listaMenu);
+        
         //First submenu
-        DefaultSubMenu firstSubmenu = new DefaultSubMenu("Dynamic Submenu");
+        DefaultSubMenu cadastroSubmenu = new DefaultSubMenu("Cadastro");
+        DefaultSubMenu segurancaSubmenu = new DefaultSubMenu("Segurança");
+        DefaultSubMenu turmasSubmenu = new DefaultSubMenu("Turmas");
 
         DefaultMenuItem item = new DefaultMenuItem("External");
-        item.setUrl("http://www.primefaces.org");
+        //item.setUrl("http://www.primefaces.org");
+        item.setOutcome("index.xhtml");
         item.setIcon("ui-icon-home");
-        firstSubmenu.addElement(item);
+        cadastroSubmenu.addElement(item);
 
-        model.addElement(firstSubmenu);
+        model.addElement(cadastroSubmenu);
 
-        //Second submenu
-        DefaultSubMenu secondSubmenu = new DefaultSubMenu("Dynamic Actions");
+        
 
         item = new DefaultMenuItem("Save");
         item.setIcon("ui-icon-disk");
         item.setCommand("#{menuView.save}");
         item.setUpdate("messages");
-        secondSubmenu.addElement(item);
+        turmasSubmenu.addElement(item);
 
         item = new DefaultMenuItem("Delete");
         item.setIcon("ui-icon-close");
         item.setCommand("#{menuView.delete}");
         item.setAjax(false);
-        secondSubmenu.addElement(item);
+        turmasSubmenu.addElement(item);
 
-        item = new DefaultMenuItem("Redirect");
-        item.setIcon("ui-icon-search");
-        item.setCommand("#{menuView.redirect}");
-        secondSubmenu.addElement(item);
 
-        model.addElement(secondSubmenu);
+        model.addElement(turmasSubmenu);
+        model.addElement(segurancaSubmenu);
     }
 
     public MenuModel getModel() {
@@ -75,5 +79,25 @@ public class MenuView {
     public void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    private void generateMenu(List<Menu> listaMenu) {
+        listaMenu = new ArrayList<Menu>();
+
+        Menu menuPaiCadastro = new Menu();
+        menuPaiCadastro.setNumOrdem(1);
+        menuPaiCadastro.setTxtTitulo("Cadastro");
+        listaMenu.add(menuPaiCadastro);
+
+        Menu menuPaiSeguranca = new Menu();
+        menuPaiSeguranca.setNumOrdem(2);
+        menuPaiSeguranca.setTxtTitulo("Segurança");
+        listaMenu.add(menuPaiSeguranca);
+
+        Menu menuFilhoCadastroAluno = new Menu();
+        menuFilhoCadastroAluno.setNumOrdem(1);
+        menuFilhoCadastroAluno.setTxtTitulo("Aluno");
+        menuFilhoCadastroAluno.setSeqMenuPai(menuPaiCadastro);
+        listaMenu.add(menuFilhoCadastroAluno);
     }
 }
