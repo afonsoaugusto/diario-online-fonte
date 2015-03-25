@@ -11,15 +11,15 @@
             <p:growl id="messages" showDetail="false"/>
             <p:menu toggleable="true">
                 <p:submenu label="#{messages.MenuAdministracao}">
-                    <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
-                    <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                    <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" />
+                    <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" />
                 </p:submenu>
                 <p:submenu label="#{messages.MenuDiario}">
-                    <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
-                    <p:menuitem value="Internal" outcome="/index" icon="ui-icon-star"/>
+                    <p:menuitem value="External" url="http://www.primefaces.org" />
+                    <p:menuitem value="Internal" outcome="/index" />
                 </p:submenu>
                 <p:submenu label="#{messages.MenuSeguranca}">
-                    <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" icon="ui-icon-close" />
+                    <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" />
                 </p:submenu>
             </p:menu>
         </h:form>
