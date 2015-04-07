@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ParametrizacaoEditDlg" widgetVar="ParametrizacaoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditParametrizacaoTitle}" closeOnEscape="true">
+
+            <h:form id="ParametrizacaoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{parametrizacaoController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditParametrizacaoLabel_seqParametrizacao}" for="seqParametrizacao" />
+                        <h:outputText id="seqParametrizacao" value="#{parametrizacaoController.selected.seqParametrizacao}" />
+
+                        <p:outputLabel value="#{messages.EditParametrizacaoLabel_desValorParametro}" for="desValorParametro" />
+                        <p:inputText id="desValorParametro" value="#{parametrizacaoController.selected.desValorParametro}" title="#{messages.EditParametrizacaoTitle_desValorParametro}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{messages.EditParametrizacaoLabel_numValorParametro}" for="numValorParametro" />
+                        <p:inputText id="numValorParametro" value="#{parametrizacaoController.selected.numValorParametro}" title="#{messages.EditParametrizacaoTitle_numValorParametro}"/>
+
+                        <p:outputLabel value="#{messages.EditParametrizacaoLabel_codParametro}" for="codParametro" />
+                        <p:inputText id="codParametro" value="#{parametrizacaoController.selected.codParametro}" title="#{messages.EditParametrizacaoTitle_codParametro}" required="true" requiredMessage="#{messages.EditParametrizacaoRequiredMessage_codParametro}" size="25" maxlength="25"/>
+
+                        <p:outputLabel value="#{messages.EditParametrizacaoLabel_seqParametrizacaoPai}" for="seqParametrizacaoPai" />
+                        <p:selectOneMenu id="seqParametrizacaoPai" value="#{parametrizacaoController.selected.seqParametrizacaoPai}"  converter="parametrizacaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{parametrizacaoController.items}"
+                                           var="seqParametrizacaoPaiItem"
+                                           itemValue="#{seqParametrizacaoPaiItem}"
+                                           itemLabel="#{seqParametrizacaoPaiItem.seqParametrizacao.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{parametrizacaoController.save}" value="#{messages.Save}" update="display,:ParametrizacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ParametrizacaoEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('ParametrizacaoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

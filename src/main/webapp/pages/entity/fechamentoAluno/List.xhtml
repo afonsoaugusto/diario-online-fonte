@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="FechamentoAlunoListForm">
+
+        <p:panel header="#{messages.ListFechamentoAlunoTitle}">
+            <p:contextMenu id="FechamentoAlunoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('FechamentoAlunoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('FechamentoAlunoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('FechamentoAlunoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('FechamentoAlunoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.FechamentoAlunoMenuItem_seqSituacao}" icon="ui-icon-search"  actionListener="#{fechamentoAlunoController.prepareSeqSituacao}" update=":SituacaoViewForm" oncomplete="PF('SituacaoViewDialog').show()" disabled="#{empty fechamentoAlunoController.selected.seqSituacao}"/>  
+                <p:menuitem value="#{messages.FechamentoAlunoMenuItem_seqFechamento}" icon="ui-icon-search"  actionListener="#{fechamentoAlunoController.prepareSeqFechamento}" update=":FechamentoViewForm" oncomplete="PF('FechamentoViewDialog').show()" disabled="#{empty fechamentoAlunoController.selected.seqFechamento}"/>  
+                <p:menuitem value="#{messages.FechamentoAlunoMenuItem_seqAno}" icon="ui-icon-search"  actionListener="#{fechamentoAlunoController.prepareSeqAno}" update=":AnoViewForm" oncomplete="PF('AnoViewDialog').show()" disabled="#{empty fechamentoAlunoController.selected.seqAno}"/>  
+                <p:menuitem value="#{messages.FechamentoAlunoMenuItem_seqAluno}" icon="ui-icon-search"  actionListener="#{fechamentoAlunoController.prepareSeqAluno}" update=":AlunoViewForm" oncomplete="PF('AlunoViewDialog').show()" disabled="#{empty fechamentoAlunoController.selected.seqAluno}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{fechamentoAlunoController.items}"
+                         var="item"
+                         rowKey="#{item.seqFechamentoAluno}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{fechamentoAlunoController.selected}">
+
+                <p:ajax event="rowSelect"   update=":FechamentoAlunoListForm:createButton :FechamentoAlunoListForm:viewButton :FechamentoAlunoListForm:editButton :FechamentoAlunoListForm:deleteButton :FechamentoAlunoListForm:FechamentoAlunoDataTableContextMenu" listener="#{fechamentoAlunoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":FechamentoAlunoListForm:createButton :FechamentoAlunoListForm:viewButton :FechamentoAlunoListForm:editButton :FechamentoAlunoListForm:deleteButton :FechamentoAlunoListForm:FechamentoAlunoDataTableContextMenu" listener="#{fechamentoAlunoController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :FechamentoAlunoListForm:createButton :FechamentoAlunoListForm:viewButton :FechamentoAlunoListForm:editButton :FechamentoAlunoListForm:deleteButton" listener="#{fechamentoAlunoController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('FechamentoAlunoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqFechamentoAluno}" filterBy="#{item.seqFechamentoAluno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListFechamentoAlunoTitle_seqFechamentoAluno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqFechamentoAluno}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.datLancamento}" filterBy="#{item.datLancamento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListFechamentoAlunoTitle_datLancamento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.datLancamento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.flgFechamentoAtual}" filterBy="#{item.flgFechamentoAtual}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListFechamentoAlunoTitle_flgFechamentoAtual}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.flgFechamentoAtual}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numNota}" filterBy="#{item.numNota}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListFechamentoAlunoTitle_numNota}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numNota}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numQtdPresenca}" filterBy="#{item.numQtdPresenca}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListFechamentoAlunoTitle_numQtdPresenca}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numQtdPresenca}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqSituacao.seqSituacao}" filterBy="#{item.seqSituacao.seqSituacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListFechamentoAlunoTitle_seqSituacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqSituacao.seqSituacao}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.seqFechamento.seqFechamento}" filterBy="#{item.seqFechamento.seqFechamento}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListFechamentoAlunoTitle_seqFechamento}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.seqFechamento.seqFechamento}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.seqAno.seqAno}" filterBy="#{item.seqAno.seqAno}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListFechamentoAlunoTitle_seqAno}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.seqAno.seqAno}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListFechamentoAlunoTitle_seqAluno}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.seqAluno.seqAluno}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{fechamentoAlunoController.prepareCreate}" update=":FechamentoAlunoCreateForm" oncomplete="PF('FechamentoAlunoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":FechamentoAlunoViewForm" oncomplete="PF('FechamentoAlunoViewDialog').show()" disabled="#{empty fechamentoAlunoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":FechamentoAlunoEditForm" oncomplete="PF('FechamentoAlunoEditDialog').show()" disabled="#{empty fechamentoAlunoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{fechamentoAlunoController.delete}" update=":growl,datalist" disabled="#{empty fechamentoAlunoController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="FechamentoAlunoEditDlg" widgetVar="FechamentoAlunoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditFechamentoAlunoTitle}" closeOnEscape="true">
+
+            <h:form id="FechamentoAlunoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{fechamentoAlunoController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditFechamentoAlunoLabel_seqFechamentoAluno}" for="seqFechamentoAluno" />
+                        <h:outputText id="seqFechamentoAluno" value="#{fechamentoAlunoController.selected.seqFechamentoAluno}" />
+
+                        <p:outputLabel value="#{messages.EditFechamentoAlunoLabel_datLancamento}" for="datLancamento" />
+                        <p:calendar id="datLancamento" pattern="MM/dd/yyyy HH:mm:ss" value="#{fechamentoAlunoController.selected.datLancamento}" title="#{messages.EditFechamentoAlunoTitle_datLancamento}" required="true" requiredMessage="#{messages.EditFechamentoAlunoRequiredMessage_datLancamento}" showOn="button"/>
+
+                        <p:outputLabel value="#{messages.EditFechamentoAlunoLabel_flgFechamentoAtual}" for="flgFechamentoAtual" />
+                        <p:inputText id="flgFechamentoAtual" value="#{fechamentoAlunoController.selected.flgFechamentoAtual}" title="#{messages.EditFechamentoAlunoTitle_flgFechamentoAtual}"/>
+
+                        <p:outputLabel value="#{messages.EditFechamentoAlunoLabel_numNota}" for="numNota" />
+                        <p:inputText id="numNota" value="#{fechamentoAlunoController.selected.numNota}" title="#{messages.EditFechamentoAlunoTitle_numNota}" required="true" requiredMessage="#{messages.EditFechamentoAlunoRequiredMessage_numNota}"/>
+
+                        <p:outputLabel value="#{messages.EditFechamentoAlunoLabel_numQtdPresenca}" for="numQtdPresenca" />
+                        <p:inputText id="numQtdPresenca" value="#{fechamentoAlunoController.selected.numQtdPresenca}" title="#{messages.EditFechamentoAlunoTitle_numQtdPresenca}" required="true" requiredMessage="#{messages.EditFechamentoAlunoRequiredMessage_numQtdPresenca}"/>
+
+                        <p:outputLabel value="#{messages.EditFechamentoAlunoLabel_seqSituacao}" for="seqSituacao" />
+                        <p:selectOneMenu id="seqSituacao" value="#{fechamentoAlunoController.selected.seqSituacao}" required="true" requiredMessage="#{messages.EditFechamentoAlunoRequiredMessage_seqSituacao}" converter="situacaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{situacaoController.items}"
+                                           var="seqSituacaoItem"
+                                           itemValue="#{seqSituacaoItem}"
+                                           itemLabel="#{seqSituacaoItem.seqSituacao.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditFechamentoAlunoLabel_seqFechamento}" for="seqFechamento" />
+                        <p:selectOneMenu id="seqFechamento" value="#{fechamentoAlunoController.selected.seqFechamento}" required="true" requiredMessage="#{messages.EditFechamentoAlunoRequiredMessage_seqFechamento}" converter="fechamentoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{fechamentoController.items}"
+                                           var="seqFechamentoItem"
+                                           itemValue="#{seqFechamentoItem}"
+                                           itemLabel="#{seqFechamentoItem.seqFechamento.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditFechamentoAlunoLabel_seqAno}" for="seqAno" />
+                        <p:selectOneMenu id="seqAno" value="#{fechamentoAlunoController.selected.seqAno}" required="true" requiredMessage="#{messages.EditFechamentoAlunoRequiredMessage_seqAno}" converter="anoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{anoController.items}"
+                                           var="seqAnoItem"
+                                           itemValue="#{seqAnoItem}"
+                                           itemLabel="#{seqAnoItem.seqAno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditFechamentoAlunoLabel_seqAluno}" for="seqAluno" />
+                        <p:selectOneMenu id="seqAluno" value="#{fechamentoAlunoController.selected.seqAluno}" required="true" requiredMessage="#{messages.EditFechamentoAlunoRequiredMessage_seqAluno}" converter="alunoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{alunoController.items}"
+                                           var="seqAlunoItem"
+                                           itemValue="#{seqAlunoItem}"
+                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{fechamentoAlunoController.save}" value="#{messages.Save}" update="display,:FechamentoAlunoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('FechamentoAlunoEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('FechamentoAlunoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

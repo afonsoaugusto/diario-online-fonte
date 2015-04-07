@@ -209,7 +209,7 @@ public abstract class AbstractController<T> implements Serializable {
                         if (msg.length() > 0) {
                             JsfUtil.addErrorMessage(msg);
                         } else {
-                            JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/messages").getString("PersistenceErrorOccured"));
+                            JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
                         }
                     }
                 }
@@ -235,10 +235,10 @@ public abstract class AbstractController<T> implements Serializable {
             this.selected = newItem;
             initializeEmbeddableKey();
             return newItem;
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException  ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AbstractController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

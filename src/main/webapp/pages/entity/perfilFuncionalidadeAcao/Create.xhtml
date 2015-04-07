@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerfilFuncionalidadeAcaoCreateDlg" widgetVar="PerfilFuncionalidadeAcaoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreatePerfilFuncionalidadeAcaoTitle}" closeOnEscape="true">
+
+            <h:form id="PerfilFuncionalidadeAcaoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{perfilFuncionalidadeAcaoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreatePerfilFuncionalidadeAcaoLabel_seqPerfilFuncionalidadeAcao}" for="seqPerfilFuncionalidadeAcao" />
+                        <p:inputText id="seqPerfilFuncionalidadeAcao" value="#{perfilFuncionalidadeAcaoController.selected.seqPerfilFuncionalidadeAcao}" title="#{messages.CreatePerfilFuncionalidadeAcaoTitle_seqPerfilFuncionalidadeAcao}" required="true" requiredMessage="#{messages.CreatePerfilFuncionalidadeAcaoRequiredMessage_seqPerfilFuncionalidadeAcao}"/>
+
+                        <p:outputLabel value="#{messages.CreatePerfilFuncionalidadeAcaoLabel_seqPerfil}" for="seqPerfil" />
+                        <p:selectOneMenu id="seqPerfil" value="#{perfilFuncionalidadeAcaoController.selected.seqPerfil}" required="true" requiredMessage="#{messages.CreatePerfilFuncionalidadeAcaoRequiredMessage_seqPerfil}" converter="perfilConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{perfilController.items}"
+                                           var="seqPerfilItem"
+                                           itemValue="#{seqPerfilItem}"
+                                           itemLabel="#{seqPerfilItem.seqPerfil.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreatePerfilFuncionalidadeAcaoLabel_seqFuncionalidadeAcao}" for="seqFuncionalidadeAcao" />
+                        <p:selectOneMenu id="seqFuncionalidadeAcao" value="#{perfilFuncionalidadeAcaoController.selected.seqFuncionalidadeAcao}" required="true" requiredMessage="#{messages.CreatePerfilFuncionalidadeAcaoRequiredMessage_seqFuncionalidadeAcao}" converter="funcionalidadeAcaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{funcionalidadeAcaoController.items}"
+                                           var="seqFuncionalidadeAcaoItem"
+                                           itemValue="#{seqFuncionalidadeAcaoItem}"
+                                           itemLabel="#{seqFuncionalidadeAcaoItem.seqFuncionalidadeAcao.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{perfilFuncionalidadeAcaoController.saveNew}" value="#{messages.Save}" update="display,:PerfilFuncionalidadeAcaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PerfilFuncionalidadeAcaoCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PerfilFuncionalidadeAcaoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

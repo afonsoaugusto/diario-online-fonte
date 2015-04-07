@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DisciplinaProfessorEditDlg" widgetVar="DisciplinaProfessorEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditDisciplinaProfessorTitle}" closeOnEscape="true">
+
+            <h:form id="DisciplinaProfessorEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{disciplinaProfessorController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditDisciplinaProfessorLabel_seqDisciplinaProfessor}" for="seqDisciplinaProfessor" />
+                        <h:outputText id="seqDisciplinaProfessor" value="#{disciplinaProfessorController.selected.seqDisciplinaProfessor}" />
+
+                        <p:outputLabel value="#{messages.EditDisciplinaProfessorLabel_seqPessoa}" for="seqPessoa" />
+                        <p:selectOneMenu id="seqPessoa" value="#{disciplinaProfessorController.selected.seqPessoa}" required="true" requiredMessage="#{messages.EditDisciplinaProfessorRequiredMessage_seqPessoa}" converter="pessoaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{pessoaController.items}"
+                                           var="seqPessoaItem"
+                                           itemValue="#{seqPessoaItem}"
+                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditDisciplinaProfessorLabel_seqDisciplinaAno}" for="seqDisciplinaAno" />
+                        <p:selectOneMenu id="seqDisciplinaAno" value="#{disciplinaProfessorController.selected.seqDisciplinaAno}" required="true" requiredMessage="#{messages.EditDisciplinaProfessorRequiredMessage_seqDisciplinaAno}" converter="disciplinaAnoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{disciplinaAnoController.items}"
+                                           var="seqDisciplinaAnoItem"
+                                           itemValue="#{seqDisciplinaAnoItem}"
+                                           itemLabel="#{seqDisciplinaAnoItem.seqDisciplinaAno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{disciplinaProfessorController.save}" value="#{messages.Save}" update="display,:DisciplinaProfessorListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DisciplinaProfessorEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('DisciplinaProfessorEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

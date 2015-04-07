@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DisciplinaProfessorViewDlg" widgetVar="DisciplinaProfessorViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewDisciplinaProfessorTitle}" closeOnEscape="true">
+
+            <h:form id="DisciplinaProfessorViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{disciplinaProfessorController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewDisciplinaProfessorLabel_seqDisciplinaProfessor}"/>
+                        <h:outputText value="#{disciplinaProfessorController.selected.seqDisciplinaProfessor}" title="#{messages.ViewDisciplinaProfessorTitle_seqDisciplinaProfessor}"/>
+
+                        <h:outputText value="#{messages.ViewDisciplinaProfessorLabel_seqPessoa}"/>
+                        <h:outputText value="#{disciplinaProfessorController.selected.seqPessoa.seqPessoa}"/>
+
+                        <h:outputText value="#{messages.ViewDisciplinaProfessorLabel_seqDisciplinaAno}"/>
+                        <h:outputText value="#{disciplinaProfessorController.selected.seqDisciplinaAno.seqDisciplinaAno}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('DisciplinaProfessorViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

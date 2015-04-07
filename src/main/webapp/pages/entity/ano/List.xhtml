@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AnoListForm">
+
+        <p:panel header="#{messages.ListAnoTitle}">
+            <p:contextMenu id="AnoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('AnoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('AnoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('AnoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('AnoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.AnoMenuItem_fechamentoAlunoList}" icon="ui-icon-search"  action="#{anoController.navigateFechamentoAlunoList}" disabled="#{empty anoController.selected.fechamentoAlunoList}" ajax="false"/>  
+                <p:menuitem value="#{messages.AnoMenuItem_seqParameNivelEscolar}" icon="ui-icon-search"  actionListener="#{anoController.prepareSeqParameNivelEscolar}" update=":ParametrizacaoViewForm" oncomplete="PF('ParametrizacaoViewDialog').show()" disabled="#{empty anoController.selected.seqParameNivelEscolar}"/>  
+                <p:menuitem value="#{messages.AnoMenuItem_disciplinaAnoList}" icon="ui-icon-search"  action="#{anoController.navigateDisciplinaAnoList}" disabled="#{empty anoController.selected.disciplinaAnoList}" ajax="false"/>  
+                <p:menuitem value="#{messages.AnoMenuItem_turmaList}" icon="ui-icon-search"  action="#{anoController.navigateTurmaList}" disabled="#{empty anoController.selected.turmaList}" ajax="false"/>  
+                <p:menuitem value="#{messages.AnoMenuItem_notasList}" icon="ui-icon-search"  action="#{anoController.navigateNotasList}" disabled="#{empty anoController.selected.notasList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{anoController.items}"
+                         var="item"
+                         rowKey="#{item.seqAno}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{anoController.selected}">
+
+                <p:ajax event="rowSelect"   update=":AnoListForm:createButton :AnoListForm:viewButton :AnoListForm:editButton :AnoListForm:deleteButton :AnoListForm:AnoDataTableContextMenu" listener="#{anoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":AnoListForm:createButton :AnoListForm:viewButton :AnoListForm:editButton :AnoListForm:deleteButton :AnoListForm:AnoDataTableContextMenu" listener="#{anoController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :AnoListForm:createButton :AnoListForm:viewButton :AnoListForm:editButton :AnoListForm:deleteButton" listener="#{anoController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AnoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqAno}" filterBy="#{item.seqAno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAnoTitle_seqAno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqAno}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numAno}" filterBy="#{item.numAno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAnoTitle_numAno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numAno}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numAnoVigente}" filterBy="#{item.numAnoVigente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAnoTitle_numAnoVigente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numAnoVigente}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqParameNivelEscolar.seqParametrizacao}" filterBy="#{item.seqParameNivelEscolar.seqParametrizacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAnoTitle_seqParameNivelEscolar}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqParameNivelEscolar.seqParametrizacao}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{anoController.prepareCreate}" update=":AnoCreateForm" oncomplete="PF('AnoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":AnoViewForm" oncomplete="PF('AnoViewDialog').show()" disabled="#{empty anoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":AnoEditForm" oncomplete="PF('AnoEditDialog').show()" disabled="#{empty anoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{anoController.delete}" update=":growl,datalist" disabled="#{empty anoController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PessoaViewDlg" widgetVar="PessoaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewPessoaTitle}" closeOnEscape="true">
+
+            <h:form id="PessoaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{pessoaController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_seqPessoa}"/>
+                        <h:outputText value="#{pessoaController.selected.seqPessoa}" title="#{messages.ViewPessoaTitle_seqPessoa}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_desNome}"/>
+                        <h:outputText value="#{pessoaController.selected.desNome}" title="#{messages.ViewPessoaTitle_desNome}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_codCpf}"/>
+                        <h:outputText value="#{pessoaController.selected.codCpf}" title="#{messages.ViewPessoaTitle_codCpf}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_desRua}"/>
+                        <h:outputText value="#{pessoaController.selected.desRua}" title="#{messages.ViewPessoaTitle_desRua}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_desBairro}"/>
+                        <h:outputText value="#{pessoaController.selected.desBairro}" title="#{messages.ViewPessoaTitle_desBairro}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_numCep}"/>
+                        <h:outputText value="#{pessoaController.selected.numCep}" title="#{messages.ViewPessoaTitle_numCep}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_numCasa}"/>
+                        <h:outputText value="#{pessoaController.selected.numCasa}" title="#{messages.ViewPessoaTitle_numCasa}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_numTel}"/>
+                        <h:outputText value="#{pessoaController.selected.numTel}" title="#{messages.ViewPessoaTitle_numTel}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_numCel}"/>
+                        <h:outputText value="#{pessoaController.selected.numCel}" title="#{messages.ViewPessoaTitle_numCel}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_flgAtivo}"/>
+                        <h:outputText value="#{pessoaController.selected.flgAtivo}" title="#{messages.ViewPessoaTitle_flgAtivo}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_seqCidade}"/>
+                        <h:outputText value="#{pessoaController.selected.seqCidade.codMunicipio}"/>
+
+                        <h:outputText value="#{messages.ViewPessoaLabel_usuario}"/>
+                        <h:outputText value="#{pessoaController.selected.usuario.seqUsuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('PessoaViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

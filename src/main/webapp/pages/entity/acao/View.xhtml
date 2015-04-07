@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AcaoViewDlg" widgetVar="AcaoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewAcaoTitle}" closeOnEscape="true">
+
+            <h:form id="AcaoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{acaoController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewAcaoLabel_seqAcao}"/>
+                        <h:outputText value="#{acaoController.selected.seqAcao}" title="#{messages.ViewAcaoTitle_seqAcao}"/>
+
+                        <h:outputText value="#{messages.ViewAcaoLabel_codAcao}"/>
+                        <h:outputText value="#{acaoController.selected.codAcao}" title="#{messages.ViewAcaoTitle_codAcao}"/>
+
+                        <h:outputText value="#{messages.ViewAcaoLabel_desAcao}"/>
+                        <h:outputText value="#{acaoController.selected.desAcao}" title="#{messages.ViewAcaoTitle_desAcao}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('AcaoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

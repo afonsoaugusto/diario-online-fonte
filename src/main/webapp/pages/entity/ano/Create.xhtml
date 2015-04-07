@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AnoCreateDlg" widgetVar="AnoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateAnoTitle}" closeOnEscape="true">
+
+            <h:form id="AnoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{anoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateAnoLabel_seqAno}" for="seqAno" />
+                        <p:inputText id="seqAno" value="#{anoController.selected.seqAno}" title="#{messages.CreateAnoTitle_seqAno}" required="true" requiredMessage="#{messages.CreateAnoRequiredMessage_seqAno}"/>
+
+                        <p:outputLabel value="#{messages.CreateAnoLabel_numAno}" for="numAno" />
+                        <p:inputText id="numAno" value="#{anoController.selected.numAno}" title="#{messages.CreateAnoTitle_numAno}"/>
+
+                        <p:outputLabel value="#{messages.CreateAnoLabel_numAnoVigente}" for="numAnoVigente" />
+                        <p:inputText id="numAnoVigente" value="#{anoController.selected.numAnoVigente}" title="#{messages.CreateAnoTitle_numAnoVigente}"/>
+
+                        <p:outputLabel value="#{messages.CreateAnoLabel_seqParameNivelEscolar}" for="seqParameNivelEscolar" />
+                        <p:selectOneMenu id="seqParameNivelEscolar" value="#{anoController.selected.seqParameNivelEscolar}" required="true" requiredMessage="#{messages.CreateAnoRequiredMessage_seqParameNivelEscolar}" converter="parametrizacaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{parametrizacaoController.items}"
+                                           var="seqParameNivelEscolarItem"
+                                           itemValue="#{seqParameNivelEscolarItem}"
+                                           itemLabel="#{seqParameNivelEscolarItem.seqParametrizacao.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{anoController.saveNew}" value="#{messages.Save}" update="display,:AnoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AnoCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('AnoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

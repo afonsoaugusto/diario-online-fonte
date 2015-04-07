@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UfViewDlg" widgetVar="UfViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewUfTitle}" closeOnEscape="true">
+
+            <h:form id="UfViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{ufController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewUfLabel_codUf}"/>
+                        <h:outputText value="#{ufController.selected.codUf}" title="#{messages.ViewUfTitle_codUf}"/>
+
+                        <h:outputText value="#{messages.ViewUfLabel_sigUf}"/>
+                        <h:outputText value="#{ufController.selected.sigUf}" title="#{messages.ViewUfTitle_sigUf}"/>
+
+                        <h:outputText value="#{messages.ViewUfLabel_nomUf}"/>
+                        <h:outputText value="#{ufController.selected.nomUf}" title="#{messages.ViewUfTitle_nomUf}"/>
+
+                        <h:outputText value="#{messages.ViewUfLabel_sitCancelado}"/>
+                        <h:outputText value="#{ufController.selected.sitCancelado}" title="#{messages.ViewUfTitle_sitCancelado}"/>
+
+                        <h:outputText value="#{messages.ViewUfLabel_datAlteracao}"/>
+                        <h:outputText value="#{ufController.selected.datAlteracao}" title="#{messages.ViewUfTitle_datAlteracao}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{messages.ViewUfLabel_codRegiao}"/>
+                        <h:outputText value="#{ufController.selected.codRegiao}" title="#{messages.ViewUfTitle_codRegiao}"/>
+
+                        <h:outputText value="#{messages.ViewUfLabel_nomUfFormatado}"/>
+                        <h:outputText value="#{ufController.selected.nomUfFormatado}" title="#{messages.ViewUfTitle_nomUfFormatado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('UfViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlanoEnsinoViewDlg" widgetVar="PlanoEnsinoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewPlanoEnsinoTitle}" closeOnEscape="true">
+
+            <h:form id="PlanoEnsinoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{planoEnsinoController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewPlanoEnsinoLabel_seqPlanoEnsino}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.seqPlanoEnsino}" title="#{messages.ViewPlanoEnsinoTitle_seqPlanoEnsino}"/>
+
+                        <h:outputText value="#{messages.ViewPlanoEnsinoLabel_desConteudo}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.desConteudo}" title="#{messages.ViewPlanoEnsinoTitle_desConteudo}"/>
+
+                        <h:outputText value="#{messages.ViewPlanoEnsinoLabel_datPlano}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.datPlano}" title="#{messages.ViewPlanoEnsinoTitle_datPlano}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{messages.ViewPlanoEnsinoLabel_desAnexo}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.desAnexo}" title="#{messages.ViewPlanoEnsinoTitle_desAnexo}"/>
+
+                        <h:outputText value="#{messages.ViewPlanoEnsinoLabel_seqTurma}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.seqTurma.seqTurma}"/>
+
+                        <h:outputText value="#{messages.ViewPlanoEnsinoLabel_seqAtuacaoProfessor}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.seqAtuacaoProfessor.seqAtuacaoProfessor}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('PlanoEnsinoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

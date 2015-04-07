@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UfEditDlg" widgetVar="UfEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditUfTitle}" closeOnEscape="true">
+
+            <h:form id="UfEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{ufController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditUfLabel_codUf}" for="codUf" />
+                        <h:outputText id="codUf" value="#{ufController.selected.codUf}" />
+
+                        <p:outputLabel value="#{messages.EditUfLabel_sigUf}" for="sigUf" />
+                        <p:inputText id="sigUf" value="#{ufController.selected.sigUf}" title="#{messages.EditUfTitle_sigUf}" required="true" requiredMessage="#{messages.EditUfRequiredMessage_sigUf}" size="2" maxlength="2"/>
+
+                        <p:outputLabel value="#{messages.EditUfLabel_nomUf}" for="nomUf" />
+                        <p:inputText id="nomUf" value="#{ufController.selected.nomUf}" title="#{messages.EditUfTitle_nomUf}" required="true" requiredMessage="#{messages.EditUfRequiredMessage_nomUf}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{messages.EditUfLabel_sitCancelado}" for="sitCancelado" />
+                        <p:inputText id="sitCancelado" value="#{ufController.selected.sitCancelado}" title="#{messages.EditUfTitle_sitCancelado}" required="true" requiredMessage="#{messages.EditUfRequiredMessage_sitCancelado}"/>
+
+                        <p:outputLabel value="#{messages.EditUfLabel_datAlteracao}" for="datAlteracao" />
+                        <p:calendar id="datAlteracao" pattern="MM/dd/yyyy HH:mm:ss" value="#{ufController.selected.datAlteracao}" title="#{messages.EditUfTitle_datAlteracao}"  showOn="button"/>
+
+                        <p:outputLabel value="#{messages.EditUfLabel_codRegiao}" for="codRegiao" />
+                        <p:inputText id="codRegiao" value="#{ufController.selected.codRegiao}" title="#{messages.EditUfTitle_codRegiao}" required="true" requiredMessage="#{messages.EditUfRequiredMessage_codRegiao}"/>
+
+                        <p:outputLabel value="#{messages.EditUfLabel_nomUfFormatado}" for="nomUfFormatado" />
+                        <p:inputText id="nomUfFormatado" value="#{ufController.selected.nomUfFormatado}" title="#{messages.EditUfTitle_nomUfFormatado}" size="20" maxlength="20"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ufController.save}" value="#{messages.Save}" update="display,:UfListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UfEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('UfEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

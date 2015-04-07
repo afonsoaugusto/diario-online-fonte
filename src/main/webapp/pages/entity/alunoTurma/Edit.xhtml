@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AlunoTurmaEditDlg" widgetVar="AlunoTurmaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditAlunoTurmaTitle}" closeOnEscape="true">
+
+            <h:form id="AlunoTurmaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{alunoTurmaController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditAlunoTurmaLabel_seqAlunoTurma}" for="seqAlunoTurma" />
+                        <h:outputText id="seqAlunoTurma" value="#{alunoTurmaController.selected.seqAlunoTurma}" />
+
+                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_flgTurmaAtual}" for="flgTurmaAtual" />
+                        <p:inputText id="flgTurmaAtual" value="#{alunoTurmaController.selected.flgTurmaAtual}" title="#{messages.EditAlunoTurmaTitle_flgTurmaAtual}" required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_flgTurmaAtual}"/>
+
+                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_seqTurma}" for="seqTurma" />
+                        <p:selectOneMenu id="seqTurma" value="#{alunoTurmaController.selected.seqTurma}" required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_seqTurma}" converter="turmaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{turmaController.items}"
+                                           var="seqTurmaItem"
+                                           itemValue="#{seqTurmaItem}"
+                                           itemLabel="#{seqTurmaItem.seqTurma.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_seqSituacao}" for="seqSituacao" />
+                        <p:selectOneMenu id="seqSituacao" value="#{alunoTurmaController.selected.seqSituacao}" required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_seqSituacao}" converter="situacaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{situacaoController.items}"
+                                           var="seqSituacaoItem"
+                                           itemValue="#{seqSituacaoItem}"
+                                           itemLabel="#{seqSituacaoItem.seqSituacao.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_seqAluno}" for="seqAluno" />
+                        <p:selectOneMenu id="seqAluno" value="#{alunoTurmaController.selected.seqAluno}" required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_seqAluno}" converter="alunoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{alunoController.items}"
+                                           var="seqAlunoItem"
+                                           itemValue="#{seqAlunoItem}"
+                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alunoTurmaController.save}" value="#{messages.Save}" update="display,:AlunoTurmaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlunoTurmaEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('AlunoTurmaEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

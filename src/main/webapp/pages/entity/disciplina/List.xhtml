@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DisciplinaListForm">
+
+        <p:panel header="#{messages.ListDisciplinaTitle}">
+            <p:contextMenu id="DisciplinaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('DisciplinaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('DisciplinaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('DisciplinaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('DisciplinaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.DisciplinaMenuItem_fechamentoList}" icon="ui-icon-search"  action="#{disciplinaController.navigateFechamentoList}" disabled="#{empty disciplinaController.selected.fechamentoList}" ajax="false"/>  
+                <p:menuitem value="#{messages.DisciplinaMenuItem_atividadeList}" icon="ui-icon-search"  action="#{disciplinaController.navigateAtividadeList}" disabled="#{empty disciplinaController.selected.atividadeList}" ajax="false"/>  
+                <p:menuitem value="#{messages.DisciplinaMenuItem_presencaList}" icon="ui-icon-search"  action="#{disciplinaController.navigatePresencaList}" disabled="#{empty disciplinaController.selected.presencaList}" ajax="false"/>  
+                <p:menuitem value="#{messages.DisciplinaMenuItem_atuacaoProfessorList}" icon="ui-icon-search"  action="#{disciplinaController.navigateAtuacaoProfessorList}" disabled="#{empty disciplinaController.selected.atuacaoProfessorList}" ajax="false"/>  
+                <p:menuitem value="#{messages.DisciplinaMenuItem_disciplinaAnoList}" icon="ui-icon-search"  action="#{disciplinaController.navigateDisciplinaAnoList}" disabled="#{empty disciplinaController.selected.disciplinaAnoList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{disciplinaController.items}"
+                         var="item"
+                         rowKey="#{item.seqDisciplina}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{disciplinaController.selected}">
+
+                <p:ajax event="rowSelect"   update=":DisciplinaListForm:createButton :DisciplinaListForm:viewButton :DisciplinaListForm:editButton :DisciplinaListForm:deleteButton :DisciplinaListForm:DisciplinaDataTableContextMenu" listener="#{disciplinaController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":DisciplinaListForm:createButton :DisciplinaListForm:viewButton :DisciplinaListForm:editButton :DisciplinaListForm:deleteButton :DisciplinaListForm:DisciplinaDataTableContextMenu" listener="#{disciplinaController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :DisciplinaListForm:createButton :DisciplinaListForm:viewButton :DisciplinaListForm:editButton :DisciplinaListForm:deleteButton" listener="#{disciplinaController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('DisciplinaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqDisciplina}" filterBy="#{item.seqDisciplina}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListDisciplinaTitle_seqDisciplina}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqDisciplina}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desNomeDisciplina}" filterBy="#{item.desNomeDisciplina}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListDisciplinaTitle_desNomeDisciplina}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desNomeDisciplina}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desConteudo}" filterBy="#{item.desConteudo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListDisciplinaTitle_desConteudo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desConteudo}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{disciplinaController.prepareCreate}" update=":DisciplinaCreateForm" oncomplete="PF('DisciplinaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":DisciplinaViewForm" oncomplete="PF('DisciplinaViewDialog').show()" disabled="#{empty disciplinaController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":DisciplinaEditForm" oncomplete="PF('DisciplinaEditDialog').show()" disabled="#{empty disciplinaController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{disciplinaController.delete}" update=":growl,datalist" disabled="#{empty disciplinaController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

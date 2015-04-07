@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="UsuarioPerfilListForm">
+
+        <p:panel header="#{messages.ListUsuarioPerfilTitle}">
+            <p:contextMenu id="UsuarioPerfilDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('UsuarioPerfilListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('UsuarioPerfilListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('UsuarioPerfilListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('UsuarioPerfilListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.UsuarioPerfilMenuItem_seqUsuario}" icon="ui-icon-search"  actionListener="#{usuarioPerfilController.prepareSeqUsuario}" update=":UsuarioViewForm" oncomplete="PF('UsuarioViewDialog').show()" disabled="#{empty usuarioPerfilController.selected.seqUsuario}"/>  
+                <p:menuitem value="#{messages.UsuarioPerfilMenuItem_seqPerfil}" icon="ui-icon-search"  actionListener="#{usuarioPerfilController.prepareSeqPerfil}" update=":PerfilViewForm" oncomplete="PF('PerfilViewDialog').show()" disabled="#{empty usuarioPerfilController.selected.seqPerfil}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{usuarioPerfilController.items}"
+                         var="item"
+                         rowKey="#{item.seqUsuarioPerfil}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{usuarioPerfilController.selected}">
+
+                <p:ajax event="rowSelect"   update=":UsuarioPerfilListForm:createButton :UsuarioPerfilListForm:viewButton :UsuarioPerfilListForm:editButton :UsuarioPerfilListForm:deleteButton :UsuarioPerfilListForm:UsuarioPerfilDataTableContextMenu" listener="#{usuarioPerfilController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":UsuarioPerfilListForm:createButton :UsuarioPerfilListForm:viewButton :UsuarioPerfilListForm:editButton :UsuarioPerfilListForm:deleteButton :UsuarioPerfilListForm:UsuarioPerfilDataTableContextMenu" listener="#{usuarioPerfilController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :UsuarioPerfilListForm:createButton :UsuarioPerfilListForm:viewButton :UsuarioPerfilListForm:editButton :UsuarioPerfilListForm:deleteButton" listener="#{usuarioPerfilController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('UsuarioPerfilListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqUsuarioPerfil}" filterBy="#{item.seqUsuarioPerfil}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListUsuarioPerfilTitle_seqUsuarioPerfil}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqUsuarioPerfil}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqUsuario.seqUsuario}" filterBy="#{item.seqUsuario.seqUsuario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListUsuarioPerfilTitle_seqUsuario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqUsuario.seqUsuario}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqPerfil.seqPerfil}" filterBy="#{item.seqPerfil.seqPerfil}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListUsuarioPerfilTitle_seqPerfil}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPerfil.seqPerfil}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{usuarioPerfilController.prepareCreate}" update=":UsuarioPerfilCreateForm" oncomplete="PF('UsuarioPerfilCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":UsuarioPerfilViewForm" oncomplete="PF('UsuarioPerfilViewDialog').show()" disabled="#{empty usuarioPerfilController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":UsuarioPerfilEditForm" oncomplete="PF('UsuarioPerfilEditDialog').show()" disabled="#{empty usuarioPerfilController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{usuarioPerfilController.delete}" update=":growl,datalist" disabled="#{empty usuarioPerfilController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

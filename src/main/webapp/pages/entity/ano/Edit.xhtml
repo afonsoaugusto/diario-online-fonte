@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AnoEditDlg" widgetVar="AnoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditAnoTitle}" closeOnEscape="true">
+
+            <h:form id="AnoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{anoController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditAnoLabel_seqAno}" for="seqAno" />
+                        <h:outputText id="seqAno" value="#{anoController.selected.seqAno}" />
+
+                        <p:outputLabel value="#{messages.EditAnoLabel_numAno}" for="numAno" />
+                        <p:inputText id="numAno" value="#{anoController.selected.numAno}" title="#{messages.EditAnoTitle_numAno}"/>
+
+                        <p:outputLabel value="#{messages.EditAnoLabel_numAnoVigente}" for="numAnoVigente" />
+                        <p:inputText id="numAnoVigente" value="#{anoController.selected.numAnoVigente}" title="#{messages.EditAnoTitle_numAnoVigente}"/>
+
+                        <p:outputLabel value="#{messages.EditAnoLabel_seqParameNivelEscolar}" for="seqParameNivelEscolar" />
+                        <p:selectOneMenu id="seqParameNivelEscolar" value="#{anoController.selected.seqParameNivelEscolar}" required="true" requiredMessage="#{messages.EditAnoRequiredMessage_seqParameNivelEscolar}" converter="parametrizacaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{parametrizacaoController.items}"
+                                           var="seqParameNivelEscolarItem"
+                                           itemValue="#{seqParameNivelEscolarItem}"
+                                           itemLabel="#{seqParameNivelEscolarItem.seqParametrizacao.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{anoController.save}" value="#{messages.Save}" update="display,:AnoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AnoEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('AnoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

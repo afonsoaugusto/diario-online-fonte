@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/pages/generic/template.xhtml">
+
+    <ui:define name="title">
+        <h:outputText value="#{messages.NotasTitle}"/>
+    </ui:define>
+
+    <ui:define name="body">
+
+        <ui:include src="/pages/entity//notas/List.xhtml"/>
+        <ui:include src="/pages/entity//notas/View.xhtml"/>
+        <ui:include src="/pages/entity//notas/Edit.xhtml"/>
+        <ui:include src="/pages/entity//notas/Create.xhtml"/>
+        <ui:include src="/pages/entity//aluno/View.xhtml"/>
+        <ui:include src="/pages/entity//atividade/View.xhtml"/>
+        <ui:include src="/pages/entity//pessoa/View.xhtml"/>
+        <ui:include src="/pages/entity//parametrizacao/View.xhtml"/>
+        <ui:include src="/pages/entity//ano/View.xhtml"/>
+
+    </ui:define>
+
+</ui:composition>

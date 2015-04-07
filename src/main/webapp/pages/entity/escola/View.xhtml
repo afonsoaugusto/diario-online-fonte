@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EscolaViewDlg" widgetVar="EscolaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewEscolaTitle}" closeOnEscape="true">
+
+            <h:form id="EscolaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{escolaController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_seqEscola}"/>
+                        <h:outputText value="#{escolaController.selected.seqEscola}" title="#{messages.ViewEscolaTitle_seqEscola}"/>
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_desNome}"/>
+                        <h:outputText value="#{escolaController.selected.desNome}" title="#{messages.ViewEscolaTitle_desNome}"/>
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_numTel}"/>
+                        <h:outputText value="#{escolaController.selected.numTel}" title="#{messages.ViewEscolaTitle_numTel}"/>
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_desSigla}"/>
+                        <h:outputText value="#{escolaController.selected.desSigla}" title="#{messages.ViewEscolaTitle_desSigla}"/>
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_desRua}"/>
+                        <h:outputText value="#{escolaController.selected.desRua}" title="#{messages.ViewEscolaTitle_desRua}"/>
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_desBairro}"/>
+                        <h:outputText value="#{escolaController.selected.desBairro}" title="#{messages.ViewEscolaTitle_desBairro}"/>
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_numCep}"/>
+                        <h:outputText value="#{escolaController.selected.numCep}" title="#{messages.ViewEscolaTitle_numCep}"/>
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_numEscola}"/>
+                        <h:outputText value="#{escolaController.selected.numEscola}" title="#{messages.ViewEscolaTitle_numEscola}"/>
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_numCnpj}"/>
+                        <h:outputText value="#{escolaController.selected.numCnpj}" title="#{messages.ViewEscolaTitle_numCnpj}"/>
+
+                        <h:outputText value="#{messages.ViewEscolaLabel_seqCidade}"/>
+                        <h:outputText value="#{escolaController.selected.seqCidade.codMunicipio}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('EscolaViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

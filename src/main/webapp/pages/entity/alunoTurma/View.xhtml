@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlunoTurmaViewDlg" widgetVar="AlunoTurmaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewAlunoTurmaTitle}" closeOnEscape="true">
+
+            <h:form id="AlunoTurmaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{alunoTurmaController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqAlunoTurma}"/>
+                        <h:outputText value="#{alunoTurmaController.selected.seqAlunoTurma}" title="#{messages.ViewAlunoTurmaTitle_seqAlunoTurma}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_flgTurmaAtual}"/>
+                        <h:outputText value="#{alunoTurmaController.selected.flgTurmaAtual}" title="#{messages.ViewAlunoTurmaTitle_flgTurmaAtual}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqTurma}"/>
+                        <h:outputText value="#{alunoTurmaController.selected.seqTurma.seqTurma}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqSituacao}"/>
+                        <h:outputText value="#{alunoTurmaController.selected.seqSituacao.seqSituacao}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqAluno}"/>
+                        <h:outputText value="#{alunoTurmaController.selected.seqAluno.seqAluno}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('AlunoTurmaViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

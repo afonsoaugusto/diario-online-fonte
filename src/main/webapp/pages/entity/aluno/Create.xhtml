@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlunoCreateDlg" widgetVar="AlunoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateAlunoTitle}" closeOnEscape="true">
+
+            <h:form id="AlunoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{alunoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateAlunoLabel_seqAluno}" for="seqAluno" />
+                        <p:inputText id="seqAluno" value="#{alunoController.selected.seqAluno}" title="#{messages.CreateAlunoTitle_seqAluno}" required="true" requiredMessage="#{messages.CreateAlunoRequiredMessage_seqAluno}"/>
+
+                        <p:outputLabel value="#{messages.CreateAlunoLabel_nomAluno}" for="nomAluno" />
+                        <p:inputText id="nomAluno" value="#{alunoController.selected.nomAluno}" title="#{messages.CreateAlunoTitle_nomAluno}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{messages.CreateAlunoLabel_datNascimento}" for="datNascimento" />
+                        <p:calendar id="datNascimento" pattern="MM/dd/yyyy HH:mm:ss" value="#{alunoController.selected.datNascimento}" title="#{messages.CreateAlunoTitle_datNascimento}"  showOn="button"/>
+
+                        <p:outputLabel value="#{messages.CreateAlunoLabel_numTel}" for="numTel" />
+                        <p:inputText id="numTel" value="#{alunoController.selected.numTel}" title="#{messages.CreateAlunoTitle_numTel}"/>
+
+                        <p:outputLabel value="#{messages.CreateAlunoLabel_numCel}" for="numCel" />
+                        <p:inputText id="numCel" value="#{alunoController.selected.numCel}" title="#{messages.CreateAlunoTitle_numCel}"/>
+
+                        <p:outputLabel value="#{messages.CreateAlunoLabel_desObservacao}" for="desObservacao" />
+                        <p:inputTextarea rows="4" cols="30" id="desObservacao" value="#{alunoController.selected.desObservacao}" title="#{messages.CreateAlunoTitle_desObservacao}" />
+
+                        <p:outputLabel value="#{messages.CreateAlunoLabel_nomContato}" for="nomContato" />
+                        <p:inputText id="nomContato" value="#{alunoController.selected.nomContato}" title="#{messages.CreateAlunoTitle_nomContato}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{messages.CreateAlunoLabel_numTelContato}" for="numTelContato" />
+                        <p:inputText id="numTelContato" value="#{alunoController.selected.numTelContato}" title="#{messages.CreateAlunoTitle_numTelContato}"/>
+
+                        <p:outputLabel value="#{messages.CreateAlunoLabel_flgAtivo}" for="flgAtivo" />
+                        <p:inputText id="flgAtivo" value="#{alunoController.selected.flgAtivo}" title="#{messages.CreateAlunoTitle_flgAtivo}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alunoController.saveNew}" value="#{messages.Save}" update="display,:AlunoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlunoCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('AlunoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

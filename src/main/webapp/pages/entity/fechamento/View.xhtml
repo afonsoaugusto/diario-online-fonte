@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FechamentoViewDlg" widgetVar="FechamentoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewFechamentoTitle}" closeOnEscape="true">
+
+            <h:form id="FechamentoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{fechamentoController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_seqFechamento}"/>
+                        <h:outputText value="#{fechamentoController.selected.seqFechamento}" title="#{messages.ViewFechamentoTitle_seqFechamento}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_numQtdAulasPrevistas}"/>
+                        <h:outputText value="#{fechamentoController.selected.numQtdAulasPrevistas}" title="#{messages.ViewFechamentoTitle_numQtdAulasPrevistas}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_numQtdAulasDadas}"/>
+                        <h:outputText value="#{fechamentoController.selected.numQtdAulasDadas}" title="#{messages.ViewFechamentoTitle_numQtdAulasDadas}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_numQtdAlunosCMedia}"/>
+                        <h:outputText value="#{fechamentoController.selected.numQtdAlunosCMedia}" title="#{messages.ViewFechamentoTitle_numQtdAlunosCMedia}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_numQtdAlunoSMedia}"/>
+                        <h:outputText value="#{fechamentoController.selected.numQtdAlunoSMedia}" title="#{messages.ViewFechamentoTitle_numQtdAlunoSMedia}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_datFechamento}"/>
+                        <h:outputText value="#{fechamentoController.selected.datFechamento}" title="#{messages.ViewFechamentoTitle_datFechamento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_seqTurma}"/>
+                        <h:outputText value="#{fechamentoController.selected.seqTurma.seqTurma}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_seqPessoa}"/>
+                        <h:outputText value="#{fechamentoController.selected.seqPessoa.seqPessoa}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_seqPessoaFechamento}"/>
+                        <h:outputText value="#{fechamentoController.selected.seqPessoaFechamento.seqPessoa}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_seqEscola}"/>
+                        <h:outputText value="#{fechamentoController.selected.seqEscola.seqEscola}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoLabel_seqDisciplina}"/>
+                        <h:outputText value="#{fechamentoController.selected.seqDisciplina.seqDisciplina}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('FechamentoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

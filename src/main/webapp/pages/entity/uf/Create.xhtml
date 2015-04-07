@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UfCreateDlg" widgetVar="UfCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateUfTitle}" closeOnEscape="true">
+
+            <h:form id="UfCreateForm">
+
+                <h:panelGroup id="display" rendered="#{ufController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateUfLabel_codUf}" for="codUf" />
+                        <p:inputText id="codUf" value="#{ufController.selected.codUf}" title="#{messages.CreateUfTitle_codUf}" required="true" requiredMessage="#{messages.CreateUfRequiredMessage_codUf}" size="2" maxlength="2"/>
+
+                        <p:outputLabel value="#{messages.CreateUfLabel_sigUf}" for="sigUf" />
+                        <p:inputText id="sigUf" value="#{ufController.selected.sigUf}" title="#{messages.CreateUfTitle_sigUf}" required="true" requiredMessage="#{messages.CreateUfRequiredMessage_sigUf}" size="2" maxlength="2"/>
+
+                        <p:outputLabel value="#{messages.CreateUfLabel_nomUf}" for="nomUf" />
+                        <p:inputText id="nomUf" value="#{ufController.selected.nomUf}" title="#{messages.CreateUfTitle_nomUf}" required="true" requiredMessage="#{messages.CreateUfRequiredMessage_nomUf}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{messages.CreateUfLabel_sitCancelado}" for="sitCancelado" />
+                        <p:inputText id="sitCancelado" value="#{ufController.selected.sitCancelado}" title="#{messages.CreateUfTitle_sitCancelado}" required="true" requiredMessage="#{messages.CreateUfRequiredMessage_sitCancelado}"/>
+
+                        <p:outputLabel value="#{messages.CreateUfLabel_datAlteracao}" for="datAlteracao" />
+                        <p:calendar id="datAlteracao" pattern="MM/dd/yyyy HH:mm:ss" value="#{ufController.selected.datAlteracao}" title="#{messages.CreateUfTitle_datAlteracao}"  showOn="button"/>
+
+                        <p:outputLabel value="#{messages.CreateUfLabel_codRegiao}" for="codRegiao" />
+                        <p:inputText id="codRegiao" value="#{ufController.selected.codRegiao}" title="#{messages.CreateUfTitle_codRegiao}" required="true" requiredMessage="#{messages.CreateUfRequiredMessage_codRegiao}"/>
+
+                        <p:outputLabel value="#{messages.CreateUfLabel_nomUfFormatado}" for="nomUfFormatado" />
+                        <p:inputText id="nomUfFormatado" value="#{ufController.selected.nomUfFormatado}" title="#{messages.CreateUfTitle_nomUfFormatado}" size="20" maxlength="20"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ufController.saveNew}" value="#{messages.Save}" update="display,:UfListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UfCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('UfCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

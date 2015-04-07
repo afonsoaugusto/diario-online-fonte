@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TurnoEditDlg" widgetVar="TurnoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditTurnoTitle}" closeOnEscape="true">
+
+            <h:form id="TurnoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{turnoController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditTurnoLabel_seqTurno}" for="seqTurno" />
+                        <h:outputText id="seqTurno" value="#{turnoController.selected.seqTurno}" />
+
+                        <p:outputLabel value="#{messages.EditTurnoLabel_desTurno}" for="desTurno" />
+                        <p:inputText id="desTurno" value="#{turnoController.selected.desTurno}" title="#{messages.EditTurnoTitle_desTurno}" required="true" requiredMessage="#{messages.EditTurnoRequiredMessage_desTurno}" size="20" maxlength="20"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{turnoController.save}" value="#{messages.Save}" update="display,:TurnoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TurnoEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('TurnoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DisciplinaAnoEditDlg" widgetVar="DisciplinaAnoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditDisciplinaAnoTitle}" closeOnEscape="true">
+
+            <h:form id="DisciplinaAnoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{disciplinaAnoController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditDisciplinaAnoLabel_seqDisciplinaAno}" for="seqDisciplinaAno" />
+                        <h:outputText id="seqDisciplinaAno" value="#{disciplinaAnoController.selected.seqDisciplinaAno}" />
+
+                        <p:outputLabel value="#{messages.EditDisciplinaAnoLabel_tblDisciplinaSeqDisciplina}" for="tblDisciplinaSeqDisciplina" />
+                        <p:selectOneMenu id="tblDisciplinaSeqDisciplina" value="#{disciplinaAnoController.selected.tblDisciplinaSeqDisciplina}" required="true" requiredMessage="#{messages.EditDisciplinaAnoRequiredMessage_tblDisciplinaSeqDisciplina}" converter="disciplinaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{disciplinaController.items}"
+                                           var="tblDisciplinaSeqDisciplinaItem"
+                                           itemValue="#{tblDisciplinaSeqDisciplinaItem}"
+                                           itemLabel="#{tblDisciplinaSeqDisciplinaItem.seqDisciplina.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditDisciplinaAnoLabel_tblAnoSeqAno}" for="tblAnoSeqAno" />
+                        <p:selectOneMenu id="tblAnoSeqAno" value="#{disciplinaAnoController.selected.tblAnoSeqAno}" required="true" requiredMessage="#{messages.EditDisciplinaAnoRequiredMessage_tblAnoSeqAno}" converter="anoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{anoController.items}"
+                                           var="tblAnoSeqAnoItem"
+                                           itemValue="#{tblAnoSeqAnoItem}"
+                                           itemLabel="#{tblAnoSeqAnoItem.seqAno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{disciplinaAnoController.save}" value="#{messages.Save}" update="display,:DisciplinaAnoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DisciplinaAnoEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('DisciplinaAnoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

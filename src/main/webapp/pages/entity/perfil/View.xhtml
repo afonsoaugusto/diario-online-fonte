@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerfilViewDlg" widgetVar="PerfilViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewPerfilTitle}" closeOnEscape="true">
+
+            <h:form id="PerfilViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{perfilController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewPerfilLabel_seqPerfil}"/>
+                        <h:outputText value="#{perfilController.selected.seqPerfil}" title="#{messages.ViewPerfilTitle_seqPerfil}"/>
+
+                        <h:outputText value="#{messages.ViewPerfilLabel_nomPerfil}"/>
+                        <h:outputText value="#{perfilController.selected.nomPerfil}" title="#{messages.ViewPerfilTitle_nomPerfil}"/>
+
+                        <h:outputText value="#{messages.ViewPerfilLabel_desPerfil}"/>
+                        <h:outputText value="#{perfilController.selected.desPerfil}" title="#{messages.ViewPerfilTitle_desPerfil}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('PerfilViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

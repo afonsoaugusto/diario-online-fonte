@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlunoViewDlg" widgetVar="AlunoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewAlunoTitle}" closeOnEscape="true">
+
+            <h:form id="AlunoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{alunoController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewAlunoLabel_seqAluno}"/>
+                        <h:outputText value="#{alunoController.selected.seqAluno}" title="#{messages.ViewAlunoTitle_seqAluno}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoLabel_nomAluno}"/>
+                        <h:outputText value="#{alunoController.selected.nomAluno}" title="#{messages.ViewAlunoTitle_nomAluno}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoLabel_datNascimento}"/>
+                        <h:outputText value="#{alunoController.selected.datNascimento}" title="#{messages.ViewAlunoTitle_datNascimento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{messages.ViewAlunoLabel_numTel}"/>
+                        <h:outputText value="#{alunoController.selected.numTel}" title="#{messages.ViewAlunoTitle_numTel}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoLabel_numCel}"/>
+                        <h:outputText value="#{alunoController.selected.numCel}" title="#{messages.ViewAlunoTitle_numCel}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoLabel_desObservacao}"/>
+                        <h:outputText value="#{alunoController.selected.desObservacao}" title="#{messages.ViewAlunoTitle_desObservacao}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoLabel_nomContato}"/>
+                        <h:outputText value="#{alunoController.selected.nomContato}" title="#{messages.ViewAlunoTitle_nomContato}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoLabel_numTelContato}"/>
+                        <h:outputText value="#{alunoController.selected.numTelContato}" title="#{messages.ViewAlunoTitle_numTelContato}"/>
+
+                        <h:outputText value="#{messages.ViewAlunoLabel_flgAtivo}"/>
+                        <h:outputText value="#{alunoController.selected.flgAtivo}" title="#{messages.ViewAlunoTitle_flgAtivo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('AlunoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

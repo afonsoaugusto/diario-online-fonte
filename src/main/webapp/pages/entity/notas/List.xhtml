@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="NotasListForm">
+
+        <p:panel header="#{messages.ListNotasTitle}">
+            <p:contextMenu id="NotasDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('NotasListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('NotasListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('NotasListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('NotasListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.NotasMenuItem_seqPessoa}" icon="ui-icon-search"  actionListener="#{notasController.prepareSeqPessoa}" update=":PessoaViewForm" oncomplete="PF('PessoaViewDialog').show()" disabled="#{empty notasController.selected.seqPessoa}"/>  
+                <p:menuitem value="#{messages.NotasMenuItem_seqParamePeriodo}" icon="ui-icon-search"  actionListener="#{notasController.prepareSeqParamePeriodo}" update=":ParametrizacaoViewForm" oncomplete="PF('ParametrizacaoViewDialog').show()" disabled="#{empty notasController.selected.seqParamePeriodo}"/>  
+                <p:menuitem value="#{messages.NotasMenuItem_seqAtividade}" icon="ui-icon-search"  actionListener="#{notasController.prepareSeqAtividade}" update=":AtividadeViewForm" oncomplete="PF('AtividadeViewDialog').show()" disabled="#{empty notasController.selected.seqAtividade}"/>  
+                <p:menuitem value="#{messages.NotasMenuItem_seqAno}" icon="ui-icon-search"  actionListener="#{notasController.prepareSeqAno}" update=":AnoViewForm" oncomplete="PF('AnoViewDialog').show()" disabled="#{empty notasController.selected.seqAno}"/>  
+                <p:menuitem value="#{messages.NotasMenuItem_seqAluno}" icon="ui-icon-search"  actionListener="#{notasController.prepareSeqAluno}" update=":AlunoViewForm" oncomplete="PF('AlunoViewDialog').show()" disabled="#{empty notasController.selected.seqAluno}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{notasController.items}"
+                         var="item"
+                         rowKey="#{item.seqNotas}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{notasController.selected}">
+
+                <p:ajax event="rowSelect"   update=":NotasListForm:createButton :NotasListForm:viewButton :NotasListForm:editButton :NotasListForm:deleteButton :NotasListForm:NotasDataTableContextMenu" listener="#{notasController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":NotasListForm:createButton :NotasListForm:viewButton :NotasListForm:editButton :NotasListForm:deleteButton :NotasListForm:NotasDataTableContextMenu" listener="#{notasController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :NotasListForm:createButton :NotasListForm:viewButton :NotasListForm:editButton :NotasListForm:deleteButton" listener="#{notasController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('NotasListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqNotas}" filterBy="#{item.seqNotas}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListNotasTitle_seqNotas}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqNotas}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numValor}" filterBy="#{item.numValor}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListNotasTitle_numValor}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numValor}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.datLancamento}" filterBy="#{item.datLancamento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListNotasTitle_datLancamento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.datLancamento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqPessoa.seqPessoa}" filterBy="#{item.seqPessoa.seqPessoa}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListNotasTitle_seqPessoa}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPessoa.seqPessoa}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqParamePeriodo.seqParametrizacao}" filterBy="#{item.seqParamePeriodo.seqParametrizacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListNotasTitle_seqParamePeriodo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqParamePeriodo.seqParametrizacao}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqAtividade.seqAtividade}" filterBy="#{item.seqAtividade.seqAtividade}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListNotasTitle_seqAtividade}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqAtividade.seqAtividade}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.seqAno.seqAno}" filterBy="#{item.seqAno.seqAno}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListNotasTitle_seqAno}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.seqAno.seqAno}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListNotasTitle_seqAluno}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.seqAluno.seqAluno}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{notasController.prepareCreate}" update=":NotasCreateForm" oncomplete="PF('NotasCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":NotasViewForm" oncomplete="PF('NotasViewDialog').show()" disabled="#{empty notasController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":NotasEditForm" oncomplete="PF('NotasEditDialog').show()" disabled="#{empty notasController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{notasController.delete}" update=":growl,datalist" disabled="#{empty notasController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

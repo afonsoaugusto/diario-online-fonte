@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AtuacaoProfessorViewDlg" widgetVar="AtuacaoProfessorViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewAtuacaoProfessorTitle}" closeOnEscape="true">
+
+            <h:form id="AtuacaoProfessorViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{atuacaoProfessorController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewAtuacaoProfessorLabel_seqAtuacaoProfessor}"/>
+                        <h:outputText value="#{atuacaoProfessorController.selected.seqAtuacaoProfessor}" title="#{messages.ViewAtuacaoProfessorTitle_seqAtuacaoProfessor}"/>
+
+                        <h:outputText value="#{messages.ViewAtuacaoProfessorLabel_seqDisciplinaProfessor}"/>
+                        <h:outputText value="#{atuacaoProfessorController.selected.seqDisciplinaProfessor.seqDisciplinaProfessor}"/>
+
+                        <h:outputText value="#{messages.ViewAtuacaoProfessorLabel_seqDisciplina}"/>
+                        <h:outputText value="#{atuacaoProfessorController.selected.seqDisciplina.seqDisciplina}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('AtuacaoProfessorViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

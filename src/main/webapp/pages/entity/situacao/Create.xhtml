@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SituacaoCreateDlg" widgetVar="SituacaoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateSituacaoTitle}" closeOnEscape="true">
+
+            <h:form id="SituacaoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{situacaoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateSituacaoLabel_seqSituacao}" for="seqSituacao" />
+                        <p:inputText id="seqSituacao" value="#{situacaoController.selected.seqSituacao}" title="#{messages.CreateSituacaoTitle_seqSituacao}" required="true" requiredMessage="#{messages.CreateSituacaoRequiredMessage_seqSituacao}"/>
+
+                        <p:outputLabel value="#{messages.CreateSituacaoLabel_desSituacao}" for="desSituacao" />
+                        <p:inputText id="desSituacao" value="#{situacaoController.selected.desSituacao}" title="#{messages.CreateSituacaoTitle_desSituacao}" required="true" requiredMessage="#{messages.CreateSituacaoRequiredMessage_desSituacao}" size="200" maxlength="200"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{situacaoController.saveNew}" value="#{messages.Save}" update="display,:SituacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('SituacaoCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('SituacaoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AcaoEditDlg" widgetVar="AcaoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditAcaoTitle}" closeOnEscape="true">
+
+            <h:form id="AcaoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{acaoController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditAcaoLabel_seqAcao}" for="seqAcao" />
+                        <h:outputText id="seqAcao" value="#{acaoController.selected.seqAcao}" />
+
+                        <p:outputLabel value="#{messages.EditAcaoLabel_codAcao}" for="codAcao" />
+                        <p:inputText id="codAcao" value="#{acaoController.selected.codAcao}" title="#{messages.EditAcaoTitle_codAcao}" size="25" maxlength="25"/>
+
+                        <p:outputLabel value="#{messages.EditAcaoLabel_desAcao}" for="desAcao" />
+                        <p:inputText id="desAcao" value="#{acaoController.selected.desAcao}" title="#{messages.EditAcaoTitle_desAcao}" size="200" maxlength="200"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{acaoController.save}" value="#{messages.Save}" update="display,:AcaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AcaoEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('AcaoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

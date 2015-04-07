@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PlanoEnsinoEditDlg" widgetVar="PlanoEnsinoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditPlanoEnsinoTitle}" closeOnEscape="true">
+
+            <h:form id="PlanoEnsinoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{planoEnsinoController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditPlanoEnsinoLabel_seqPlanoEnsino}" for="seqPlanoEnsino" />
+                        <h:outputText id="seqPlanoEnsino" value="#{planoEnsinoController.selected.seqPlanoEnsino}" />
+
+                        <p:outputLabel value="#{messages.EditPlanoEnsinoLabel_desConteudo}" for="desConteudo" />
+                        <p:inputTextarea rows="4" cols="30" id="desConteudo" value="#{planoEnsinoController.selected.desConteudo}" title="#{messages.EditPlanoEnsinoTitle_desConteudo}" />
+
+                        <p:outputLabel value="#{messages.EditPlanoEnsinoLabel_datPlano}" for="datPlano" />
+                        <p:calendar id="datPlano" pattern="MM/dd/yyyy HH:mm:ss" value="#{planoEnsinoController.selected.datPlano}" title="#{messages.EditPlanoEnsinoTitle_datPlano}"  showOn="button"/>
+
+                        <p:outputLabel value="#{messages.EditPlanoEnsinoLabel_desAnexo}" for="desAnexo" />
+                        <p:inputTextarea rows="4" cols="30" id="desAnexo" value="#{planoEnsinoController.selected.desAnexo}" title="#{messages.EditPlanoEnsinoTitle_desAnexo}" />
+
+                        <p:outputLabel value="#{messages.EditPlanoEnsinoLabel_seqTurma}" for="seqTurma" />
+                        <p:selectOneMenu id="seqTurma" value="#{planoEnsinoController.selected.seqTurma}" required="true" requiredMessage="#{messages.EditPlanoEnsinoRequiredMessage_seqTurma}" converter="turmaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{turmaController.items}"
+                                           var="seqTurmaItem"
+                                           itemValue="#{seqTurmaItem}"
+                                           itemLabel="#{seqTurmaItem.seqTurma.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditPlanoEnsinoLabel_seqAtuacaoProfessor}" for="seqAtuacaoProfessor" />
+                        <p:selectOneMenu id="seqAtuacaoProfessor" value="#{planoEnsinoController.selected.seqAtuacaoProfessor}" required="true" requiredMessage="#{messages.EditPlanoEnsinoRequiredMessage_seqAtuacaoProfessor}" converter="atuacaoProfessorConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{atuacaoProfessorController.items}"
+                                           var="seqAtuacaoProfessorItem"
+                                           itemValue="#{seqAtuacaoProfessorItem}"
+                                           itemLabel="#{seqAtuacaoProfessorItem.seqAtuacaoProfessor.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{planoEnsinoController.save}" value="#{messages.Save}" update="display,:PlanoEnsinoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PlanoEnsinoEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PlanoEnsinoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

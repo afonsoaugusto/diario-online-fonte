@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PerfilEditDlg" widgetVar="PerfilEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditPerfilTitle}" closeOnEscape="true">
+
+            <h:form id="PerfilEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{perfilController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditPerfilLabel_seqPerfil}" for="seqPerfil" />
+                        <h:outputText id="seqPerfil" value="#{perfilController.selected.seqPerfil}" />
+
+                        <p:outputLabel value="#{messages.EditPerfilLabel_nomPerfil}" for="nomPerfil" />
+                        <p:inputText id="nomPerfil" value="#{perfilController.selected.nomPerfil}" title="#{messages.EditPerfilTitle_nomPerfil}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{messages.EditPerfilLabel_desPerfil}" for="desPerfil" />
+                        <p:inputText id="desPerfil" value="#{perfilController.selected.desPerfil}" title="#{messages.EditPerfilTitle_desPerfil}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{perfilController.save}" value="#{messages.Save}" update="display,:PerfilListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PerfilEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PerfilEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

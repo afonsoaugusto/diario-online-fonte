@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerfilCreateDlg" widgetVar="PerfilCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreatePerfilTitle}" closeOnEscape="true">
+
+            <h:form id="PerfilCreateForm">
+
+                <h:panelGroup id="display" rendered="#{perfilController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreatePerfilLabel_seqPerfil}" for="seqPerfil" />
+                        <p:inputText id="seqPerfil" value="#{perfilController.selected.seqPerfil}" title="#{messages.CreatePerfilTitle_seqPerfil}" required="true" requiredMessage="#{messages.CreatePerfilRequiredMessage_seqPerfil}"/>
+
+                        <p:outputLabel value="#{messages.CreatePerfilLabel_nomPerfil}" for="nomPerfil" />
+                        <p:inputText id="nomPerfil" value="#{perfilController.selected.nomPerfil}" title="#{messages.CreatePerfilTitle_nomPerfil}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{messages.CreatePerfilLabel_desPerfil}" for="desPerfil" />
+                        <p:inputText id="desPerfil" value="#{perfilController.selected.desPerfil}" title="#{messages.CreatePerfilTitle_desPerfil}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{perfilController.saveNew}" value="#{messages.Save}" update="display,:PerfilListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PerfilCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PerfilCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

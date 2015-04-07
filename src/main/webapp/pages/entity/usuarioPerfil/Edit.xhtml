@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UsuarioPerfilEditDlg" widgetVar="UsuarioPerfilEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditUsuarioPerfilTitle}" closeOnEscape="true">
+
+            <h:form id="UsuarioPerfilEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{usuarioPerfilController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditUsuarioPerfilLabel_seqUsuarioPerfil}" for="seqUsuarioPerfil" />
+                        <h:outputText id="seqUsuarioPerfil" value="#{usuarioPerfilController.selected.seqUsuarioPerfil}" />
+
+                        <p:outputLabel value="#{messages.EditUsuarioPerfilLabel_seqUsuario}" for="seqUsuario" />
+                        <p:selectOneMenu id="seqUsuario" value="#{usuarioPerfilController.selected.seqUsuario}" required="true" requiredMessage="#{messages.EditUsuarioPerfilRequiredMessage_seqUsuario}" converter="usuarioConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.items}"
+                                           var="seqUsuarioItem"
+                                           itemValue="#{seqUsuarioItem}"
+                                           itemLabel="#{seqUsuarioItem.seqUsuario.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditUsuarioPerfilLabel_seqPerfil}" for="seqPerfil" />
+                        <p:selectOneMenu id="seqPerfil" value="#{usuarioPerfilController.selected.seqPerfil}" required="true" requiredMessage="#{messages.EditUsuarioPerfilRequiredMessage_seqPerfil}" converter="perfilConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{perfilController.items}"
+                                           var="seqPerfilItem"
+                                           itemValue="#{seqPerfilItem}"
+                                           itemLabel="#{seqPerfilItem.seqPerfil.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioPerfilController.save}" value="#{messages.Save}" update="display,:UsuarioPerfilListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UsuarioPerfilEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('UsuarioPerfilEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

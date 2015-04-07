@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AlunoListForm">
+
+        <p:panel header="#{messages.ListAlunoTitle}">
+            <p:contextMenu id="AlunoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('AlunoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('AlunoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('AlunoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('AlunoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.AlunoMenuItem_alunoTurmaList}" icon="ui-icon-search"  action="#{alunoController.navigateAlunoTurmaList}" disabled="#{empty alunoController.selected.alunoTurmaList}" ajax="false"/>  
+                <p:menuitem value="#{messages.AlunoMenuItem_presencaList}" icon="ui-icon-search"  action="#{alunoController.navigatePresencaList}" disabled="#{empty alunoController.selected.presencaList}" ajax="false"/>  
+                <p:menuitem value="#{messages.AlunoMenuItem_fechamentoAlunoList}" icon="ui-icon-search"  action="#{alunoController.navigateFechamentoAlunoList}" disabled="#{empty alunoController.selected.fechamentoAlunoList}" ajax="false"/>  
+                <p:menuitem value="#{messages.AlunoMenuItem_notasList}" icon="ui-icon-search"  action="#{alunoController.navigateNotasList}" disabled="#{empty alunoController.selected.notasList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{alunoController.items}"
+                         var="item"
+                         rowKey="#{item.seqAluno}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{alunoController.selected}">
+
+                <p:ajax event="rowSelect"   update=":AlunoListForm:createButton :AlunoListForm:viewButton :AlunoListForm:editButton :AlunoListForm:deleteButton :AlunoListForm:AlunoDataTableContextMenu" listener="#{alunoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":AlunoListForm:createButton :AlunoListForm:viewButton :AlunoListForm:editButton :AlunoListForm:deleteButton :AlunoListForm:AlunoDataTableContextMenu" listener="#{alunoController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :AlunoListForm:createButton :AlunoListForm:viewButton :AlunoListForm:editButton :AlunoListForm:deleteButton" listener="#{alunoController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AlunoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqAluno}" filterBy="#{item.seqAluno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTitle_seqAluno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqAluno}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nomAluno}" filterBy="#{item.nomAluno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTitle_nomAluno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nomAluno}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.datNascimento}" filterBy="#{item.datNascimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTitle_datNascimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.datNascimento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numTel}" filterBy="#{item.numTel}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTitle_numTel}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numTel}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numCel}" filterBy="#{item.numCel}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTitle_numCel}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numCel}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desObservacao}" filterBy="#{item.desObservacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTitle_desObservacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desObservacao}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.nomContato}" filterBy="#{item.nomContato}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListAlunoTitle_nomContato}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.nomContato}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.numTelContato}" filterBy="#{item.numTelContato}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListAlunoTitle_numTelContato}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numTelContato}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.flgAtivo}" filterBy="#{item.flgAtivo}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListAlunoTitle_flgAtivo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.flgAtivo}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{alunoController.prepareCreate}" update=":AlunoCreateForm" oncomplete="PF('AlunoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":AlunoViewForm" oncomplete="PF('AlunoViewDialog').show()" disabled="#{empty alunoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":AlunoEditForm" oncomplete="PF('AlunoEditDialog').show()" disabled="#{empty alunoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{alunoController.delete}" update=":growl,datalist" disabled="#{empty alunoController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

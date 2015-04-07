@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PresencaEditDlg" widgetVar="PresencaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditPresencaTitle}" closeOnEscape="true">
+
+            <h:form id="PresencaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{presencaController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditPresencaLabel_seqPresenca}" for="seqPresenca" />
+                        <h:outputText id="seqPresenca" value="#{presencaController.selected.seqPresenca}" />
+
+                        <p:outputLabel value="#{messages.EditPresencaLabel_flgPresente}" for="flgPresente" />
+                        <p:inputText id="flgPresente" value="#{presencaController.selected.flgPresente}" title="#{messages.EditPresencaTitle_flgPresente}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_flgPresente}"/>
+
+                        <p:outputLabel value="#{messages.EditPresencaLabel_datDataPresenca}" for="datDataPresenca" />
+                        <p:calendar id="datDataPresenca" pattern="MM/dd/yyyy HH:mm:ss" value="#{presencaController.selected.datDataPresenca}" title="#{messages.EditPresencaTitle_datDataPresenca}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_datDataPresenca}" showOn="button"/>
+
+                        <p:outputLabel value="#{messages.EditPresencaLabel_seqDisciplina}" for="seqDisciplina" />
+                        <p:selectOneMenu id="seqDisciplina" value="#{presencaController.selected.seqDisciplina}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_seqDisciplina}" converter="disciplinaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{disciplinaController.items}"
+                                           var="seqDisciplinaItem"
+                                           itemValue="#{seqDisciplinaItem}"
+                                           itemLabel="#{seqDisciplinaItem.seqDisciplina.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditPresencaLabel_seqAluno}" for="seqAluno" />
+                        <p:selectOneMenu id="seqAluno" value="#{presencaController.selected.seqAluno}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_seqAluno}" converter="alunoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{alunoController.items}"
+                                           var="seqAlunoItem"
+                                           itemValue="#{seqAlunoItem}"
+                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{presencaController.save}" value="#{messages.Save}" update="display,:PresencaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PresencaEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PresencaEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

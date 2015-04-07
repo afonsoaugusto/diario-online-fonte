@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PresencaListForm">
+
+        <p:panel header="#{messages.ListPresencaTitle}">
+            <p:contextMenu id="PresencaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('PresencaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('PresencaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('PresencaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('PresencaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.PresencaMenuItem_seqDisciplina}" icon="ui-icon-search"  actionListener="#{presencaController.prepareSeqDisciplina}" update=":DisciplinaViewForm" oncomplete="PF('DisciplinaViewDialog').show()" disabled="#{empty presencaController.selected.seqDisciplina}"/>  
+                <p:menuitem value="#{messages.PresencaMenuItem_seqAluno}" icon="ui-icon-search"  actionListener="#{presencaController.prepareSeqAluno}" update=":AlunoViewForm" oncomplete="PF('AlunoViewDialog').show()" disabled="#{empty presencaController.selected.seqAluno}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{presencaController.items}"
+                         var="item"
+                         rowKey="#{item.seqPresenca}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{presencaController.selected}">
+
+                <p:ajax event="rowSelect"   update=":PresencaListForm:createButton :PresencaListForm:viewButton :PresencaListForm:editButton :PresencaListForm:deleteButton :PresencaListForm:PresencaDataTableContextMenu" listener="#{presencaController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":PresencaListForm:createButton :PresencaListForm:viewButton :PresencaListForm:editButton :PresencaListForm:deleteButton :PresencaListForm:PresencaDataTableContextMenu" listener="#{presencaController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :PresencaListForm:createButton :PresencaListForm:viewButton :PresencaListForm:editButton :PresencaListForm:deleteButton" listener="#{presencaController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PresencaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqPresenca}" filterBy="#{item.seqPresenca}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPresencaTitle_seqPresenca}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPresenca}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.flgPresente}" filterBy="#{item.flgPresente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPresencaTitle_flgPresente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.flgPresente}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.datDataPresenca}" filterBy="#{item.datDataPresenca}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPresencaTitle_datDataPresenca}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.datDataPresenca}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqDisciplina.seqDisciplina}" filterBy="#{item.seqDisciplina.seqDisciplina}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPresencaTitle_seqDisciplina}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqDisciplina.seqDisciplina}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPresencaTitle_seqAluno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqAluno.seqAluno}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{presencaController.prepareCreate}" update=":PresencaCreateForm" oncomplete="PF('PresencaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":PresencaViewForm" oncomplete="PF('PresencaViewDialog').show()" disabled="#{empty presencaController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":PresencaEditForm" oncomplete="PF('PresencaEditDialog').show()" disabled="#{empty presencaController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{presencaController.delete}" update=":growl,datalist" disabled="#{empty presencaController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

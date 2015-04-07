@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DisciplinaCreateDlg" widgetVar="DisciplinaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateDisciplinaTitle}" closeOnEscape="true">
+
+            <h:form id="DisciplinaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{disciplinaController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateDisciplinaLabel_seqDisciplina}" for="seqDisciplina" />
+                        <p:inputText id="seqDisciplina" value="#{disciplinaController.selected.seqDisciplina}" title="#{messages.CreateDisciplinaTitle_seqDisciplina}" required="true" requiredMessage="#{messages.CreateDisciplinaRequiredMessage_seqDisciplina}"/>
+
+                        <p:outputLabel value="#{messages.CreateDisciplinaLabel_desNomeDisciplina}" for="desNomeDisciplina" />
+                        <p:inputText id="desNomeDisciplina" value="#{disciplinaController.selected.desNomeDisciplina}" title="#{messages.CreateDisciplinaTitle_desNomeDisciplina}" size="60" maxlength="60"/>
+
+                        <p:outputLabel value="#{messages.CreateDisciplinaLabel_desConteudo}" for="desConteudo" />
+                        <p:inputTextarea rows="4" cols="30" id="desConteudo" value="#{disciplinaController.selected.desConteudo}" title="#{messages.CreateDisciplinaTitle_desConteudo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{disciplinaController.saveNew}" value="#{messages.Save}" update="display,:DisciplinaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DisciplinaCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('DisciplinaCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

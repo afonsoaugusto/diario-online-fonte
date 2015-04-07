@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PlanoEnsinoCreateDlg" widgetVar="PlanoEnsinoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreatePlanoEnsinoTitle}" closeOnEscape="true">
+
+            <h:form id="PlanoEnsinoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{planoEnsinoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_seqPlanoEnsino}" for="seqPlanoEnsino" />
+                        <p:inputText id="seqPlanoEnsino" value="#{planoEnsinoController.selected.seqPlanoEnsino}" title="#{messages.CreatePlanoEnsinoTitle_seqPlanoEnsino}" required="true" requiredMessage="#{messages.CreatePlanoEnsinoRequiredMessage_seqPlanoEnsino}"/>
+
+                        <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_desConteudo}" for="desConteudo" />
+                        <p:inputTextarea rows="4" cols="30" id="desConteudo" value="#{planoEnsinoController.selected.desConteudo}" title="#{messages.CreatePlanoEnsinoTitle_desConteudo}" />
+
+                        <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_datPlano}" for="datPlano" />
+                        <p:calendar id="datPlano" pattern="MM/dd/yyyy HH:mm:ss" value="#{planoEnsinoController.selected.datPlano}" title="#{messages.CreatePlanoEnsinoTitle_datPlano}"  showOn="button"/>
+
+                        <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_desAnexo}" for="desAnexo" />
+                        <p:inputTextarea rows="4" cols="30" id="desAnexo" value="#{planoEnsinoController.selected.desAnexo}" title="#{messages.CreatePlanoEnsinoTitle_desAnexo}" />
+
+                        <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_seqTurma}" for="seqTurma" />
+                        <p:selectOneMenu id="seqTurma" value="#{planoEnsinoController.selected.seqTurma}" required="true" requiredMessage="#{messages.CreatePlanoEnsinoRequiredMessage_seqTurma}" converter="turmaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{turmaController.items}"
+                                           var="seqTurmaItem"
+                                           itemValue="#{seqTurmaItem}"
+                                           itemLabel="#{seqTurmaItem.seqTurma.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_seqAtuacaoProfessor}" for="seqAtuacaoProfessor" />
+                        <p:selectOneMenu id="seqAtuacaoProfessor" value="#{planoEnsinoController.selected.seqAtuacaoProfessor}" required="true" requiredMessage="#{messages.CreatePlanoEnsinoRequiredMessage_seqAtuacaoProfessor}" converter="atuacaoProfessorConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{atuacaoProfessorController.items}"
+                                           var="seqAtuacaoProfessorItem"
+                                           itemValue="#{seqAtuacaoProfessorItem}"
+                                           itemLabel="#{seqAtuacaoProfessorItem.seqAtuacaoProfessor.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{planoEnsinoController.saveNew}" value="#{messages.Save}" update="display,:PlanoEnsinoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PlanoEnsinoCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PlanoEnsinoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

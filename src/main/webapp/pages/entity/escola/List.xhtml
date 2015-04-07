@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="EscolaListForm">
+
+        <p:panel header="#{messages.ListEscolaTitle}">
+            <p:contextMenu id="EscolaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('EscolaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('EscolaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('EscolaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('EscolaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.EscolaMenuItem_fechamentoList}" icon="ui-icon-search"  action="#{escolaController.navigateFechamentoList}" disabled="#{empty escolaController.selected.fechamentoList}" ajax="false"/>  
+                <p:menuitem value="#{messages.EscolaMenuItem_turmaList}" icon="ui-icon-search"  action="#{escolaController.navigateTurmaList}" disabled="#{empty escolaController.selected.turmaList}" ajax="false"/>  
+                <p:menuitem value="#{messages.EscolaMenuItem_seqCidade}" icon="ui-icon-search"  actionListener="#{escolaController.prepareSeqCidade}" update=":MunicipioViewForm" oncomplete="PF('MunicipioViewDialog').show()" disabled="#{empty escolaController.selected.seqCidade}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{escolaController.items}"
+                         var="item"
+                         rowKey="#{item.seqEscola}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{escolaController.selected}">
+
+                <p:ajax event="rowSelect"   update=":EscolaListForm:createButton :EscolaListForm:viewButton :EscolaListForm:editButton :EscolaListForm:deleteButton :EscolaListForm:EscolaDataTableContextMenu" listener="#{escolaController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":EscolaListForm:createButton :EscolaListForm:viewButton :EscolaListForm:editButton :EscolaListForm:deleteButton :EscolaListForm:EscolaDataTableContextMenu" listener="#{escolaController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :EscolaListForm:createButton :EscolaListForm:viewButton :EscolaListForm:editButton :EscolaListForm:deleteButton" listener="#{escolaController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('EscolaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqEscola}" filterBy="#{item.seqEscola}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListEscolaTitle_seqEscola}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqEscola}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desNome}" filterBy="#{item.desNome}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListEscolaTitle_desNome}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desNome}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numTel}" filterBy="#{item.numTel}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListEscolaTitle_numTel}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numTel}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desSigla}" filterBy="#{item.desSigla}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListEscolaTitle_desSigla}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desSigla}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desRua}" filterBy="#{item.desRua}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListEscolaTitle_desRua}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desRua}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desBairro}" filterBy="#{item.desBairro}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListEscolaTitle_desBairro}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desBairro}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.numCep}" filterBy="#{item.numCep}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListEscolaTitle_numCep}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numCep}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.numEscola}" filterBy="#{item.numEscola}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListEscolaTitle_numEscola}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numEscola}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.numCnpj}" filterBy="#{item.numCnpj}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListEscolaTitle_numCnpj}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numCnpj}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.seqCidade.codMunicipio}" filterBy="#{item.seqCidade.codMunicipio}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListEscolaTitle_seqCidade}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.seqCidade.codMunicipio}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{escolaController.prepareCreate}" update=":EscolaCreateForm" oncomplete="PF('EscolaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":EscolaViewForm" oncomplete="PF('EscolaViewDialog').show()" disabled="#{empty escolaController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":EscolaEditForm" oncomplete="PF('EscolaEditDialog').show()" disabled="#{empty escolaController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{escolaController.delete}" update=":growl,datalist" disabled="#{empty escolaController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

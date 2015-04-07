@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FuncionalidadeAcaoCreateDlg" widgetVar="FuncionalidadeAcaoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateFuncionalidadeAcaoTitle}" closeOnEscape="true">
+
+            <h:form id="FuncionalidadeAcaoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{funcionalidadeAcaoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateFuncionalidadeAcaoLabel_seqFuncionalidadeAcao}" for="seqFuncionalidadeAcao" />
+                        <p:inputText id="seqFuncionalidadeAcao" value="#{funcionalidadeAcaoController.selected.seqFuncionalidadeAcao}" title="#{messages.CreateFuncionalidadeAcaoTitle_seqFuncionalidadeAcao}" required="true" requiredMessage="#{messages.CreateFuncionalidadeAcaoRequiredMessage_seqFuncionalidadeAcao}"/>
+
+                        <p:outputLabel value="#{messages.CreateFuncionalidadeAcaoLabel_seqFuncionalidade}" for="seqFuncionalidade" />
+                        <p:selectOneMenu id="seqFuncionalidade" value="#{funcionalidadeAcaoController.selected.seqFuncionalidade}" required="true" requiredMessage="#{messages.CreateFuncionalidadeAcaoRequiredMessage_seqFuncionalidade}" converter="funcionalidadeConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{funcionalidadeController.items}"
+                                           var="seqFuncionalidadeItem"
+                                           itemValue="#{seqFuncionalidadeItem}"
+                                           itemLabel="#{seqFuncionalidadeItem.seqFuncionalidade.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateFuncionalidadeAcaoLabel_seqAcao}" for="seqAcao" />
+                        <p:selectOneMenu id="seqAcao" value="#{funcionalidadeAcaoController.selected.seqAcao}" required="true" requiredMessage="#{messages.CreateFuncionalidadeAcaoRequiredMessage_seqAcao}" converter="acaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{acaoController.items}"
+                                           var="seqAcaoItem"
+                                           itemValue="#{seqAcaoItem}"
+                                           itemLabel="#{seqAcaoItem.seqAcao.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{funcionalidadeAcaoController.saveNew}" value="#{messages.Save}" update="display,:FuncionalidadeAcaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('FuncionalidadeAcaoCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('FuncionalidadeAcaoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

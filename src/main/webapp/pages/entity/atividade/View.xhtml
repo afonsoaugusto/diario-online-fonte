@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AtividadeViewDlg" widgetVar="AtividadeViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewAtividadeTitle}" closeOnEscape="true">
+
+            <h:form id="AtividadeViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{atividadeController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewAtividadeLabel_seqAtividade}"/>
+                        <h:outputText value="#{atividadeController.selected.seqAtividade}" title="#{messages.ViewAtividadeTitle_seqAtividade}"/>
+
+                        <h:outputText value="#{messages.ViewAtividadeLabel_nomAtividade}"/>
+                        <h:outputText value="#{atividadeController.selected.nomAtividade}" title="#{messages.ViewAtividadeTitle_nomAtividade}"/>
+
+                        <h:outputText value="#{messages.ViewAtividadeLabel_numValor}"/>
+                        <h:outputText value="#{atividadeController.selected.numValor}" title="#{messages.ViewAtividadeTitle_numValor}"/>
+
+                        <h:outputText value="#{messages.ViewAtividadeLabel_datAplicacao}"/>
+                        <h:outputText value="#{atividadeController.selected.datAplicacao}" title="#{messages.ViewAtividadeTitle_datAplicacao}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{messages.ViewAtividadeLabel_seqParameTipo}"/>
+                        <h:outputText value="#{atividadeController.selected.seqParameTipo.seqParametrizacao}"/>
+
+                        <h:outputText value="#{messages.ViewAtividadeLabel_seqDisciplina}"/>
+                        <h:outputText value="#{atividadeController.selected.seqDisciplina.seqDisciplina}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('AtividadeViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

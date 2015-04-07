@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TurnoListForm">
+
+        <p:panel header="#{messages.ListTurnoTitle}">
+            <p:contextMenu id="TurnoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('TurnoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('TurnoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('TurnoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('TurnoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.TurnoMenuItem_turmaList}" icon="ui-icon-search"  action="#{turnoController.navigateTurmaList}" disabled="#{empty turnoController.selected.turmaList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{turnoController.items}"
+                         var="item"
+                         rowKey="#{item.seqTurno}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{turnoController.selected}">
+
+                <p:ajax event="rowSelect"   update=":TurnoListForm:createButton :TurnoListForm:viewButton :TurnoListForm:editButton :TurnoListForm:deleteButton :TurnoListForm:TurnoDataTableContextMenu" listener="#{turnoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":TurnoListForm:createButton :TurnoListForm:viewButton :TurnoListForm:editButton :TurnoListForm:deleteButton :TurnoListForm:TurnoDataTableContextMenu" listener="#{turnoController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :TurnoListForm:createButton :TurnoListForm:viewButton :TurnoListForm:editButton :TurnoListForm:deleteButton" listener="#{turnoController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TurnoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqTurno}" filterBy="#{item.seqTurno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListTurnoTitle_seqTurno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqTurno}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desTurno}" filterBy="#{item.desTurno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListTurnoTitle_desTurno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desTurno}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{turnoController.prepareCreate}" update=":TurnoCreateForm" oncomplete="PF('TurnoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":TurnoViewForm" oncomplete="PF('TurnoViewDialog').show()" disabled="#{empty turnoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":TurnoEditForm" oncomplete="PF('TurnoEditDialog').show()" disabled="#{empty turnoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{turnoController.delete}" update=":growl,datalist" disabled="#{empty turnoController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AlunoEditDlg" widgetVar="AlunoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditAlunoTitle}" closeOnEscape="true">
+
+            <h:form id="AlunoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{alunoController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditAlunoLabel_seqAluno}" for="seqAluno" />
+                        <h:outputText id="seqAluno" value="#{alunoController.selected.seqAluno}" />
+
+                        <p:outputLabel value="#{messages.EditAlunoLabel_nomAluno}" for="nomAluno" />
+                        <p:inputText id="nomAluno" value="#{alunoController.selected.nomAluno}" title="#{messages.EditAlunoTitle_nomAluno}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{messages.EditAlunoLabel_datNascimento}" for="datNascimento" />
+                        <p:calendar id="datNascimento" pattern="MM/dd/yyyy HH:mm:ss" value="#{alunoController.selected.datNascimento}" title="#{messages.EditAlunoTitle_datNascimento}"  showOn="button"/>
+
+                        <p:outputLabel value="#{messages.EditAlunoLabel_numTel}" for="numTel" />
+                        <p:inputText id="numTel" value="#{alunoController.selected.numTel}" title="#{messages.EditAlunoTitle_numTel}"/>
+
+                        <p:outputLabel value="#{messages.EditAlunoLabel_numCel}" for="numCel" />
+                        <p:inputText id="numCel" value="#{alunoController.selected.numCel}" title="#{messages.EditAlunoTitle_numCel}"/>
+
+                        <p:outputLabel value="#{messages.EditAlunoLabel_desObservacao}" for="desObservacao" />
+                        <p:inputTextarea rows="4" cols="30" id="desObservacao" value="#{alunoController.selected.desObservacao}" title="#{messages.EditAlunoTitle_desObservacao}" />
+
+                        <p:outputLabel value="#{messages.EditAlunoLabel_nomContato}" for="nomContato" />
+                        <p:inputText id="nomContato" value="#{alunoController.selected.nomContato}" title="#{messages.EditAlunoTitle_nomContato}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{messages.EditAlunoLabel_numTelContato}" for="numTelContato" />
+                        <p:inputText id="numTelContato" value="#{alunoController.selected.numTelContato}" title="#{messages.EditAlunoTitle_numTelContato}"/>
+
+                        <p:outputLabel value="#{messages.EditAlunoLabel_flgAtivo}" for="flgAtivo" />
+                        <p:inputText id="flgAtivo" value="#{alunoController.selected.flgAtivo}" title="#{messages.EditAlunoTitle_flgAtivo}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alunoController.save}" value="#{messages.Save}" update="display,:AlunoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlunoEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('AlunoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

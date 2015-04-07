@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AnoViewDlg" widgetVar="AnoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewAnoTitle}" closeOnEscape="true">
+
+            <h:form id="AnoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{anoController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewAnoLabel_seqAno}"/>
+                        <h:outputText value="#{anoController.selected.seqAno}" title="#{messages.ViewAnoTitle_seqAno}"/>
+
+                        <h:outputText value="#{messages.ViewAnoLabel_numAno}"/>
+                        <h:outputText value="#{anoController.selected.numAno}" title="#{messages.ViewAnoTitle_numAno}"/>
+
+                        <h:outputText value="#{messages.ViewAnoLabel_numAnoVigente}"/>
+                        <h:outputText value="#{anoController.selected.numAnoVigente}" title="#{messages.ViewAnoTitle_numAnoVigente}"/>
+
+                        <h:outputText value="#{messages.ViewAnoLabel_seqParameNivelEscolar}"/>
+                        <h:outputText value="#{anoController.selected.seqParameNivelEscolar.seqParametrizacao}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('AnoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

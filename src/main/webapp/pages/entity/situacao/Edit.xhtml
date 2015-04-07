@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="SituacaoEditDlg" widgetVar="SituacaoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditSituacaoTitle}" closeOnEscape="true">
+
+            <h:form id="SituacaoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{situacaoController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditSituacaoLabel_seqSituacao}" for="seqSituacao" />
+                        <h:outputText id="seqSituacao" value="#{situacaoController.selected.seqSituacao}" />
+
+                        <p:outputLabel value="#{messages.EditSituacaoLabel_desSituacao}" for="desSituacao" />
+                        <p:inputText id="desSituacao" value="#{situacaoController.selected.desSituacao}" title="#{messages.EditSituacaoTitle_desSituacao}" required="true" requiredMessage="#{messages.EditSituacaoRequiredMessage_desSituacao}" size="200" maxlength="200"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{situacaoController.save}" value="#{messages.Save}" update="display,:SituacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('SituacaoEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('SituacaoEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

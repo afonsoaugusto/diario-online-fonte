@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PlanoEnsinoListForm">
+
+        <p:panel header="#{messages.ListPlanoEnsinoTitle}">
+            <p:contextMenu id="PlanoEnsinoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('PlanoEnsinoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('PlanoEnsinoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('PlanoEnsinoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('PlanoEnsinoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.PlanoEnsinoMenuItem_seqTurma}" icon="ui-icon-search"  actionListener="#{planoEnsinoController.prepareSeqTurma}" update=":TurmaViewForm" oncomplete="PF('TurmaViewDialog').show()" disabled="#{empty planoEnsinoController.selected.seqTurma}"/>  
+                <p:menuitem value="#{messages.PlanoEnsinoMenuItem_seqAtuacaoProfessor}" icon="ui-icon-search"  actionListener="#{planoEnsinoController.prepareSeqAtuacaoProfessor}" update=":AtuacaoProfessorViewForm" oncomplete="PF('AtuacaoProfessorViewDialog').show()" disabled="#{empty planoEnsinoController.selected.seqAtuacaoProfessor}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{planoEnsinoController.items}"
+                         var="item"
+                         rowKey="#{item.seqPlanoEnsino}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{planoEnsinoController.selected}">
+
+                <p:ajax event="rowSelect"   update=":PlanoEnsinoListForm:createButton :PlanoEnsinoListForm:viewButton :PlanoEnsinoListForm:editButton :PlanoEnsinoListForm:deleteButton :PlanoEnsinoListForm:PlanoEnsinoDataTableContextMenu" listener="#{planoEnsinoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":PlanoEnsinoListForm:createButton :PlanoEnsinoListForm:viewButton :PlanoEnsinoListForm:editButton :PlanoEnsinoListForm:deleteButton :PlanoEnsinoListForm:PlanoEnsinoDataTableContextMenu" listener="#{planoEnsinoController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :PlanoEnsinoListForm:createButton :PlanoEnsinoListForm:viewButton :PlanoEnsinoListForm:editButton :PlanoEnsinoListForm:deleteButton" listener="#{planoEnsinoController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PlanoEnsinoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqPlanoEnsino}" filterBy="#{item.seqPlanoEnsino}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPlanoEnsinoTitle_seqPlanoEnsino}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPlanoEnsino}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desConteudo}" filterBy="#{item.desConteudo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPlanoEnsinoTitle_desConteudo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desConteudo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.datPlano}" filterBy="#{item.datPlano}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPlanoEnsinoTitle_datPlano}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.datPlano}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desAnexo}" filterBy="#{item.desAnexo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPlanoEnsinoTitle_desAnexo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desAnexo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqTurma.seqTurma}" filterBy="#{item.seqTurma.seqTurma}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPlanoEnsinoTitle_seqTurma}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqTurma.seqTurma}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqAtuacaoProfessor.seqAtuacaoProfessor}" filterBy="#{item.seqAtuacaoProfessor.seqAtuacaoProfessor}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPlanoEnsinoTitle_seqAtuacaoProfessor}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqAtuacaoProfessor.seqAtuacaoProfessor}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{planoEnsinoController.prepareCreate}" update=":PlanoEnsinoCreateForm" oncomplete="PF('PlanoEnsinoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":PlanoEnsinoViewForm" oncomplete="PF('PlanoEnsinoViewDialog').show()" disabled="#{empty planoEnsinoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":PlanoEnsinoEditForm" oncomplete="PF('PlanoEnsinoEditDialog').show()" disabled="#{empty planoEnsinoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{planoEnsinoController.delete}" update=":growl,datalist" disabled="#{empty planoEnsinoController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

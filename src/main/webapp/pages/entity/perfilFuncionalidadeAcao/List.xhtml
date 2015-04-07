@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PerfilFuncionalidadeAcaoListForm">
+
+        <p:panel header="#{messages.ListPerfilFuncionalidadeAcaoTitle}">
+            <p:contextMenu id="PerfilFuncionalidadeAcaoDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('PerfilFuncionalidadeAcaoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('PerfilFuncionalidadeAcaoListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('PerfilFuncionalidadeAcaoListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('PerfilFuncionalidadeAcaoListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.PerfilFuncionalidadeAcaoMenuItem_seqPerfil}" icon="ui-icon-search"  actionListener="#{perfilFuncionalidadeAcaoController.prepareSeqPerfil}" update=":PerfilViewForm" oncomplete="PF('PerfilViewDialog').show()" disabled="#{empty perfilFuncionalidadeAcaoController.selected.seqPerfil}"/>  
+                <p:menuitem value="#{messages.PerfilFuncionalidadeAcaoMenuItem_seqFuncionalidadeAcao}" icon="ui-icon-search"  actionListener="#{perfilFuncionalidadeAcaoController.prepareSeqFuncionalidadeAcao}" update=":FuncionalidadeAcaoViewForm" oncomplete="PF('FuncionalidadeAcaoViewDialog').show()" disabled="#{empty perfilFuncionalidadeAcaoController.selected.seqFuncionalidadeAcao}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{perfilFuncionalidadeAcaoController.items}"
+                         var="item"
+                         rowKey="#{item.seqPerfilFuncionalidadeAcao}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{perfilFuncionalidadeAcaoController.selected}">
+
+                <p:ajax event="rowSelect"   update=":PerfilFuncionalidadeAcaoListForm:createButton :PerfilFuncionalidadeAcaoListForm:viewButton :PerfilFuncionalidadeAcaoListForm:editButton :PerfilFuncionalidadeAcaoListForm:deleteButton :PerfilFuncionalidadeAcaoListForm:PerfilFuncionalidadeAcaoDataTableContextMenu" listener="#{perfilFuncionalidadeAcaoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":PerfilFuncionalidadeAcaoListForm:createButton :PerfilFuncionalidadeAcaoListForm:viewButton :PerfilFuncionalidadeAcaoListForm:editButton :PerfilFuncionalidadeAcaoListForm:deleteButton :PerfilFuncionalidadeAcaoListForm:PerfilFuncionalidadeAcaoDataTableContextMenu" listener="#{perfilFuncionalidadeAcaoController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :PerfilFuncionalidadeAcaoListForm:createButton :PerfilFuncionalidadeAcaoListForm:viewButton :PerfilFuncionalidadeAcaoListForm:editButton :PerfilFuncionalidadeAcaoListForm:deleteButton" listener="#{perfilFuncionalidadeAcaoController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PerfilFuncionalidadeAcaoListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqPerfilFuncionalidadeAcao}" filterBy="#{item.seqPerfilFuncionalidadeAcao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPerfilFuncionalidadeAcaoTitle_seqPerfilFuncionalidadeAcao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPerfilFuncionalidadeAcao}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqPerfil.seqPerfil}" filterBy="#{item.seqPerfil.seqPerfil}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPerfilFuncionalidadeAcaoTitle_seqPerfil}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPerfil.seqPerfil}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqFuncionalidadeAcao.seqFuncionalidadeAcao}" filterBy="#{item.seqFuncionalidadeAcao.seqFuncionalidadeAcao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPerfilFuncionalidadeAcaoTitle_seqFuncionalidadeAcao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqFuncionalidadeAcao.seqFuncionalidadeAcao}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{perfilFuncionalidadeAcaoController.prepareCreate}" update=":PerfilFuncionalidadeAcaoCreateForm" oncomplete="PF('PerfilFuncionalidadeAcaoCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":PerfilFuncionalidadeAcaoViewForm" oncomplete="PF('PerfilFuncionalidadeAcaoViewDialog').show()" disabled="#{empty perfilFuncionalidadeAcaoController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":PerfilFuncionalidadeAcaoEditForm" oncomplete="PF('PerfilFuncionalidadeAcaoEditDialog').show()" disabled="#{empty perfilFuncionalidadeAcaoController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{perfilFuncionalidadeAcaoController.delete}" update=":growl,datalist" disabled="#{empty perfilFuncionalidadeAcaoController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PessoaEditDlg" widgetVar="PessoaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditPessoaTitle}" closeOnEscape="true">
+
+            <h:form id="PessoaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{pessoaController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditPessoaLabel_seqPessoa}" for="seqPessoa" />
+                        <h:outputText id="seqPessoa" value="#{pessoaController.selected.seqPessoa}" />
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_desNome}" for="desNome" />
+                        <p:inputText id="desNome" value="#{pessoaController.selected.desNome}" title="#{messages.EditPessoaTitle_desNome}" required="true" requiredMessage="#{messages.EditPessoaRequiredMessage_desNome}" size="80" maxlength="80"/>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_codCpf}" for="codCpf" />
+                        <p:inputText id="codCpf" value="#{pessoaController.selected.codCpf}" title="#{messages.EditPessoaTitle_codCpf}" required="true" requiredMessage="#{messages.EditPessoaRequiredMessage_codCpf}"/>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_desRua}" for="desRua" />
+                        <p:inputText id="desRua" value="#{pessoaController.selected.desRua}" title="#{messages.EditPessoaTitle_desRua}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_desBairro}" for="desBairro" />
+                        <p:inputText id="desBairro" value="#{pessoaController.selected.desBairro}" title="#{messages.EditPessoaTitle_desBairro}" size="80" maxlength="80"/>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_numCep}" for="numCep" />
+                        <p:inputText id="numCep" value="#{pessoaController.selected.numCep}" title="#{messages.EditPessoaTitle_numCep}"/>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_numCasa}" for="numCasa" />
+                        <p:inputText id="numCasa" value="#{pessoaController.selected.numCasa}" title="#{messages.EditPessoaTitle_numCasa}"/>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_numTel}" for="numTel" />
+                        <p:inputText id="numTel" value="#{pessoaController.selected.numTel}" title="#{messages.EditPessoaTitle_numTel}"/>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_numCel}" for="numCel" />
+                        <p:inputText id="numCel" value="#{pessoaController.selected.numCel}" title="#{messages.EditPessoaTitle_numCel}"/>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_flgAtivo}" for="flgAtivo" />
+                        <p:inputText id="flgAtivo" value="#{pessoaController.selected.flgAtivo}" title="#{messages.EditPessoaTitle_flgAtivo}" required="true" requiredMessage="#{messages.EditPessoaRequiredMessage_flgAtivo}"/>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_seqCidade}" for="seqCidade" />
+                        <p:selectOneMenu id="seqCidade" value="#{pessoaController.selected.seqCidade}" required="true" requiredMessage="#{messages.EditPessoaRequiredMessage_seqCidade}" converter="municipioConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{municipioController.items}"
+                                           var="seqCidadeItem"
+                                           itemValue="#{seqCidadeItem}"
+                                           itemLabel="#{seqCidadeItem.codMunicipio.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditPessoaLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{pessoaController.selected.usuario}"  converter="usuarioConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.items}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"
+                                           itemLabel="#{usuarioItem.seqUsuario.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pessoaController.save}" value="#{messages.Save}" update="display,:PessoaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PessoaEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PessoaEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

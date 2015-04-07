@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ParametrizacaoViewDlg" widgetVar="ParametrizacaoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewParametrizacaoTitle}" closeOnEscape="true">
+
+            <h:form id="ParametrizacaoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{parametrizacaoController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewParametrizacaoLabel_seqParametrizacao}"/>
+                        <h:outputText value="#{parametrizacaoController.selected.seqParametrizacao}" title="#{messages.ViewParametrizacaoTitle_seqParametrizacao}"/>
+
+                        <h:outputText value="#{messages.ViewParametrizacaoLabel_desValorParametro}"/>
+                        <h:outputText value="#{parametrizacaoController.selected.desValorParametro}" title="#{messages.ViewParametrizacaoTitle_desValorParametro}"/>
+
+                        <h:outputText value="#{messages.ViewParametrizacaoLabel_numValorParametro}"/>
+                        <h:outputText value="#{parametrizacaoController.selected.numValorParametro}" title="#{messages.ViewParametrizacaoTitle_numValorParametro}"/>
+
+                        <h:outputText value="#{messages.ViewParametrizacaoLabel_codParametro}"/>
+                        <h:outputText value="#{parametrizacaoController.selected.codParametro}" title="#{messages.ViewParametrizacaoTitle_codParametro}"/>
+
+                        <h:outputText value="#{messages.ViewParametrizacaoLabel_seqParametrizacaoPai}"/>
+                        <h:outputText value="#{parametrizacaoController.selected.seqParametrizacaoPai.seqParametrizacao}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('ParametrizacaoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

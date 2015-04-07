@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TurmaViewDlg" widgetVar="TurmaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewTurmaTitle}" closeOnEscape="true">
+
+            <h:form id="TurmaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{turmaController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewTurmaLabel_seqTurma}"/>
+                        <h:outputText value="#{turmaController.selected.seqTurma}" title="#{messages.ViewTurmaTitle_seqTurma}"/>
+
+                        <h:outputText value="#{messages.ViewTurmaLabel_numTumra}"/>
+                        <h:outputText value="#{turmaController.selected.numTumra}" title="#{messages.ViewTurmaTitle_numTumra}"/>
+
+                        <h:outputText value="#{messages.ViewTurmaLabel_flgTurmaFechada}"/>
+                        <h:outputText value="#{turmaController.selected.flgTurmaFechada}" title="#{messages.ViewTurmaTitle_flgTurmaFechada}"/>
+
+                        <h:outputText value="#{messages.ViewTurmaLabel_seqTurno}"/>
+                        <h:outputText value="#{turmaController.selected.seqTurno.seqTurno}"/>
+
+                        <h:outputText value="#{messages.ViewTurmaLabel_seqPessoa}"/>
+                        <h:outputText value="#{turmaController.selected.seqPessoa.seqPessoa}"/>
+
+                        <h:outputText value="#{messages.ViewTurmaLabel_seqEscola}"/>
+                        <h:outputText value="#{turmaController.selected.seqEscola.seqEscola}"/>
+
+                        <h:outputText value="#{messages.ViewTurmaLabel_seqAno}"/>
+                        <h:outputText value="#{turmaController.selected.seqAno.seqAno}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('TurmaViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

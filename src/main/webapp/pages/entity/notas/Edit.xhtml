@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="NotasEditDlg" widgetVar="NotasEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditNotasTitle}" closeOnEscape="true">
+
+            <h:form id="NotasEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{notasController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditNotasLabel_seqNotas}" for="seqNotas" />
+                        <h:outputText id="seqNotas" value="#{notasController.selected.seqNotas}" />
+
+                        <p:outputLabel value="#{messages.EditNotasLabel_numValor}" for="numValor" />
+                        <p:inputText id="numValor" value="#{notasController.selected.numValor}" title="#{messages.EditNotasTitle_numValor}"/>
+
+                        <p:outputLabel value="#{messages.EditNotasLabel_datLancamento}" for="datLancamento" />
+                        <p:calendar id="datLancamento" pattern="MM/dd/yyyy HH:mm:ss" value="#{notasController.selected.datLancamento}" title="#{messages.EditNotasTitle_datLancamento}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_datLancamento}" showOn="button"/>
+
+                        <p:outputLabel value="#{messages.EditNotasLabel_seqPessoa}" for="seqPessoa" />
+                        <p:selectOneMenu id="seqPessoa" value="#{notasController.selected.seqPessoa}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_seqPessoa}" converter="pessoaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{pessoaController.items}"
+                                           var="seqPessoaItem"
+                                           itemValue="#{seqPessoaItem}"
+                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditNotasLabel_seqParamePeriodo}" for="seqParamePeriodo" />
+                        <p:selectOneMenu id="seqParamePeriodo" value="#{notasController.selected.seqParamePeriodo}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_seqParamePeriodo}" converter="parametrizacaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{parametrizacaoController.items}"
+                                           var="seqParamePeriodoItem"
+                                           itemValue="#{seqParamePeriodoItem}"
+                                           itemLabel="#{seqParamePeriodoItem.seqParametrizacao.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditNotasLabel_seqAtividade}" for="seqAtividade" />
+                        <p:selectOneMenu id="seqAtividade" value="#{notasController.selected.seqAtividade}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_seqAtividade}" converter="atividadeConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{atividadeController.items}"
+                                           var="seqAtividadeItem"
+                                           itemValue="#{seqAtividadeItem}"
+                                           itemLabel="#{seqAtividadeItem.seqAtividade.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditNotasLabel_seqAno}" for="seqAno" />
+                        <p:selectOneMenu id="seqAno" value="#{notasController.selected.seqAno}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_seqAno}" converter="anoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{anoController.items}"
+                                           var="seqAnoItem"
+                                           itemValue="#{seqAnoItem}"
+                                           itemLabel="#{seqAnoItem.seqAno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditNotasLabel_seqAluno}" for="seqAluno" />
+                        <p:selectOneMenu id="seqAluno" value="#{notasController.selected.seqAluno}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_seqAluno}" converter="alunoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{alunoController.items}"
+                                           var="seqAlunoItem"
+                                           itemValue="#{seqAlunoItem}"
+                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{notasController.save}" value="#{messages.Save}" update="display,:NotasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('NotasEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('NotasEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

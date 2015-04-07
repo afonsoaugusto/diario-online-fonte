@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TurnoCreateDlg" widgetVar="TurnoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateTurnoTitle}" closeOnEscape="true">
+
+            <h:form id="TurnoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{turnoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateTurnoLabel_seqTurno}" for="seqTurno" />
+                        <p:inputText id="seqTurno" value="#{turnoController.selected.seqTurno}" title="#{messages.CreateTurnoTitle_seqTurno}" required="true" requiredMessage="#{messages.CreateTurnoRequiredMessage_seqTurno}"/>
+
+                        <p:outputLabel value="#{messages.CreateTurnoLabel_desTurno}" for="desTurno" />
+                        <p:inputText id="desTurno" value="#{turnoController.selected.desTurno}" title="#{messages.CreateTurnoTitle_desTurno}" required="true" requiredMessage="#{messages.CreateTurnoRequiredMessage_desTurno}" size="20" maxlength="20"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{turnoController.saveNew}" value="#{messages.Save}" update="display,:TurnoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TurnoCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('TurnoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

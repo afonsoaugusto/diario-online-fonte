@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FechamentoCreateDlg" widgetVar="FechamentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateFechamentoTitle}" closeOnEscape="true">
+
+            <h:form id="FechamentoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{fechamentoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_seqFechamento}" for="seqFechamento" />
+                        <p:inputText id="seqFechamento" value="#{fechamentoController.selected.seqFechamento}" title="#{messages.CreateFechamentoTitle_seqFechamento}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_seqFechamento}"/>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_numQtdAulasPrevistas}" for="numQtdAulasPrevistas" />
+                        <p:inputText id="numQtdAulasPrevistas" value="#{fechamentoController.selected.numQtdAulasPrevistas}" title="#{messages.CreateFechamentoTitle_numQtdAulasPrevistas}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_numQtdAulasPrevistas}"/>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_numQtdAulasDadas}" for="numQtdAulasDadas" />
+                        <p:inputText id="numQtdAulasDadas" value="#{fechamentoController.selected.numQtdAulasDadas}" title="#{messages.CreateFechamentoTitle_numQtdAulasDadas}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_numQtdAulasDadas}"/>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_numQtdAlunosCMedia}" for="numQtdAlunosCMedia" />
+                        <p:inputText id="numQtdAlunosCMedia" value="#{fechamentoController.selected.numQtdAlunosCMedia}" title="#{messages.CreateFechamentoTitle_numQtdAlunosCMedia}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_numQtdAlunosCMedia}"/>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_numQtdAlunoSMedia}" for="numQtdAlunoSMedia" />
+                        <p:inputText id="numQtdAlunoSMedia" value="#{fechamentoController.selected.numQtdAlunoSMedia}" title="#{messages.CreateFechamentoTitle_numQtdAlunoSMedia}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_numQtdAlunoSMedia}"/>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_datFechamento}" for="datFechamento" />
+                        <p:calendar id="datFechamento" pattern="MM/dd/yyyy HH:mm:ss" value="#{fechamentoController.selected.datFechamento}" title="#{messages.CreateFechamentoTitle_datFechamento}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_datFechamento}" showOn="button"/>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_seqTurma}" for="seqTurma" />
+                        <p:selectOneMenu id="seqTurma" value="#{fechamentoController.selected.seqTurma}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_seqTurma}" converter="turmaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{turmaController.items}"
+                                           var="seqTurmaItem"
+                                           itemValue="#{seqTurmaItem}"
+                                           itemLabel="#{seqTurmaItem.seqTurma.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_seqPessoa}" for="seqPessoa" />
+                        <p:selectOneMenu id="seqPessoa" value="#{fechamentoController.selected.seqPessoa}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_seqPessoa}" converter="pessoaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{pessoaController.items}"
+                                           var="seqPessoaItem"
+                                           itemValue="#{seqPessoaItem}"
+                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_seqPessoaFechamento}" for="seqPessoaFechamento" />
+                        <p:selectOneMenu id="seqPessoaFechamento" value="#{fechamentoController.selected.seqPessoaFechamento}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_seqPessoaFechamento}" converter="pessoaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{pessoaController.items}"
+                                           var="seqPessoaFechamentoItem"
+                                           itemValue="#{seqPessoaFechamentoItem}"
+                                           itemLabel="#{seqPessoaFechamentoItem.seqPessoa.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_seqEscola}" for="seqEscola" />
+                        <p:selectOneMenu id="seqEscola" value="#{fechamentoController.selected.seqEscola}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_seqEscola}" converter="escolaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{escolaController.items}"
+                                           var="seqEscolaItem"
+                                           itemValue="#{seqEscolaItem}"
+                                           itemLabel="#{seqEscolaItem.seqEscola.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateFechamentoLabel_seqDisciplina}" for="seqDisciplina" />
+                        <p:selectOneMenu id="seqDisciplina" value="#{fechamentoController.selected.seqDisciplina}" required="true" requiredMessage="#{messages.CreateFechamentoRequiredMessage_seqDisciplina}" converter="disciplinaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{disciplinaController.items}"
+                                           var="seqDisciplinaItem"
+                                           itemValue="#{seqDisciplinaItem}"
+                                           itemLabel="#{seqDisciplinaItem.seqDisciplina.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{fechamentoController.saveNew}" value="#{messages.Save}" update="display,:FechamentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('FechamentoCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('FechamentoCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

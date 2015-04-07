@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="MunicipioListForm">
+
+        <p:panel header="#{messages.ListMunicipioTitle}">
+            <p:contextMenu id="MunicipioDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('MunicipioListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('MunicipioListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('MunicipioListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('MunicipioListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.MunicipioMenuItem_codUf}" icon="ui-icon-search"  actionListener="#{municipioController.prepareCodUf}" update=":UfViewForm" oncomplete="PF('UfViewDialog').show()" disabled="#{empty municipioController.selected.codUf}"/>  
+                <p:menuitem value="#{messages.MunicipioMenuItem_pessoaList}" icon="ui-icon-search"  action="#{municipioController.navigatePessoaList}" disabled="#{empty municipioController.selected.pessoaList}" ajax="false"/>  
+                <p:menuitem value="#{messages.MunicipioMenuItem_escolaList}" icon="ui-icon-search"  action="#{municipioController.navigateEscolaList}" disabled="#{empty municipioController.selected.escolaList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{municipioController.items}"
+                         var="item"
+                         rowKey="#{item.codMunicipio}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{municipioController.selected}">
+
+                <p:ajax event="rowSelect"   update=":MunicipioListForm:createButton :MunicipioListForm:viewButton :MunicipioListForm:editButton :MunicipioListForm:deleteButton :MunicipioListForm:MunicipioDataTableContextMenu" listener="#{municipioController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":MunicipioListForm:createButton :MunicipioListForm:viewButton :MunicipioListForm:editButton :MunicipioListForm:deleteButton :MunicipioListForm:MunicipioDataTableContextMenu" listener="#{municipioController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :MunicipioListForm:createButton :MunicipioListForm:viewButton :MunicipioListForm:editButton :MunicipioListForm:deleteButton" listener="#{municipioController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('MunicipioListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.codMunicipio}" filterBy="#{item.codMunicipio}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListMunicipioTitle_codMunicipio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.codMunicipio}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nomMunicipio}" filterBy="#{item.nomMunicipio}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListMunicipioTitle_nomMunicipio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nomMunicipio}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.sitCancelado}" filterBy="#{item.sitCancelado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListMunicipioTitle_sitCancelado}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.sitCancelado}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.datAlteracao}" filterBy="#{item.datAlteracao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListMunicipioTitle_datAlteracao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.datAlteracao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numLonSede}" filterBy="#{item.numLonSede}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListMunicipioTitle_numLonSede}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numLonSede}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numLatSede}" filterBy="#{item.numLatSede}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListMunicipioTitle_numLatSede}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numLatSede}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.codUnidadeArrecadacao}" filterBy="#{item.codUnidadeArrecadacao}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListMunicipioTitle_codUnidadeArrecadacao}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.codUnidadeArrecadacao}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.seqUnidadeArrecadacao}" filterBy="#{item.seqUnidadeArrecadacao}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListMunicipioTitle_seqUnidadeArrecadacao}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.seqUnidadeArrecadacao}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.nomMunicipioFormatado}" filterBy="#{item.nomMunicipioFormatado}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListMunicipioTitle_nomMunicipioFormatado}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.nomMunicipioFormatado}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.codUf.codUf}" filterBy="#{item.codUf.codUf}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListMunicipioTitle_codUf}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.codUf.codUf}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{municipioController.prepareCreate}" update=":MunicipioCreateForm" oncomplete="PF('MunicipioCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":MunicipioViewForm" oncomplete="PF('MunicipioViewDialog').show()" disabled="#{empty municipioController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":MunicipioEditForm" oncomplete="PF('MunicipioEditDialog').show()" disabled="#{empty municipioController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{municipioController.delete}" update=":growl,datalist" disabled="#{empty municipioController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

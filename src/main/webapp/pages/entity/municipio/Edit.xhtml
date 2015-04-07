@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="MunicipioEditDlg" widgetVar="MunicipioEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditMunicipioTitle}" closeOnEscape="true">
+
+            <h:form id="MunicipioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{municipioController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditMunicipioLabel_codMunicipio}" for="codMunicipio" />
+                        <h:outputText id="codMunicipio" value="#{municipioController.selected.codMunicipio}" />
+
+                        <p:outputLabel value="#{messages.EditMunicipioLabel_nomMunicipio}" for="nomMunicipio" />
+                        <p:inputText id="nomMunicipio" value="#{municipioController.selected.nomMunicipio}" title="#{messages.EditMunicipioTitle_nomMunicipio}" required="true" requiredMessage="#{messages.EditMunicipioRequiredMessage_nomMunicipio}" size="40" maxlength="40"/>
+
+                        <p:outputLabel value="#{messages.EditMunicipioLabel_sitCancelado}" for="sitCancelado" />
+                        <p:inputText id="sitCancelado" value="#{municipioController.selected.sitCancelado}" title="#{messages.EditMunicipioTitle_sitCancelado}" required="true" requiredMessage="#{messages.EditMunicipioRequiredMessage_sitCancelado}"/>
+
+                        <p:outputLabel value="#{messages.EditMunicipioLabel_datAlteracao}" for="datAlteracao" />
+                        <p:calendar id="datAlteracao" pattern="MM/dd/yyyy HH:mm:ss" value="#{municipioController.selected.datAlteracao}" title="#{messages.EditMunicipioTitle_datAlteracao}"  showOn="button"/>
+
+                        <p:outputLabel value="#{messages.EditMunicipioLabel_numLonSede}" for="numLonSede" />
+                        <p:inputText id="numLonSede" value="#{municipioController.selected.numLonSede}" title="#{messages.EditMunicipioTitle_numLonSede}"/>
+
+                        <p:outputLabel value="#{messages.EditMunicipioLabel_numLatSede}" for="numLatSede" />
+                        <p:inputText id="numLatSede" value="#{municipioController.selected.numLatSede}" title="#{messages.EditMunicipioTitle_numLatSede}"/>
+
+                        <p:outputLabel value="#{messages.EditMunicipioLabel_codUnidadeArrecadacao}" for="codUnidadeArrecadacao" />
+                        <p:inputText id="codUnidadeArrecadacao" value="#{municipioController.selected.codUnidadeArrecadacao}" title="#{messages.EditMunicipioTitle_codUnidadeArrecadacao}"/>
+
+                        <p:outputLabel value="#{messages.EditMunicipioLabel_seqUnidadeArrecadacao}" for="seqUnidadeArrecadacao" />
+                        <p:inputText id="seqUnidadeArrecadacao" value="#{municipioController.selected.seqUnidadeArrecadacao}" title="#{messages.EditMunicipioTitle_seqUnidadeArrecadacao}"/>
+
+                        <p:outputLabel value="#{messages.EditMunicipioLabel_nomMunicipioFormatado}" for="nomMunicipioFormatado" />
+                        <p:inputText id="nomMunicipioFormatado" value="#{municipioController.selected.nomMunicipioFormatado}" title="#{messages.EditMunicipioTitle_nomMunicipioFormatado}" size="40" maxlength="40"/>
+
+                        <p:outputLabel value="#{messages.EditMunicipioLabel_codUf}" for="codUf" />
+                        <p:selectOneMenu id="codUf" value="#{municipioController.selected.codUf}" required="true" requiredMessage="#{messages.EditMunicipioRequiredMessage_codUf}" converter="ufConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{ufController.items}"
+                                           var="codUfItem"
+                                           itemValue="#{codUfItem}"
+                                           itemLabel="#{codUfItem.codUf.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{municipioController.save}" value="#{messages.Save}" update="display,:MunicipioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MunicipioEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('MunicipioEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

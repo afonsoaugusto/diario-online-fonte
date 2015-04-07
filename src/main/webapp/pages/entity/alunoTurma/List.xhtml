@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AlunoTurmaListForm">
+
+        <p:panel header="#{messages.ListAlunoTurmaTitle}">
+            <p:contextMenu id="AlunoTurmaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('AlunoTurmaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('AlunoTurmaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('AlunoTurmaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('AlunoTurmaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.AlunoTurmaMenuItem_seqTurma}" icon="ui-icon-search"  actionListener="#{alunoTurmaController.prepareSeqTurma}" update=":TurmaViewForm" oncomplete="PF('TurmaViewDialog').show()" disabled="#{empty alunoTurmaController.selected.seqTurma}"/>  
+                <p:menuitem value="#{messages.AlunoTurmaMenuItem_seqSituacao}" icon="ui-icon-search"  actionListener="#{alunoTurmaController.prepareSeqSituacao}" update=":SituacaoViewForm" oncomplete="PF('SituacaoViewDialog').show()" disabled="#{empty alunoTurmaController.selected.seqSituacao}"/>  
+                <p:menuitem value="#{messages.AlunoTurmaMenuItem_seqAluno}" icon="ui-icon-search"  actionListener="#{alunoTurmaController.prepareSeqAluno}" update=":AlunoViewForm" oncomplete="PF('AlunoViewDialog').show()" disabled="#{empty alunoTurmaController.selected.seqAluno}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{alunoTurmaController.items}"
+                         var="item"
+                         rowKey="#{item.seqAlunoTurma}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{alunoTurmaController.selected}">
+
+                <p:ajax event="rowSelect"   update=":AlunoTurmaListForm:createButton :AlunoTurmaListForm:viewButton :AlunoTurmaListForm:editButton :AlunoTurmaListForm:deleteButton :AlunoTurmaListForm:AlunoTurmaDataTableContextMenu" listener="#{alunoTurmaController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":AlunoTurmaListForm:createButton :AlunoTurmaListForm:viewButton :AlunoTurmaListForm:editButton :AlunoTurmaListForm:deleteButton :AlunoTurmaListForm:AlunoTurmaDataTableContextMenu" listener="#{alunoTurmaController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :AlunoTurmaListForm:createButton :AlunoTurmaListForm:viewButton :AlunoTurmaListForm:editButton :AlunoTurmaListForm:deleteButton" listener="#{alunoTurmaController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AlunoTurmaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqAlunoTurma}" filterBy="#{item.seqAlunoTurma}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTurmaTitle_seqAlunoTurma}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqAlunoTurma}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.flgTurmaAtual}" filterBy="#{item.flgTurmaAtual}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTurmaTitle_flgTurmaAtual}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.flgTurmaAtual}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqTurma.seqTurma}" filterBy="#{item.seqTurma.seqTurma}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTurmaTitle_seqTurma}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqTurma.seqTurma}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqSituacao.seqSituacao}" filterBy="#{item.seqSituacao.seqSituacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTurmaTitle_seqSituacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqSituacao.seqSituacao}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTurmaTitle_seqAluno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqAluno.seqAluno}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{alunoTurmaController.prepareCreate}" update=":AlunoTurmaCreateForm" oncomplete="PF('AlunoTurmaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":AlunoTurmaViewForm" oncomplete="PF('AlunoTurmaViewDialog').show()" disabled="#{empty alunoTurmaController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":AlunoTurmaEditForm" oncomplete="PF('AlunoTurmaEditDialog').show()" disabled="#{empty alunoTurmaController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{alunoTurmaController.delete}" update=":growl,datalist" disabled="#{empty alunoTurmaController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

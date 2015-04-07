@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FuncionalidadeCreateDlg" widgetVar="FuncionalidadeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateFuncionalidadeTitle}" closeOnEscape="true">
+
+            <h:form id="FuncionalidadeCreateForm">
+
+                <h:panelGroup id="display" rendered="#{funcionalidadeController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateFuncionalidadeLabel_seqFuncionalidade}" for="seqFuncionalidade" />
+                        <p:inputText id="seqFuncionalidade" value="#{funcionalidadeController.selected.seqFuncionalidade}" title="#{messages.CreateFuncionalidadeTitle_seqFuncionalidade}" required="true" requiredMessage="#{messages.CreateFuncionalidadeRequiredMessage_seqFuncionalidade}"/>
+
+                        <p:outputLabel value="#{messages.CreateFuncionalidadeLabel_codFuncionalidade}" for="codFuncionalidade" />
+                        <p:inputText id="codFuncionalidade" value="#{funcionalidadeController.selected.codFuncionalidade}" title="#{messages.CreateFuncionalidadeTitle_codFuncionalidade}" size="25" maxlength="25"/>
+
+                        <p:outputLabel value="#{messages.CreateFuncionalidadeLabel_desFuncionalidade}" for="desFuncionalidade" />
+                        <p:inputText id="desFuncionalidade" value="#{funcionalidadeController.selected.desFuncionalidade}" title="#{messages.CreateFuncionalidadeTitle_desFuncionalidade}" size="200" maxlength="200"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{funcionalidadeController.saveNew}" value="#{messages.Save}" update="display,:FuncionalidadeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('FuncionalidadeCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('FuncionalidadeCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

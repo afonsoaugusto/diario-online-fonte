@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PessoaListForm">
+
+        <p:panel header="#{messages.ListPessoaTitle}">
+            <p:contextMenu id="PessoaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('PessoaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('PessoaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('PessoaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('PessoaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.PessoaMenuItem_fechamentoList}" icon="ui-icon-search"  action="#{pessoaController.navigateFechamentoList}" disabled="#{empty pessoaController.selected.fechamentoList}" ajax="false"/>  
+                <p:menuitem value="#{messages.PessoaMenuItem_fechamentoList1}" icon="ui-icon-search"  action="#{pessoaController.navigateFechamentoList1}" disabled="#{empty pessoaController.selected.fechamentoList1}" ajax="false"/>  
+                <p:menuitem value="#{messages.PessoaMenuItem_seqCidade}" icon="ui-icon-search"  actionListener="#{pessoaController.prepareSeqCidade}" update=":MunicipioViewForm" oncomplete="PF('MunicipioViewDialog').show()" disabled="#{empty pessoaController.selected.seqCidade}"/>  
+                <p:menuitem value="#{messages.PessoaMenuItem_disciplinaProfessorList}" icon="ui-icon-search"  action="#{pessoaController.navigateDisciplinaProfessorList}" disabled="#{empty pessoaController.selected.disciplinaProfessorList}" ajax="false"/>  
+                <p:menuitem value="#{messages.PessoaMenuItem_usuario}" icon="ui-icon-search"  actionListener="#{pessoaController.prepareUsuario}" update=":UsuarioViewForm" oncomplete="PF('UsuarioViewDialog').show()" disabled="#{empty pessoaController.selected.usuario}"/>  
+                <p:menuitem value="#{messages.PessoaMenuItem_turmaList}" icon="ui-icon-search"  action="#{pessoaController.navigateTurmaList}" disabled="#{empty pessoaController.selected.turmaList}" ajax="false"/>  
+                <p:menuitem value="#{messages.PessoaMenuItem_notasList}" icon="ui-icon-search"  action="#{pessoaController.navigateNotasList}" disabled="#{empty pessoaController.selected.notasList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{pessoaController.items}"
+                         var="item"
+                         rowKey="#{item.seqPessoa}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{pessoaController.selected}">
+
+                <p:ajax event="rowSelect"   update=":PessoaListForm:createButton :PessoaListForm:viewButton :PessoaListForm:editButton :PessoaListForm:deleteButton :PessoaListForm:PessoaDataTableContextMenu" listener="#{pessoaController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":PessoaListForm:createButton :PessoaListForm:viewButton :PessoaListForm:editButton :PessoaListForm:deleteButton :PessoaListForm:PessoaDataTableContextMenu" listener="#{pessoaController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :PessoaListForm:createButton :PessoaListForm:viewButton :PessoaListForm:editButton :PessoaListForm:deleteButton" listener="#{pessoaController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PessoaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqPessoa}" filterBy="#{item.seqPessoa}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPessoaTitle_seqPessoa}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPessoa}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desNome}" filterBy="#{item.desNome}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPessoaTitle_desNome}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desNome}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.codCpf}" filterBy="#{item.codCpf}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPessoaTitle_codCpf}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.codCpf}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desRua}" filterBy="#{item.desRua}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPessoaTitle_desRua}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desRua}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desBairro}" filterBy="#{item.desBairro}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPessoaTitle_desBairro}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desBairro}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numCep}" filterBy="#{item.numCep}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPessoaTitle_numCep}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numCep}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.numCasa}" filterBy="#{item.numCasa}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListPessoaTitle_numCasa}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numCasa}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.numTel}" filterBy="#{item.numTel}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListPessoaTitle_numTel}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numTel}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.numCel}" filterBy="#{item.numCel}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListPessoaTitle_numCel}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numCel}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.flgAtivo}" filterBy="#{item.flgAtivo}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListPessoaTitle_flgAtivo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.flgAtivo}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.seqCidade.codMunicipio}" filterBy="#{item.seqCidade.codMunicipio}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListPessoaTitle_seqCidade}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.seqCidade.codMunicipio}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.usuario.seqUsuario}" filterBy="#{item.usuario.seqUsuario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListPessoaTitle_usuario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.usuario.seqUsuario}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{pessoaController.prepareCreate}" update=":PessoaCreateForm" oncomplete="PF('PessoaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":PessoaViewForm" oncomplete="PF('PessoaViewDialog').show()" disabled="#{empty pessoaController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":PessoaEditForm" oncomplete="PF('PessoaEditDialog').show()" disabled="#{empty pessoaController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{pessoaController.delete}" update=":growl,datalist" disabled="#{empty pessoaController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

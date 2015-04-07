@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AtividadeEditDlg" widgetVar="AtividadeEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditAtividadeTitle}" closeOnEscape="true">
+
+            <h:form id="AtividadeEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{atividadeController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditAtividadeLabel_seqAtividade}" for="seqAtividade" />
+                        <h:outputText id="seqAtividade" value="#{atividadeController.selected.seqAtividade}" />
+
+                        <p:outputLabel value="#{messages.EditAtividadeLabel_nomAtividade}" for="nomAtividade" />
+                        <p:inputText id="nomAtividade" value="#{atividadeController.selected.nomAtividade}" title="#{messages.EditAtividadeTitle_nomAtividade}" required="true" requiredMessage="#{messages.EditAtividadeRequiredMessage_nomAtividade}" size="80" maxlength="80"/>
+
+                        <p:outputLabel value="#{messages.EditAtividadeLabel_numValor}" for="numValor" />
+                        <p:inputText id="numValor" value="#{atividadeController.selected.numValor}" title="#{messages.EditAtividadeTitle_numValor}" required="true" requiredMessage="#{messages.EditAtividadeRequiredMessage_numValor}" size="2" maxlength="2"/>
+
+                        <p:outputLabel value="#{messages.EditAtividadeLabel_datAplicacao}" for="datAplicacao" />
+                        <p:calendar id="datAplicacao" pattern="MM/dd/yyyy HH:mm:ss" value="#{atividadeController.selected.datAplicacao}" title="#{messages.EditAtividadeTitle_datAplicacao}" required="true" requiredMessage="#{messages.EditAtividadeRequiredMessage_datAplicacao}" showOn="button"/>
+
+                        <p:outputLabel value="#{messages.EditAtividadeLabel_seqParameTipo}" for="seqParameTipo" />
+                        <p:selectOneMenu id="seqParameTipo" value="#{atividadeController.selected.seqParameTipo}" required="true" requiredMessage="#{messages.EditAtividadeRequiredMessage_seqParameTipo}" converter="parametrizacaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{parametrizacaoController.items}"
+                                           var="seqParameTipoItem"
+                                           itemValue="#{seqParameTipoItem}"
+                                           itemLabel="#{seqParameTipoItem.seqParametrizacao.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.EditAtividadeLabel_seqDisciplina}" for="seqDisciplina" />
+                        <p:selectOneMenu id="seqDisciplina" value="#{atividadeController.selected.seqDisciplina}" required="true" requiredMessage="#{messages.EditAtividadeRequiredMessage_seqDisciplina}" converter="disciplinaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{disciplinaController.items}"
+                                           var="seqDisciplinaItem"
+                                           itemValue="#{seqDisciplinaItem}"
+                                           itemLabel="#{seqDisciplinaItem.seqDisciplina.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{atividadeController.save}" value="#{messages.Save}" update="display,:AtividadeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AtividadeEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('AtividadeEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

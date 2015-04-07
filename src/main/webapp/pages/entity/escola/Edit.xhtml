@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="EscolaEditDlg" widgetVar="EscolaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.EditEscolaTitle}" closeOnEscape="true">
+
+            <h:form id="EscolaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{escolaController.selected != null}">
+
+
+                        <h:outputLabel value="#{messages.EditEscolaLabel_seqEscola}" for="seqEscola" />
+                        <h:outputText id="seqEscola" value="#{escolaController.selected.seqEscola}" />
+
+                        <p:outputLabel value="#{messages.EditEscolaLabel_desNome}" for="desNome" />
+                        <p:inputText id="desNome" value="#{escolaController.selected.desNome}" title="#{messages.EditEscolaTitle_desNome}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_desNome}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{messages.EditEscolaLabel_numTel}" for="numTel" />
+                        <p:inputText id="numTel" value="#{escolaController.selected.numTel}" title="#{messages.EditEscolaTitle_numTel}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_numTel}"/>
+
+                        <p:outputLabel value="#{messages.EditEscolaLabel_desSigla}" for="desSigla" />
+                        <p:inputText id="desSigla" value="#{escolaController.selected.desSigla}" title="#{messages.EditEscolaTitle_desSigla}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_desSigla}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{messages.EditEscolaLabel_desRua}" for="desRua" />
+                        <p:inputText id="desRua" value="#{escolaController.selected.desRua}" title="#{messages.EditEscolaTitle_desRua}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{messages.EditEscolaLabel_desBairro}" for="desBairro" />
+                        <p:inputText id="desBairro" value="#{escolaController.selected.desBairro}" title="#{messages.EditEscolaTitle_desBairro}" size="80" maxlength="80"/>
+
+                        <p:outputLabel value="#{messages.EditEscolaLabel_numCep}" for="numCep" />
+                        <p:inputText id="numCep" value="#{escolaController.selected.numCep}" title="#{messages.EditEscolaTitle_numCep}"/>
+
+                        <p:outputLabel value="#{messages.EditEscolaLabel_numEscola}" for="numEscola" />
+                        <p:inputText id="numEscola" value="#{escolaController.selected.numEscola}" title="#{messages.EditEscolaTitle_numEscola}"/>
+
+                        <p:outputLabel value="#{messages.EditEscolaLabel_numCnpj}" for="numCnpj" />
+                        <p:inputText id="numCnpj" value="#{escolaController.selected.numCnpj}" title="#{messages.EditEscolaTitle_numCnpj}"/>
+
+                        <p:outputLabel value="#{messages.EditEscolaLabel_seqCidade}" for="seqCidade" />
+                        <p:selectOneMenu id="seqCidade" value="#{escolaController.selected.seqCidade}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_seqCidade}" converter="municipioConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{municipioController.items}"
+                                           var="seqCidadeItem"
+                                           itemValue="#{seqCidadeItem}"
+                                           itemLabel="#{seqCidadeItem.codMunicipio.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{escolaController.save}" value="#{messages.Save}" update="display,:EscolaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('EscolaEditDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('EscolaEditDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

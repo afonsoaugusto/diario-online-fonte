@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PresencaViewDlg" widgetVar="PresencaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewPresencaTitle}" closeOnEscape="true">
+
+            <h:form id="PresencaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{presencaController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewPresencaLabel_seqPresenca}"/>
+                        <h:outputText value="#{presencaController.selected.seqPresenca}" title="#{messages.ViewPresencaTitle_seqPresenca}"/>
+
+                        <h:outputText value="#{messages.ViewPresencaLabel_flgPresente}"/>
+                        <h:outputText value="#{presencaController.selected.flgPresente}" title="#{messages.ViewPresencaTitle_flgPresente}"/>
+
+                        <h:outputText value="#{messages.ViewPresencaLabel_datDataPresenca}"/>
+                        <h:outputText value="#{presencaController.selected.datDataPresenca}" title="#{messages.ViewPresencaTitle_datDataPresenca}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{messages.ViewPresencaLabel_seqDisciplina}"/>
+                        <h:outputText value="#{presencaController.selected.seqDisciplina.seqDisciplina}"/>
+
+                        <h:outputText value="#{messages.ViewPresencaLabel_seqAluno}"/>
+                        <h:outputText value="#{presencaController.selected.seqAluno.seqAluno}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('PresencaViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

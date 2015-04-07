@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MunicipioViewDlg" widgetVar="MunicipioViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewMunicipioTitle}" closeOnEscape="true">
+
+            <h:form id="MunicipioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{municipioController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_codMunicipio}"/>
+                        <h:outputText value="#{municipioController.selected.codMunicipio}" title="#{messages.ViewMunicipioTitle_codMunicipio}"/>
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_nomMunicipio}"/>
+                        <h:outputText value="#{municipioController.selected.nomMunicipio}" title="#{messages.ViewMunicipioTitle_nomMunicipio}"/>
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_sitCancelado}"/>
+                        <h:outputText value="#{municipioController.selected.sitCancelado}" title="#{messages.ViewMunicipioTitle_sitCancelado}"/>
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_datAlteracao}"/>
+                        <h:outputText value="#{municipioController.selected.datAlteracao}" title="#{messages.ViewMunicipioTitle_datAlteracao}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_numLonSede}"/>
+                        <h:outputText value="#{municipioController.selected.numLonSede}" title="#{messages.ViewMunicipioTitle_numLonSede}"/>
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_numLatSede}"/>
+                        <h:outputText value="#{municipioController.selected.numLatSede}" title="#{messages.ViewMunicipioTitle_numLatSede}"/>
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_codUnidadeArrecadacao}"/>
+                        <h:outputText value="#{municipioController.selected.codUnidadeArrecadacao}" title="#{messages.ViewMunicipioTitle_codUnidadeArrecadacao}"/>
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_seqUnidadeArrecadacao}"/>
+                        <h:outputText value="#{municipioController.selected.seqUnidadeArrecadacao}" title="#{messages.ViewMunicipioTitle_seqUnidadeArrecadacao}"/>
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_nomMunicipioFormatado}"/>
+                        <h:outputText value="#{municipioController.selected.nomMunicipioFormatado}" title="#{messages.ViewMunicipioTitle_nomMunicipioFormatado}"/>
+
+                        <h:outputText value="#{messages.ViewMunicipioLabel_codUf}"/>
+                        <h:outputText value="#{municipioController.selected.codUf.codUf}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('MunicipioViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

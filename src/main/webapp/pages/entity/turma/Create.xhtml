@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TurmaCreateDlg" widgetVar="TurmaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreateTurmaTitle}" closeOnEscape="true">
+
+            <h:form id="TurmaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{turmaController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreateTurmaLabel_seqTurma}" for="seqTurma" />
+                        <p:inputText id="seqTurma" value="#{turmaController.selected.seqTurma}" title="#{messages.CreateTurmaTitle_seqTurma}" required="true" requiredMessage="#{messages.CreateTurmaRequiredMessage_seqTurma}"/>
+
+                        <p:outputLabel value="#{messages.CreateTurmaLabel_numTumra}" for="numTumra" />
+                        <p:inputText id="numTumra" value="#{turmaController.selected.numTumra}" title="#{messages.CreateTurmaTitle_numTumra}" required="true" requiredMessage="#{messages.CreateTurmaRequiredMessage_numTumra}" size="5" maxlength="5"/>
+
+                        <p:outputLabel value="#{messages.CreateTurmaLabel_flgTurmaFechada}" for="flgTurmaFechada" />
+                        <p:inputText id="flgTurmaFechada" value="#{turmaController.selected.flgTurmaFechada}" title="#{messages.CreateTurmaTitle_flgTurmaFechada}"/>
+
+                        <p:outputLabel value="#{messages.CreateTurmaLabel_seqTurno}" for="seqTurno" />
+                        <p:selectOneMenu id="seqTurno" value="#{turmaController.selected.seqTurno}" required="true" requiredMessage="#{messages.CreateTurmaRequiredMessage_seqTurno}" converter="turnoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{turnoController.items}"
+                                           var="seqTurnoItem"
+                                           itemValue="#{seqTurnoItem}"
+                                           itemLabel="#{seqTurnoItem.seqTurno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateTurmaLabel_seqPessoa}" for="seqPessoa" />
+                        <p:selectOneMenu id="seqPessoa" value="#{turmaController.selected.seqPessoa}" required="true" requiredMessage="#{messages.CreateTurmaRequiredMessage_seqPessoa}" converter="pessoaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{pessoaController.items}"
+                                           var="seqPessoaItem"
+                                           itemValue="#{seqPessoaItem}"
+                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateTurmaLabel_seqEscola}" for="seqEscola" />
+                        <p:selectOneMenu id="seqEscola" value="#{turmaController.selected.seqEscola}" required="true" requiredMessage="#{messages.CreateTurmaRequiredMessage_seqEscola}" converter="escolaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{escolaController.items}"
+                                           var="seqEscolaItem"
+                                           itemValue="#{seqEscolaItem}"
+                                           itemLabel="#{seqEscolaItem.seqEscola.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateTurmaLabel_seqAno}" for="seqAno" />
+                        <p:selectOneMenu id="seqAno" value="#{turmaController.selected.seqAno}" required="true" requiredMessage="#{messages.CreateTurmaRequiredMessage_seqAno}" converter="anoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{anoController.items}"
+                                           var="seqAnoItem"
+                                           itemValue="#{seqAnoItem}"
+                                           itemLabel="#{seqAnoItem.seqAno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{turmaController.saveNew}" value="#{messages.Save}" update="display,:TurmaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TurmaCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('TurmaCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

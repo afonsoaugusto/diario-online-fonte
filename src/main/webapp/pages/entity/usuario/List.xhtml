@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="UsuarioListForm">
+
+        <p:panel header="#{messages.ListUsuarioTitle}">
+            <p:contextMenu id="UsuarioDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('UsuarioListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('UsuarioListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('UsuarioListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('UsuarioListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.UsuarioMenuItem_usuarioPerfilList}" icon="ui-icon-search"  action="#{usuarioController.navigateUsuarioPerfilList}" disabled="#{empty usuarioController.selected.usuarioPerfilList}" ajax="false"/>  
+                <p:menuitem value="#{messages.UsuarioMenuItem_seqPessoa}" icon="ui-icon-search"  actionListener="#{usuarioController.prepareSeqPessoa}" update=":PessoaViewForm" oncomplete="PF('PessoaViewDialog').show()" disabled="#{empty usuarioController.selected.seqPessoa}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{usuarioController.items}"
+                         var="item"
+                         rowKey="#{item.seqUsuario}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{usuarioController.selected}">
+
+                <p:ajax event="rowSelect"   update=":UsuarioListForm:createButton :UsuarioListForm:viewButton :UsuarioListForm:editButton :UsuarioListForm:deleteButton :UsuarioListForm:UsuarioDataTableContextMenu" listener="#{usuarioController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":UsuarioListForm:createButton :UsuarioListForm:viewButton :UsuarioListForm:editButton :UsuarioListForm:deleteButton :UsuarioListForm:UsuarioDataTableContextMenu" listener="#{usuarioController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :UsuarioListForm:createButton :UsuarioListForm:viewButton :UsuarioListForm:editButton :UsuarioListForm:deleteButton" listener="#{usuarioController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('UsuarioListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqUsuario}" filterBy="#{item.seqUsuario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListUsuarioTitle_seqUsuario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqUsuario}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desLogin}" filterBy="#{item.desLogin}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListUsuarioTitle_desLogin}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desLogin}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desPassword}" filterBy="#{item.desPassword}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListUsuarioTitle_desPassword}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desPassword}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desDica}" filterBy="#{item.desDica}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListUsuarioTitle_desDica}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desDica}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqPessoa.seqPessoa}" filterBy="#{item.seqPessoa.seqPessoa}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListUsuarioTitle_seqPessoa}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPessoa.seqPessoa}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{usuarioController.prepareCreate}" update=":UsuarioCreateForm" oncomplete="PF('UsuarioCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":UsuarioViewForm" oncomplete="PF('UsuarioViewDialog').show()" disabled="#{empty usuarioController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":UsuarioEditForm" oncomplete="PF('UsuarioEditDialog').show()" disabled="#{empty usuarioController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{usuarioController.delete}" update=":growl,datalist" disabled="#{empty usuarioController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

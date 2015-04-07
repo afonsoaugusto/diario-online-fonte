@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PresencaCreateDlg" widgetVar="PresencaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreatePresencaTitle}" closeOnEscape="true">
+
+            <h:form id="PresencaCreateForm">
+
+                <h:panelGroup id="display" rendered="#{presencaController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_seqPresenca}" for="seqPresenca" />
+                        <p:inputText id="seqPresenca" value="#{presencaController.selected.seqPresenca}" title="#{messages.CreatePresencaTitle_seqPresenca}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_seqPresenca}"/>
+
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_flgPresente}" for="flgPresente" />
+                        <p:inputText id="flgPresente" value="#{presencaController.selected.flgPresente}" title="#{messages.CreatePresencaTitle_flgPresente}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_flgPresente}"/>
+
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_datDataPresenca}" for="datDataPresenca" />
+                        <p:calendar id="datDataPresenca" pattern="MM/dd/yyyy HH:mm:ss" value="#{presencaController.selected.datDataPresenca}" title="#{messages.CreatePresencaTitle_datDataPresenca}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_datDataPresenca}" showOn="button"/>
+
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_seqDisciplina}" for="seqDisciplina" />
+                        <p:selectOneMenu id="seqDisciplina" value="#{presencaController.selected.seqDisciplina}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_seqDisciplina}" converter="disciplinaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{disciplinaController.items}"
+                                           var="seqDisciplinaItem"
+                                           itemValue="#{seqDisciplinaItem}"
+                                           itemLabel="#{seqDisciplinaItem.seqDisciplina.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_seqAluno}" for="seqAluno" />
+                        <p:selectOneMenu id="seqAluno" value="#{presencaController.selected.seqAluno}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_seqAluno}" converter="alunoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{alunoController.items}"
+                                           var="seqAlunoItem"
+                                           itemValue="#{seqAlunoItem}"
+                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{presencaController.saveNew}" value="#{messages.Save}" update="display,:PresencaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PresencaCreateDialog'));">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PresencaCreateDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

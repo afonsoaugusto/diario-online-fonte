@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PerfilListForm">
+
+        <p:panel header="#{messages.ListPerfilTitle}">
+            <p:contextMenu id="PerfilDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('PerfilListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('PerfilListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('PerfilListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('PerfilListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.PerfilMenuItem_perfilFuncionalidadeAcaoList}" icon="ui-icon-search"  action="#{perfilController.navigatePerfilFuncionalidadeAcaoList}" disabled="#{empty perfilController.selected.perfilFuncionalidadeAcaoList}" ajax="false"/>  
+                <p:menuitem value="#{messages.PerfilMenuItem_usuarioPerfilList}" icon="ui-icon-search"  action="#{perfilController.navigateUsuarioPerfilList}" disabled="#{empty perfilController.selected.usuarioPerfilList}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{perfilController.items}"
+                         var="item"
+                         rowKey="#{item.seqPerfil}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{perfilController.selected}">
+
+                <p:ajax event="rowSelect"   update=":PerfilListForm:createButton :PerfilListForm:viewButton :PerfilListForm:editButton :PerfilListForm:deleteButton :PerfilListForm:PerfilDataTableContextMenu" listener="#{perfilController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":PerfilListForm:createButton :PerfilListForm:viewButton :PerfilListForm:editButton :PerfilListForm:deleteButton :PerfilListForm:PerfilDataTableContextMenu" listener="#{perfilController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :PerfilListForm:createButton :PerfilListForm:viewButton :PerfilListForm:editButton :PerfilListForm:deleteButton" listener="#{perfilController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PerfilListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqPerfil}" filterBy="#{item.seqPerfil}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPerfilTitle_seqPerfil}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPerfil}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nomPerfil}" filterBy="#{item.nomPerfil}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPerfilTitle_nomPerfil}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nomPerfil}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.desPerfil}" filterBy="#{item.desPerfil}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPerfilTitle_desPerfil}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.desPerfil}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{perfilController.prepareCreate}" update=":PerfilCreateForm" oncomplete="PF('PerfilCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":PerfilViewForm" oncomplete="PF('PerfilViewDialog').show()" disabled="#{empty perfilController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":PerfilEditForm" oncomplete="PF('PerfilEditDialog').show()" disabled="#{empty perfilController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{perfilController.delete}" update=":growl,datalist" disabled="#{empty perfilController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

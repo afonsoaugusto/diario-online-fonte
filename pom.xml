@@ -137,7 +137,7 @@
                             <schemas>
                                 <schema>diarioonlinedb</schema>
                             </schemas>
-                            <goalPrefix>flyway</goalPrefix>
+                            <!--goalPrefix>flyway</goalPrefix-->
                         </configuration>
                     </plugin>
                 </plugins>

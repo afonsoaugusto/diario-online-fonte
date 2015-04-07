@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FuncionalidadeViewDlg" widgetVar="FuncionalidadeViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewFuncionalidadeTitle}" closeOnEscape="true">
+
+            <h:form id="FuncionalidadeViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{funcionalidadeController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewFuncionalidadeLabel_seqFuncionalidade}"/>
+                        <h:outputText value="#{funcionalidadeController.selected.seqFuncionalidade}" title="#{messages.ViewFuncionalidadeTitle_seqFuncionalidade}"/>
+
+                        <h:outputText value="#{messages.ViewFuncionalidadeLabel_codFuncionalidade}"/>
+                        <h:outputText value="#{funcionalidadeController.selected.codFuncionalidade}" title="#{messages.ViewFuncionalidadeTitle_codFuncionalidade}"/>
+
+                        <h:outputText value="#{messages.ViewFuncionalidadeLabel_desFuncionalidade}"/>
+                        <h:outputText value="#{funcionalidadeController.selected.desFuncionalidade}" title="#{messages.ViewFuncionalidadeTitle_desFuncionalidade}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('FuncionalidadeViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

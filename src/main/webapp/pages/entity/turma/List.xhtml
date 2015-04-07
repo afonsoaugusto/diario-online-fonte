@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="TurmaListForm">
+
+        <p:panel header="#{messages.ListTurmaTitle}">
+            <p:contextMenu id="TurmaDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{messages.Create}" onclick="document.getElementById('TurmaListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{messages.View}" onclick="document.getElementById('TurmaListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{messages.Edit}" onclick="document.getElementById('TurmaListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('TurmaListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{messages.TurmaMenuItem_fechamentoList}" icon="ui-icon-search"  action="#{turmaController.navigateFechamentoList}" disabled="#{empty turmaController.selected.fechamentoList}" ajax="false"/>  
+                <p:menuitem value="#{messages.TurmaMenuItem_alunoTurmaList}" icon="ui-icon-search"  action="#{turmaController.navigateAlunoTurmaList}" disabled="#{empty turmaController.selected.alunoTurmaList}" ajax="false"/>  
+                <p:menuitem value="#{messages.TurmaMenuItem_planoEnsinoList}" icon="ui-icon-search"  action="#{turmaController.navigatePlanoEnsinoList}" disabled="#{empty turmaController.selected.planoEnsinoList}" ajax="false"/>  
+                <p:menuitem value="#{messages.TurmaMenuItem_seqTurno}" icon="ui-icon-search"  actionListener="#{turmaController.prepareSeqTurno}" update=":TurnoViewForm" oncomplete="PF('TurnoViewDialog').show()" disabled="#{empty turmaController.selected.seqTurno}"/>  
+                <p:menuitem value="#{messages.TurmaMenuItem_seqPessoa}" icon="ui-icon-search"  actionListener="#{turmaController.prepareSeqPessoa}" update=":PessoaViewForm" oncomplete="PF('PessoaViewDialog').show()" disabled="#{empty turmaController.selected.seqPessoa}"/>  
+                <p:menuitem value="#{messages.TurmaMenuItem_seqEscola}" icon="ui-icon-search"  actionListener="#{turmaController.prepareSeqEscola}" update=":EscolaViewForm" oncomplete="PF('EscolaViewDialog').show()" disabled="#{empty turmaController.selected.seqEscola}"/>  
+                <p:menuitem value="#{messages.TurmaMenuItem_seqAno}" icon="ui-icon-search"  actionListener="#{turmaController.prepareSeqAno}" update=":AnoViewForm" oncomplete="PF('AnoViewDialog').show()" disabled="#{empty turmaController.selected.seqAno}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{turmaController.items}"
+                         var="item"
+                         rowKey="#{item.seqTurma}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{turmaController.selected}">
+
+                <p:ajax event="rowSelect"   update=":TurmaListForm:createButton :TurmaListForm:viewButton :TurmaListForm:editButton :TurmaListForm:deleteButton :TurmaListForm:TurmaDataTableContextMenu" listener="#{turmaController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":TurmaListForm:createButton :TurmaListForm:viewButton :TurmaListForm:editButton :TurmaListForm:deleteButton :TurmaListForm:TurmaDataTableContextMenu" listener="#{turmaController.resetParents}"/>
+                <p:ajax event="contextMenu" update=" :TurmaListForm:createButton :TurmaListForm:viewButton :TurmaListForm:editButton :TurmaListForm:deleteButton" listener="#{turmaController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TurmaListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.seqTurma}" filterBy="#{item.seqTurma}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListTurmaTitle_seqTurma}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqTurma}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numTumra}" filterBy="#{item.numTumra}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListTurmaTitle_numTumra}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numTumra}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.flgTurmaFechada}" filterBy="#{item.flgTurmaFechada}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListTurmaTitle_flgTurmaFechada}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.flgTurmaFechada}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqTurno.seqTurno}" filterBy="#{item.seqTurno.seqTurno}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListTurmaTitle_seqTurno}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqTurno.seqTurno}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqPessoa.seqPessoa}" filterBy="#{item.seqPessoa.seqPessoa}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListTurmaTitle_seqPessoa}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqPessoa.seqPessoa}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.seqEscola.seqEscola}" filterBy="#{item.seqEscola.seqEscola}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListTurmaTitle_seqEscola}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqEscola.seqEscola}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.seqAno.seqAno}" filterBy="#{item.seqAno.seqAno}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{messages.ListTurmaTitle_seqAno}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.seqAno.seqAno}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{turmaController.prepareCreate}" update=":TurmaCreateForm" oncomplete="PF('TurmaCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":TurmaViewForm" oncomplete="PF('TurmaViewDialog').show()" disabled="#{empty turmaController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":TurmaEditForm" oncomplete="PF('TurmaEditDialog').show()" disabled="#{empty turmaController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{turmaController.delete}" update=":growl,datalist" disabled="#{empty turmaController.selected}">
+                <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/pages/generic/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

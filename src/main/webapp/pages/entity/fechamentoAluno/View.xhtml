@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FechamentoAlunoViewDlg" widgetVar="FechamentoAlunoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewFechamentoAlunoTitle}" closeOnEscape="true">
+
+            <h:form id="FechamentoAlunoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{fechamentoAlunoController.selected != null}">
+
+                        <h:outputText value="#{messages.ViewFechamentoAlunoLabel_seqFechamentoAluno}"/>
+                        <h:outputText value="#{fechamentoAlunoController.selected.seqFechamentoAluno}" title="#{messages.ViewFechamentoAlunoTitle_seqFechamentoAluno}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoAlunoLabel_datLancamento}"/>
+                        <h:outputText value="#{fechamentoAlunoController.selected.datLancamento}" title="#{messages.ViewFechamentoAlunoTitle_datLancamento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{messages.ViewFechamentoAlunoLabel_flgFechamentoAtual}"/>
+                        <h:outputText value="#{fechamentoAlunoController.selected.flgFechamentoAtual}" title="#{messages.ViewFechamentoAlunoTitle_flgFechamentoAtual}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoAlunoLabel_numNota}"/>
+                        <h:outputText value="#{fechamentoAlunoController.selected.numNota}" title="#{messages.ViewFechamentoAlunoTitle_numNota}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoAlunoLabel_numQtdPresenca}"/>
+                        <h:outputText value="#{fechamentoAlunoController.selected.numQtdPresenca}" title="#{messages.ViewFechamentoAlunoTitle_numQtdPresenca}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoAlunoLabel_seqSituacao}"/>
+                        <h:outputText value="#{fechamentoAlunoController.selected.seqSituacao.seqSituacao}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoAlunoLabel_seqFechamento}"/>
+                        <h:outputText value="#{fechamentoAlunoController.selected.seqFechamento.seqFechamento}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoAlunoLabel_seqAno}"/>
+                        <h:outputText value="#{fechamentoAlunoController.selected.seqAno.seqAno}"/>
+
+                        <h:outputText value="#{messages.ViewFechamentoAlunoLabel_seqAluno}"/>
+                        <h:outputText value="#{fechamentoAlunoController.selected.seqAluno.seqAluno}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{messages.Close}" onclick="PF('FechamentoAlunoViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

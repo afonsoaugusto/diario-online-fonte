@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
@@ -17,6 +16,7 @@
                 <p:submenu label="#{messages.MenuDiario}">
                     <p:menuitem value="External" url="http://www.primefaces.org" />
                     <p:menuitem value="Internal" outcome="/index" />
+                    <p:menuitem value="Internal2" outcome="/pages/prime/acao/index" />
                 </p:submenu>
                 <p:submenu label="#{messages.MenuSeguranca}">
                     <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" />
