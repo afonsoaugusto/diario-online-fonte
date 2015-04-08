@@ -6,13 +6,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import javax.ejb.EJB;
 
 @ManagedBean(name = "funcionalidadeController")
 @ViewScoped
 public class FuncionalidadeController extends AbstractController<Funcionalidade> {
 
-    @Inject
+    @EJB
     private FuncionalidadeFacade ejbFacade;
 
     /**

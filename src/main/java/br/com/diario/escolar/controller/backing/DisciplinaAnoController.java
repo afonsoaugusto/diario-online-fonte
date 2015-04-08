@@ -7,13 +7,14 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 
 @ManagedBean(name = "disciplinaAnoController")
 @ViewScoped
 public class DisciplinaAnoController extends AbstractController<DisciplinaAno> {
 
-    @Inject
+    @EJB
     private DisciplinaAnoFacade ejbFacade;
     private DisciplinaController tblDisciplinaSeqDisciplinaController;
     private AnoController tblAnoSeqAnoController;

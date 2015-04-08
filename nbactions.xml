@@ -53,9 +53,12 @@
             </packagings>
             <goals>
                 <goal>package</goal>
-                <goal>-Xmx=1024m</goal>
-                <goal>-XX:MaxPermSize=512m</goal>
-                <goal>-XX:PermSize=512m</goal>
+                <goal>-Xms256m</goal>
+                <goal>-Xmx1024m</goal>
+                <goal>-XX:MaxPermSize=1024m</goal>
+                <goal>-Djava.net.preferIPv4Stack=true</goal>
+                <goal>-Dsun.rmi.dgc.client.gcInterval=3600000</goal>
+                <goal>-Dsun.rmi.dgc.server.gcInterval=3600000</goal>   
             </goals>
             <properties>
                 <netbeans.deploy>true</netbeans.deploy>

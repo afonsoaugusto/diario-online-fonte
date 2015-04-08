@@ -6,13 +6,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 
 @ManagedBean(name = "acaoController")
 @ViewScoped
 public class AcaoController extends AbstractController<Acao> {
 
-    @Inject
+    @EJB
     private AcaoFacade ejbFacade;
 
     /**

@@ -8,13 +8,12 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 @ManagedBean(name = "usuarioPerfilController")
 @ViewScoped
 public class UsuarioPerfilController extends AbstractController<UsuarioPerfil> {
 
-    @Inject
+    @EJB
     private UsuarioPerfilFacade ejbFacade;
     private UsuarioController seqUsuarioController;
     private PerfilController seqPerfilController;

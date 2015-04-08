@@ -14,7 +14,7 @@ import javax.inject.Inject;
 @ViewScoped
 public class PlanoEnsinoController extends AbstractController<PlanoEnsino> {
 
-    @Inject
+    @EJB
     private PlanoEnsinoFacade ejbFacade;
     private TurmaController seqTurmaController;
     private AtuacaoProfessorController seqAtuacaoProfessorController;

@@ -8,13 +8,12 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 @ManagedBean(name = "turmaController")
 @ViewScoped
 public class TurmaController extends AbstractController<Turma> {
 
-    @Inject
+    @EJB
     private TurmaFacade ejbFacade;
     private TurnoController seqTurnoController;
     private PessoaController seqPessoaController;

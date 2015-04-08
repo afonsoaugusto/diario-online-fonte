@@ -6,15 +6,13 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 @ManagedBean(name = "turnoController")
 @ViewScoped
 public class TurnoController extends AbstractController<Turno> {
 
-    @Inject
+    @EJB
     private TurnoFacade ejbFacade;
 
     /**

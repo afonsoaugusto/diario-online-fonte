@@ -8,13 +8,12 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 @ManagedBean(name = "menuController")
 @ViewScoped
 public class MenuController extends AbstractController<Menu> {
 
-    @Inject
+    @EJB
     private MenuFacade ejbFacade;
     //private MenuController seqMenuPaiController;
 

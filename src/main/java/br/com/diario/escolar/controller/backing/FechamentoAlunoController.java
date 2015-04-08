@@ -14,7 +14,7 @@ import javax.inject.Inject;
 @ViewScoped
 public class FechamentoAlunoController extends AbstractController<FechamentoAluno> {
 
-    @Inject
+    @EJB
     private FechamentoAlunoFacade ejbFacade;
     private SituacaoController seqSituacaoController;
     private FechamentoController seqFechamentoController;
