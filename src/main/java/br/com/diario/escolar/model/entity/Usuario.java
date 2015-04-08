@@ -12,6 +12,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
@@ -40,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_USUARIO")
@@ -58,10 +61,10 @@ public class Usuario implements Serializable {
     @Size(max = 40)
     @Column(name = "DES_DICA")
     private String desDica;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqUsuario",fetch = FetchType.LAZY)
     private List<UsuarioPerfil> usuarioPerfilList;
     @JoinColumn(name = "SEQ_PESSOA", referencedColumnName = "SEQ_PESSOA")
-    @OneToOne(optional = false)
+    @OneToOne(optional = false,fetch = FetchType.LAZY)
     private Pessoa seqPessoa;
 
     public Usuario() {

@@ -8,12 +8,13 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @ManagedBean(name = "notasController")
 @ViewScoped
 public class NotasController extends AbstractController<Notas> {
 
-    @EJB
+    @Inject
     private NotasFacade ejbFacade;
     private PessoaController seqPessoaController;
     private ParametrizacaoController seqParamePeriodoController;

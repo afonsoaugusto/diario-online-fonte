@@ -8,12 +8,13 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @ManagedBean(name = "fechamentoAlunoController")
 @ViewScoped
 public class FechamentoAlunoController extends AbstractController<FechamentoAluno> {
 
-    @EJB
+    @Inject
     private FechamentoAlunoFacade ejbFacade;
     private SituacaoController seqSituacaoController;
     private FechamentoController seqFechamentoController;

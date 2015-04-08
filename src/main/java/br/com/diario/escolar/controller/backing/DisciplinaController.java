@@ -2,18 +2,17 @@ package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.Disciplina;
 import br.com.diario.escolar.view.session.DisciplinaFacade;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @ManagedBean(name = "disciplinaController")
 @ViewScoped
 public class DisciplinaController extends AbstractController<Disciplina> {
 
-    @EJB
+    @Inject
     private DisciplinaFacade ejbFacade;
 
     /**

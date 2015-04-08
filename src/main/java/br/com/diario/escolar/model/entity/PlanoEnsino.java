@@ -11,6 +11,9 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -37,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PlanoEnsino implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_PLANO_ENSINO")
@@ -52,10 +55,10 @@ public class PlanoEnsino implements Serializable {
     @Column(name = "DES_ANEXO")
     private Serializable desAnexo;
     @JoinColumn(name = "SEQ_TURMA", referencedColumnName = "SEQ_TURMA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Turma seqTurma;
     @JoinColumn(name = "SEQ_ATUACAO_PROFESSOR", referencedColumnName = "SEQ_ATUACAO_PROFESSOR")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private AtuacaoProfessor seqAtuacaoProfessor;
 
     public PlanoEnsino() {

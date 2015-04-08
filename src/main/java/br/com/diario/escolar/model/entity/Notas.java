@@ -11,6 +11,9 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Notas implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_NOTAS")
@@ -50,19 +53,19 @@ public class Notas implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date datLancamento;
     @JoinColumn(name = "SEQ_PESSOA", referencedColumnName = "SEQ_PESSOA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Pessoa seqPessoa;
     @JoinColumn(name = "SEQ_PARAME_PERIODO", referencedColumnName = "SEQ_PARAMETRIZACAO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Parametrizacao seqParamePeriodo;
     @JoinColumn(name = "SEQ_ATIVIDADE", referencedColumnName = "SEQ_ATIVIDADE")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Atividade seqAtividade;
     @JoinColumn(name = "SEQ_ANO", referencedColumnName = "SEQ_ANO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Ano seqAno;
     @JoinColumn(name = "SEQ_ALUNO", referencedColumnName = "SEQ_ALUNO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Aluno seqAluno;
 
     public Notas() {

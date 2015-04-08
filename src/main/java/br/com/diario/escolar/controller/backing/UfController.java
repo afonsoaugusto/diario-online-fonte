@@ -8,12 +8,13 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @ManagedBean(name = "ufController")
 @ViewScoped
 public class UfController extends AbstractController<Uf> {
 
-    @EJB
+    @Inject
     private UfFacade ejbFacade;
 
     /**

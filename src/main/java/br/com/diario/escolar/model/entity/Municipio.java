@@ -13,6 +13,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -47,7 +50,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Municipio.findByNomMunicipioFormatado", query = "SELECT m FROM Municipio m WHERE m.nomMunicipioFormatado = :nomMunicipioFormatado")})
 public class Municipio implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 7)
@@ -78,11 +81,11 @@ public class Municipio implements Serializable {
     @Column(name = "NOM_MUNICIPIO_FORMATADO")
     private String nomMunicipioFormatado;
     @JoinColumn(name = "COD_UF", referencedColumnName = "COD_UF")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Uf codUf;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqCidade")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqCidade",fetch = FetchType.LAZY)
     private List<Pessoa> pessoaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqCidade")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqCidade",fetch = FetchType.LAZY)
     private List<Escola> escolaList;
 
     public Municipio() {

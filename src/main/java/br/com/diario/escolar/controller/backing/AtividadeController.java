@@ -2,18 +2,18 @@ package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.Atividade;
 import br.com.diario.escolar.view.session.AtividadeFacade;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @ManagedBean(name = "atividadeController")
 @ViewScoped
 public class AtividadeController extends AbstractController<Atividade> {
 
-    @EJB
+    @Inject
     private AtividadeFacade ejbFacade;
     private ParametrizacaoController seqParameTipoController;
     private DisciplinaController seqDisciplinaController;

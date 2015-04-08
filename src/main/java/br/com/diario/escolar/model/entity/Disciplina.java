@@ -12,6 +12,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -37,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Disciplina implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_DISCIPLINA")
@@ -48,15 +51,15 @@ public class Disciplina implements Serializable {
     @Lob
     @Column(name = "DES_CONTEUDO")
     private String desConteudo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina",fetch = FetchType.LAZY)
     private List<Fechamento> fechamentoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina",fetch = FetchType.LAZY)
     private List<Atividade> atividadeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina",fetch = FetchType.LAZY)
     private List<Presenca> presencaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina",fetch = FetchType.LAZY)
     private List<AtuacaoProfessor> atuacaoProfessorList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblDisciplinaSeqDisciplina")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblDisciplinaSeqDisciplina",fetch = FetchType.LAZY)
     private List<DisciplinaAno> disciplinaAnoList;
 
     public Disciplina() {

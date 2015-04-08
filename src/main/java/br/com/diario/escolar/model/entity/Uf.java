@@ -12,6 +12,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,7 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Uf.findByNomUfFormatado", query = "SELECT u FROM Uf u WHERE u.nomUfFormatado = :nomUfFormatado")})
 public class Uf implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2)
@@ -72,7 +75,7 @@ public class Uf implements Serializable {
     @Size(max = 20)
     @Column(name = "NOM_UF_FORMATADO")
     private String nomUfFormatado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codUf")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codUf",fetch = FetchType.LAZY)
     private List<Municipio> municipioList;
 
     public Uf() {

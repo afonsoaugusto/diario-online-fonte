@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -69,10 +70,10 @@ public class Menu implements Serializable {
     @Size(max = 255)
     @Column(name = "TXT_URL")
     private String txtUrl;
-    @OneToMany(mappedBy = "seqMenuPai")
+    @OneToMany(mappedBy = "seqMenuPai",fetch = FetchType.LAZY)
     private Collection<Menu> tblMenuCollection;
     @JoinColumn(name = "SEQ_MENU_PAI", referencedColumnName = "SEQ_MENU")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Menu seqMenuPai;
 
     public Menu() {

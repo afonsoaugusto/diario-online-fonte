@@ -11,6 +11,9 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,7 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Presenca implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_PRESENCA")
@@ -52,10 +55,10 @@ public class Presenca implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date datDataPresenca;
     @JoinColumn(name = "SEQ_DISCIPLINA", referencedColumnName = "SEQ_DISCIPLINA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Disciplina seqDisciplina;
     @JoinColumn(name = "SEQ_ALUNO", referencedColumnName = "SEQ_ALUNO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Aluno seqAluno;
 
     public Presenca() {

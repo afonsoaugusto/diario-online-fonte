@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,7 +51,7 @@ public class Acao implements Serializable {
     @Size(max = 200)
     @Column(name = "DES_ACAO")
     private String desAcao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAcao")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAcao",fetch = FetchType.LAZY)
     private List<FuncionalidadeAcao> funcionalidadeAcaoList;
 
     public Acao() {

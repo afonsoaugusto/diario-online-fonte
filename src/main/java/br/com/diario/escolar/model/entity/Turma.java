@@ -12,6 +12,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Turma implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_TURMA")
@@ -51,23 +54,23 @@ public class Turma implements Serializable {
     private String numTumra;
     @Column(name = "FLG_TURMA_FECHADA")
     private Character flgTurmaFechada;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqTurma")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqTurma",fetch = FetchType.LAZY)
     private List<Fechamento> fechamentoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqTurma")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqTurma",fetch = FetchType.LAZY)
     private List<AlunoTurma> alunoTurmaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqTurma")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqTurma",fetch = FetchType.LAZY)
     private List<PlanoEnsino> planoEnsinoList;
     @JoinColumn(name = "SEQ_TURNO", referencedColumnName = "SEQ_TURNO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Turno seqTurno;
     @JoinColumn(name = "SEQ_PESSOA", referencedColumnName = "SEQ_PESSOA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Pessoa seqPessoa;
     @JoinColumn(name = "SEQ_ESCOLA", referencedColumnName = "SEQ_ESCOLA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Escola seqEscola;
     @JoinColumn(name = "SEQ_ANO", referencedColumnName = "SEQ_ANO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Ano seqAno;
 
     public Turma() {

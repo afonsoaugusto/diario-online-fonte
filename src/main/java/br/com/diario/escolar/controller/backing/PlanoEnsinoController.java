@@ -8,12 +8,13 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @ManagedBean(name = "planoEnsinoController")
 @ViewScoped
 public class PlanoEnsinoController extends AbstractController<PlanoEnsino> {
 
-    @EJB
+    @Inject
     private PlanoEnsinoFacade ejbFacade;
     private TurmaController seqTurmaController;
     private AtuacaoProfessorController seqAtuacaoProfessorController;

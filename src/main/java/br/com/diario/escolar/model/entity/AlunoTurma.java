@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,13 +46,13 @@ public class AlunoTurma implements Serializable {
     @Column(name = "FLG_TURMA_ATUAL")
     private Character flgTurmaAtual;
     @JoinColumn(name = "SEQ_TURMA", referencedColumnName = "SEQ_TURMA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Turma seqTurma;
     @JoinColumn(name = "SEQ_SITUACAO", referencedColumnName = "SEQ_SITUACAO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Situacao seqSituacao;
     @JoinColumn(name = "SEQ_ALUNO", referencedColumnName = "SEQ_ALUNO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Aluno seqAluno;
 
     public AlunoTurma() {

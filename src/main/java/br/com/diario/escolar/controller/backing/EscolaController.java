@@ -1,4 +1,4 @@
-package br.com.diario.escolar.controller.backing;
+    package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.Escola;
 import br.com.diario.escolar.view.session.EscolaFacade;
@@ -8,12 +8,13 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @ManagedBean(name = "escolaController")
 @ViewScoped
 public class EscolaController extends AbstractController<Escola> {
 
-    @EJB
+    @Inject
     private EscolaFacade ejbFacade;
     private MunicipioController seqCidadeController;
 

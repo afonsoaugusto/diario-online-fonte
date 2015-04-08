@@ -53,9 +53,9 @@
             </packagings>
             <goals>
                 <goal>package</goal>
-                <goal>-XX:MaxPermSize=128m</goal>
-                <goal>-Xms64m</goal>
-                <goal>-Xmx512m</goal>
+                <goal>-Xmx=1024m</goal>
+                <goal>-XX:MaxPermSize=512m</goal>
+                <goal>-XX:PermSize=512m</goal>
             </goals>
             <properties>
                 <netbeans.deploy>true</netbeans.deploy>

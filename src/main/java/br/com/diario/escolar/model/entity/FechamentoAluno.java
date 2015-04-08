@@ -11,6 +11,9 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,7 +42,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class FechamentoAluno implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_FECHAMENTO_ALUNO")
@@ -60,16 +63,16 @@ public class FechamentoAluno implements Serializable {
     @Column(name = "NUM_QTD_PRESENCA")
     private short numQtdPresenca;
     @JoinColumn(name = "SEQ_SITUACAO", referencedColumnName = "SEQ_SITUACAO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Situacao seqSituacao;
     @JoinColumn(name = "SEQ_FECHAMENTO", referencedColumnName = "SEQ_FECHAMENTO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Fechamento seqFechamento;
     @JoinColumn(name = "SEQ_ANO", referencedColumnName = "SEQ_ANO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Ano seqAno;
     @JoinColumn(name = "SEQ_ALUNO", referencedColumnName = "SEQ_ALUNO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Aluno seqAluno;
 
     public FechamentoAluno() {

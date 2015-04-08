@@ -10,16 +10,18 @@
             <p:growl id="messages" showDetail="false"/>
             <p:menu toggleable="true">
                 <p:submenu label="#{messages.MenuAdministracao}">
-                    <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" />
-                    <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" />
+                    <p:menuitem value="#{messages.MenuAdministracaoAtuacaoProfessor}" outcome="/pages/prime/atuacaoProfessor/index" />
+                </p:submenu>
+                <p:submenu label="#{messages.MenuCadastro}">
+                    <p:menuitem value="#{messages.MenuCadastroAno}" outcome="/pages/prime/ano/index" />
+                    <p:menuitem value="#{messages.MenuCadastroAluno}" outcome="/pages/prime/aluno/index" />
+                    <p:menuitem value="#{messages.MenuCadastroAlunoTurma}" outcome="/pages/prime/alunoTurma/index" />
                 </p:submenu>
                 <p:submenu label="#{messages.MenuDiario}">
-                    <p:menuitem value="External" url="http://www.primefaces.org" />
-                    <p:menuitem value="Internal" outcome="/index" />
-                    <p:menuitem value="Internal2" outcome="/pages/prime/acao/index" />
+                    <p:menuitem value="#{messages.MenuDiarioAtividades}" outcome="/pages/prime/atividade/index" />
                 </p:submenu>
                 <p:submenu label="#{messages.MenuSeguranca}">
-                    <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" />
+                    <p:menuitem value="#{messages.MenuSegurancaItemAcao}" outcome="/pages/prime/acao/index" />
                 </p:submenu>
             </p:menu>
         </h:form>

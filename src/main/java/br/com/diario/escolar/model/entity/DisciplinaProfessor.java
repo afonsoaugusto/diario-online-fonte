@@ -12,6 +12,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,18 +39,18 @@ import javax.xml.bind.annotation.XmlTransient;
 public class DisciplinaProfessor implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_DISCIPLINA_PROFESSOR")
     private BigDecimal seqDisciplinaProfessor;
     @JoinColumn(name = "SEQ_PESSOA", referencedColumnName = "SEQ_PESSOA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Pessoa seqPessoa;
     @JoinColumn(name = "SEQ_DISCIPLINA_ANO", referencedColumnName = "SEQ_DISCIPLINA_ANO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private DisciplinaAno seqDisciplinaAno;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplinaProfessor")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplinaProfessor",fetch = FetchType.LAZY)
     private List<AtuacaoProfessor> atuacaoProfessorList;
 
     public DisciplinaProfessor() {

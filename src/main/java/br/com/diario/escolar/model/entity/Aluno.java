@@ -13,6 +13,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -73,13 +74,13 @@ public class Aluno implements Serializable {
     private Long numTelContato;
     @Column(name = "FLG_ATIVO")
     private Character flgAtivo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAluno")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAluno",fetch = FetchType.LAZY)
     private List<AlunoTurma> alunoTurmaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAluno")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAluno",fetch = FetchType.LAZY)
     private List<Presenca> presencaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAluno")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAluno",fetch = FetchType.LAZY)
     private List<FechamentoAluno> fechamentoAlunoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAluno")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAluno",fetch = FetchType.LAZY)
     private List<Notas> notasList;
 
     public Aluno() {

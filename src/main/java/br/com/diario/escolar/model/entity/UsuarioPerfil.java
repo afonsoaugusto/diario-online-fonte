@@ -10,6 +10,9 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,16 +35,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class UsuarioPerfil implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_USUARIO_PERFIL")
     private BigDecimal seqUsuarioPerfil;
     @JoinColumn(name = "SEQ_USUARIO", referencedColumnName = "SEQ_USUARIO")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Usuario seqUsuario;
     @JoinColumn(name = "SEQ_PERFIL", referencedColumnName = "SEQ_PERFIL")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Perfil seqPerfil;
 
     public UsuarioPerfil() {

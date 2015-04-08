@@ -13,6 +13,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -41,7 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Parametrizacao implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_PARAMETRIZACAO")
@@ -56,16 +59,16 @@ public class Parametrizacao implements Serializable {
     @Size(min = 1, max = 25)
     @Column(name = "COD_PARAMETRO")
     private String codParametro;
-    @OneToMany(mappedBy = "seqParametrizacaoPai")
+    @OneToMany(mappedBy = "seqParametrizacaoPai",fetch = FetchType.LAZY)
     private List<Parametrizacao> parametrizacaoList;
     @JoinColumn(name = "SEQ_PARAMETRIZACAO_PAI", referencedColumnName = "SEQ_PARAMETRIZACAO")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Parametrizacao seqParametrizacaoPai;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqParameTipo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqParameTipo",fetch = FetchType.LAZY)
     private List<Atividade> atividadeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqParameNivelEscolar")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqParameNivelEscolar",fetch = FetchType.LAZY)
     private List<Ano> anoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqParamePeriodo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqParamePeriodo",fetch = FetchType.LAZY)
     private List<Notas> notasList;
 
     public Parametrizacao() {

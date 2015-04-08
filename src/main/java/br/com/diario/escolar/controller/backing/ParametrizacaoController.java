@@ -15,7 +15,7 @@ public class ParametrizacaoController extends AbstractController<Parametrizacao>
 
     @EJB
     private ParametrizacaoFacade ejbFacade;
-    private ParametrizacaoController seqParametrizacaoPaiController;
+    //private ParametrizacaoController seqParametrizacaoPaiController;
 
     /**
      * Initialize the concrete Parametrizacao controller bean. The
@@ -30,7 +30,7 @@ public class ParametrizacaoController extends AbstractController<Parametrizacao>
     public void init() {
         super.setFacade(ejbFacade);
         FacesContext context = FacesContext.getCurrentInstance();
-        seqParametrizacaoPaiController = context.getApplication().evaluateExpressionGet(context, "#{parametrizacaoController}", ParametrizacaoController.class);
+       // seqParametrizacaoPaiController = context.getApplication().evaluateExpressionGet(context, "#{parametrizacaoController}", ParametrizacaoController.class);
     }
 
     public ParametrizacaoController() {
@@ -42,7 +42,7 @@ public class ParametrizacaoController extends AbstractController<Parametrizacao>
      * Resets the "selected" attribute of any parent Entity controllers.
      */
     public void resetParents() {
-        seqParametrizacaoPaiController.setSelected(null);
+//        seqParametrizacaoPaiController.setSelected(null);
     }
 
     /**
@@ -67,9 +67,9 @@ public class ParametrizacaoController extends AbstractController<Parametrizacao>
      * @param event Event object for the widget that triggered an action
      */
     public void prepareSeqParametrizacaoPai(ActionEvent event) {
-        if (this.getSelected() != null && seqParametrizacaoPaiController.getSelected() == null) {
-            seqParametrizacaoPaiController.setSelected(this.getSelected().getSeqParametrizacaoPai());
-        }
+      //  if (this.getSelected() != null && seqParametrizacaoPaiController.getSelected() == null) {
+        //    seqParametrizacaoPaiController.setSelected(this.getSelected().getSeqParametrizacaoPai());
+       // }
     }
 
     /**

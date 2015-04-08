@@ -13,6 +13,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -44,7 +47,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Fechamento implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_FECHAMENTO")
@@ -71,21 +74,21 @@ public class Fechamento implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date datFechamento;
     @JoinColumn(name = "SEQ_TURMA", referencedColumnName = "SEQ_TURMA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Turma seqTurma;
     @JoinColumn(name = "SEQ_PESSOA", referencedColumnName = "SEQ_PESSOA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Pessoa seqPessoa;
     @JoinColumn(name = "SEQ_PESSOA_FECHAMENTO", referencedColumnName = "SEQ_PESSOA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Pessoa seqPessoaFechamento;
     @JoinColumn(name = "SEQ_ESCOLA", referencedColumnName = "SEQ_ESCOLA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Escola seqEscola;
     @JoinColumn(name = "SEQ_DISCIPLINA", referencedColumnName = "SEQ_DISCIPLINA")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Disciplina seqDisciplina;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqFechamento")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqFechamento",fetch = FetchType.LAZY)
     private List<FechamentoAluno> fechamentoAlunoList;
 
     public Fechamento() {
