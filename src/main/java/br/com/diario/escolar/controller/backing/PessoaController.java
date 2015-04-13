@@ -16,7 +16,7 @@ public class PessoaController extends AbstractController<Pessoa> {
     @EJB
     private PessoaFacade ejbFacade;
     private MunicipioController seqCidadeController;
-    private UsuarioController usuarioController;
+    //private UsuarioController usuarioController;
 
     /**
      * Initialize the concrete Pessoa controller bean. The AbstractController
@@ -32,7 +32,7 @@ public class PessoaController extends AbstractController<Pessoa> {
         super.setFacade(ejbFacade);
         FacesContext context = FacesContext.getCurrentInstance();
         seqCidadeController = context.getApplication().evaluateExpressionGet(context, "#{municipioController}", MunicipioController.class);
-        usuarioController = context.getApplication().evaluateExpressionGet(context, "#{usuarioController}", UsuarioController.class);
+       // usuarioController = context.getApplication().evaluateExpressionGet(context, "#{usuarioController}", UsuarioController.class);
     }
 
     public PessoaController() {
@@ -45,7 +45,7 @@ public class PessoaController extends AbstractController<Pessoa> {
      */
     public void resetParents() {
         seqCidadeController.setSelected(null);
-        usuarioController.setSelected(null);
+        //usuarioController.setSelected(null);
     }
 
     /**
@@ -109,9 +109,9 @@ public class PessoaController extends AbstractController<Pessoa> {
      * @param event Event object for the widget that triggered an action
      */
     public void prepareUsuario(ActionEvent event) {
-        if (this.getSelected() != null && usuarioController.getSelected() == null) {
-            usuarioController.setSelected(this.getSelected().getUsuario());
-        }
+       // if (this.getSelected() != null && usuarioController.getSelected() == null) {
+       //     usuarioController.setSelected(this.getSelected().getUsuario());
+       // }
     }
 
     /**

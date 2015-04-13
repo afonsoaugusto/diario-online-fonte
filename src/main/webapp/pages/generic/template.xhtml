@@ -25,7 +25,7 @@
                 </h:form>
             </p:layoutUnit>
 
-            <p:layoutUnit position="west" resizable="true" size="175" minSize="40" maxSize="250">
+            <p:layoutUnit position="west" resizable="true" size="185" minSize="40" maxSize="250">
                 <ui:include src="/pages/generic/appmenu.xhtml"/>
             </p:layoutUnit>
 
@@ -33,8 +33,9 @@
                 <ui:insert name="body"/>
             </p:layoutUnit>
 
-            <p:layoutUnit position="east" header="#{messages.AppName}">
-                <ui:insert name="action"/>
+            <p:layoutUnit position="east"  resizable="true" size="180" minSize="40" maxSize="250">
+                <ui:include src="/pages/generic/appmenuDireito.xhtml"/>
+                <!--ui:insert name="action"/-->
             </p:layoutUnit> 
 
             <p:layoutUnit position="south" size="60">

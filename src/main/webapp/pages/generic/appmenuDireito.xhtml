@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:form id="menuFormDireito">
+            <p:growl id="messages" showDetail="false"/>
+            <p:menu toggleable="true">
+                <p:submenu label="#{messages.MenuDiario}">
+                    <p:menuitem value="#{messages.MenuDiarioAtividades}" outcome="/pages/prime/atividade/index" />
+                    <p:menuitem value="#{messages.Notas}" outcome="/pages/prime/notas/index" />
+                    <p:menuitem value="#{messages.PlanoEnsino}" outcome="/pages/prime/planoEnsino/index" />
+                    <p:menuitem value="#{messages.Presenca}" outcome="/pages/prime/presenca/index" />
+                </p:submenu>
+                <p:submenu label="#{messages.MenuFechamento}">
+                    <p:menuitem value="#{messages.Fechamento}" outcome="/pages/prime/fechamento/index" />
+                    <p:menuitem value="#{messages.FechamentoAluno}" outcome="/pages/prime/fechamentoAluno/index" />
+                </p:submenu>
+                <p:submenu label="#{messages.MenuCadastroBasico}">
+                    <p:menuitem value="#{messages.Situacao}" outcome="/pages/prime/situacao/index" />
+                    <p:menuitem value="#{messages.Parametrizacao}" outcome="/pages/prime/parametrizacao/index" />
+                    <p:menuitem value="#{messages.Escola}" outcome="/pages/prime/escola/index" />
+                    <p:menuitem value="#{messages.Municipio}" outcome="/pages/prime/municipio/index" />
+                    <p:menuitem value="#{messages.Turno}" outcome="/pages/prime/turno/index" />
+                    <p:menuitem value="#{messages.Uf}" outcome="/pages/prime/uf/index" />
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </ui:composition>
+
+</html>

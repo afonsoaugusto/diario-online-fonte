@@ -13,15 +13,23 @@
                     <p:menuitem value="#{messages.MenuAdministracaoAtuacaoProfessor}" outcome="/pages/prime/atuacaoProfessor/index" />
                 </p:submenu>
                 <p:submenu label="#{messages.MenuCadastro}">
+                    <p:menuitem value="#{messages.MenuPessoa}" outcome="/pages/prime/pessoa/index" />
                     <p:menuitem value="#{messages.MenuCadastroAno}" outcome="/pages/prime/ano/index" />
                     <p:menuitem value="#{messages.MenuCadastroAluno}" outcome="/pages/prime/aluno/index" />
                     <p:menuitem value="#{messages.MenuCadastroAlunoTurma}" outcome="/pages/prime/alunoTurma/index" />
-                </p:submenu>
-                <p:submenu label="#{messages.MenuDiario}">
-                    <p:menuitem value="#{messages.MenuDiarioAtividades}" outcome="/pages/prime/atividade/index" />
+                    <p:menuitem value="#{messages.Turma}" outcome="/pages/prime/turma/index" />
+                    <p:menuitem value="#{messages.Disciplina}" outcome="/pages/prime/disciplina/index" />
+                    <p:menuitem value="#{messages.DisciplinaAno}" outcome="/pages/prime/disciplinaAno/index" />
+                    <p:menuitem value="#{messages.DisciplinaProfessor}" outcome="/pages/prime/disciplinaProfessor/index" />
                 </p:submenu>
                 <p:submenu label="#{messages.MenuSeguranca}">
+                    <p:menuitem value="#{messages.Usuario}" outcome="/pages/prime/usuario/index" />
                     <p:menuitem value="#{messages.MenuSegurancaItemAcao}" outcome="/pages/prime/acao/index" />
+                    <p:menuitem value="#{messages.Funcionalidade}" outcome="/pages/prime/funcionalidade/index" />
+                    <p:menuitem value="#{messages.FuncionalidadeAcao}" outcome="/pages/prime/funcionalidadeAcao/index" />
+                    <p:menuitem value="#{messages.Perfil}" outcome="/pages/prime/perfil/index" />
+                    <p:menuitem value="#{messages.PerfilFuncionalidadeAcao}" outcome="/pages/prime/perfilFuncionalidadeAcao/index" />
+                    <p:menuitem value="#{messages.UsuarioPerfil}" outcome="/pages/prime/usuarioPerfil/index" />
                 </p:submenu>
             </p:menu>
         </h:form>

@@ -21,7 +21,7 @@
             <p:dataTable id="datalist"
                          value="#{usuarioController.items}"
                          var="item"
-                         rowKey="#{item.seqUsuario}"
+                         rowKey="#{item.desLogin}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -32,15 +32,6 @@
                 <p:ajax event="rowUnselect" update=":UsuarioListForm:createButton :UsuarioListForm:viewButton :UsuarioListForm:editButton :UsuarioListForm:deleteButton :UsuarioListForm:UsuarioDataTableContextMenu" listener="#{usuarioController.resetParents}"/>
                 <p:ajax event="contextMenu" update=" :UsuarioListForm:createButton :UsuarioListForm:viewButton :UsuarioListForm:editButton :UsuarioListForm:deleteButton" listener="#{usuarioController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('UsuarioListForm:viewButton').click();"/>
-
-                <p:column sortBy="#{item.seqUsuario}" filterBy="#{item.seqUsuario}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListUsuarioTitle_seqUsuario}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqUsuario}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.desLogin}" filterBy="#{item.desLogin}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListUsuarioTitle_desLogin}"/>

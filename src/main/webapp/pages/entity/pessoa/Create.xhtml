@@ -57,15 +57,6 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{messages.CreatePessoaLabel_usuario}" for="usuario" />
-                        <p:selectOneMenu id="usuario" value="#{pessoaController.selected.usuario}"  converter="usuarioConverter">
-                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{usuarioController.items}"
-                                           var="usuarioItem"
-                                           itemValue="#{usuarioItem}"
-                                           itemLabel="#{usuarioItem.seqUsuario.toString()}"
-                                           />
-
-                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{pessoaController.saveNew}" value="#{messages.Save}" update="display,:PessoaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PessoaCreateDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
