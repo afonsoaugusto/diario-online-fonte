@@ -6,6 +6,7 @@
 package br.com.diario.escolar.model.entity;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -68,8 +69,7 @@ public class Uf implements Serializable {
     @Column(name = "DAT_ALTERACAO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datAlteracao;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = true)
     @Column(name = "COD_REGIAO")
     private Character codRegiao;
     @Size(max = 20)
@@ -79,6 +79,8 @@ public class Uf implements Serializable {
     private List<Municipio> municipioList;
 
     public Uf() {
+        this.sitCancelado = 'N';
+        this.datAlteracao = Calendar.getInstance().getTime();
     }
 
     public Uf(String codUf) {
