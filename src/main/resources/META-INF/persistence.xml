@@ -55,5 +55,18 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
         </properties>
     </persistence-unit>
+    
+    <persistence-unit name="app_do_1.0P" transaction-type="JTA">
+        <jta-data-source>remoteApp</jta-data-source>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://186.202.152.178:3306/aplclassificados"/>
+            <property name="javax.persistence.jdbc.user" value="aplclassificados"/>
+            <property name="javax.persistence.jdbc.password" value="tcc2015@123"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+        </properties>
+    </persistence-unit>
 
 </persistence>
