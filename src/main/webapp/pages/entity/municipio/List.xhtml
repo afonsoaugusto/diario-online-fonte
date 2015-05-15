@@ -49,6 +49,12 @@
                     <h:outputText value="#{item.nomMunicipio}"/>
                 </p:column>
 
+                <p:column sortBy="#{item.codUf.nomUfFormatado}" filterBy="#{item.codUf.nomUfFormatado}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListMunicipioTitle_codUf}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.codUf.nomUfFormatado}"/>
+                </p:column>
 
                 <p:column sortBy="#{item.sitCancelado}" filterBy="#{item.sitCancelado}">
                     <f:facet name="header">
@@ -63,25 +69,25 @@
                         <h:outputText value="#{messages.ListMunicipioTitle_datAlteracao}"/>
                     </f:facet>
                     <h:outputText value="#{item.datAlteracao}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                 </p:column>
 
 
-                <p:column sortBy="#{item.numLonSede}" filterBy="#{item.numLonSede}">
+                <!--p:column sortBy="#{item.numLonSede}" filterBy="#{item.numLonSede}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListMunicipioTitle_numLonSede}"/>
                     </f:facet>
                     <h:outputText value="#{item.numLonSede}"/>
-                </p:column>
+                </p:column-->
 
 
-                <p:column sortBy="#{item.numLatSede}" filterBy="#{item.numLatSede}">
+                <!--p:column sortBy="#{item.numLatSede}" filterBy="#{item.numLatSede}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListMunicipioTitle_numLatSede}"/>
                     </f:facet>
                     <h:outputText value="#{item.numLatSede}"/>
-                </p:column>
+                </p:column-->
 
                 <!--
                                     <p:column sortBy="#{item.codUnidadeArrecadacao}" filterBy="#{item.codUnidadeArrecadacao}">
@@ -107,15 +113,6 @@
                                         <h:outputText value="#{item.nomMunicipioFormatado}"/>
                                     </p:column>
                 -->
-                <!--
-                                    <p:column sortBy="#{item.codUf.codUf}" filterBy="#{item.codUf.codUf}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListMunicipioTitle_codUf}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.codUf.codUf}"/>
-                                    </p:column>
-                -->
-
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{municipioController.prepareCreate}" update=":MunicipioCreateForm" oncomplete="PF('MunicipioCreateDialog').show()"/>

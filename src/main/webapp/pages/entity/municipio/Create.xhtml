@@ -21,24 +21,7 @@
                         <p:outputLabel value="#{messages.CreateMunicipioLabel_nomMunicipio}" for="nomMunicipio" />
                         <p:inputText id="nomMunicipio" value="#{municipioController.selected.nomMunicipio}" title="#{messages.CreateMunicipioTitle_nomMunicipio}" required="true" requiredMessage="#{messages.CreateMunicipioRequiredMessage_nomMunicipio}" size="40" maxlength="40"/>
 
-                        <p:outputLabel value="#{messages.CreateMunicipioLabel_sitCancelado}" for="sitCancelado" />
-                        <p:inputText id="sitCancelado" value="#{municipioController.selected.sitCancelado}" title="#{messages.CreateMunicipioTitle_sitCancelado}" required="true" requiredMessage="#{messages.CreateMunicipioRequiredMessage_sitCancelado}"/>
-
-                        <p:outputLabel value="#{messages.CreateMunicipioLabel_datAlteracao}" for="datAlteracao" />
-                        <p:calendar id="datAlteracao" pattern="MM/dd/yyyy HH:mm:ss" value="#{municipioController.selected.datAlteracao}" title="#{messages.CreateMunicipioTitle_datAlteracao}"  showOn="button"/>
-
-                        <p:outputLabel value="#{messages.CreateMunicipioLabel_numLonSede}" for="numLonSede" />
-                        <p:inputText id="numLonSede" value="#{municipioController.selected.numLonSede}" title="#{messages.CreateMunicipioTitle_numLonSede}"/>
-
-                        <p:outputLabel value="#{messages.CreateMunicipioLabel_numLatSede}" for="numLatSede" />
-                        <p:inputText id="numLatSede" value="#{municipioController.selected.numLatSede}" title="#{messages.CreateMunicipioTitle_numLatSede}"/>
-
-                        <p:outputLabel value="#{messages.CreateMunicipioLabel_codUnidadeArrecadacao}" for="codUnidadeArrecadacao" />
-                        <p:inputText id="codUnidadeArrecadacao" value="#{municipioController.selected.codUnidadeArrecadacao}" title="#{messages.CreateMunicipioTitle_codUnidadeArrecadacao}"/>
-
-                        <p:outputLabel value="#{messages.CreateMunicipioLabel_seqUnidadeArrecadacao}" for="seqUnidadeArrecadacao" />
-                        <p:inputText id="seqUnidadeArrecadacao" value="#{municipioController.selected.seqUnidadeArrecadacao}" title="#{messages.CreateMunicipioTitle_seqUnidadeArrecadacao}"/>
-
+                        
                         <p:outputLabel value="#{messages.CreateMunicipioLabel_nomMunicipioFormatado}" for="nomMunicipioFormatado" />
                         <p:inputText id="nomMunicipioFormatado" value="#{municipioController.selected.nomMunicipioFormatado}" title="#{messages.CreateMunicipioTitle_nomMunicipioFormatado}" size="40" maxlength="40"/>
 
@@ -48,7 +31,7 @@
                             <f:selectItems value="#{ufController.items}"
                                            var="codUfItem"
                                            itemValue="#{codUfItem}"
-                                           itemLabel="#{codUfItem.codUf.toString()}"
+                                           itemLabel="#{codUfItem.nomUfFormatado.toString()}"
                                            />
 
                         </p:selectOneMenu>

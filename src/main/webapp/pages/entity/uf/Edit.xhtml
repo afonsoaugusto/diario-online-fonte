@@ -14,9 +14,8 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{ufController.selected != null}">
 
-
                         <h:outputLabel value="#{messages.EditUfLabel_codUf}" for="codUf" />
-                        <h:outputText id="codUf" value="#{ufController.selected.codUf}" />z
+                        <h:outputText id="codUf" value="#{ufController.selected.codUf}" />
 
                         <p:outputLabel value="#{messages.EditUfLabel_sigUf}" for="sigUf" />
                         <p:inputText id="sigUf" value="#{ufController.selected.sigUf}" title="#{messages.EditUfTitle_sigUf}" required="true" requiredMessage="#{messages.EditUfRequiredMessage_sigUf}" size="2" maxlength="2"/>
@@ -25,13 +24,13 @@
                         <p:inputText id="nomUf" value="#{ufController.selected.nomUf}" title="#{messages.EditUfTitle_nomUf}" required="true" requiredMessage="#{messages.EditUfRequiredMessage_nomUf}" size="20" maxlength="20"/>
 
                         <p:outputLabel value="#{messages.EditUfLabel_sitCancelado}" for="sitCancelado" />
-                        <p:inputText id="sitCancelado" value="#{ufController.selected.sitCancelado}" title="#{messages.EditUfTitle_sitCancelado}" required="true" requiredMessage="#{messages.EditUfRequiredMessage_sitCancelado}"/>
+                        <p:selectOneRadio id="sitCancelado" value="#{ufController.selected.sitCancelado}"  required="true" requiredMessage="#{messages.EditUfRequiredMessage_sitCancelado}">
+                            <f:selectItem itemLabel="N" itemValue="N"/>
+                            <f:selectItem itemLabel="S" itemValue="S"/>
+                        </p:selectOneRadio>
 
                         <p:outputLabel value="#{messages.EditUfLabel_datAlteracao}" for="datAlteracao" />
-                        <p:calendar id="datAlteracao" pattern="MM/dd/yyyy HH:mm:ss" value="#{ufController.selected.datAlteracao}" title="#{messages.EditUfTitle_datAlteracao}"  showOn="button"/>
-
-                        <p:outputLabel value="#{messages.EditUfLabel_codRegiao}" for="codRegiao" />
-                        <p:inputText id="codRegiao" value="#{ufController.selected.codRegiao}" title="#{messages.EditUfTitle_codRegiao}" required="true" requiredMessage="#{messages.EditUfRequiredMessage_codRegiao}"/>
+                        <p:calendar id="datAlteracao" pattern="MM/dd/yyyy" value="#{ufController.selected.datAlteracao}" title="#{messages.EditUfTitle_datAlteracao}"  showOn="button"/>
 
                         <p:outputLabel value="#{messages.EditUfLabel_nomUfFormatado}" for="nomUfFormatado" />
                         <p:inputText id="nomUfFormatado" value="#{ufController.selected.nomUfFormatado}" title="#{messages.EditUfTitle_nomUfFormatado}" size="20" maxlength="20"/>

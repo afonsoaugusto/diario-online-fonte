@@ -17,12 +17,9 @@
 
                         <h:outputLabel value="#{messages.EditParametrizacaoLabel_seqParametrizacao}" for="seqParametrizacao" />
                         <h:outputText id="seqParametrizacao" value="#{parametrizacaoController.selected.seqParametrizacao}" />
-
-                        <p:outputLabel value="#{messages.EditParametrizacaoLabel_desValorParametro}" for="desValorParametro" />
-                        <p:inputText id="desValorParametro" value="#{parametrizacaoController.selected.desValorParametro}" title="#{messages.EditParametrizacaoTitle_desValorParametro}" size="200" maxlength="200"/>
-
+                        
                         <p:outputLabel value="#{messages.EditParametrizacaoLabel_numValorParametro}" for="numValorParametro" />
-                        <p:inputText id="numValorParametro" value="#{parametrizacaoController.selected.numValorParametro}" title="#{messages.EditParametrizacaoTitle_numValorParametro}"/>
+                        <p:inputMask id="numValorParametro" value="#{parametrizacaoController.selected.numValorParametro}" title="#{messages.EditParametrizacaoTitle_numValorParametro}" mask="9?999999999999" maxlength="15"/>
 
                         <p:outputLabel value="#{messages.EditParametrizacaoLabel_codParametro}" for="codParametro" />
                         <p:inputText id="codParametro" value="#{parametrizacaoController.selected.codParametro}" title="#{messages.EditParametrizacaoTitle_codParametro}" required="true" requiredMessage="#{messages.EditParametrizacaoRequiredMessage_codParametro}" size="25" maxlength="25"/>
@@ -33,10 +30,14 @@
                             <f:selectItems value="#{parametrizacaoController.items}"
                                            var="seqParametrizacaoPaiItem"
                                            itemValue="#{seqParametrizacaoPaiItem}"
-                                           itemLabel="#{seqParametrizacaoPaiItem.seqParametrizacao.toString()}"
+                                           itemLabel="#{seqParametrizacaoPaiItem.codParametro.toString()}"
                                            />
 
                         </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{messages.EditParametrizacaoLabel_desValorParametro}" for="desValorParametro" />
+                        <p:inputTextarea id="desValorParametro" value="#{parametrizacaoController.selected.desValorParametro}" title="#{messages.EditParametrizacaoTitle_desValorParametro}" rows="5" cols="30" counterTemplate="#{messages.Counter_Template}" maxlength="200"/>
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{parametrizacaoController.save}" value="#{messages.Save}" update="display,:ParametrizacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ParametrizacaoEditDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>

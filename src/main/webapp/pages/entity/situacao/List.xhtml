@@ -21,7 +21,7 @@
             <p:dataTable id="datalist"
                          value="#{situacaoController.items}"
                          var="item"
-                         rowKey="#{item.seqSituacao}"
+                         rowKey="#{item.desSituacao}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -33,12 +33,12 @@
                 <p:ajax event="contextMenu" update=" :SituacaoListForm:createButton :SituacaoListForm:viewButton :SituacaoListForm:editButton :SituacaoListForm:deleteButton" listener="#{situacaoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('SituacaoListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqSituacao}" filterBy="#{item.seqSituacao}">
+                <!--p:column sortBy="#{item.seqSituacao}" filterBy="#{item.seqSituacao}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListSituacaoTitle_seqSituacao}"/>
                     </f:facet>
                     <h:outputText value="#{item.seqSituacao}"/>
-                </p:column>
+                </p:column-->
 
 
                 <p:column sortBy="#{item.desSituacao}" filterBy="#{item.desSituacao}">

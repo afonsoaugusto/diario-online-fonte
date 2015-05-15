@@ -14,21 +14,17 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{escolaController.selected != null}">
 
-
-                        <h:outputLabel value="#{messages.EditEscolaLabel_seqEscola}" for="seqEscola" />
-                        <h:outputText id="seqEscola" value="#{escolaController.selected.seqEscola}" />
-
                         <p:outputLabel value="#{messages.EditEscolaLabel_desNome}" for="desNome" />
-                        <p:inputText id="desNome" value="#{escolaController.selected.desNome}" title="#{messages.EditEscolaTitle_desNome}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_desNome}" size="200" maxlength="200"/>
+                        <p:inputText id="desNome" value="#{escolaController.selected.desNome}" title="#{messages.EditEscolaTitle_desNome}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_desNome}" size="100" maxlength="200"/>
 
                         <p:outputLabel value="#{messages.EditEscolaLabel_numTel}" for="numTel" />
-                        <p:inputText id="numTel" value="#{escolaController.selected.numTel}" title="#{messages.EditEscolaTitle_numTel}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_numTel}"/>
+                        <p:inputText id="numTel" value="#{escolaController.selected.numTel}" title="#{messages.EditEscolaTitle_numTel}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_numTel}"/> 
 
                         <p:outputLabel value="#{messages.EditEscolaLabel_desSigla}" for="desSigla" />
                         <p:inputText id="desSigla" value="#{escolaController.selected.desSigla}" title="#{messages.EditEscolaTitle_desSigla}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_desSigla}" size="10" maxlength="10"/>
 
                         <p:outputLabel value="#{messages.EditEscolaLabel_desRua}" for="desRua" />
-                        <p:inputText id="desRua" value="#{escolaController.selected.desRua}" title="#{messages.EditEscolaTitle_desRua}" size="255" maxlength="255"/>
+                        <p:inputText id="desRua" value="#{escolaController.selected.desRua}" title="#{messages.EditEscolaTitle_desRua}" size="150" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.EditEscolaLabel_desBairro}" for="desBairro" />
                         <p:inputText id="desBairro" value="#{escolaController.selected.desBairro}" title="#{messages.EditEscolaTitle_desBairro}" size="80" maxlength="80"/>
@@ -40,7 +36,7 @@
                         <p:inputText id="numEscola" value="#{escolaController.selected.numEscola}" title="#{messages.EditEscolaTitle_numEscola}"/>
 
                         <p:outputLabel value="#{messages.EditEscolaLabel_numCnpj}" for="numCnpj" />
-                        <p:inputText id="numCnpj" value="#{escolaController.selected.numCnpj}" title="#{messages.EditEscolaTitle_numCnpj}"/>
+                        <p:inputText id="numCnpj" value="#{escolaController.selected.numCnpj}" title="#{messages.EditEscolaTitle_numCnpj}"/> 
 
                         <p:outputLabel value="#{messages.EditEscolaLabel_seqCidade}" for="seqCidade" />
                         <p:selectOneMenu id="seqCidade" value="#{escolaController.selected.seqCidade}" required="true" requiredMessage="#{messages.EditEscolaRequiredMessage_seqCidade}" converter="municipioConverter">
@@ -48,7 +44,7 @@
                             <f:selectItems value="#{municipioController.items}"
                                            var="seqCidadeItem"
                                            itemValue="#{seqCidadeItem}"
-                                           itemLabel="#{seqCidadeItem.codMunicipio.toString()}"
+                                           itemLabel="#{seqCidadeItem.nomMunicipio.toString()}"
                                            />
 
                         </p:selectOneMenu>

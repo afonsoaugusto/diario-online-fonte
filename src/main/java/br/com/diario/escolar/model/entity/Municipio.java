@@ -7,6 +7,7 @@ package br.com.diario.escolar.model.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -89,13 +90,16 @@ public class Municipio implements Serializable {
     private List<Escola> escolaList;
 
     public Municipio() {
+        initUf();
     }
 
     public Municipio(String codMunicipio) {
         this.codMunicipio = codMunicipio;
+        initUf();
     }
 
     public Municipio(String codMunicipio, String nomMunicipio, Character sitCancelado) {
+        initUf();
         this.codMunicipio = codMunicipio;
         this.nomMunicipio = nomMunicipio;
         this.sitCancelado = sitCancelado;
@@ -217,6 +221,11 @@ public class Municipio implements Serializable {
             return false;
         }
         return true;
+    }
+    
+    private void initUf() {
+        this.sitCancelado = 'N';
+        this.datAlteracao = Calendar.getInstance().getTime();
     }
 
     @Override

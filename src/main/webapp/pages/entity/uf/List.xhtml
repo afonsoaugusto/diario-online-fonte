@@ -69,16 +69,8 @@
                         <h:outputText value="#{messages.ListUfTitle_datAlteracao}"/>
                     </f:facet>
                     <h:outputText value="#{item.datAlteracao}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
-                </p:column>
-
-
-                <p:column sortBy="#{item.codRegiao}" filterBy="#{item.codRegiao}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListUfTitle_codRegiao}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.codRegiao}"/>
                 </p:column>
 
                 <!--

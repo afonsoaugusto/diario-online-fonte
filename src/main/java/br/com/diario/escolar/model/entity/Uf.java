@@ -42,7 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Uf.findByNomUf", query = "SELECT u FROM Uf u WHERE u.nomUf = :nomUf"),
     @NamedQuery(name = "Uf.findBySitCancelado", query = "SELECT u FROM Uf u WHERE u.sitCancelado = :sitCancelado"),
     @NamedQuery(name = "Uf.findByDatAlteracao", query = "SELECT u FROM Uf u WHERE u.datAlteracao = :datAlteracao"),
-    @NamedQuery(name = "Uf.findByCodRegiao", query = "SELECT u FROM Uf u WHERE u.codRegiao = :codRegiao"),
     @NamedQuery(name = "Uf.findByNomUfFormatado", query = "SELECT u FROM Uf u WHERE u.nomUfFormatado = :nomUfFormatado")})
 public class Uf implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -69,9 +68,6 @@ public class Uf implements Serializable {
     @Column(name = "DAT_ALTERACAO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datAlteracao;
-    @Basic(optional = true)
-    @Column(name = "COD_REGIAO")
-    private Character codRegiao;
     @Size(max = 20)
     @Column(name = "NOM_UF_FORMATADO")
     private String nomUfFormatado;
@@ -79,20 +75,20 @@ public class Uf implements Serializable {
     private List<Municipio> municipioList;
 
     public Uf() {
-        this.sitCancelado = 'N';
-        this.datAlteracao = Calendar.getInstance().getTime();
+        initUf();
     }
 
     public Uf(String codUf) {
         this.codUf = codUf;
+        initUf();
     }
 
-    public Uf(String codUf, String sigUf, String nomUf, Character sitCancelado, Character codRegiao) {
+    public Uf(String codUf, String sigUf, String nomUf, Character sitCancelado) {
+        initUf();
         this.codUf = codUf;
         this.sigUf = sigUf;
         this.nomUf = nomUf;
         this.sitCancelado = sitCancelado;
-        this.codRegiao = codRegiao;
     }
 
     public String getCodUf() {
@@ -135,14 +131,6 @@ public class Uf implements Serializable {
         this.datAlteracao = datAlteracao;
     }
 
-    public Character getCodRegiao() {
-        return codRegiao;
-    }
-
-    public void setCodRegiao(Character codRegiao) {
-        this.codRegiao = codRegiao;
-    }
-
     public String getNomUfFormatado() {
         return nomUfFormatado;
     }
@@ -178,6 +166,11 @@ public class Uf implements Serializable {
             return false;
         }
         return true;
+    }
+    
+    private void initUf() {
+        this.sitCancelado = 'N';
+        this.datAlteracao = Calendar.getInstance().getTime();
     }
 
     @Override

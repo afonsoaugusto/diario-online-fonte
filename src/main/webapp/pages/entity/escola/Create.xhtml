@@ -15,32 +15,29 @@
                 <h:panelGroup id="display" rendered="#{escolaController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateEscolaLabel_seqEscola}" for="seqEscola" />
-                        <p:inputText id="seqEscola" value="#{escolaController.selected.seqEscola}" title="#{messages.CreateEscolaTitle_seqEscola}" required="true" requiredMessage="#{messages.CreateEscolaRequiredMessage_seqEscola}"/>
-
                         <p:outputLabel value="#{messages.CreateEscolaLabel_desNome}" for="desNome" />
-                        <p:inputText id="desNome" value="#{escolaController.selected.desNome}" title="#{messages.CreateEscolaTitle_desNome}" required="true" requiredMessage="#{messages.CreateEscolaRequiredMessage_desNome}" size="200" maxlength="200"/>
+                        <p:inputText id="desNome" value="#{escolaController.selected.desNome}" title="#{messages.CreateEscolaTitle_desNome}" required="true" requiredMessage="#{messages.CreateEscolaRequiredMessage_desNome}" size="100" maxlength="200"/>
 
                         <p:outputLabel value="#{messages.CreateEscolaLabel_numTel}" for="numTel" />
-                        <p:inputText id="numTel" value="#{escolaController.selected.numTel}" title="#{messages.CreateEscolaTitle_numTel}" required="true" requiredMessage="#{messages.CreateEscolaRequiredMessage_numTel}"/>
+                        <p:inputText id="numTel" value="#{escolaController.selected.numTel}" title="#{messages.CreateEscolaTitle_numTel}" required="true" requiredMessage="#{messages.CreateEscolaRequiredMessage_numTel}"/> 
 
                         <p:outputLabel value="#{messages.CreateEscolaLabel_desSigla}" for="desSigla" />
                         <p:inputText id="desSigla" value="#{escolaController.selected.desSigla}" title="#{messages.CreateEscolaTitle_desSigla}" required="true" requiredMessage="#{messages.CreateEscolaRequiredMessage_desSigla}" size="10" maxlength="10"/>
 
                         <p:outputLabel value="#{messages.CreateEscolaLabel_desRua}" for="desRua" />
-                        <p:inputText id="desRua" value="#{escolaController.selected.desRua}" title="#{messages.CreateEscolaTitle_desRua}" size="255" maxlength="255"/>
+                        <p:inputText id="desRua" value="#{escolaController.selected.desRua}" title="#{messages.CreateEscolaTitle_desRua}" size="150" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.CreateEscolaLabel_desBairro}" for="desBairro" />
                         <p:inputText id="desBairro" value="#{escolaController.selected.desBairro}" title="#{messages.CreateEscolaTitle_desBairro}" size="80" maxlength="80"/>
 
                         <p:outputLabel value="#{messages.CreateEscolaLabel_numCep}" for="numCep" />
-                        <p:inputText id="numCep" value="#{escolaController.selected.numCep}" title="#{messages.CreateEscolaTitle_numCep}"/>
+                        <p:inputText id="numCep" value="#{escolaController.selected.numCep}" title="#{messages.CreateEscolaTitle_numCep}"/> 
 
                         <p:outputLabel value="#{messages.CreateEscolaLabel_numEscola}" for="numEscola" />
                         <p:inputText id="numEscola" value="#{escolaController.selected.numEscola}" title="#{messages.CreateEscolaTitle_numEscola}"/>
 
                         <p:outputLabel value="#{messages.CreateEscolaLabel_numCnpj}" for="numCnpj" />
-                        <p:inputText id="numCnpj" value="#{escolaController.selected.numCnpj}" title="#{messages.CreateEscolaTitle_numCnpj}"/>
+                        <p:inputText id="numCnpj" value="#{escolaController.selected.numCnpj}" title="#{messages.CreateEscolaTitle_numCnpj}"/> 
 
                         <p:outputLabel value="#{messages.CreateEscolaLabel_seqCidade}" for="seqCidade" />
                         <p:selectOneMenu id="seqCidade" value="#{escolaController.selected.seqCidade}" required="true" requiredMessage="#{messages.CreateEscolaRequiredMessage_seqCidade}" converter="municipioConverter">
@@ -48,7 +45,7 @@
                             <f:selectItems value="#{municipioController.items}"
                                            var="seqCidadeItem"
                                            itemValue="#{seqCidadeItem}"
-                                           itemLabel="#{seqCidadeItem.codMunicipio.toString()}"
+                                           itemLabel="#{seqCidadeItem.nomMunicipio.toString()}"
                                            />
 
                         </p:selectOneMenu>

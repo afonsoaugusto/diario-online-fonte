@@ -29,12 +29,9 @@
 
                         <h:outputText value="#{messages.ViewUfLabel_datAlteracao}"/>
                         <h:outputText value="#{ufController.selected.datAlteracao}" title="#{messages.ViewUfTitle_datAlteracao}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-
-                        <h:outputText value="#{messages.ViewUfLabel_codRegiao}"/>
-                        <h:outputText value="#{ufController.selected.codRegiao}" title="#{messages.ViewUfTitle_codRegiao}"/>
-
+                        
                         <h:outputText value="#{messages.ViewUfLabel_nomUfFormatado}"/>
                         <h:outputText value="#{ufController.selected.nomUfFormatado}" title="#{messages.ViewUfTitle_nomUfFormatado}"/>
                     </p:panelGrid>

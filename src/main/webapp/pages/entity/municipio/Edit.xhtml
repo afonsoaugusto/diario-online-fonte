@@ -22,22 +22,13 @@
                         <p:inputText id="nomMunicipio" value="#{municipioController.selected.nomMunicipio}" title="#{messages.EditMunicipioTitle_nomMunicipio}" required="true" requiredMessage="#{messages.EditMunicipioRequiredMessage_nomMunicipio}" size="40" maxlength="40"/>
 
                         <p:outputLabel value="#{messages.EditMunicipioLabel_sitCancelado}" for="sitCancelado" />
-                        <p:inputText id="sitCancelado" value="#{municipioController.selected.sitCancelado}" title="#{messages.EditMunicipioTitle_sitCancelado}" required="true" requiredMessage="#{messages.EditMunicipioRequiredMessage_sitCancelado}"/>
+                        <p:selectOneRadio id="sitCancelado" value="#{municipioController.selected.sitCancelado}"  required="true" requiredMessage="#{messages.EditMunicipioTitle_sitCancelado}">
+                            <f:selectItem itemLabel="N" itemValue="N"/>
+                            <f:selectItem itemLabel="S" itemValue="S"/>
+                        </p:selectOneRadio>
 
                         <p:outputLabel value="#{messages.EditMunicipioLabel_datAlteracao}" for="datAlteracao" />
-                        <p:calendar id="datAlteracao" pattern="MM/dd/yyyy HH:mm:ss" value="#{municipioController.selected.datAlteracao}" title="#{messages.EditMunicipioTitle_datAlteracao}"  showOn="button"/>
-
-                        <p:outputLabel value="#{messages.EditMunicipioLabel_numLonSede}" for="numLonSede" />
-                        <p:inputText id="numLonSede" value="#{municipioController.selected.numLonSede}" title="#{messages.EditMunicipioTitle_numLonSede}"/>
-
-                        <p:outputLabel value="#{messages.EditMunicipioLabel_numLatSede}" for="numLatSede" />
-                        <p:inputText id="numLatSede" value="#{municipioController.selected.numLatSede}" title="#{messages.EditMunicipioTitle_numLatSede}"/>
-
-                        <p:outputLabel value="#{messages.EditMunicipioLabel_codUnidadeArrecadacao}" for="codUnidadeArrecadacao" />
-                        <p:inputText id="codUnidadeArrecadacao" value="#{municipioController.selected.codUnidadeArrecadacao}" title="#{messages.EditMunicipioTitle_codUnidadeArrecadacao}"/>
-
-                        <p:outputLabel value="#{messages.EditMunicipioLabel_seqUnidadeArrecadacao}" for="seqUnidadeArrecadacao" />
-                        <p:inputText id="seqUnidadeArrecadacao" value="#{municipioController.selected.seqUnidadeArrecadacao}" title="#{messages.EditMunicipioTitle_seqUnidadeArrecadacao}"/>
+                        <p:calendar id="datAlteracao" pattern="MM/dd/yyyy" value="#{municipioController.selected.datAlteracao}" title="#{messages.EditMunicipioTitle_datAlteracao}"  showOn="button"/>
 
                         <p:outputLabel value="#{messages.EditMunicipioLabel_nomMunicipioFormatado}" for="nomMunicipioFormatado" />
                         <p:inputText id="nomMunicipioFormatado" value="#{municipioController.selected.nomMunicipioFormatado}" title="#{messages.EditMunicipioTitle_nomMunicipioFormatado}" size="40" maxlength="40"/>
@@ -48,7 +39,7 @@
                             <f:selectItems value="#{ufController.items}"
                                            var="codUfItem"
                                            itemValue="#{codUfItem}"
-                                           itemLabel="#{codUfItem.codUf.toString()}"
+                                           itemLabel="#{codUfItem.nomUfFormatado.toString()}"
                                            />
 
                         </p:selectOneMenu>

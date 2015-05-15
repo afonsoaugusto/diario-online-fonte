@@ -15,9 +15,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{escolaController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewEscolaLabel_seqEscola}"/>
-                        <h:outputText value="#{escolaController.selected.seqEscola}" title="#{messages.ViewEscolaTitle_seqEscola}"/>
-
                         <h:outputText value="#{messages.ViewEscolaLabel_desNome}"/>
                         <h:outputText value="#{escolaController.selected.desNome}" title="#{messages.ViewEscolaTitle_desNome}"/>
 
@@ -43,7 +40,7 @@
                         <h:outputText value="#{escolaController.selected.numCnpj}" title="#{messages.ViewEscolaTitle_numCnpj}"/>
 
                         <h:outputText value="#{messages.ViewEscolaLabel_seqCidade}"/>
-                        <h:outputText value="#{escolaController.selected.seqCidade.codMunicipio}"/>
+                        <h:outputText value="#{escolaController.selected.seqCidade.nomMunicipio}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('EscolaViewDialog').hide()"/>
                 </h:panelGroup>

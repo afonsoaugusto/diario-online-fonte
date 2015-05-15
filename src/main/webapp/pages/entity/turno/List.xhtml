@@ -20,7 +20,7 @@
             <p:dataTable id="datalist"
                          value="#{turnoController.items}"
                          var="item"
-                         rowKey="#{item.seqTurno}"
+                         rowKey="#{item.desTurno}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -31,15 +31,7 @@
                 <p:ajax event="rowUnselect" update=":TurnoListForm:createButton :TurnoListForm:viewButton :TurnoListForm:editButton :TurnoListForm:deleteButton :TurnoListForm:TurnoDataTableContextMenu" listener="#{turnoController.resetParents}"/>
                 <p:ajax event="contextMenu" update=" :TurnoListForm:createButton :TurnoListForm:viewButton :TurnoListForm:editButton :TurnoListForm:deleteButton" listener="#{turnoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('TurnoListForm:viewButton').click();"/>
-
-                <p:column sortBy="#{item.seqTurno}" filterBy="#{item.seqTurno}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListTurnoTitle_seqTurno}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqTurno}"/>
-                </p:column>
-
-
+              
                 <p:column sortBy="#{item.desTurno}" filterBy="#{item.desTurno}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListTurnoTitle_desTurno}"/>

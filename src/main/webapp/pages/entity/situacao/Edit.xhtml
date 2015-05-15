@@ -14,12 +14,8 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{situacaoController.selected != null}">
 
-
-                        <h:outputLabel value="#{messages.EditSituacaoLabel_seqSituacao}" for="seqSituacao" />
-                        <h:outputText id="seqSituacao" value="#{situacaoController.selected.seqSituacao}" />
-
                         <p:outputLabel value="#{messages.EditSituacaoLabel_desSituacao}" for="desSituacao" />
-                        <p:inputText id="desSituacao" value="#{situacaoController.selected.desSituacao}" title="#{messages.EditSituacaoTitle_desSituacao}" required="true" requiredMessage="#{messages.EditSituacaoRequiredMessage_desSituacao}" size="200" maxlength="200"/>
+                        <p:inputText id="desSituacao" value="#{situacaoController.selected.desSituacao}" title="#{messages.EditSituacaoTitle_desSituacao}" required="true" requiredMessage="#{messages.EditSituacaoRequiredMessage_desSituacao}" size="50" maxlength="70"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{situacaoController.save}" value="#{messages.Save}" update="display,:SituacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('SituacaoEditDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>

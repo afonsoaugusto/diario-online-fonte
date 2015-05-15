@@ -56,7 +56,7 @@
 
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="#{messages.CreatePessoaLabel_usuario}" for="usuario" />
+                        <!--p:outputLabel value="#{messages.CreatePessoaLabel_usuario}" for="usuario" /-->
                     </p:panelGrid>
                     <p:commandButton actionListener="#{pessoaController.saveNew}" value="#{messages.Save}" update="display,:PessoaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PessoaCreateDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>

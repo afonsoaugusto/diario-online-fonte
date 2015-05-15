@@ -15,9 +15,6 @@
                 <h:panelGroup id="display" rendered="#{turnoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateTurnoLabel_seqTurno}" for="seqTurno" />
-                        <p:inputText id="seqTurno" value="#{turnoController.selected.seqTurno}" title="#{messages.CreateTurnoTitle_seqTurno}" required="true" requiredMessage="#{messages.CreateTurnoRequiredMessage_seqTurno}"/>
-
                         <p:outputLabel value="#{messages.CreateTurnoLabel_desTurno}" for="desTurno" />
                         <p:inputText id="desTurno" value="#{turnoController.selected.desTurno}" title="#{messages.CreateTurnoTitle_desTurno}" required="true" requiredMessage="#{messages.CreateTurnoRequiredMessage_desTurno}" size="20" maxlength="20"/>
                     </p:panelGrid>

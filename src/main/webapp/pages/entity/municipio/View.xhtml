@@ -26,26 +26,14 @@
 
                         <h:outputText value="#{messages.ViewMunicipioLabel_datAlteracao}"/>
                         <h:outputText value="#{municipioController.selected.datAlteracao}" title="#{messages.ViewMunicipioTitle_datAlteracao}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-
-                        <h:outputText value="#{messages.ViewMunicipioLabel_numLonSede}"/>
-                        <h:outputText value="#{municipioController.selected.numLonSede}" title="#{messages.ViewMunicipioTitle_numLonSede}"/>
-
-                        <h:outputText value="#{messages.ViewMunicipioLabel_numLatSede}"/>
-                        <h:outputText value="#{municipioController.selected.numLatSede}" title="#{messages.ViewMunicipioTitle_numLatSede}"/>
-
-                        <h:outputText value="#{messages.ViewMunicipioLabel_codUnidadeArrecadacao}"/>
-                        <h:outputText value="#{municipioController.selected.codUnidadeArrecadacao}" title="#{messages.ViewMunicipioTitle_codUnidadeArrecadacao}"/>
-
-                        <h:outputText value="#{messages.ViewMunicipioLabel_seqUnidadeArrecadacao}"/>
-                        <h:outputText value="#{municipioController.selected.seqUnidadeArrecadacao}" title="#{messages.ViewMunicipioTitle_seqUnidadeArrecadacao}"/>
 
                         <h:outputText value="#{messages.ViewMunicipioLabel_nomMunicipioFormatado}"/>
                         <h:outputText value="#{municipioController.selected.nomMunicipioFormatado}" title="#{messages.ViewMunicipioTitle_nomMunicipioFormatado}"/>
 
                         <h:outputText value="#{messages.ViewMunicipioLabel_codUf}"/>
-                        <h:outputText value="#{municipioController.selected.codUf.codUf}"/>
+                        <h:outputText value="#{municipioController.selected.codUf.nomUfFormatado}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('MunicipioViewDialog').hide()"/>
                 </h:panelGroup>

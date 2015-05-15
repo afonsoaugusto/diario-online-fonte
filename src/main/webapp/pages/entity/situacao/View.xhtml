@@ -15,9 +15,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{situacaoController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewSituacaoLabel_seqSituacao}"/>
-                        <h:outputText value="#{situacaoController.selected.seqSituacao}" title="#{messages.ViewSituacaoTitle_seqSituacao}"/>
-
                         <h:outputText value="#{messages.ViewSituacaoLabel_desSituacao}"/>
                         <h:outputText value="#{situacaoController.selected.desSituacao}" title="#{messages.ViewSituacaoTitle_desSituacao}"/>
                     </p:panelGrid>

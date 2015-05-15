@@ -22,7 +22,7 @@
             <p:dataTable id="datalist"
                          value="#{escolaController.items}"
                          var="item"
-                         rowKey="#{item.seqEscola}"
+                         rowKey="#{item.desNome}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -33,14 +33,6 @@
                 <p:ajax event="rowUnselect" update=":EscolaListForm:createButton :EscolaListForm:viewButton :EscolaListForm:editButton :EscolaListForm:deleteButton :EscolaListForm:EscolaDataTableContextMenu" listener="#{escolaController.resetParents}"/>
                 <p:ajax event="contextMenu" update=" :EscolaListForm:createButton :EscolaListForm:viewButton :EscolaListForm:editButton :EscolaListForm:deleteButton" listener="#{escolaController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('EscolaListForm:viewButton').click();"/>
-
-                <p:column sortBy="#{item.seqEscola}" filterBy="#{item.seqEscola}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListEscolaTitle_seqEscola}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqEscola}"/>
-                </p:column>
-
 
                 <p:column sortBy="#{item.desNome}" filterBy="#{item.desNome}">
                     <f:facet name="header">
@@ -64,55 +56,6 @@
                     </f:facet>
                     <h:outputText value="#{item.desSigla}"/>
                 </p:column>
-
-
-                <p:column sortBy="#{item.desRua}" filterBy="#{item.desRua}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListEscolaTitle_desRua}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.desRua}"/>
-                </p:column>
-
-
-                <p:column sortBy="#{item.desBairro}" filterBy="#{item.desBairro}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListEscolaTitle_desBairro}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.desBairro}"/>
-                </p:column>
-
-                <!--
-                                    <p:column sortBy="#{item.numCep}" filterBy="#{item.numCep}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListEscolaTitle_numCep}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.numCep}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.numEscola}" filterBy="#{item.numEscola}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListEscolaTitle_numEscola}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.numEscola}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.numCnpj}" filterBy="#{item.numCnpj}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListEscolaTitle_numCnpj}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.numCnpj}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqCidade.codMunicipio}" filterBy="#{item.seqCidade.codMunicipio}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListEscolaTitle_seqCidade}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqCidade.codMunicipio}"/>
-                                    </p:column>
-                -->
 
             </p:dataTable>
 

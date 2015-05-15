@@ -15,11 +15,8 @@
                 <h:panelGroup id="display" rendered="#{situacaoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateSituacaoLabel_seqSituacao}" for="seqSituacao" />
-                        <p:inputText id="seqSituacao" value="#{situacaoController.selected.seqSituacao}" title="#{messages.CreateSituacaoTitle_seqSituacao}" required="true" requiredMessage="#{messages.CreateSituacaoRequiredMessage_seqSituacao}"/>
-
                         <p:outputLabel value="#{messages.CreateSituacaoLabel_desSituacao}" for="desSituacao" />
-                        <p:inputText id="desSituacao" value="#{situacaoController.selected.desSituacao}" title="#{messages.CreateSituacaoTitle_desSituacao}" required="true" requiredMessage="#{messages.CreateSituacaoRequiredMessage_desSituacao}" size="200" maxlength="200"/>
+                        <p:inputText id="desSituacao" value="#{situacaoController.selected.desSituacao}" title="#{messages.CreateSituacaoTitle_desSituacao}" required="true" requiredMessage="#{messages.CreateSituacaoRequiredMessage_desSituacao}" size="50" maxlength="70"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{situacaoController.saveNew}" value="#{messages.Save}" update="display,:SituacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('SituacaoCreateDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
