@@ -15,16 +15,14 @@
                 <h:panelGroup id="display" rendered="#{usuarioPerfilController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateUsuarioPerfilLabel_seqUsuarioPerfil}" for="seqUsuarioPerfil" />
-                        <p:inputText id="seqUsuarioPerfil" value="#{usuarioPerfilController.selected.seqUsuarioPerfil}" title="#{messages.CreateUsuarioPerfilTitle_seqUsuarioPerfil}" required="true" requiredMessage="#{messages.CreateUsuarioPerfilRequiredMessage_seqUsuarioPerfil}"/>
-
+                        
                         <p:outputLabel value="#{messages.CreateUsuarioPerfilLabel_seqUsuario}" for="seqUsuario" />
                         <p:selectOneMenu id="seqUsuario" value="#{usuarioPerfilController.selected.seqUsuario}" required="true" requiredMessage="#{messages.CreateUsuarioPerfilRequiredMessage_seqUsuario}" converter="usuarioConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
                             <f:selectItems value="#{usuarioController.items}"
                                            var="seqUsuarioItem"
                                            itemValue="#{seqUsuarioItem}"
-                                           itemLabel="#{seqUsuarioItem.seqUsuario.toString()}"
+                                           itemLabel="#{seqUsuarioItem.desLogin.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -35,7 +33,7 @@
                             <f:selectItems value="#{perfilController.items}"
                                            var="seqPerfilItem"
                                            itemValue="#{seqPerfilItem}"
-                                           itemLabel="#{seqPerfilItem.seqPerfil.toString()}"
+                                           itemLabel="#{seqPerfilItem.nomPerfil.toString()}"
                                            />
 
                         </p:selectOneMenu>

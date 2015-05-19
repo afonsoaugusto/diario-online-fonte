@@ -14,17 +14,13 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{usuarioPerfilController.selected != null}">
 
-
-                        <h:outputLabel value="#{messages.EditUsuarioPerfilLabel_seqUsuarioPerfil}" for="seqUsuarioPerfil" />
-                        <h:outputText id="seqUsuarioPerfil" value="#{usuarioPerfilController.selected.seqUsuarioPerfil}" />
-
                         <p:outputLabel value="#{messages.EditUsuarioPerfilLabel_seqUsuario}" for="seqUsuario" />
                         <p:selectOneMenu id="seqUsuario" value="#{usuarioPerfilController.selected.seqUsuario}" required="true" requiredMessage="#{messages.EditUsuarioPerfilRequiredMessage_seqUsuario}" converter="usuarioConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
                             <f:selectItems value="#{usuarioController.items}"
                                            var="seqUsuarioItem"
                                            itemValue="#{seqUsuarioItem}"
-                                           itemLabel="#{seqUsuarioItem.seqUsuario.toString()}"
+                                           itemLabel="#{seqUsuarioItem.desLogin.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -35,7 +31,7 @@
                             <f:selectItems value="#{perfilController.items}"
                                            var="seqPerfilItem"
                                            itemValue="#{seqPerfilItem}"
-                                           itemLabel="#{seqPerfilItem.seqPerfil.toString()}"
+                                           itemLabel="#{seqPerfilItem.nomPerfil.toString()}"
                                            />
 
                         </p:selectOneMenu>

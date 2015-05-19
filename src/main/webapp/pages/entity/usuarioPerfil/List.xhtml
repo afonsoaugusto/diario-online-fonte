@@ -33,19 +33,12 @@
                 <p:ajax event="contextMenu" update=" :UsuarioPerfilListForm:createButton :UsuarioPerfilListForm:viewButton :UsuarioPerfilListForm:editButton :UsuarioPerfilListForm:deleteButton" listener="#{usuarioPerfilController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('UsuarioPerfilListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqUsuarioPerfil}" filterBy="#{item.seqUsuarioPerfil}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListUsuarioPerfilTitle_seqUsuarioPerfil}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqUsuarioPerfil}"/>
-                </p:column>
-
 
                 <p:column sortBy="#{item.seqUsuario.seqUsuario}" filterBy="#{item.seqUsuario.seqUsuario}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListUsuarioPerfilTitle_seqUsuario}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqUsuario.seqUsuario}"/>
+                    <h:outputText value="#{item.seqUsuario.desLogin}"/>
                 </p:column>
 
 
@@ -53,7 +46,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListUsuarioPerfilTitle_seqPerfil}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqPerfil.seqPerfil}"/>
+                    <h:outputText value="#{item.seqPerfil.nomPerfil}"/>
                 </p:column>
 
 
