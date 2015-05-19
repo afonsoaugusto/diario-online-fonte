@@ -40,14 +40,6 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.desPassword}" filterBy="#{item.desPassword}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListUsuarioTitle_desPassword}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.desPassword}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.desDica}" filterBy="#{item.desDica}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListUsuarioTitle_desDica}"/>
@@ -60,7 +52,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListUsuarioTitle_seqPessoa}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqPessoa.seqPessoa}"/>
+                    <h:outputText value="#{item.seqPessoa.desNome}"/>
                 </p:column>
 
 

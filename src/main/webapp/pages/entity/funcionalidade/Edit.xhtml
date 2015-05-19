@@ -22,7 +22,7 @@
                         <p:inputText id="codFuncionalidade" value="#{funcionalidadeController.selected.codFuncionalidade}" title="#{messages.EditFuncionalidadeTitle_codFuncionalidade}" size="25" maxlength="25"/>
 
                         <p:outputLabel value="#{messages.EditFuncionalidadeLabel_desFuncionalidade}" for="desFuncionalidade" />
-                        <p:inputText id="desFuncionalidade" value="#{funcionalidadeController.selected.desFuncionalidade}" title="#{messages.EditFuncionalidadeTitle_desFuncionalidade}" size="200" maxlength="200"/>
+                        <p:inputText id="desFuncionalidade" value="#{funcionalidadeController.selected.desFuncionalidade}" title="#{messages.EditFuncionalidadeTitle_desFuncionalidade}" size="100" maxlength="200"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{funcionalidadeController.save}" value="#{messages.Save}" update="display,:FuncionalidadeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('FuncionalidadeEditDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>

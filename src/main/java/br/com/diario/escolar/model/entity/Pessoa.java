@@ -99,13 +99,16 @@ public class Pessoa implements Serializable {
     private List<Notas> notasList;
 
     public Pessoa() {
+        initPessoa();
     }
 
     public Pessoa(BigDecimal seqPessoa) {
         this.seqPessoa = seqPessoa;
+        initPessoa();
     }
 
     public Pessoa(BigDecimal seqPessoa, String desNome, long codCpf, Character flgAtivo) {
+        initPessoa();
         this.seqPessoa = seqPessoa;
         this.desNome = desNome;
         this.codCpf = codCpf;
@@ -273,6 +276,11 @@ public class Pessoa implements Serializable {
         return true;
     }
 
+        private void initPessoa() {
+        this.flgAtivo = 'S';
+    }
+
+    
     @Override
     public String toString() {
         return "com.diario.escolar.model.entity.Pessoa[ seqPessoa=" + seqPessoa + " ]";

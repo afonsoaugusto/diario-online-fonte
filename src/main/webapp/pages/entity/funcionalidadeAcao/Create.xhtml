@@ -14,17 +14,14 @@
 
                 <h:panelGroup id="display" rendered="#{funcionalidadeAcaoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
-
-                        <p:outputLabel value="#{messages.CreateFuncionalidadeAcaoLabel_seqFuncionalidadeAcao}" for="seqFuncionalidadeAcao" />
-                        <p:inputText id="seqFuncionalidadeAcao" value="#{funcionalidadeAcaoController.selected.seqFuncionalidadeAcao}" title="#{messages.CreateFuncionalidadeAcaoTitle_seqFuncionalidadeAcao}" required="true" requiredMessage="#{messages.CreateFuncionalidadeAcaoRequiredMessage_seqFuncionalidadeAcao}"/>
-
+                       
                         <p:outputLabel value="#{messages.CreateFuncionalidadeAcaoLabel_seqFuncionalidade}" for="seqFuncionalidade" />
                         <p:selectOneMenu id="seqFuncionalidade" value="#{funcionalidadeAcaoController.selected.seqFuncionalidade}" required="true" requiredMessage="#{messages.CreateFuncionalidadeAcaoRequiredMessage_seqFuncionalidade}" converter="funcionalidadeConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
                             <f:selectItems value="#{funcionalidadeController.items}"
                                            var="seqFuncionalidadeItem"
                                            itemValue="#{seqFuncionalidadeItem}"
-                                           itemLabel="#{seqFuncionalidadeItem.seqFuncionalidade.toString()}"
+                                           itemLabel="#{seqFuncionalidadeItem.codFuncionalidade.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -35,7 +32,7 @@
                             <f:selectItems value="#{acaoController.items}"
                                            var="seqAcaoItem"
                                            itemValue="#{seqAcaoItem}"
-                                           itemLabel="#{seqAcaoItem.seqAcao.toString()}"
+                                           itemLabel="#{seqAcaoItem.desAcao.toString()}"
                                            />
 
                         </p:selectOneMenu>

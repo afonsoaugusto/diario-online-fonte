@@ -26,7 +26,7 @@
             <p:dataTable id="datalist"
                          value="#{pessoaController.items}"
                          var="item"
-                         rowKey="#{item.seqPessoa}"
+                         rowKey="#{item.desNome}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -37,13 +37,7 @@
                 <p:ajax event="rowUnselect" update=":PessoaListForm:createButton :PessoaListForm:viewButton :PessoaListForm:editButton :PessoaListForm:deleteButton :PessoaListForm:PessoaDataTableContextMenu" listener="#{pessoaController.resetParents}"/>
                 <p:ajax event="contextMenu" update=" :PessoaListForm:createButton :PessoaListForm:viewButton :PessoaListForm:editButton :PessoaListForm:deleteButton" listener="#{pessoaController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('PessoaListForm:viewButton').click();"/>
-
-                <p:column sortBy="#{item.seqPessoa}" filterBy="#{item.seqPessoa}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListPessoaTitle_seqPessoa}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqPessoa}"/>
-                </p:column>
+                
 
 
                 <p:column sortBy="#{item.desNome}" filterBy="#{item.desNome}">

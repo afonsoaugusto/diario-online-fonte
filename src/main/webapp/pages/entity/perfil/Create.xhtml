@@ -15,14 +15,12 @@
                 <h:panelGroup id="display" rendered="#{perfilController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreatePerfilLabel_seqPerfil}" for="seqPerfil" />
-                        <p:inputText id="seqPerfil" value="#{perfilController.selected.seqPerfil}" title="#{messages.CreatePerfilTitle_seqPerfil}" required="true" requiredMessage="#{messages.CreatePerfilRequiredMessage_seqPerfil}"/>
-
+                        
                         <p:outputLabel value="#{messages.CreatePerfilLabel_nomPerfil}" for="nomPerfil" />
-                        <p:inputText id="nomPerfil" value="#{perfilController.selected.nomPerfil}" title="#{messages.CreatePerfilTitle_nomPerfil}" size="255" maxlength="255"/>
+                        <p:inputText id="nomPerfil" value="#{perfilController.selected.nomPerfil}" title="#{messages.CreatePerfilTitle_nomPerfil}" size="100" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.CreatePerfilLabel_desPerfil}" for="desPerfil" />
-                        <p:inputText id="desPerfil" value="#{perfilController.selected.desPerfil}" title="#{messages.CreatePerfilTitle_desPerfil}" size="255" maxlength="255"/>
+                        <p:inputText id="desPerfil" value="#{perfilController.selected.desPerfil}" title="#{messages.CreatePerfilTitle_desPerfil}" size="100" maxlength="255"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{perfilController.saveNew}" value="#{messages.Save}" update="display,:PerfilListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PerfilCreateDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>

@@ -25,7 +25,7 @@
                         <p:inputText id="codCpf" value="#{pessoaController.selected.codCpf}" title="#{messages.EditPessoaTitle_codCpf}" required="true" requiredMessage="#{messages.EditPessoaRequiredMessage_codCpf}"/>
 
                         <p:outputLabel value="#{messages.EditPessoaLabel_desRua}" for="desRua" />
-                        <p:inputText id="desRua" value="#{pessoaController.selected.desRua}" title="#{messages.EditPessoaTitle_desRua}" size="255" maxlength="255"/>
+                        <p:inputText id="desRua" value="#{pessoaController.selected.desRua}" title="#{messages.EditPessoaTitle_desRua}" size="100" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.EditPessoaLabel_desBairro}" for="desBairro" />
                         <p:inputText id="desBairro" value="#{pessoaController.selected.desBairro}" title="#{messages.EditPessoaTitle_desBairro}" size="80" maxlength="80"/>
@@ -43,7 +43,11 @@
                         <p:inputText id="numCel" value="#{pessoaController.selected.numCel}" title="#{messages.EditPessoaTitle_numCel}"/>
 
                         <p:outputLabel value="#{messages.EditPessoaLabel_flgAtivo}" for="flgAtivo" />
-                        <p:inputText id="flgAtivo" value="#{pessoaController.selected.flgAtivo}" title="#{messages.EditPessoaTitle_flgAtivo}" required="true" requiredMessage="#{messages.EditPessoaRequiredMessage_flgAtivo}"/>
+                        
+                        <p:selectOneRadio id="flgAtivo" value="#{pessoaController.selected.flgAtivo}"  required="true" requiredMessage="#{messages.EditPessoaRequiredMessage_flgAtivo}">
+                            <f:selectItem itemLabel="N" itemValue="N"/>
+                            <f:selectItem itemLabel="S" itemValue="S"/>
+                        </p:selectOneRadio>
 
                         <p:outputLabel value="#{messages.EditPessoaLabel_seqCidade}" for="seqCidade" />
                         <p:selectOneMenu id="seqCidade" value="#{pessoaController.selected.seqCidade}" required="true" requiredMessage="#{messages.EditPessoaRequiredMessage_seqCidade}" converter="municipioConverter">
@@ -51,7 +55,7 @@
                             <f:selectItems value="#{municipioController.items}"
                                            var="seqCidadeItem"
                                            itemValue="#{seqCidadeItem}"
-                                           itemLabel="#{seqCidadeItem.codMunicipio.toString()}"
+                                           itemLabel="#{seqCidadeItem.nomMunicipioFormatado.toString()}"
                                            />
 
                         </p:selectOneMenu>

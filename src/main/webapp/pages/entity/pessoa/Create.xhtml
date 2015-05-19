@@ -15,8 +15,6 @@
                 <h:panelGroup id="display" rendered="#{pessoaController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreatePessoaLabel_seqPessoa}" for="seqPessoa" />
-                        <p:inputText id="seqPessoa" value="#{pessoaController.selected.seqPessoa}" title="#{messages.CreatePessoaTitle_seqPessoa}" required="true" requiredMessage="#{messages.CreatePessoaRequiredMessage_seqPessoa}"/>
 
                         <p:outputLabel value="#{messages.CreatePessoaLabel_desNome}" for="desNome" />
                         <p:inputText id="desNome" value="#{pessoaController.selected.desNome}" title="#{messages.CreatePessoaTitle_desNome}" required="true" requiredMessage="#{messages.CreatePessoaRequiredMessage_desNome}" size="80" maxlength="80"/>
@@ -25,7 +23,7 @@
                         <p:inputText id="codCpf" value="#{pessoaController.selected.codCpf}" title="#{messages.CreatePessoaTitle_codCpf}" required="true" requiredMessage="#{messages.CreatePessoaRequiredMessage_codCpf}"/>
 
                         <p:outputLabel value="#{messages.CreatePessoaLabel_desRua}" for="desRua" />
-                        <p:inputText id="desRua" value="#{pessoaController.selected.desRua}" title="#{messages.CreatePessoaTitle_desRua}" size="255" maxlength="255"/>
+                        <p:inputText id="desRua" value="#{pessoaController.selected.desRua}" title="#{messages.CreatePessoaTitle_desRua}" size="100" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.CreatePessoaLabel_desBairro}" for="desBairro" />
                         <p:inputText id="desBairro" value="#{pessoaController.selected.desBairro}" title="#{messages.CreatePessoaTitle_desBairro}" size="80" maxlength="80"/>
@@ -41,9 +39,7 @@
 
                         <p:outputLabel value="#{messages.CreatePessoaLabel_numCel}" for="numCel" />
                         <p:inputText id="numCel" value="#{pessoaController.selected.numCel}" title="#{messages.CreatePessoaTitle_numCel}"/>
-
-                        <p:outputLabel value="#{messages.CreatePessoaLabel_flgAtivo}" for="flgAtivo" />
-                        <p:inputText id="flgAtivo" value="#{pessoaController.selected.flgAtivo}" title="#{messages.CreatePessoaTitle_flgAtivo}" required="true" requiredMessage="#{messages.CreatePessoaRequiredMessage_flgAtivo}"/>
+                        
 
                         <p:outputLabel value="#{messages.CreatePessoaLabel_seqCidade}" for="seqCidade" />
                         <p:selectOneMenu id="seqCidade" value="#{pessoaController.selected.seqCidade}" required="true" requiredMessage="#{messages.CreatePessoaRequiredMessage_seqCidade}" converter="municipioConverter">
@@ -51,7 +47,7 @@
                             <f:selectItems value="#{municipioController.items}"
                                            var="seqCidadeItem"
                                            itemValue="#{seqCidadeItem}"
-                                           itemLabel="#{seqCidadeItem.codMunicipio.toString()}"
+                                           itemLabel="#{seqCidadeItem.nomMunicipioFormatado.toString()}"
                                            />
 
                         </p:selectOneMenu>

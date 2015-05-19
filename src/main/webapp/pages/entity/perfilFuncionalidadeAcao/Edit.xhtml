@@ -24,7 +24,7 @@
                             <f:selectItems value="#{perfilController.items}"
                                            var="seqPerfilItem"
                                            itemValue="#{seqPerfilItem}"
-                                           itemLabel="#{seqPerfilItem.seqPerfil.toString()}"
+                                           itemLabel="#{seqPerfilItem.nomPerfil.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -35,7 +35,7 @@
                             <f:selectItems value="#{funcionalidadeAcaoController.items}"
                                            var="seqFuncionalidadeAcaoItem"
                                            itemValue="#{seqFuncionalidadeAcaoItem}"
-                                           itemLabel="#{seqFuncionalidadeAcaoItem.seqFuncionalidadeAcao.toString()}"
+                                           itemLabel="#{seqFuncionalidadeAcaoItem.seqFuncionalidade.codFuncionalidade.toString()}.#{seqFuncionalidadeAcaoItem.seqAcao.codAcao.toString()}"
                                            />
 
                         </p:selectOneMenu>

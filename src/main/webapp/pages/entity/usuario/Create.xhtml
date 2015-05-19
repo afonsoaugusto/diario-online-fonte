@@ -15,14 +15,11 @@
                 <h:panelGroup id="display" rendered="#{usuarioController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateUsuarioLabel_seqUsuario}" for="seqUsuario" />
-                        <p:inputText id="seqUsuario" value="#{usuarioController.selected.seqUsuario}" title="#{messages.CreateUsuarioTitle_seqUsuario}" required="true" requiredMessage="#{messages.CreateUsuarioRequiredMessage_seqUsuario}"/>
-
                         <p:outputLabel value="#{messages.CreateUsuarioLabel_desLogin}" for="desLogin" />
                         <p:inputText id="desLogin" value="#{usuarioController.selected.desLogin}" title="#{messages.CreateUsuarioTitle_desLogin}" required="true" requiredMessage="#{messages.CreateUsuarioRequiredMessage_desLogin}" size="20" maxlength="20"/>
 
                         <p:outputLabel value="#{messages.CreateUsuarioLabel_desPassword}" for="desPassword" />
-                        <p:inputText id="desPassword" value="#{usuarioController.selected.desPassword}" title="#{messages.CreateUsuarioTitle_desPassword}" required="true" requiredMessage="#{messages.CreateUsuarioRequiredMessage_desPassword}" size="20" maxlength="20"/>
+                        <p:password id="desPassword" value="#{usuarioController.selected.desPassword}" title="#{messages.CreateUsuarioTitle_desPassword}" required="true" requiredMessage="#{messages.CreateUsuarioRequiredMessage_desPassword}" size="20" maxlength="20"/>
 
                         <p:outputLabel value="#{messages.CreateUsuarioLabel_desDica}" for="desDica" />
                         <p:inputText id="desDica" value="#{usuarioController.selected.desDica}" title="#{messages.CreateUsuarioTitle_desDica}" size="40" maxlength="40"/>
@@ -33,7 +30,7 @@
                             <f:selectItems value="#{pessoaController.items}"
                                            var="seqPessoaItem"
                                            itemValue="#{seqPessoaItem}"
-                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           itemLabel="#{seqPessoaItem.desNome.toString()}"
                                            />
 
                         </p:selectOneMenu>

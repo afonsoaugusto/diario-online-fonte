@@ -92,6 +92,10 @@ public class FuncionalidadeAcao implements Serializable {
     public void setSeqAcao(Acao seqAcao) {
         this.seqAcao = seqAcao;
     }
+    
+    public String getFuncionalidadeAcaoFormatado(){
+        return seqFuncionalidade.getDesFuncionalidade() + '.'+ seqAcao.getDesAcao();
+    }
 
     @Override
     public int hashCode() {

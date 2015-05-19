@@ -22,7 +22,7 @@
                         <p:inputText id="desLogin" value="#{usuarioController.selected.desLogin}" title="#{messages.EditUsuarioTitle_desLogin}" required="true" requiredMessage="#{messages.EditUsuarioRequiredMessage_desLogin}" size="20" maxlength="20"/>
 
                         <p:outputLabel value="#{messages.EditUsuarioLabel_desPassword}" for="desPassword" />
-                        <p:inputText id="desPassword" value="#{usuarioController.selected.desPassword}" title="#{messages.EditUsuarioTitle_desPassword}" required="true" requiredMessage="#{messages.EditUsuarioRequiredMessage_desPassword}" size="20" maxlength="20"/>
+                        <p:password id="desPassword" value="#{usuarioController.selected.desPassword}" title="#{messages.EditUsuarioTitle_desPassword}" required="true" requiredMessage="#{messages.EditUsuarioRequiredMessage_desPassword}" size="20" maxlength="20"/>
 
                         <p:outputLabel value="#{messages.EditUsuarioLabel_desDica}" for="desDica" />
                         <p:inputText id="desDica" value="#{usuarioController.selected.desDica}" title="#{messages.EditUsuarioTitle_desDica}" size="40" maxlength="40"/>
@@ -33,7 +33,7 @@
                             <f:selectItems value="#{pessoaController.items}"
                                            var="seqPessoaItem"
                                            itemValue="#{seqPessoaItem}"
-                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           itemLabel="#{seqPessoaItem.desNome.toString()}"
                                            />
 
                         </p:selectOneMenu>

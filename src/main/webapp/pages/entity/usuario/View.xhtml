@@ -15,20 +15,14 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{usuarioController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewUsuarioLabel_seqUsuario}"/>
-                        <h:outputText value="#{usuarioController.selected.seqUsuario}" title="#{messages.ViewUsuarioTitle_seqUsuario}"/>
-
                         <h:outputText value="#{messages.ViewUsuarioLabel_desLogin}"/>
                         <h:outputText value="#{usuarioController.selected.desLogin}" title="#{messages.ViewUsuarioTitle_desLogin}"/>
-
-                        <h:outputText value="#{messages.ViewUsuarioLabel_desPassword}"/>
-                        <h:outputText value="#{usuarioController.selected.desPassword}" title="#{messages.ViewUsuarioTitle_desPassword}"/>
 
                         <h:outputText value="#{messages.ViewUsuarioLabel_desDica}"/>
                         <h:outputText value="#{usuarioController.selected.desDica}" title="#{messages.ViewUsuarioTitle_desDica}"/>
 
                         <h:outputText value="#{messages.ViewUsuarioLabel_seqPessoa}"/>
-                        <h:outputText value="#{usuarioController.selected.seqPessoa.seqPessoa}"/>
+                        <h:outputText value="#{usuarioController.selected.seqPessoa.desNome}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('UsuarioViewDialog').hide()"/>
                 </h:panelGroup>

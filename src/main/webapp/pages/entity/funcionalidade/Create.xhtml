@@ -15,14 +15,11 @@
                 <h:panelGroup id="display" rendered="#{funcionalidadeController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateFuncionalidadeLabel_seqFuncionalidade}" for="seqFuncionalidade" />
-                        <p:inputText id="seqFuncionalidade" value="#{funcionalidadeController.selected.seqFuncionalidade}" title="#{messages.CreateFuncionalidadeTitle_seqFuncionalidade}" required="true" requiredMessage="#{messages.CreateFuncionalidadeRequiredMessage_seqFuncionalidade}"/>
-
                         <p:outputLabel value="#{messages.CreateFuncionalidadeLabel_codFuncionalidade}" for="codFuncionalidade" />
                         <p:inputText id="codFuncionalidade" value="#{funcionalidadeController.selected.codFuncionalidade}" title="#{messages.CreateFuncionalidadeTitle_codFuncionalidade}" size="25" maxlength="25"/>
 
                         <p:outputLabel value="#{messages.CreateFuncionalidadeLabel_desFuncionalidade}" for="desFuncionalidade" />
-                        <p:inputText id="desFuncionalidade" value="#{funcionalidadeController.selected.desFuncionalidade}" title="#{messages.CreateFuncionalidadeTitle_desFuncionalidade}" size="200" maxlength="200"/>
+                        <p:inputText id="desFuncionalidade" value="#{funcionalidadeController.selected.desFuncionalidade}" title="#{messages.CreateFuncionalidadeTitle_desFuncionalidade}" size="100" maxlength="200"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{funcionalidadeController.saveNew}" value="#{messages.Save}" update="display,:FuncionalidadeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('FuncionalidadeCreateDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>

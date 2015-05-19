@@ -19,10 +19,10 @@
                         <h:outputText value="#{perfilFuncionalidadeAcaoController.selected.seqPerfilFuncionalidadeAcao}" title="#{messages.ViewPerfilFuncionalidadeAcaoTitle_seqPerfilFuncionalidadeAcao}"/>
 
                         <h:outputText value="#{messages.ViewPerfilFuncionalidadeAcaoLabel_seqPerfil}"/>
-                        <h:outputText value="#{perfilFuncionalidadeAcaoController.selected.seqPerfil.seqPerfil}"/>
+                        <h:outputText value="#{perfilFuncionalidadeAcaoController.selected.seqPerfil.nomPerfil}"/>
 
                         <h:outputText value="#{messages.ViewPerfilFuncionalidadeAcaoLabel_seqFuncionalidadeAcao}"/>
-                        <h:outputText value="#{perfilFuncionalidadeAcaoController.selected.seqFuncionalidadeAcao.seqFuncionalidadeAcao}"/>
+                        <h:outputText value="#{perfilFuncionalidadeAcaoController.selected.seqFuncionalidadeAcao.seqFuncionalidade.codFuncionalidade}.#{perfilFuncionalidadeAcaoController.selected.seqFuncionalidadeAcao.seqAcao.codAcao}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('PerfilFuncionalidadeAcaoViewDialog').hide()"/>
                 </h:panelGroup>

@@ -15,14 +15,13 @@
                 <h:panelGroup id="display" rendered="#{acaoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateAcaoLabel_seqAcao}" for="seqAcao" />
-                        <p:inputText id="seqAcao" value="#{acaoController.selected.seqAcao}" title="#{messages.CreateAcaoTitle_seqAcao}" required="true" requiredMessage="#{messages.CreateAcaoRequiredMessage_seqAcao}"/>
+                        
 
                         <p:outputLabel value="#{messages.CreateAcaoLabel_codAcao}" for="codAcao" />
                         <p:inputText id="codAcao" value="#{acaoController.selected.codAcao}" title="#{messages.CreateAcaoTitle_codAcao}" size="25" maxlength="25"/>
 
                         <p:outputLabel value="#{messages.CreateAcaoLabel_desAcao}" for="desAcao" />
-                        <p:inputText id="desAcao" value="#{acaoController.selected.desAcao}" title="#{messages.CreateAcaoTitle_desAcao}" size="200" maxlength="200"/>
+                        <p:inputText id="desAcao" value="#{acaoController.selected.desAcao}" title="#{messages.CreateAcaoTitle_desAcao}" size="100" maxlength="200"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{acaoController.saveNew}" value="#{messages.Save}" update="display,:AcaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AcaoCreateDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>

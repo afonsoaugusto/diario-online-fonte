@@ -46,7 +46,7 @@
                         <h:outputText value="#{pessoaController.selected.flgAtivo}" title="#{messages.ViewPessoaTitle_flgAtivo}"/>
 
                         <h:outputText value="#{messages.ViewPessoaLabel_seqCidade}"/>
-                        <h:outputText value="#{pessoaController.selected.seqCidade.codMunicipio}"/>
+                        <h:outputText value="#{pessoaController.selected.seqCidade.nomMunicipioFormatado}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('PessoaViewDialog').hide()"/>
                 </h:panelGroup>

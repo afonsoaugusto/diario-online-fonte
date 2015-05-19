@@ -22,7 +22,7 @@
                         <p:inputText id="codAcao" value="#{acaoController.selected.codAcao}" title="#{messages.EditAcaoTitle_codAcao}" size="25" maxlength="25"/>
 
                         <p:outputLabel value="#{messages.EditAcaoLabel_desAcao}" for="desAcao" />
-                        <p:inputText id="desAcao" value="#{acaoController.selected.desAcao}" title="#{messages.EditAcaoTitle_desAcao}" size="200" maxlength="200"/>
+                        <p:inputText id="desAcao" value="#{acaoController.selected.desAcao}" title="#{messages.EditAcaoTitle_desAcao}" size="100" maxlength="200"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{acaoController.save}" value="#{messages.Save}" update="display,:AcaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AcaoEditDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>

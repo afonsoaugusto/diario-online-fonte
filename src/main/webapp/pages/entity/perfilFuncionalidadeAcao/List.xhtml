@@ -33,19 +33,11 @@
                 <p:ajax event="contextMenu" update=" :PerfilFuncionalidadeAcaoListForm:createButton :PerfilFuncionalidadeAcaoListForm:viewButton :PerfilFuncionalidadeAcaoListForm:editButton :PerfilFuncionalidadeAcaoListForm:deleteButton" listener="#{perfilFuncionalidadeAcaoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('PerfilFuncionalidadeAcaoListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqPerfilFuncionalidadeAcao}" filterBy="#{item.seqPerfilFuncionalidadeAcao}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListPerfilFuncionalidadeAcaoTitle_seqPerfilFuncionalidadeAcao}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqPerfilFuncionalidadeAcao}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.seqPerfil.seqPerfil}" filterBy="#{item.seqPerfil.seqPerfil}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListPerfilFuncionalidadeAcaoTitle_seqPerfil}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqPerfil.seqPerfil}"/>
+                    <h:outputText value="#{item.seqPerfil.nomPerfil}"/>
                 </p:column>
 
 
@@ -53,7 +45,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListPerfilFuncionalidadeAcaoTitle_seqFuncionalidadeAcao}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqFuncionalidadeAcao.seqFuncionalidadeAcao}"/>
+                    <h:outputText value="#{item.seqFuncionalidadeAcao.getFuncionalidadeAcaoFormatado()}"/>
                 </p:column>
 
 

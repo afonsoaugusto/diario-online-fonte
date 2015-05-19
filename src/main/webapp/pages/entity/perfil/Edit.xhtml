@@ -19,10 +19,10 @@
                         <h:outputText id="seqPerfil" value="#{perfilController.selected.seqPerfil}" />
 
                         <p:outputLabel value="#{messages.EditPerfilLabel_nomPerfil}" for="nomPerfil" />
-                        <p:inputText id="nomPerfil" value="#{perfilController.selected.nomPerfil}" title="#{messages.EditPerfilTitle_nomPerfil}" size="255" maxlength="255"/>
+                        <p:inputText id="nomPerfil" value="#{perfilController.selected.nomPerfil}" title="#{messages.EditPerfilTitle_nomPerfil}" size="100" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.EditPerfilLabel_desPerfil}" for="desPerfil" />
-                        <p:inputText id="desPerfil" value="#{perfilController.selected.desPerfil}" title="#{messages.EditPerfilTitle_desPerfil}" size="255" maxlength="255"/>
+                        <p:inputText id="desPerfil" value="#{perfilController.selected.desPerfil}" title="#{messages.EditPerfilTitle_desPerfil}" size="100" maxlength="255"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{perfilController.save}" value="#{messages.Save}" update="display,:PerfilListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PerfilEditDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>
