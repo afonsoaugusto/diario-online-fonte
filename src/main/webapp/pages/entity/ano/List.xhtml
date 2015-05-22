@@ -24,7 +24,7 @@
             <p:dataTable id="datalist"
                          value="#{anoController.items}"
                          var="item"
-                         rowKey="#{item.seqAno}"
+                         rowKey="#{item.numAno}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -35,22 +35,6 @@
                 <p:ajax event="rowUnselect" update=":AnoListForm:createButton :AnoListForm:viewButton :AnoListForm:editButton :AnoListForm:deleteButton :AnoListForm:AnoDataTableContextMenu" listener="#{anoController.resetParents}"/>
                 <p:ajax event="contextMenu" update=" :AnoListForm:createButton :AnoListForm:viewButton :AnoListForm:editButton :AnoListForm:deleteButton" listener="#{anoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('AnoListForm:viewButton').click();"/>
-
-                <p:column sortBy="#{item.seqAno}" filterBy="#{item.seqAno}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListAnoTitle_seqAno}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqAno}"/>
-                </p:column>
-
-
-                <p:column sortBy="#{item.numAno}" filterBy="#{item.numAno}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListAnoTitle_numAno}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.numAno}"/>
-                </p:column>
-
 
                 <p:column sortBy="#{item.numAnoVigente}" filterBy="#{item.numAnoVigente}">
                     <f:facet name="header">
@@ -64,7 +48,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAnoTitle_seqParameNivelEscolar}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqParameNivelEscolar.seqParametrizacao}"/>
+                    <h:outputText value="#{item.seqParameNivelEscolar.desValorParametro}"/>
                 </p:column>
 
 

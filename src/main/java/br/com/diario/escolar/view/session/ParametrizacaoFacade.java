@@ -6,6 +6,7 @@
 package br.com.diario.escolar.view.session;
 
 import br.com.diario.escolar.model.entity.Parametrizacao;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,6 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ParametrizacaoFacade extends AbstractFacade<Parametrizacao> {
+
     @PersistenceContext(unitName = "app_do_1.0PU")
     private EntityManager em;
 
@@ -27,5 +29,10 @@ public class ParametrizacaoFacade extends AbstractFacade<Parametrizacao> {
     public ParametrizacaoFacade() {
         super(Parametrizacao.class);
     }
-    
+
+    public List<Parametrizacao> findChilds() {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(Parametrizacao.class));
+        return getEntityManager().createQuery(cq).getResultList();
+    }
 }

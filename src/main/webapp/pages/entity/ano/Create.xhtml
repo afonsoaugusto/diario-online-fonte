@@ -15,11 +15,6 @@
                 <h:panelGroup id="display" rendered="#{anoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateAnoLabel_seqAno}" for="seqAno" />
-                        <p:inputText id="seqAno" value="#{anoController.selected.seqAno}" title="#{messages.CreateAnoTitle_seqAno}" required="true" requiredMessage="#{messages.CreateAnoRequiredMessage_seqAno}"/>
-
-                        <p:outputLabel value="#{messages.CreateAnoLabel_numAno}" for="numAno" />
-                        <p:inputText id="numAno" value="#{anoController.selected.numAno}" title="#{messages.CreateAnoTitle_numAno}"/>
 
                         <p:outputLabel value="#{messages.CreateAnoLabel_numAnoVigente}" for="numAnoVigente" />
                         <p:inputText id="numAnoVigente" value="#{anoController.selected.numAnoVigente}" title="#{messages.CreateAnoTitle_numAnoVigente}"/>
@@ -27,10 +22,10 @@
                         <p:outputLabel value="#{messages.CreateAnoLabel_seqParameNivelEscolar}" for="seqParameNivelEscolar" />
                         <p:selectOneMenu id="seqParameNivelEscolar" value="#{anoController.selected.seqParameNivelEscolar}" required="true" requiredMessage="#{messages.CreateAnoRequiredMessage_seqParameNivelEscolar}" converter="parametrizacaoConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{parametrizacaoController.items}"
+                            <f:selectItems value="#{parametrizacaoController.filhos}"
                                            var="seqParameNivelEscolarItem"
                                            itemValue="#{seqParameNivelEscolarItem}"
-                                           itemLabel="#{seqParameNivelEscolarItem.seqParametrizacao.toString()}"
+                                           itemLabel="#{seqParameNivelEscolarItem.desValorParametro.toString()}"
                                            />
 
                         </p:selectOneMenu>

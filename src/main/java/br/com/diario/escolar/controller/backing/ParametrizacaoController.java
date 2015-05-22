@@ -2,6 +2,7 @@ package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.Parametrizacao;
 import br.com.diario.escolar.view.session.ParametrizacaoFacade;
+import java.util.Collection;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -112,6 +113,13 @@ public class ParametrizacaoController extends AbstractController<Parametrizacao>
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Notas_items", this.getSelected().getNotasList());
         }
         return "/pages/prime/notas/index";
+    }
+    
+    public Collection<Parametrizacao> getFilhos() {
+        if (super.items == null) {
+            super.items = this.ejbFacade.findChilds();
+        }
+        return super.items;
     }
 
 }

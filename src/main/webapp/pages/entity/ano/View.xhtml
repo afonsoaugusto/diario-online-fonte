@@ -15,17 +15,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{anoController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewAnoLabel_seqAno}"/>
-                        <h:outputText value="#{anoController.selected.seqAno}" title="#{messages.ViewAnoTitle_seqAno}"/>
-
-                        <h:outputText value="#{messages.ViewAnoLabel_numAno}"/>
-                        <h:outputText value="#{anoController.selected.numAno}" title="#{messages.ViewAnoTitle_numAno}"/>
-
                         <h:outputText value="#{messages.ViewAnoLabel_numAnoVigente}"/>
                         <h:outputText value="#{anoController.selected.numAnoVigente}" title="#{messages.ViewAnoTitle_numAnoVigente}"/>
 
                         <h:outputText value="#{messages.ViewAnoLabel_seqParameNivelEscolar}"/>
-                        <h:outputText value="#{anoController.selected.seqParameNivelEscolar.seqParametrizacao}"/>
+                        <h:outputText value="#{anoController.selected.seqParameNivelEscolar.desValorParametro}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('AnoViewDialog').hide()"/>
                 </h:panelGroup>

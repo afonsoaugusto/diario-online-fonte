@@ -14,13 +14,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{anoController.selected != null}">
 
-
-                        <h:outputLabel value="#{messages.EditAnoLabel_seqAno}" for="seqAno" />
-                        <h:outputText id="seqAno" value="#{anoController.selected.seqAno}" />
-
-                        <p:outputLabel value="#{messages.EditAnoLabel_numAno}" for="numAno" />
-                        <p:inputText id="numAno" value="#{anoController.selected.numAno}" title="#{messages.EditAnoTitle_numAno}"/>
-
                         <p:outputLabel value="#{messages.EditAnoLabel_numAnoVigente}" for="numAnoVigente" />
                         <p:inputText id="numAnoVigente" value="#{anoController.selected.numAnoVigente}" title="#{messages.EditAnoTitle_numAnoVigente}"/>
 
@@ -30,7 +23,7 @@
                             <f:selectItems value="#{parametrizacaoController.items}"
                                            var="seqParameNivelEscolarItem"
                                            itemValue="#{seqParameNivelEscolarItem}"
-                                           itemLabel="#{seqParameNivelEscolarItem.seqParametrizacao.toString()}"
+                                           itemLabel="#{seqParameNivelEscolarItem.desValorParametro.toString()}"
                                            />
 
                         </p:selectOneMenu>

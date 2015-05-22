@@ -27,7 +27,7 @@ public abstract class AbstractController<T> implements Serializable {
     private AbstractFacade<T> ejbFacade;
     private Class<T> itemClass;
     private T selected;
-    private Collection<T> items;
+    protected Collection<T> items;
 
     private enum PersistAction {
 
