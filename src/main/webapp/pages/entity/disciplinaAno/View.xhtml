@@ -15,14 +15,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{disciplinaAnoController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewDisciplinaAnoLabel_seqDisciplinaAno}"/>
-                        <h:outputText value="#{disciplinaAnoController.selected.seqDisciplinaAno}" title="#{messages.ViewDisciplinaAnoTitle_seqDisciplinaAno}"/>
-
                         <h:outputText value="#{messages.ViewDisciplinaAnoLabel_tblDisciplinaSeqDisciplina}"/>
-                        <h:outputText value="#{disciplinaAnoController.selected.tblDisciplinaSeqDisciplina.seqDisciplina}"/>
+                        <h:outputText value="#{disciplinaAnoController.selected.tblDisciplinaSeqDisciplina.desNomeDisciplina}"/>
 
                         <h:outputText value="#{messages.ViewDisciplinaAnoLabel_tblAnoSeqAno}"/>
-                        <h:outputText value="#{disciplinaAnoController.selected.tblAnoSeqAno.seqAno}"/>
+                        <h:outputText value="#{disciplinaAnoController.selected.tblAnoSeqAno.numAnoVigente}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('DisciplinaAnoViewDialog').hide()"/>
                 </h:panelGroup>

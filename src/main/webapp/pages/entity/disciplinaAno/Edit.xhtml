@@ -14,17 +14,13 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{disciplinaAnoController.selected != null}">
 
-
-                        <h:outputLabel value="#{messages.EditDisciplinaAnoLabel_seqDisciplinaAno}" for="seqDisciplinaAno" />
-                        <h:outputText id="seqDisciplinaAno" value="#{disciplinaAnoController.selected.seqDisciplinaAno}" />
-
                         <p:outputLabel value="#{messages.EditDisciplinaAnoLabel_tblDisciplinaSeqDisciplina}" for="tblDisciplinaSeqDisciplina" />
                         <p:selectOneMenu id="tblDisciplinaSeqDisciplina" value="#{disciplinaAnoController.selected.tblDisciplinaSeqDisciplina}" required="true" requiredMessage="#{messages.EditDisciplinaAnoRequiredMessage_tblDisciplinaSeqDisciplina}" converter="disciplinaConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
                             <f:selectItems value="#{disciplinaController.items}"
                                            var="tblDisciplinaSeqDisciplinaItem"
                                            itemValue="#{tblDisciplinaSeqDisciplinaItem}"
-                                           itemLabel="#{tblDisciplinaSeqDisciplinaItem.seqDisciplina.toString()}"
+                                           itemLabel="#{tblDisciplinaSeqDisciplinaItem.desNomeDisciplina.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -35,7 +31,7 @@
                             <f:selectItems value="#{anoController.items}"
                                            var="tblAnoSeqAnoItem"
                                            itemValue="#{tblAnoSeqAnoItem}"
-                                           itemLabel="#{tblAnoSeqAnoItem.seqAno.toString()}"
+                                           itemLabel="#{tblAnoSeqAnoItem.numAnoVigente.toString()}"
                                            />
 
                         </p:selectOneMenu>

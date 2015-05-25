@@ -22,7 +22,7 @@
             <p:dataTable id="datalist"
                          value="#{disciplinaAnoController.items}"
                          var="item"
-                         rowKey="#{item.seqDisciplinaAno}"
+                         rowKey="#{item.tblDisciplinaSeqDisciplina.desNomeDisciplina}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -34,19 +34,11 @@
                 <p:ajax event="contextMenu" update=" :DisciplinaAnoListForm:createButton :DisciplinaAnoListForm:viewButton :DisciplinaAnoListForm:editButton :DisciplinaAnoListForm:deleteButton" listener="#{disciplinaAnoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('DisciplinaAnoListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqDisciplinaAno}" filterBy="#{item.seqDisciplinaAno}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListDisciplinaAnoTitle_seqDisciplinaAno}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqDisciplinaAno}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.tblDisciplinaSeqDisciplina.seqDisciplina}" filterBy="#{item.tblDisciplinaSeqDisciplina.seqDisciplina}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListDisciplinaAnoTitle_tblDisciplinaSeqDisciplina}"/>
                     </f:facet>
-                    <h:outputText value="#{item.tblDisciplinaSeqDisciplina.seqDisciplina}"/>
+                    <h:outputText value="#{item.tblDisciplinaSeqDisciplina.desNomeDisciplina}"/>
                 </p:column>
 
 
@@ -54,7 +46,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListDisciplinaAnoTitle_tblAnoSeqAno}"/>
                     </f:facet>
-                    <h:outputText value="#{item.tblAnoSeqAno.seqAno}"/>
+                    <h:outputText value="#{item.tblAnoSeqAno.numAnoVigente}"/>
                 </p:column>
 
 

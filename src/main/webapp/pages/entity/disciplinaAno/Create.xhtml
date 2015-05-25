@@ -15,16 +15,13 @@
                 <h:panelGroup id="display" rendered="#{disciplinaAnoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateDisciplinaAnoLabel_seqDisciplinaAno}" for="seqDisciplinaAno" />
-                        <p:inputText id="seqDisciplinaAno" value="#{disciplinaAnoController.selected.seqDisciplinaAno}" title="#{messages.CreateDisciplinaAnoTitle_seqDisciplinaAno}" required="true" requiredMessage="#{messages.CreateDisciplinaAnoRequiredMessage_seqDisciplinaAno}"/>
-
                         <p:outputLabel value="#{messages.CreateDisciplinaAnoLabel_tblDisciplinaSeqDisciplina}" for="tblDisciplinaSeqDisciplina" />
                         <p:selectOneMenu id="tblDisciplinaSeqDisciplina" value="#{disciplinaAnoController.selected.tblDisciplinaSeqDisciplina}" required="true" requiredMessage="#{messages.CreateDisciplinaAnoRequiredMessage_tblDisciplinaSeqDisciplina}" converter="disciplinaConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
                             <f:selectItems value="#{disciplinaController.items}"
                                            var="tblDisciplinaSeqDisciplinaItem"
                                            itemValue="#{tblDisciplinaSeqDisciplinaItem}"
-                                           itemLabel="#{tblDisciplinaSeqDisciplinaItem.seqDisciplina.toString()}"
+                                           itemLabel="#{tblDisciplinaSeqDisciplinaItem.desNomeDisciplina.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -35,7 +32,7 @@
                             <f:selectItems value="#{anoController.items}"
                                            var="tblAnoSeqAnoItem"
                                            itemValue="#{tblAnoSeqAnoItem}"
-                                           itemLabel="#{tblAnoSeqAnoItem.seqAno.toString()}"
+                                           itemLabel="#{tblAnoSeqAnoItem.numAnoVigente.toString()}"
                                            />
 
                         </p:selectOneMenu>
