@@ -115,9 +115,9 @@ public class ParametrizacaoController extends AbstractController<Parametrizacao>
         return "/pages/prime/notas/index";
     }
     
-    public Collection<Parametrizacao> getFilhos() {
+    public Collection<Parametrizacao> getFilhosNivelEscolar() {
         if (super.items == null) {
-            super.items = this.ejbFacade.findChilds();
+            super.items = this.ejbFacade.findFilhosNivelEscolar();
         }
         return super.items;
     }

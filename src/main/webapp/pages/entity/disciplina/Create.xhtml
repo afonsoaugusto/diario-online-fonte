@@ -15,14 +15,11 @@
                 <h:panelGroup id="display" rendered="#{disciplinaController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateDisciplinaLabel_seqDisciplina}" for="seqDisciplina" />
-                        <p:inputText id="seqDisciplina" value="#{disciplinaController.selected.seqDisciplina}" title="#{messages.CreateDisciplinaTitle_seqDisciplina}" required="true" requiredMessage="#{messages.CreateDisciplinaRequiredMessage_seqDisciplina}"/>
-
                         <p:outputLabel value="#{messages.CreateDisciplinaLabel_desNomeDisciplina}" for="desNomeDisciplina" />
                         <p:inputText id="desNomeDisciplina" value="#{disciplinaController.selected.desNomeDisciplina}" title="#{messages.CreateDisciplinaTitle_desNomeDisciplina}" size="60" maxlength="60"/>
 
                         <p:outputLabel value="#{messages.CreateDisciplinaLabel_desConteudo}" for="desConteudo" />
-                        <p:inputTextarea rows="4" cols="30" id="desConteudo" value="#{disciplinaController.selected.desConteudo}" title="#{messages.CreateDisciplinaTitle_desConteudo}" />
+                        <p:inputTextarea rows="10" cols="40" id="desConteudo" value="#{disciplinaController.selected.desConteudo}" title="#{messages.CreateDisciplinaTitle_desConteudo}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{disciplinaController.saveNew}" value="#{messages.Save}" update="display,:DisciplinaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DisciplinaCreateDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>

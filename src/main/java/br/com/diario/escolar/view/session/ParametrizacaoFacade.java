@@ -10,6 +10,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -30,9 +32,11 @@ public class ParametrizacaoFacade extends AbstractFacade<Parametrizacao> {
         super(Parametrizacao.class);
     }
 
-    public List<Parametrizacao> findChilds() {
+    public List<Parametrizacao> findFilhosNivelEscolar() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(Parametrizacao.class));
+        //cq.select(cq.from(Parametrizacao.class));
+        Root<Parametrizacao> root = cq.from(Parametrizacao.class);
+        cq.where(root.get("seqParametrizacaoPai").isNotNull(),root.get("codParametro").in("ANO_VIGENTE"));
         return getEntityManager().createQuery(cq).getResultList();
     }
 }

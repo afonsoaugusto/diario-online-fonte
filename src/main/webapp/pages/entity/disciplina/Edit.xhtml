@@ -14,15 +14,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{disciplinaController.selected != null}">
 
-
-                        <h:outputLabel value="#{messages.EditDisciplinaLabel_seqDisciplina}" for="seqDisciplina" />
-                        <h:outputText id="seqDisciplina" value="#{disciplinaController.selected.seqDisciplina}" />
-
                         <p:outputLabel value="#{messages.EditDisciplinaLabel_desNomeDisciplina}" for="desNomeDisciplina" />
                         <p:inputText id="desNomeDisciplina" value="#{disciplinaController.selected.desNomeDisciplina}" title="#{messages.EditDisciplinaTitle_desNomeDisciplina}" size="60" maxlength="60"/>
 
                         <p:outputLabel value="#{messages.EditDisciplinaLabel_desConteudo}" for="desConteudo" />
-                        <p:inputTextarea rows="4" cols="30" id="desConteudo" value="#{disciplinaController.selected.desConteudo}" title="#{messages.EditDisciplinaTitle_desConteudo}" />
+                        <p:inputTextarea rows="10" cols="40" id="desConteudo" value="#{disciplinaController.selected.desConteudo}" title="#{messages.EditDisciplinaTitle_desConteudo}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{disciplinaController.save}" value="#{messages.Save}" update="display,:DisciplinaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DisciplinaEditDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>

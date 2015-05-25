@@ -22,7 +22,7 @@
                         <p:outputLabel value="#{messages.CreateAnoLabel_seqParameNivelEscolar}" for="seqParameNivelEscolar" />
                         <p:selectOneMenu id="seqParameNivelEscolar" value="#{anoController.selected.seqParameNivelEscolar}" required="true" requiredMessage="#{messages.CreateAnoRequiredMessage_seqParameNivelEscolar}" converter="parametrizacaoConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{parametrizacaoController.filhos}"
+                            <f:selectItems value="#{parametrizacaoController.filhosNivelEscolar}"
                                            var="seqParameNivelEscolarItem"
                                            itemValue="#{seqParameNivelEscolarItem}"
                                            itemLabel="#{seqParameNivelEscolarItem.desValorParametro.toString()}"

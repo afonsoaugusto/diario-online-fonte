@@ -24,7 +24,7 @@
             <p:dataTable id="datalist"
                          value="#{disciplinaController.items}"
                          var="item"
-                         rowKey="#{item.seqDisciplina}"
+                         rowKey="#{item.desNomeDisciplina}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -36,29 +36,12 @@
                 <p:ajax event="contextMenu" update=" :DisciplinaListForm:createButton :DisciplinaListForm:viewButton :DisciplinaListForm:editButton :DisciplinaListForm:deleteButton" listener="#{disciplinaController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('DisciplinaListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqDisciplina}" filterBy="#{item.seqDisciplina}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListDisciplinaTitle_seqDisciplina}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqDisciplina}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.desNomeDisciplina}" filterBy="#{item.desNomeDisciplina}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListDisciplinaTitle_desNomeDisciplina}"/>
                     </f:facet>
                     <h:outputText value="#{item.desNomeDisciplina}"/>
                 </p:column>
-
-
-                <p:column sortBy="#{item.desConteudo}" filterBy="#{item.desConteudo}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListDisciplinaTitle_desConteudo}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.desConteudo}"/>
-                </p:column>
-
 
             </p:dataTable>
 

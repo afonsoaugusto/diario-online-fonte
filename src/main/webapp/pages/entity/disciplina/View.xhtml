@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
+       
         <p:dialog id="DisciplinaViewDlg" widgetVar="DisciplinaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{messages.ViewDisciplinaTitle}" closeOnEscape="true">
 
             <h:form id="DisciplinaViewForm">
@@ -15,14 +15,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{disciplinaController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewDisciplinaLabel_seqDisciplina}"/>
-                        <h:outputText value="#{disciplinaController.selected.seqDisciplina}" title="#{messages.ViewDisciplinaTitle_seqDisciplina}"/>
-
                         <h:outputText value="#{messages.ViewDisciplinaLabel_desNomeDisciplina}"/>
-                        <h:outputText value="#{disciplinaController.selected.desNomeDisciplina}" title="#{messages.ViewDisciplinaTitle_desNomeDisciplina}"/>
+                        <h:outputText value="#{disciplinaController.selected.desNomeDisciplina}" title="#{messages.ViewDisciplinaTitle_desNomeDisciplina}" escape="false"/>
 
                         <h:outputText value="#{messages.ViewDisciplinaLabel_desConteudo}"/>
-                        <h:outputText value="#{disciplinaController.selected.desConteudo}" title="#{messages.ViewDisciplinaTitle_desConteudo}"/>
+                        <p:inputTextarea rows="10" cols="40" id="desConteudo" value="#{disciplinaController.selected.desConteudo}" title="#{messages.ViewDisciplinaTitle_desConteudo}" disabled="true"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('DisciplinaViewDialog').hide()"/>
                 </h:panelGroup>
