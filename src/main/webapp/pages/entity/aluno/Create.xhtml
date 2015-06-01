@@ -15,14 +15,11 @@
                 <h:panelGroup id="display" rendered="#{alunoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateAlunoLabel_seqAluno}" for="seqAluno" />
-                        <p:inputText id="seqAluno" value="#{alunoController.selected.seqAluno}" title="#{messages.CreateAlunoTitle_seqAluno}" required="true" requiredMessage="#{messages.CreateAlunoRequiredMessage_seqAluno}"/>
-
                         <p:outputLabel value="#{messages.CreateAlunoLabel_nomAluno}" for="nomAluno" />
                         <p:inputText id="nomAluno" value="#{alunoController.selected.nomAluno}" title="#{messages.CreateAlunoTitle_nomAluno}" size="255" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.CreateAlunoLabel_datNascimento}" for="datNascimento" />
-                        <p:calendar id="datNascimento" pattern="MM/dd/yyyy HH:mm:ss" value="#{alunoController.selected.datNascimento}" title="#{messages.CreateAlunoTitle_datNascimento}"  showOn="button"/>
+                        <p:calendar id="datNascimento" pattern="MM/dd/yyyy" value="#{alunoController.selected.datNascimento}" title="#{messages.CreateAlunoTitle_datNascimento}"  showOn="button"/>
 
                         <p:outputLabel value="#{messages.CreateAlunoLabel_numTel}" for="numTel" />
                         <p:inputText id="numTel" value="#{alunoController.selected.numTel}" title="#{messages.CreateAlunoTitle_numTel}"/>

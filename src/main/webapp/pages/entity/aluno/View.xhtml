@@ -15,15 +15,12 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{alunoController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewAlunoLabel_seqAluno}"/>
-                        <h:outputText value="#{alunoController.selected.seqAluno}" title="#{messages.ViewAlunoTitle_seqAluno}"/>
-
                         <h:outputText value="#{messages.ViewAlunoLabel_nomAluno}"/>
                         <h:outputText value="#{alunoController.selected.nomAluno}" title="#{messages.ViewAlunoTitle_nomAluno}"/>
 
                         <h:outputText value="#{messages.ViewAlunoLabel_datNascimento}"/>
                         <h:outputText value="#{alunoController.selected.datNascimento}" title="#{messages.ViewAlunoTitle_datNascimento}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
 
                         <h:outputText value="#{messages.ViewAlunoLabel_numTel}"/>

@@ -15,14 +15,11 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{alunoController.selected != null}">
 
 
-                        <h:outputLabel value="#{messages.EditAlunoLabel_seqAluno}" for="seqAluno" />
-                        <h:outputText id="seqAluno" value="#{alunoController.selected.seqAluno}" />
-
                         <p:outputLabel value="#{messages.EditAlunoLabel_nomAluno}" for="nomAluno" />
                         <p:inputText id="nomAluno" value="#{alunoController.selected.nomAluno}" title="#{messages.EditAlunoTitle_nomAluno}" size="255" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.EditAlunoLabel_datNascimento}" for="datNascimento" />
-                        <p:calendar id="datNascimento" pattern="MM/dd/yyyy HH:mm:ss" value="#{alunoController.selected.datNascimento}" title="#{messages.EditAlunoTitle_datNascimento}"  showOn="button"/>
+                        <p:calendar id="datNascimento" pattern="MM/dd/yyyy" value="#{alunoController.selected.datNascimento}" title="#{messages.EditAlunoTitle_datNascimento}"  showOn="button"/>
 
                         <p:outputLabel value="#{messages.EditAlunoLabel_numTel}" for="numTel" />
                         <p:inputText id="numTel" value="#{alunoController.selected.numTel}" title="#{messages.EditAlunoTitle_numTel}"/>

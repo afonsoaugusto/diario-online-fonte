@@ -23,7 +23,7 @@
             <p:dataTable id="datalist"
                          value="#{alunoController.items}"
                          var="item"
-                         rowKey="#{item.seqAluno}"
+                         rowKey="#{item.nomAluno}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -34,14 +34,6 @@
                 <p:ajax event="rowUnselect" update=":AlunoListForm:createButton :AlunoListForm:viewButton :AlunoListForm:editButton :AlunoListForm:deleteButton :AlunoListForm:AlunoDataTableContextMenu" listener="#{alunoController.resetParents}"/>
                 <p:ajax event="contextMenu" update=" :AlunoListForm:createButton :AlunoListForm:viewButton :AlunoListForm:editButton :AlunoListForm:deleteButton" listener="#{alunoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('AlunoListForm:viewButton').click();"/>
-
-                <p:column sortBy="#{item.seqAluno}" filterBy="#{item.seqAluno}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListAlunoTitle_seqAluno}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqAluno}"/>
-                </p:column>
-
 
                 <p:column sortBy="#{item.nomAluno}" filterBy="#{item.nomAluno}">
                     <f:facet name="header">
@@ -56,7 +48,7 @@
                         <h:outputText value="#{messages.ListAlunoTitle_datNascimento}"/>
                     </f:facet>
                     <h:outputText value="#{item.datNascimento}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                 </p:column>
 
