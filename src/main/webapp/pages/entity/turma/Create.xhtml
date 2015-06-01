@@ -18,16 +18,13 @@
                         <p:outputLabel value="#{messages.CreateTurmaLabel_numTumra}" for="numTumra" />
                         <p:inputText id="numTumra" value="#{turmaController.selected.numTumra}" title="#{messages.CreateTurmaTitle_numTumra}" required="true" requiredMessage="#{messages.CreateTurmaRequiredMessage_numTumra}" size="5" maxlength="5"/>
 
-                        <p:outputLabel value="#{messages.CreateTurmaLabel_flgTurmaFechada}" for="flgTurmaFechada" />
-                        <p:inputText id="flgTurmaFechada" value="#{turmaController.selected.flgTurmaFechada}" title="#{messages.CreateTurmaTitle_flgTurmaFechada}"/>
-
                         <p:outputLabel value="#{messages.CreateTurmaLabel_seqTurno}" for="seqTurno" />
                         <p:selectOneMenu id="seqTurno" value="#{turmaController.selected.seqTurno}" required="true" requiredMessage="#{messages.CreateTurmaRequiredMessage_seqTurno}" converter="turnoConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
                             <f:selectItems value="#{turnoController.items}"
                                            var="seqTurnoItem"
                                            itemValue="#{seqTurnoItem}"
-                                           itemLabel="#{seqTurnoItem.seqTurno.toString()}"
+                                           itemLabel="#{seqTurnoItem.desTurno.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -38,7 +35,7 @@
                             <f:selectItems value="#{pessoaController.items}"
                                            var="seqPessoaItem"
                                            itemValue="#{seqPessoaItem}"
-                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           itemLabel="#{seqPessoaItem.desNome.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -60,7 +57,7 @@
                             <f:selectItems value="#{anoController.items}"
                                            var="seqAnoItem"
                                            itemValue="#{seqAnoItem}"
-                                           itemLabel="#{seqAnoItem.seqAno.toString()}"
+                                           itemLabel="#{seqAnoItem.getAnoFormatado().toString()}"
                                            />
 
                         </p:selectOneMenu>

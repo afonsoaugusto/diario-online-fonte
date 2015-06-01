@@ -74,15 +74,18 @@ public class Turma implements Serializable {
     private Ano seqAno;
 
     public Turma() {
+        initTurma();
     }
 
     public Turma(BigDecimal seqTurma) {
         this.seqTurma = seqTurma;
+        initTurma();
     }
 
     public Turma(BigDecimal seqTurma, String numTumra) {
         this.seqTurma = seqTurma;
         this.numTumra = numTumra;
+        initTurma();
     }
 
     public BigDecimal getSeqTurma() {
@@ -166,6 +169,10 @@ public class Turma implements Serializable {
 
     public void setSeqAno(Ano seqAno) {
         this.seqAno = seqAno;
+    }
+    
+      private void initTurma() {
+        this.flgTurmaFechada = 'N';
     }
 
     @Override

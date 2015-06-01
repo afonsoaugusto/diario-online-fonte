@@ -22,16 +22,16 @@
                         <h:outputText value="#{turmaController.selected.flgTurmaFechada}" title="#{messages.ViewTurmaTitle_flgTurmaFechada}"/>
 
                         <h:outputText value="#{messages.ViewTurmaLabel_seqTurno}"/>
-                        <h:outputText value="#{turmaController.selected.seqTurno.seqTurno}"/>
+                        <h:outputText value="#{turmaController.selected.seqTurno.desTurno}"/>
 
                         <h:outputText value="#{messages.ViewTurmaLabel_seqPessoa}"/>
-                        <h:outputText value="#{turmaController.selected.seqPessoa.seqPessoa}"/>
+                        <h:outputText value="#{turmaController.selected.seqPessoa.desNome}"/>
 
                         <h:outputText value="#{messages.ViewTurmaLabel_seqEscola}"/>
                         <h:outputText value="#{turmaController.selected.seqEscola.desSigla}"/>
 
                         <h:outputText value="#{messages.ViewTurmaLabel_seqAno}"/>
-                        <h:outputText value="#{turmaController.selected.seqAno.seqAno}"/>
+                        <h:outputText value="#{turmaController.selected.seqAno.getAnoFormatado()}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('TurmaViewDialog').hide()"/>
                 </h:panelGroup>
