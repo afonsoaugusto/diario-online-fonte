@@ -92,6 +92,12 @@ public class DisciplinaAno implements Serializable {
     public void setTblAnoSeqAno(Ano tblAnoSeqAno) {
         this.tblAnoSeqAno = tblAnoSeqAno;
     }
+    
+    public String getDisciplinaAnoFormatado(){
+        //return tblAnoSeqAno.getNumAnoVigente() + '.'+ tblDisciplinaSeqDisciplina.getDesNomeDisciplina();
+        return tblDisciplinaSeqDisciplina.getDesNomeDisciplina() + '.'+ tblAnoSeqAno.getAnoFormatado();
+        
+    }
 
     @Override
     public int hashCode() {

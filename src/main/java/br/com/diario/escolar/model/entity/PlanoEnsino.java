@@ -54,6 +54,7 @@ public class PlanoEnsino implements Serializable {
     @Lob
     @Column(name = "DES_ANEXO")
     private Serializable desAnexo;
+    //private File desAnexo;
     @JoinColumn(name = "SEQ_TURMA", referencedColumnName = "SEQ_TURMA")
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Turma seqTurma;

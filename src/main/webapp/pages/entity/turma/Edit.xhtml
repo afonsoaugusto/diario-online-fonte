@@ -14,10 +14,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{turmaController.selected != null}">
 
-
-                        <h:outputLabel value="#{messages.EditTurmaLabel_seqTurma}" for="seqTurma" />
-                        <h:outputText id="seqTurma" value="#{turmaController.selected.seqTurma}" />
-
                         <p:outputLabel value="#{messages.EditTurmaLabel_numTumra}" for="numTumra" />
                         <p:inputText id="numTumra" value="#{turmaController.selected.numTumra}" title="#{messages.EditTurmaTitle_numTumra}" required="true" requiredMessage="#{messages.EditTurmaRequiredMessage_numTumra}" size="5" maxlength="5"/>
 
@@ -52,7 +48,7 @@
                             <f:selectItems value="#{escolaController.items}"
                                            var="seqEscolaItem"
                                            itemValue="#{seqEscolaItem}"
-                                           itemLabel="#{seqEscolaItem.seqEscola.toString()}"
+                                           itemLabel="#{seqEscolaItem.desSigla.toString()}"
                                            />
 
                         </p:selectOneMenu>

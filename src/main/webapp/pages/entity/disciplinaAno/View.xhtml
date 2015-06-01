@@ -19,7 +19,7 @@
                         <h:outputText value="#{disciplinaAnoController.selected.tblDisciplinaSeqDisciplina.desNomeDisciplina}"/>
 
                         <h:outputText value="#{messages.ViewDisciplinaAnoLabel_tblAnoSeqAno}"/>
-                        <h:outputText value="#{disciplinaAnoController.selected.tblAnoSeqAno.numAnoVigente}"/>
+                        <h:outputText value="#{disciplinaAnoController.selected.tblAnoSeqAno.getAnoFormatado()}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('DisciplinaAnoViewDialog').hide()"/>
                 </h:panelGroup>

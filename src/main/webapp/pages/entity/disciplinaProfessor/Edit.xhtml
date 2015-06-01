@@ -14,17 +14,13 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{disciplinaProfessorController.selected != null}">
 
-
-                        <h:outputLabel value="#{messages.EditDisciplinaProfessorLabel_seqDisciplinaProfessor}" for="seqDisciplinaProfessor" />
-                        <h:outputText id="seqDisciplinaProfessor" value="#{disciplinaProfessorController.selected.seqDisciplinaProfessor}" />
-
                         <p:outputLabel value="#{messages.EditDisciplinaProfessorLabel_seqPessoa}" for="seqPessoa" />
                         <p:selectOneMenu id="seqPessoa" value="#{disciplinaProfessorController.selected.seqPessoa}" required="true" requiredMessage="#{messages.EditDisciplinaProfessorRequiredMessage_seqPessoa}" converter="pessoaConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
                             <f:selectItems value="#{pessoaController.items}"
                                            var="seqPessoaItem"
                                            itemValue="#{seqPessoaItem}"
-                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           itemLabel="#{seqPessoaItem.desNome.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -35,7 +31,7 @@
                             <f:selectItems value="#{disciplinaAnoController.items}"
                                            var="seqDisciplinaAnoItem"
                                            itemValue="#{seqDisciplinaAnoItem}"
-                                           itemLabel="#{seqDisciplinaAnoItem.seqDisciplinaAno.toString()}"
+                                           itemLabel="#{seqDisciplinaAnoItem.getDisciplinaAnoFormatado().toString()}"
                                            />
 
                         </p:selectOneMenu>

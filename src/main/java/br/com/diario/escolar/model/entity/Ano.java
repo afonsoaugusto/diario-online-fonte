@@ -136,6 +136,11 @@ public class Ano implements Serializable {
     public void setNotasList(List<Notas> notasList) {
         this.notasList = notasList;
     }
+    
+    public String getAnoFormatado(){
+        //return tblAnoSeqAno.getNumAnoVigente() + '.'+ tblDisciplinaSeqDisciplina.getDesNomeDisciplina();
+        return this.getNumAnoVigente() +" - "+ this.seqParameNivelEscolar.getDesValorParametro();
+    }
 
     @Override
     public int hashCode() {

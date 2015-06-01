@@ -22,7 +22,7 @@
             <p:dataTable id="datalist"
                          value="#{disciplinaProfessorController.items}"
                          var="item"
-                         rowKey="#{item.seqDisciplinaProfessor}"
+                         rowKey="#{item.seqPessoa.desNome}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -34,19 +34,12 @@
                 <p:ajax event="contextMenu" update=" :DisciplinaProfessorListForm:createButton :DisciplinaProfessorListForm:viewButton :DisciplinaProfessorListForm:editButton :DisciplinaProfessorListForm:deleteButton" listener="#{disciplinaProfessorController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('DisciplinaProfessorListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqDisciplinaProfessor}" filterBy="#{item.seqDisciplinaProfessor}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListDisciplinaProfessorTitle_seqDisciplinaProfessor}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqDisciplinaProfessor}"/>
-                </p:column>
-
 
                 <p:column sortBy="#{item.seqPessoa.seqPessoa}" filterBy="#{item.seqPessoa.seqPessoa}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListDisciplinaProfessorTitle_seqPessoa}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqPessoa.seqPessoa}"/>
+                    <h:outputText value="#{item.seqPessoa.desNome}"/>
                 </p:column>
 
 
@@ -54,7 +47,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListDisciplinaProfessorTitle_seqDisciplinaAno}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqDisciplinaAno.seqDisciplinaAno}"/>
+                    <h:outputText value="#{item.seqDisciplinaAno.getDisciplinaAnoFormatado()}"/>
                 </p:column>
 
 

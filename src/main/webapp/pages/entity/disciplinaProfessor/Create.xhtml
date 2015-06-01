@@ -15,16 +15,13 @@
                 <h:panelGroup id="display" rendered="#{disciplinaProfessorController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateDisciplinaProfessorLabel_seqDisciplinaProfessor}" for="seqDisciplinaProfessor" />
-                        <p:inputText id="seqDisciplinaProfessor" value="#{disciplinaProfessorController.selected.seqDisciplinaProfessor}" title="#{messages.CreateDisciplinaProfessorTitle_seqDisciplinaProfessor}" required="true" requiredMessage="#{messages.CreateDisciplinaProfessorRequiredMessage_seqDisciplinaProfessor}"/>
-
                         <p:outputLabel value="#{messages.CreateDisciplinaProfessorLabel_seqPessoa}" for="seqPessoa" />
                         <p:selectOneMenu id="seqPessoa" value="#{disciplinaProfessorController.selected.seqPessoa}" required="true" requiredMessage="#{messages.CreateDisciplinaProfessorRequiredMessage_seqPessoa}" converter="pessoaConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
                             <f:selectItems value="#{pessoaController.items}"
                                            var="seqPessoaItem"
                                            itemValue="#{seqPessoaItem}"
-                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           itemLabel="#{seqPessoaItem.desNome.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -35,7 +32,7 @@
                             <f:selectItems value="#{disciplinaAnoController.items}"
                                            var="seqDisciplinaAnoItem"
                                            itemValue="#{seqDisciplinaAnoItem}"
-                                           itemLabel="#{seqDisciplinaAnoItem.seqDisciplinaAno.toString()}"
+                                           itemLabel="#{seqDisciplinaAnoItem.getDisciplinaAnoFormatado().toString()}"
                                            />
 
                         </p:selectOneMenu>

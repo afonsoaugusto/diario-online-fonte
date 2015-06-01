@@ -32,7 +32,7 @@
                             <f:selectItems value="#{anoController.items}"
                                            var="tblAnoSeqAnoItem"
                                            itemValue="#{tblAnoSeqAnoItem}"
-                                           itemLabel="#{tblAnoSeqAnoItem.numAnoVigente.toString()}"
+                                           itemLabel="#{tblAnoSeqAnoItem.getAnoFormatado().toString()}"
                                            />
 
                         </p:selectOneMenu>

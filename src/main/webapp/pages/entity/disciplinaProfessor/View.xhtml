@@ -15,14 +15,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{disciplinaProfessorController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewDisciplinaProfessorLabel_seqDisciplinaProfessor}"/>
-                        <h:outputText value="#{disciplinaProfessorController.selected.seqDisciplinaProfessor}" title="#{messages.ViewDisciplinaProfessorTitle_seqDisciplinaProfessor}"/>
-
                         <h:outputText value="#{messages.ViewDisciplinaProfessorLabel_seqPessoa}"/>
-                        <h:outputText value="#{disciplinaProfessorController.selected.seqPessoa.seqPessoa}"/>
+                        <h:outputText value="#{disciplinaProfessorController.selected.seqPessoa.desNome}"/>
 
                         <h:outputText value="#{messages.ViewDisciplinaProfessorLabel_seqDisciplinaAno}"/>
-                        <h:outputText value="#{disciplinaProfessorController.selected.seqDisciplinaAno.seqDisciplinaAno}"/>
+                        <h:outputText value="#{disciplinaProfessorController.selected.seqDisciplinaAno.getDisciplinaAnoFormatado()}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('DisciplinaProfessorViewDialog').hide()"/>
                 </h:panelGroup>
