@@ -10,6 +10,7 @@
             <p:growl id="messages" showDetail="false"/>
             <p:menu toggleable="true">
                 <p:submenu label="#{messages.MenuAdministracao}">
+                    <p:menuitem value="#{messages.MenuCadastroAno}" outcome="/pages/prime/ano/index" />
                     <p:menuitem value="#{messages.MenuPessoa}" outcome="/pages/prime/pessoa/index" />
                     <p:menuitem value="#{messages.MenuAdministracaoAtuacaoProfessor}" outcome="/pages/prime/atuacaoProfessor/index" />
                     <p:menuitem value="#{messages.Disciplina}" outcome="/pages/prime/disciplina/index" />
@@ -17,7 +18,6 @@
                     <p:menuitem value="#{messages.DisciplinaProfessor}" outcome="/pages/prime/disciplinaProfessor/index" />
                 </p:submenu>
                 <p:submenu label="#{messages.MenuCadastro}">
-                    <p:menuitem value="#{messages.MenuCadastroAno}" outcome="/pages/prime/ano/index" />
                     <p:menuitem value="#{messages.MenuCadastroAluno}" outcome="/pages/prime/aluno/index" />
                     <p:menuitem value="#{messages.MenuCadastroAlunoTurma}" outcome="/pages/prime/alunoTurma/index" />
                     <p:menuitem value="#{messages.Turma}" outcome="/pages/prime/turma/index" />
