@@ -141,6 +141,11 @@ public class Ano implements Serializable {
         //return tblAnoSeqAno.getNumAnoVigente() + '.'+ tblDisciplinaSeqDisciplina.getDesNomeDisciplina();
         return this.getNumAnoVigente() +" - "+ this.seqParameNivelEscolar.getDesValorParametro();
     }
+    
+    public String getNivelFormatado(){
+        //return tblAnoSeqAno.getNumAnoVigente() + '.'+ tblDisciplinaSeqDisciplina.getDesNomeDisciplina();
+        return this.seqParameNivelEscolar.getDesValorParametro() +" - "+this.getNumAnoVigente();
+    }
 
     @Override
     public int hashCode() {

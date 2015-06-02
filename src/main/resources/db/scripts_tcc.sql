@@ -20,7 +20,7 @@ Cadastro
     Professor -> Sem mascaras
     Ano -> ok
     Aluno -> Falta mascaras
-    Inclusão de Alunos na Turma
+    Inclusão de Alunos na Turma -> falta atualizar as turmas caso o usuario for incluido em nova turma
     Turma -> ok
     Disciplina -> ok
     Disciplina Ano -> ok

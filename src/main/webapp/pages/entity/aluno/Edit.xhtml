@@ -16,7 +16,7 @@
 
 
                         <p:outputLabel value="#{messages.EditAlunoLabel_nomAluno}" for="nomAluno" />
-                        <p:inputText id="nomAluno" value="#{alunoController.selected.nomAluno}" title="#{messages.EditAlunoTitle_nomAluno}" size="255" maxlength="255"/>
+                        <p:inputText id="nomAluno" value="#{alunoController.selected.nomAluno}" title="#{messages.EditAlunoTitle_nomAluno}" size="100" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.EditAlunoLabel_datNascimento}" for="datNascimento" />
                         <p:calendar id="datNascimento" pattern="MM/dd/yyyy" value="#{alunoController.selected.datNascimento}" title="#{messages.EditAlunoTitle_datNascimento}"  showOn="button"/>
@@ -37,7 +37,10 @@
                         <p:inputText id="numTelContato" value="#{alunoController.selected.numTelContato}" title="#{messages.EditAlunoTitle_numTelContato}"/>
 
                         <p:outputLabel value="#{messages.EditAlunoLabel_flgAtivo}" for="flgAtivo" />
-                        <p:inputText id="flgAtivo" value="#{alunoController.selected.flgAtivo}" title="#{messages.EditAlunoTitle_flgAtivo}"/>
+                        <p:selectOneRadio id="flgAtivo" value="#{alunoController.selected.flgAtivo}"  required="true" requiredMessage="#{messages.EditAlunoTitle_flgAtivo}">
+                            <f:selectItem itemLabel="S" itemValue="S"/>
+                            <f:selectItem itemLabel="N" itemValue="N"/>
+                        </p:selectOneRadio>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{alunoController.save}" value="#{messages.Save}" update="display,:AlunoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlunoEditDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>

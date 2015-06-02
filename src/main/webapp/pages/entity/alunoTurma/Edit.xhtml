@@ -15,19 +15,14 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{alunoTurmaController.selected != null}">
 
 
-                        <h:outputLabel value="#{messages.EditAlunoTurmaLabel_seqAlunoTurma}" for="seqAlunoTurma" />
-                        <h:outputText id="seqAlunoTurma" value="#{alunoTurmaController.selected.seqAlunoTurma}" />
 
-                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_flgTurmaAtual}" for="flgTurmaAtual" />
-                        <p:inputText id="flgTurmaAtual" value="#{alunoTurmaController.selected.flgTurmaAtual}" title="#{messages.EditAlunoTurmaTitle_flgTurmaAtual}" required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_flgTurmaAtual}"/>
-
-                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_seqTurma}" for="seqTurma" />
-                        <p:selectOneMenu id="seqTurma" value="#{alunoTurmaController.selected.seqTurma}" required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_seqTurma}" converter="turmaConverter">
+                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_seqAluno}" for="seqAluno" />
+                        <p:selectOneMenu id="seqAluno" value="#{alunoTurmaController.selected.seqAluno}" required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_seqAluno}" converter="alunoConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{turmaController.items}"
-                                           var="seqTurmaItem"
-                                           itemValue="#{seqTurmaItem}"
-                                           itemLabel="#{seqTurmaItem.seqTurma.toString()}"
+                            <f:selectItems value="#{alunoController.items}"
+                                           var="seqAlunoItem"
+                                           itemValue="#{seqAlunoItem}"
+                                           itemLabel="#{seqAlunoItem.nomAluno.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -38,21 +33,28 @@
                             <f:selectItems value="#{situacaoController.items}"
                                            var="seqSituacaoItem"
                                            itemValue="#{seqSituacaoItem}"
-                                           itemLabel="#{seqSituacaoItem.seqSituacao.toString()}"
+                                           itemLabel="#{seqSituacaoItem.desSituacao.toString()}"
                                            />
 
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_seqAluno}" for="seqAluno" />
-                        <p:selectOneMenu id="seqAluno" value="#{alunoTurmaController.selected.seqAluno}" required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_seqAluno}" converter="alunoConverter">
+                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_flgTurmaAtual}" for="flgTurmaAtual" />
+                        <p:selectOneRadio id="flgTurmaAtual" value="#{alunoTurmaController.selected.flgTurmaAtual}"  required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_flgTurmaAtual}">
+                            <f:selectItem itemLabel="S" itemValue="S"/>
+                            <f:selectItem itemLabel="N" itemValue="N"/>
+                        </p:selectOneRadio>
+
+                        <p:outputLabel value="#{messages.EditAlunoTurmaLabel_seqTurma}" for="seqTurma" />
+                        <p:selectOneMenu id="seqTurma" value="#{alunoTurmaController.selected.seqTurma}" required="true" requiredMessage="#{messages.EditAlunoTurmaRequiredMessage_seqTurma}" converter="turmaConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{alunoController.items}"
-                                           var="seqAlunoItem"
-                                           itemValue="#{seqAlunoItem}"
-                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
+                            <f:selectItems value="#{turmaController.items}"
+                                           var="seqTurmaItem"
+                                           itemValue="#{seqTurmaItem}"
+                                           itemLabel="#{seqTurmaItem.getTurmaFormatada().toString()}"
                                            />
 
                         </p:selectOneMenu>
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{alunoTurmaController.save}" value="#{messages.Save}" update="display,:AlunoTurmaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlunoTurmaEditDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>

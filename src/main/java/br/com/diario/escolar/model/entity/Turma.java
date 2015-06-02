@@ -174,6 +174,10 @@ public class Turma implements Serializable {
       private void initTurma() {
         this.flgTurmaFechada = 'N';
     }
+      
+    public String getTurmaFormatada(){
+        return this.numTumra + " - "+ this.seqAno.getNivelFormatado();
+    }
 
     @Override
     public int hashCode() {

@@ -34,13 +34,19 @@
                 <p:ajax event="contextMenu" update=" :AlunoTurmaListForm:createButton :AlunoTurmaListForm:viewButton :AlunoTurmaListForm:editButton :AlunoTurmaListForm:deleteButton" listener="#{alunoTurmaController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('AlunoTurmaListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqAlunoTurma}" filterBy="#{item.seqAlunoTurma}">
+                <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
                     <f:facet name="header">
-                        <h:outputText value="#{messages.ListAlunoTurmaTitle_seqAlunoTurma}"/>
+                        <h:outputText value="#{messages.ListAlunoTurmaTitle_seqAluno}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqAlunoTurma}"/>
+                    <h:outputText value="#{item.seqAluno.nomAluno}"/>
                 </p:column>
 
+                <p:column sortBy="#{item.seqSituacao.seqSituacao}" filterBy="#{item.seqSituacao.seqSituacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListAlunoTurmaTitle_seqSituacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.seqSituacao.desSituacao}"/>
+                </p:column>
 
                 <p:column sortBy="#{item.flgTurmaAtual}" filterBy="#{item.flgTurmaAtual}">
                     <f:facet name="header">
@@ -54,25 +60,8 @@
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAlunoTurmaTitle_seqTurma}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqTurma.seqTurma}"/>
+                    <h:outputText value="#{item.seqTurma.getTurmaFormatada()}"/>
                 </p:column>
-
-
-                <p:column sortBy="#{item.seqSituacao.seqSituacao}" filterBy="#{item.seqSituacao.seqSituacao}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListAlunoTurmaTitle_seqSituacao}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqSituacao.seqSituacao}"/>
-                </p:column>
-
-
-                <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListAlunoTurmaTitle_seqAluno}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqAluno.seqAluno}"/>
-                </p:column>
-
 
             </p:dataTable>
 

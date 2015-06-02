@@ -121,5 +121,12 @@ public class ParametrizacaoController extends AbstractController<Parametrizacao>
         }
         return super.items;
     }
+    
+    public Collection<Parametrizacao> getStatusAlunoTurma() {
+        if (super.items == null) {
+            super.items = this.ejbFacade.findStatusAlunoTurma();
+        }
+        return super.items;
+    }
 
 }

@@ -84,10 +84,12 @@ public class Aluno implements Serializable {
     private List<Notas> notasList;
 
     public Aluno() {
+        initAluno();
     }
 
     public Aluno(BigDecimal seqAluno) {
         this.seqAluno = seqAluno;
+        initAluno();
     }
 
     public BigDecimal getSeqAluno() {
@@ -196,6 +198,10 @@ public class Aluno implements Serializable {
 
     public void setNotasList(List<Notas> notasList) {
         this.notasList = notasList;
+    }
+    
+    public void initAluno(){
+        this.flgAtivo = 'S';
     }
 
     @Override

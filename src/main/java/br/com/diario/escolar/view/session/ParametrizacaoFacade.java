@@ -38,4 +38,12 @@ public class ParametrizacaoFacade extends AbstractFacade<Parametrizacao> {
         cq.where(root.get("seqParametrizacaoPai").isNotNull(),root.get("codParametro").in("ANO_VIGENTE"));
         return getEntityManager().createQuery(cq).getResultList();
     }
+    
+    public List<Parametrizacao> findStatusAlunoTurma() {
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        //cq.select(cq.from(Parametrizacao.class));
+        Root<Parametrizacao> root = cq.from(Parametrizacao.class);
+        cq.where(root.get("seqParametrizacaoPai").isNotNull(),root.get("codParametro").in("STATUS_ALUNO_TURMA"));
+        return getEntityManager().createQuery(cq).getResultList();
+    }
 }

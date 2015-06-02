@@ -15,20 +15,18 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{alunoTurmaController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqAlunoTurma}"/>
-                        <h:outputText value="#{alunoTurmaController.selected.seqAlunoTurma}" title="#{messages.ViewAlunoTurmaTitle_seqAlunoTurma}"/>
+                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqAluno}"/>
+                        <h:outputText value="#{alunoTurmaController.selected.seqAluno.nomAluno}"/>
+                        
+                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqSituacao}"/>
+                        <h:outputText value="#{alunoTurmaController.selected.seqSituacao.desSituacao}"/>
+                        
+                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqTurma}"/>
+                        <h:outputText value="#{alunoTurmaController.selected.seqTurma.getTurmaFormatada()}"/>
 
                         <h:outputText value="#{messages.ViewAlunoTurmaLabel_flgTurmaAtual}"/>
                         <h:outputText value="#{alunoTurmaController.selected.flgTurmaAtual}" title="#{messages.ViewAlunoTurmaTitle_flgTurmaAtual}"/>
 
-                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqTurma}"/>
-                        <h:outputText value="#{alunoTurmaController.selected.seqTurma.seqTurma}"/>
-
-                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqSituacao}"/>
-                        <h:outputText value="#{alunoTurmaController.selected.seqSituacao.seqSituacao}"/>
-
-                        <h:outputText value="#{messages.ViewAlunoTurmaLabel_seqAluno}"/>
-                        <h:outputText value="#{alunoTurmaController.selected.seqAluno.seqAluno}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('AlunoTurmaViewDialog').hide()"/>
                 </h:panelGroup>

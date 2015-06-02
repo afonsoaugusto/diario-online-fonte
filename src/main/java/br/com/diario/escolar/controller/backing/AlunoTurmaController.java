@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.inject.Inject;
 
 @ManagedBean(name = "alunoTurmaController")
 @ViewScoped

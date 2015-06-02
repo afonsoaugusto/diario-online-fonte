@@ -16,7 +16,7 @@
                     <p:panelGrid columns="2" columnClasses="column">
 
                         <p:outputLabel value="#{messages.CreateAlunoLabel_nomAluno}" for="nomAluno" />
-                        <p:inputText id="nomAluno" value="#{alunoController.selected.nomAluno}" title="#{messages.CreateAlunoTitle_nomAluno}" size="255" maxlength="255"/>
+                        <p:inputText id="nomAluno" value="#{alunoController.selected.nomAluno}" title="#{messages.CreateAlunoTitle_nomAluno}" size="100" maxlength="255"/>
 
                         <p:outputLabel value="#{messages.CreateAlunoLabel_datNascimento}" for="datNascimento" />
                         <p:calendar id="datNascimento" pattern="MM/dd/yyyy" value="#{alunoController.selected.datNascimento}" title="#{messages.CreateAlunoTitle_datNascimento}"  showOn="button"/>
@@ -36,8 +36,6 @@
                         <p:outputLabel value="#{messages.CreateAlunoLabel_numTelContato}" for="numTelContato" />
                         <p:inputText id="numTelContato" value="#{alunoController.selected.numTelContato}" title="#{messages.CreateAlunoTitle_numTelContato}"/>
 
-                        <p:outputLabel value="#{messages.CreateAlunoLabel_flgAtivo}" for="flgAtivo" />
-                        <p:inputText id="flgAtivo" value="#{alunoController.selected.flgAtivo}" title="#{messages.CreateAlunoTitle_flgAtivo}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{alunoController.saveNew}" value="#{messages.Save}" update="display,:AlunoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlunoCreateDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
