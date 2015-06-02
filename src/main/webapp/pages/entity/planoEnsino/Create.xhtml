@@ -22,7 +22,7 @@
                         <p:inputTextarea rows="4" cols="30" id="desConteudo" value="#{planoEnsinoController.selected.desConteudo}" title="#{messages.CreatePlanoEnsinoTitle_desConteudo}" />
 
                         <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_datPlano}" for="datPlano" />
-                        <p:calendar id="datPlano" pattern="MM/dd/yyyy HH:mm:ss" value="#{planoEnsinoController.selected.datPlano}" title="#{messages.CreatePlanoEnsinoTitle_datPlano}"  showOn="button"/>
+                        <p:calendar id="datPlano" pattern="MM/dd/yyyy" value="#{planoEnsinoController.selected.datPlano}" title="#{messages.CreatePlanoEnsinoTitle_datPlano}"  showOn="button"/>
 
                         <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_desAnexo}" for="desAnexo" />
                         <p:inputTextarea rows="4" cols="30" id="desAnexo" value="#{planoEnsinoController.selected.desAnexo}" title="#{messages.CreatePlanoEnsinoTitle_desAnexo}" />
