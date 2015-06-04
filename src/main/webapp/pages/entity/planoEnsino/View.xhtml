@@ -15,9 +15,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{planoEnsinoController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewPlanoEnsinoLabel_seqPlanoEnsino}"/>
-                        <h:outputText value="#{planoEnsinoController.selected.seqPlanoEnsino}" title="#{messages.ViewPlanoEnsinoTitle_seqPlanoEnsino}"/>
-
                         <h:outputText value="#{messages.ViewPlanoEnsinoLabel_desConteudo}"/>
                         <h:outputText value="#{planoEnsinoController.selected.desConteudo}" title="#{messages.ViewPlanoEnsinoTitle_desConteudo}"/>
 

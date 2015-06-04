@@ -33,14 +33,6 @@
                 <p:ajax event="contextMenu" update=" :PlanoEnsinoListForm:createButton :PlanoEnsinoListForm:viewButton :PlanoEnsinoListForm:editButton :PlanoEnsinoListForm:deleteButton" listener="#{planoEnsinoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('PlanoEnsinoListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqPlanoEnsino}" filterBy="#{item.seqPlanoEnsino}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListPlanoEnsinoTitle_seqPlanoEnsino}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqPlanoEnsino}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.desConteudo}" filterBy="#{item.desConteudo}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListPlanoEnsinoTitle_desConteudo}"/>

@@ -5,6 +5,7 @@
  */
 package br.com.diario.escolar.model.entity;
 
+import java.io.File;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -53,8 +54,8 @@ public class PlanoEnsino implements Serializable {
     private Date datPlano;
     @Lob
     @Column(name = "DES_ANEXO")
-    private Serializable desAnexo;
-    //private File desAnexo;
+    //private Serializable desAnexo;
+    private File desAnexo;
     @JoinColumn(name = "SEQ_TURMA", referencedColumnName = "SEQ_TURMA")
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Turma seqTurma;
@@ -93,11 +94,11 @@ public class PlanoEnsino implements Serializable {
         this.datPlano = datPlano;
     }
 
-    public Serializable getDesAnexo() {
+    public File getDesAnexo() {
         return desAnexo;
     }
 
-    public void setDesAnexo(Serializable desAnexo) {
+    public void setDesAnexo(File desAnexo) {
         this.desAnexo = desAnexo;
     }
 
@@ -131,10 +132,7 @@ public class PlanoEnsino implements Serializable {
             return false;
         }
         PlanoEnsino other = (PlanoEnsino) object;
-        if ((this.seqPlanoEnsino == null && other.seqPlanoEnsino != null) || (this.seqPlanoEnsino != null && !this.seqPlanoEnsino.equals(other.seqPlanoEnsino))) {
-            return false;
-        }
-        return true;
+        return !((this.seqPlanoEnsino == null && other.seqPlanoEnsino != null) || (this.seqPlanoEnsino != null && !this.seqPlanoEnsino.equals(other.seqPlanoEnsino)));
     }
 
     @Override

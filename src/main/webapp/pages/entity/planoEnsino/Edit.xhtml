@@ -14,10 +14,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{planoEnsinoController.selected != null}">
 
-
-                        <h:outputLabel value="#{messages.EditPlanoEnsinoLabel_seqPlanoEnsino}" for="seqPlanoEnsino" />
-                        <h:outputText id="seqPlanoEnsino" value="#{planoEnsinoController.selected.seqPlanoEnsino}" />
-
                         <p:outputLabel value="#{messages.EditPlanoEnsinoLabel_desConteudo}" for="desConteudo" />
                         <p:inputTextarea rows="4" cols="30" id="desConteudo" value="#{planoEnsinoController.selected.desConteudo}" title="#{messages.EditPlanoEnsinoTitle_desConteudo}" />
 

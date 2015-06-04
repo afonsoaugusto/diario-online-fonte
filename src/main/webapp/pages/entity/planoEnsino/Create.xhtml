@@ -15,9 +15,6 @@
                 <h:panelGroup id="display" rendered="#{planoEnsinoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_seqPlanoEnsino}" for="seqPlanoEnsino" />
-                        <p:inputText id="seqPlanoEnsino" value="#{planoEnsinoController.selected.seqPlanoEnsino}" title="#{messages.CreatePlanoEnsinoTitle_seqPlanoEnsino}" required="true" requiredMessage="#{messages.CreatePlanoEnsinoRequiredMessage_seqPlanoEnsino}"/>
-
                         <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_desConteudo}" for="desConteudo" />
                         <p:inputTextarea rows="4" cols="30" id="desConteudo" value="#{planoEnsinoController.selected.desConteudo}" title="#{messages.CreatePlanoEnsinoTitle_desConteudo}" />
 
@@ -25,7 +22,7 @@
                         <p:calendar id="datPlano" pattern="MM/dd/yyyy" value="#{planoEnsinoController.selected.datPlano}" title="#{messages.CreatePlanoEnsinoTitle_datPlano}"  showOn="button"/>
 
                         <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_desAnexo}" for="desAnexo" />
-                        <p:inputTextarea rows="4" cols="30" id="desAnexo" value="#{planoEnsinoController.selected.desAnexo}" title="#{messages.CreatePlanoEnsinoTitle_desAnexo}" />
+                        <p:fileUpload mode="simple" id="desAnexo" value="#{planoEnsinoController.selected.desAnexo}" />
 
                         <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_seqTurma}" for="seqTurma" />
                         <p:selectOneMenu id="seqTurma" value="#{planoEnsinoController.selected.seqTurma}" required="true" requiredMessage="#{messages.CreatePlanoEnsinoRequiredMessage_seqTurma}" converter="turmaConverter">

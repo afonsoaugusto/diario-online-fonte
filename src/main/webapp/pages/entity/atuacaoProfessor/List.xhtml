@@ -34,14 +34,6 @@
                 <p:ajax event="contextMenu" update=" :AtuacaoProfessorListForm:createButton :AtuacaoProfessorListForm:viewButton :AtuacaoProfessorListForm:editButton :AtuacaoProfessorListForm:deleteButton" listener="#{atuacaoProfessorController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('AtuacaoProfessorListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqAtuacaoProfessor}" filterBy="#{item.seqAtuacaoProfessor}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListAtuacaoProfessorTitle_seqAtuacaoProfessor}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqAtuacaoProfessor}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.seqDisciplinaProfessor.seqDisciplinaProfessor}" filterBy="#{item.seqDisciplinaProfessor.seqDisciplinaProfessor}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAtuacaoProfessorTitle_seqDisciplinaProfessor}"/>

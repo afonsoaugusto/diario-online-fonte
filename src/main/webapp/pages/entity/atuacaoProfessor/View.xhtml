@@ -15,9 +15,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{atuacaoProfessorController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewAtuacaoProfessorLabel_seqAtuacaoProfessor}"/>
-                        <h:outputText value="#{atuacaoProfessorController.selected.seqAtuacaoProfessor}" title="#{messages.ViewAtuacaoProfessorTitle_seqAtuacaoProfessor}"/>
-
                         <h:outputText value="#{messages.ViewAtuacaoProfessorLabel_seqDisciplinaProfessor}"/>
                         <h:outputText value="#{atuacaoProfessorController.selected.seqDisciplinaProfessor.seqDisciplinaProfessor}"/>
 

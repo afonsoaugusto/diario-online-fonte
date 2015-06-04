@@ -15,9 +15,6 @@
                 <h:panelGroup id="display" rendered="#{atuacaoProfessorController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateAtuacaoProfessorLabel_seqAtuacaoProfessor}" for="seqAtuacaoProfessor" />
-                        <p:inputText id="seqAtuacaoProfessor" value="#{atuacaoProfessorController.selected.seqAtuacaoProfessor}" title="#{messages.CreateAtuacaoProfessorTitle_seqAtuacaoProfessor}" required="true" requiredMessage="#{messages.CreateAtuacaoProfessorRequiredMessage_seqAtuacaoProfessor}"/>
-
                         <p:outputLabel value="#{messages.CreateAtuacaoProfessorLabel_seqDisciplinaProfessor}" for="seqDisciplinaProfessor" />
                         <p:selectOneMenu id="seqDisciplinaProfessor" value="#{atuacaoProfessorController.selected.seqDisciplinaProfessor}" required="true" requiredMessage="#{messages.CreateAtuacaoProfessorRequiredMessage_seqDisciplinaProfessor}" converter="disciplinaProfessorConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
