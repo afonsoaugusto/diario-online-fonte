@@ -50,8 +50,8 @@ public class DisciplinaProfessor implements Serializable {
     @JoinColumn(name = "SEQ_DISCIPLINA_ANO", referencedColumnName = "SEQ_DISCIPLINA_ANO")
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private DisciplinaAno seqDisciplinaAno;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplinaProfessor",fetch = FetchType.LAZY)
-    private List<AtuacaoProfessor> atuacaoProfessorList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplinaProfessor",fetch = FetchType.LAZY)    
+    private List<PlanoEnsino> planoEnsinoList;
 
     public DisciplinaProfessor() {
     }
@@ -85,13 +85,14 @@ public class DisciplinaProfessor implements Serializable {
     }
 
     @XmlTransient
-    public List<AtuacaoProfessor> getAtuacaoProfessorList() {
-        return atuacaoProfessorList;
+    public List<PlanoEnsino> getPlanoEnsinoList() {
+        return planoEnsinoList;
     }
 
-    public void setAtuacaoProfessorList(List<AtuacaoProfessor> atuacaoProfessorList) {
-        this.atuacaoProfessorList = atuacaoProfessorList;
+    public void setPlanoEnsinoList(List<PlanoEnsino> planoEnsinoList) {
+        this.planoEnsinoList = planoEnsinoList;
     }
+    
 
     @Override
     public int hashCode() {

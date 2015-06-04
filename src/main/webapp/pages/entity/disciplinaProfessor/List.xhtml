@@ -17,7 +17,7 @@
                 <p:separator/>
                 <p:menuitem value="#{messages.DisciplinaProfessorMenuItem_seqPessoa}" icon="ui-icon-search"  actionListener="#{disciplinaProfessorController.prepareSeqPessoa}" update=":PessoaViewForm" oncomplete="PF('PessoaViewDialog').show()" disabled="#{empty disciplinaProfessorController.selected.seqPessoa}"/>  
                 <p:menuitem value="#{messages.DisciplinaProfessorMenuItem_seqDisciplinaAno}" icon="ui-icon-search"  actionListener="#{disciplinaProfessorController.prepareSeqDisciplinaAno}" update=":DisciplinaAnoViewForm" oncomplete="PF('DisciplinaAnoViewDialog').show()" disabled="#{empty disciplinaProfessorController.selected.seqDisciplinaAno}"/>  
-                <p:menuitem value="#{messages.DisciplinaProfessorMenuItem_atuacaoProfessorList}" icon="ui-icon-search"  action="#{disciplinaProfessorController.navigateAtuacaoProfessorList}" disabled="#{empty disciplinaProfessorController.selected.atuacaoProfessorList}" ajax="false"/>  
+                <p:menuitem value="#{messages.DisciplinaProfessorMenuItem_planoEnsinoList}" icon="ui-icon-search"  action="#{disciplinaProfessorController.navigatePlanoEnsinoList}" disabled="#{empty disciplinaProfessorController.selected.planoEnsinoList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{disciplinaProfessorController.items}"

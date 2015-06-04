@@ -39,9 +39,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PlanoEnsino.findBySeqPlanoEnsino", query = "SELECT p FROM PlanoEnsino p WHERE p.seqPlanoEnsino = :seqPlanoEnsino"),
     @NamedQuery(name = "PlanoEnsino.findByDatPlano", query = "SELECT p FROM PlanoEnsino p WHERE p.datPlano = :datPlano")})
 public class PlanoEnsino implements Serializable {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @NotNull
     @Column(name = "SEQ_PLANO_ENSINO")
@@ -57,11 +59,11 @@ public class PlanoEnsino implements Serializable {
     //private Serializable desAnexo;
     private File desAnexo;
     @JoinColumn(name = "SEQ_TURMA", referencedColumnName = "SEQ_TURMA")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Turma seqTurma;
-    @JoinColumn(name = "SEQ_ATUACAO_PROFESSOR", referencedColumnName = "SEQ_ATUACAO_PROFESSOR")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
-    private AtuacaoProfessor seqAtuacaoProfessor;
+    @JoinColumn(name = "SEQ_DISCIPLINA_PROFESSOR", referencedColumnName = "SEQ_DISCIPLINA_PROFESSOR")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private DisciplinaProfessor seqDisciplinaProfessor;
 
     public PlanoEnsino() {
     }
@@ -110,12 +112,12 @@ public class PlanoEnsino implements Serializable {
         this.seqTurma = seqTurma;
     }
 
-    public AtuacaoProfessor getSeqAtuacaoProfessor() {
-        return seqAtuacaoProfessor;
+    public DisciplinaProfessor getSeqDisciplinaProfessor() {
+        return seqDisciplinaProfessor;
     }
 
-    public void setSeqAtuacaoProfessor(AtuacaoProfessor seqAtuacaoProfessor) {
-        this.seqAtuacaoProfessor = seqAtuacaoProfessor;
+    public void setSeqDisciplinaProfessor(DisciplinaProfessor seqDisciplinaProfessor) {
+        this.seqDisciplinaProfessor = seqDisciplinaProfessor;
     }
 
     @Override
@@ -139,5 +141,4 @@ public class PlanoEnsino implements Serializable {
     public String toString() {
         return "com.diario.escolar.model.entity.PlanoEnsino[ seqPlanoEnsino=" + seqPlanoEnsino + " ]";
     }
-    
 }

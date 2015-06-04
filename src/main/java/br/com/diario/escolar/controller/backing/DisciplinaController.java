@@ -85,20 +85,6 @@ public class DisciplinaController extends AbstractController<Disciplina> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of AtuacaoProfessor entities
-     * that are retrieved from Disciplina?cap_first and returns the navigation
-     * outcome.
-     *
-     * @return navigation outcome for AtuacaoProfessor page
-     */
-    public String navigateAtuacaoProfessorList() {
-        if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("AtuacaoProfessor_items", this.getSelected().getAtuacaoProfessorList());
-        }
-        return "/pages/prime/atuacaoProfessor/index";
-    }
-
-    /**
      * Sets the "items" attribute with a collection of DisciplinaAno entities
      * that are retrieved from Disciplina?cap_first and returns the navigation
      * outcome.

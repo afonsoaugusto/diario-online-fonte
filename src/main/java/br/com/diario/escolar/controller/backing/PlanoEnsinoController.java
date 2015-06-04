@@ -17,7 +17,7 @@ public class PlanoEnsinoController extends AbstractController<PlanoEnsino> {
     @EJB
     private PlanoEnsinoFacade ejbFacade;
     private TurmaController seqTurmaController;
-    private AtuacaoProfessorController seqAtuacaoProfessorController;
+    private DisciplinaProfessorController seqDisciplinaProfessorController;
 
     /**
      * Initialize the concrete PlanoEnsino controller bean. The
@@ -33,7 +33,7 @@ public class PlanoEnsinoController extends AbstractController<PlanoEnsino> {
         super.setFacade(ejbFacade);
         FacesContext context = FacesContext.getCurrentInstance();
         seqTurmaController = context.getApplication().evaluateExpressionGet(context, "#{turmaController}", TurmaController.class);
-        seqAtuacaoProfessorController = context.getApplication().evaluateExpressionGet(context, "#{atuacaoProfessorController}", AtuacaoProfessorController.class);
+        seqDisciplinaProfessorController = context.getApplication().evaluateExpressionGet(context, "#{disciplinaProfessorController}", DisciplinaProfessorController.class);
     }
 
     public PlanoEnsinoController() {
@@ -46,7 +46,7 @@ public class PlanoEnsinoController extends AbstractController<PlanoEnsino> {
      */
     public void resetParents() {
         seqTurmaController.setSelected(null);
-        seqAtuacaoProfessorController.setSelected(null);
+        seqDisciplinaProfessorController.setSelected(null);
     }
 
     /**
@@ -62,15 +62,15 @@ public class PlanoEnsinoController extends AbstractController<PlanoEnsino> {
     }
 
     /**
-     * Sets the "selected" attribute of the AtuacaoProfessor controller in order
-     * to display its data in a dialog. This is reusing existing the existing
-     * View dialog.
+     * Sets the "selected" attribute of the DisciplinaProfessor controller in
+     * order to display its data in a dialog. This is reusing existing the
+     * existing View dialog.
      *
      * @param event Event object for the widget that triggered an action
      */
-    public void prepareSeqAtuacaoProfessor(ActionEvent event) {
-        if (this.getSelected() != null && seqAtuacaoProfessorController.getSelected() == null) {
-            seqAtuacaoProfessorController.setSelected(this.getSelected().getSeqAtuacaoProfessor());
+    public void prepareSeqDisciplinaProfessor(ActionEvent event) {
+        if (this.getSelected() != null && seqDisciplinaProfessorController.getSelected() == null) {
+            seqDisciplinaProfessorController.setSelected(this.getSelected().getSeqDisciplinaProfessor());
         }
     }
 }

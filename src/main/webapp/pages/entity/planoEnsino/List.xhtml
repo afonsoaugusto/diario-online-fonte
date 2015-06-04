@@ -16,7 +16,7 @@
                 <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('PlanoEnsinoListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
                 <p:menuitem value="#{messages.PlanoEnsinoMenuItem_seqTurma}" icon="ui-icon-search"  actionListener="#{planoEnsinoController.prepareSeqTurma}" update=":TurmaViewForm" oncomplete="PF('TurmaViewDialog').show()" disabled="#{empty planoEnsinoController.selected.seqTurma}"/>  
-                <p:menuitem value="#{messages.PlanoEnsinoMenuItem_seqAtuacaoProfessor}" icon="ui-icon-search"  actionListener="#{planoEnsinoController.prepareSeqAtuacaoProfessor}" update=":AtuacaoProfessorViewForm" oncomplete="PF('AtuacaoProfessorViewDialog').show()" disabled="#{empty planoEnsinoController.selected.seqAtuacaoProfessor}"/>  
+                <p:menuitem value="#{messages.AtuacaoProfessorMenuItem_seqDisciplinaProfessor}" icon="ui-icon-search"  actionListener="#{disciplinaProfessorController.prepareSeqDisciplinaAno}" update=":DisciplinaProfessorViewForm" oncomplete="PF('DisciplinaProfessorViewDialog').show()" disabled="#{empty disciplinaProfessorController.selected.seqDisciplinaProfessor}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{planoEnsinoController.items}"
@@ -67,13 +67,12 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqAtuacaoProfessor.seqAtuacaoProfessor}" filterBy="#{item.seqAtuacaoProfessor.seqAtuacaoProfessor}">
+                <p:column sortBy="#{item.seqDisciplinaProfessor.seqDisciplinaProfessor}" filterBy="#{item.seqDisciplinaProfessor.seqDisciplinaProfessor}">
                     <f:facet name="header">
-                        <h:outputText value="#{messages.ListPlanoEnsinoTitle_seqAtuacaoProfessor}"/>
+                        <h:outputText value="#{messages.ListAtuacaoProfessorTitle_seqDisciplinaProfessor}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqAtuacaoProfessor.seqAtuacaoProfessor}"/>
+                    <h:outputText value="#{item.seqDisciplinaProfessor.seqDisciplinaProfessor}"/>
                 </p:column>
-
 
             </p:dataTable>
 

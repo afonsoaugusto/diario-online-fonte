@@ -33,14 +33,14 @@
                                            />
 
                         </p:selectOneMenu>
-
-                        <p:outputLabel value="#{messages.EditPlanoEnsinoLabel_seqAtuacaoProfessor}" for="seqAtuacaoProfessor" />
-                        <p:selectOneMenu id="seqAtuacaoProfessor" value="#{planoEnsinoController.selected.seqAtuacaoProfessor}" required="true" requiredMessage="#{messages.EditPlanoEnsinoRequiredMessage_seqAtuacaoProfessor}" converter="atuacaoProfessorConverter">
+                        
+                        <p:outputLabel value="#{messages.EditPlanoEnsinoLabel_seqAtuacaoProfessor}" for="seqDisciplinaProfessor" />
+                        <p:selectOneMenu id="seqDisciplinaProfessor" value="#{planoEnsinoController.selected.seqDisciplinaProfessor}" required="true" requiredMessage="#{messages.EditAtuacaoProfessorRequiredMessage_seqDisciplinaProfessor}" converter="disciplinaProfessorConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{atuacaoProfessorController.items}"
-                                           var="seqAtuacaoProfessorItem"
-                                           itemValue="#{seqAtuacaoProfessorItem}"
-                                           itemLabel="#{seqAtuacaoProfessorItem.seqAtuacaoProfessor.toString()}"
+                            <f:selectItems value="#{disciplinaProfessorController.items}"
+                                           var="seqDisciplinaProfessorItem"
+                                           itemValue="#{seqDisciplinaProfessorItem}"
+                                           itemLabel="#{seqDisciplinaProfessorItem.seqDisciplinaProfessor.toString()}"
                                            />
 
                         </p:selectOneMenu>
