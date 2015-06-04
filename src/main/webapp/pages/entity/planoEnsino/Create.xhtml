@@ -10,7 +10,7 @@
 
         <p:dialog id="PlanoEnsinoCreateDlg" widgetVar="PlanoEnsinoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{messages.CreatePlanoEnsinoTitle}" closeOnEscape="true">
 
-            <h:form id="PlanoEnsinoCreateForm">
+            <h:form id="PlanoEnsinoCreateForm" >
 
                 <h:panelGroup id="display" rendered="#{planoEnsinoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
@@ -22,7 +22,7 @@
                         <p:calendar id="datPlano" pattern="MM/dd/yyyy" value="#{planoEnsinoController.selected.datPlano}" title="#{messages.CreatePlanoEnsinoTitle_datPlano}"  showOn="button"/>
 
                         <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_desAnexo}" for="desAnexo" />
-                        <p:fileUpload mode="simple" id="desAnexo" value="#{planoEnsinoController.selected.desAnexo}" />
+                        <p:fileUpload mode="simple" skinSimple="true" id="desAnexo" value="#{planoEnsinoController.file}" />
 
                         <p:outputLabel value="#{messages.CreatePlanoEnsinoLabel_seqTurma}" for="seqTurma" />
                         <p:selectOneMenu id="seqTurma" value="#{planoEnsinoController.selected.seqTurma}" required="true" requiredMessage="#{messages.CreatePlanoEnsinoRequiredMessage_seqTurma}" converter="turmaConverter">
@@ -30,7 +30,7 @@
                             <f:selectItems value="#{turmaController.items}"
                                            var="seqTurmaItem"
                                            itemValue="#{seqTurmaItem}"
-                                           itemLabel="#{seqTurmaItem.seqTurma.toString()}"
+                                           itemLabel="#{seqTurmaItem.getTurmaFormatada().toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -41,7 +41,7 @@
                             <f:selectItems value="#{disciplinaProfessorController.items}"
                                            var="seqDisciplinaProfessorItem"
                                            itemValue="#{seqDisciplinaProfessorItem}"
-                                           itemLabel="#{seqDisciplinaProfessorItem.seqDisciplinaProfessor.toString()}"
+                                           itemLabel="#{seqDisciplinaProfessorItem.getDisciplinaProfessorFormatado().toString()}"
                                            />
 
                         </p:selectOneMenu>

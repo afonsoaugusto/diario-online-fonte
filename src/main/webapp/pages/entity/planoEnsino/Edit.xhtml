@@ -29,7 +29,7 @@
                             <f:selectItems value="#{turmaController.items}"
                                            var="seqTurmaItem"
                                            itemValue="#{seqTurmaItem}"
-                                           itemLabel="#{seqTurmaItem.seqTurma.toString()}"
+                                           itemLabel="#{seqTurmaItem.getTurmaFormatada().toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -40,7 +40,7 @@
                             <f:selectItems value="#{disciplinaProfessorController.items}"
                                            var="seqDisciplinaProfessorItem"
                                            itemValue="#{seqDisciplinaProfessorItem}"
-                                           itemLabel="#{seqDisciplinaProfessorItem.seqDisciplinaProfessor.toString()}"
+                                           itemLabel="#{seqDisciplinaProfessorItem.getDisciplinaProfessorFormatado().toString()}"
                                            />
 
                         </p:selectOneMenu>

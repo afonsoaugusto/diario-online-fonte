@@ -93,6 +93,9 @@ public class DisciplinaProfessor implements Serializable {
         this.planoEnsinoList = planoEnsinoList;
     }
     
+    public String getDisciplinaProfessorFormatado(){
+        return this.seqPessoa.getDesNome() + " - " + this.seqDisciplinaAno.getDisciplinaAnoFormatado();
+    }
 
     @Override
     public int hashCode() {

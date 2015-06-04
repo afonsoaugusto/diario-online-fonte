@@ -47,7 +47,6 @@ delete from tbl_situacao;
 delete from TBL_ALUNO;
 delete from tbl_turma;
 delete from TBL_TURNO;
-delete from tbl_atuacao_professor;
 delete from TBL_DISCIPLINA_PROFESSOR;
 delete from TBL_PERFIL_FUNCIONALIDADE_ACAO;
 delete from TBL_DISCIPLINA_ANO;
@@ -273,4 +272,4 @@ INSERT INTO TBL_SITUACAO (SEQ_SITUACAO, DES_SITUACAO) VALUES (101, 'Transferido'
 INSERT INTO TBL_SITUACAO (SEQ_SITUACAO, DES_SITUACAO) VALUES (102, 'Cursando parcialmente');
 INSERT INTO TBL_ALUNO_TURMA (SEQ_ALUNO_TURMA, FLG_TURMA_ATUAL, SEQ_ALUNO, SEQ_SITUACAO, SEQ_TURMA) VALUES (100, 'S', 100, 100, 100);
 
-select * from TBL_PLANO_ENSINO
+--select * from TBL_PLANO_ENSINO

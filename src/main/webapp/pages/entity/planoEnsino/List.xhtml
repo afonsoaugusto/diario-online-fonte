@@ -63,7 +63,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListPlanoEnsinoTitle_seqTurma}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqTurma.seqTurma}"/>
+                    <h:outputText value="#{item.seqTurma.getTurmaFormatada()}"/>
                 </p:column>
 
 
@@ -71,7 +71,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAtuacaoProfessorTitle_seqDisciplinaProfessor}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqDisciplinaProfessor.seqDisciplinaProfessor}"/>
+                    <h:outputText value="#{item.seqDisciplinaProfessor.getDisciplinaProfessorFormatado()}"/>
                 </p:column>
 
             </p:dataTable>

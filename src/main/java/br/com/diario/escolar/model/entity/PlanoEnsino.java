@@ -57,7 +57,7 @@ public class PlanoEnsino implements Serializable {
     @Lob
     @Column(name = "DES_ANEXO")
     //private Serializable desAnexo;
-    private File desAnexo;
+    private byte[] desAnexo;
     @JoinColumn(name = "SEQ_TURMA", referencedColumnName = "SEQ_TURMA")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Turma seqTurma;
@@ -96,11 +96,11 @@ public class PlanoEnsino implements Serializable {
         this.datPlano = datPlano;
     }
 
-    public File getDesAnexo() {
+    public byte[] getDesAnexo() {
         return desAnexo;
     }
 
-    public void setDesAnexo(File desAnexo) {
+    public void setDesAnexo(byte[] desAnexo) {
         this.desAnexo = desAnexo;
     }
 

@@ -27,10 +27,10 @@
                         <h:outputText value="#{planoEnsinoController.selected.desAnexo}" title="#{messages.ViewPlanoEnsinoTitle_desAnexo}"/>
 
                         <h:outputText value="#{messages.ViewPlanoEnsinoLabel_seqTurma}"/>
-                        <h:outputText value="#{planoEnsinoController.selected.seqTurma.seqTurma}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.seqTurma.getTurmaFormatada()}"/>
 
                         <h:outputText value="#{messages.ViewPlanoEnsinoLabel_seqAtuacaoProfessor}"/>
-                        <h:outputText value="#{planoEnsinoController.selected.seqDisciplinaProfessor.seqDisciplinaProfessor}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.seqDisciplinaProfessor.getDisciplinaProfessorFormatado()}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('PlanoEnsinoViewDialog').hide()"/>
                 </h:panelGroup>
