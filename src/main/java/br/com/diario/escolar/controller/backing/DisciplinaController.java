@@ -7,7 +7,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.inject.Inject;
 
 @ManagedBean(name = "disciplinaController")
 @ViewScoped
@@ -56,19 +55,7 @@ public class DisciplinaController extends AbstractController<Disciplina> {
         return "/pages/prime/fechamento/index";
     }
 
-    /**
-     * Sets the "items" attribute with a collection of Atividade entities that
-     * are retrieved from Disciplina?cap_first and returns the navigation
-     * outcome.
-     *
-     * @return navigation outcome for Atividade page
-     */
-    public String navigateAtividadeList() {
-        if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Atividade_items", this.getSelected().getAtividadeList());
-        }
-        return "/pages/prime/atividade/index";
-    }
+    
 
     /**
      * Sets the "items" attribute with a collection of Presenca entities that

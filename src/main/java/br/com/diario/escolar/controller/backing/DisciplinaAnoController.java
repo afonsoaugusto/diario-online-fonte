@@ -75,6 +75,20 @@ public class DisciplinaAnoController extends AbstractController<DisciplinaAno> {
             tblDisciplinaSeqDisciplinaController.setSelected(this.getSelected().getTblDisciplinaSeqDisciplina());
         }
     }
+    
+    /**
+     * Sets the "items" attribute with a collection of Atividade entities that
+     * are retrieved from Disciplina?cap_first and returns the navigation
+     * outcome.
+     *
+     * @return navigation outcome for Atividade page
+     */
+    public String navigateAtividadeList() {
+        if (this.getSelected() != null) {
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Atividade_items", this.getSelected().getAtividadeList());
+        }
+        return "/pages/prime/atividade/index";
+    }
 
     /**
      * Sets the "selected" attribute of the Ano controller in order to display

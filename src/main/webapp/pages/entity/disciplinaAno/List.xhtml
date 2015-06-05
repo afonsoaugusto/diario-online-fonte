@@ -18,6 +18,7 @@
                 <p:menuitem value="#{messages.DisciplinaAnoMenuItem_disciplinaProfessorList}" icon="ui-icon-search"  action="#{disciplinaAnoController.navigateDisciplinaProfessorList}" disabled="#{empty disciplinaAnoController.selected.disciplinaProfessorList}" ajax="false"/>  
                 <p:menuitem value="#{messages.DisciplinaAnoMenuItem_tblDisciplinaSeqDisciplina}" icon="ui-icon-search"  actionListener="#{disciplinaAnoController.prepareTblDisciplinaSeqDisciplina}" update=":DisciplinaViewForm" oncomplete="PF('DisciplinaViewDialog').show()" disabled="#{empty disciplinaAnoController.selected.tblDisciplinaSeqDisciplina}"/>  
                 <p:menuitem value="#{messages.DisciplinaAnoMenuItem_tblAnoSeqAno}" icon="ui-icon-search"  actionListener="#{disciplinaAnoController.prepareTblAnoSeqAno}" update=":AnoViewForm" oncomplete="PF('AnoViewDialog').show()" disabled="#{empty disciplinaAnoController.selected.tblAnoSeqAno}"/>  
+                <p:menuitem value="#{messages.DisciplinaMenuItem_atividadeList}" icon="ui-icon-search"  action="#{disciplinaAnoController.navigateAtividadeList}" disabled="#{empty disciplinaAnoController.selected.atividadeList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{disciplinaAnoController.items}"

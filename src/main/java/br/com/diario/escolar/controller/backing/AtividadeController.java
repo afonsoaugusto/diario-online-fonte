@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.inject.Inject;
 
 @ManagedBean(name = "atividadeController")
 @ViewScoped
@@ -17,7 +16,7 @@ public class AtividadeController extends AbstractController<Atividade> {
     @EJB
     private AtividadeFacade ejbFacade;
     private ParametrizacaoController seqParameTipoController;
-    private DisciplinaController seqDisciplinaController;
+    private DisciplinaAnoController seqDisciplinaAnoController;
 
     /**
      * Initialize the concrete Atividade controller bean. The AbstractController
@@ -33,7 +32,7 @@ public class AtividadeController extends AbstractController<Atividade> {
         super.setFacade(ejbFacade);
         FacesContext context = FacesContext.getCurrentInstance();
         seqParameTipoController = context.getApplication().evaluateExpressionGet(context, "#{parametrizacaoController}", ParametrizacaoController.class);
-        seqDisciplinaController = context.getApplication().evaluateExpressionGet(context, "#{disciplinaController}", DisciplinaController.class);
+        seqDisciplinaAnoController = context.getApplication().evaluateExpressionGet(context, "#{disciplinaAnoController}", DisciplinaAnoController.class);
     }
 
     public AtividadeController() {
@@ -46,7 +45,7 @@ public class AtividadeController extends AbstractController<Atividade> {
      */
     public void resetParents() {
         seqParameTipoController.setSelected(null);
-        seqDisciplinaController.setSelected(null);
+        seqDisciplinaAnoController.setSelected(null);
     }
 
     /**
@@ -69,9 +68,9 @@ public class AtividadeController extends AbstractController<Atividade> {
      *
      * @param event Event object for the widget that triggered an action
      */
-    public void prepareSeqDisciplina(ActionEvent event) {
-        if (this.getSelected() != null && seqDisciplinaController.getSelected() == null) {
-            seqDisciplinaController.setSelected(this.getSelected().getSeqDisciplina());
+    public void prepareSeqDisciplinaAno(ActionEvent event) {
+        if (this.getSelected() != null && seqDisciplinaAnoController.getSelected() == null) {
+            seqDisciplinaAnoController.setSelected(this.getSelected().getSeqDisciplinaAno());
         }
     }
 

@@ -16,7 +16,6 @@
                 <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('DisciplinaListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
                 <p:menuitem value="#{messages.DisciplinaMenuItem_fechamentoList}" icon="ui-icon-search"  action="#{disciplinaController.navigateFechamentoList}" disabled="#{empty disciplinaController.selected.fechamentoList}" ajax="false"/>  
-                <p:menuitem value="#{messages.DisciplinaMenuItem_atividadeList}" icon="ui-icon-search"  action="#{disciplinaController.navigateAtividadeList}" disabled="#{empty disciplinaController.selected.atividadeList}" ajax="false"/>  
                 <p:menuitem value="#{messages.DisciplinaMenuItem_presencaList}" icon="ui-icon-search"  action="#{disciplinaController.navigatePresencaList}" disabled="#{empty disciplinaController.selected.presencaList}" ajax="false"/>  
                 <p:menuitem value="#{messages.DisciplinaMenuItem_disciplinaAnoList}" icon="ui-icon-search"  action="#{disciplinaController.navigateDisciplinaAnoList}" disabled="#{empty disciplinaController.selected.disciplinaAnoList}" ajax="false"/>  
             </p:contextMenu>

@@ -128,5 +128,12 @@ public class ParametrizacaoController extends AbstractController<Parametrizacao>
         }
         return super.items;
     }
+    
+    public Collection<Parametrizacao> getTipoAtividade() {
+        if (super.items == null) {
+            super.items = this.ejbFacade.findTipoAtividade();
+        }
+        return super.items;
+    }
 
 }

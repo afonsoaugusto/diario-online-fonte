@@ -69,9 +69,9 @@ public class Atividade implements Serializable {
     @JoinColumn(name = "SEQ_PARAME_TIPO", referencedColumnName = "SEQ_PARAMETRIZACAO")
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Parametrizacao seqParameTipo;
-    @JoinColumn(name = "SEQ_DISCIPLINA", referencedColumnName = "SEQ_DISCIPLINA")
+    @JoinColumn(name = "SEQ_DISCIPLINA_ANO", referencedColumnName = "SEQ_DISCIPLINA_ANO")
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
-    private Disciplina seqDisciplina;
+    private DisciplinaAno seqDisciplinaAno;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqAtividade",fetch = FetchType.LAZY)
     private List<Notas> notasList;
 
@@ -129,12 +129,12 @@ public class Atividade implements Serializable {
         this.seqParameTipo = seqParameTipo;
     }
 
-    public Disciplina getSeqDisciplina() {
-        return seqDisciplina;
+    public DisciplinaAno getSeqDisciplinaAno() {
+        return seqDisciplinaAno;
     }
 
-    public void setSeqDisciplina(Disciplina seqDisciplina) {
-        this.seqDisciplina = seqDisciplina;
+    public void setSeqDisciplinaAno(DisciplinaAno seqDisciplinaAno) {
+        this.seqDisciplinaAno = seqDisciplinaAno;
     }
 
     @XmlTransient

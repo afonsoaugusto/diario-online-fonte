@@ -22,6 +22,9 @@ public class ParametrizacaoFacade extends AbstractFacade<Parametrizacao> {
     @PersistenceContext(unitName = "app_do_1.0PU")
     private EntityManager em;
 
+    private static final String COD_PARAMETRO = "codParametro";
+    private static final String SEQ_PARAMETRIZACAO_PAI = "seqParametrizacaoPai";
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -32,18 +35,23 @@ public class ParametrizacaoFacade extends AbstractFacade<Parametrizacao> {
     }
 
     public List<Parametrizacao> findFilhosNivelEscolar() {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        //cq.select(cq.from(Parametrizacao.class));
-        Root<Parametrizacao> root = cq.from(Parametrizacao.class);
-        cq.where(root.get("seqParametrizacaoPai").isNotNull(),root.get("codParametro").in("ANO_VIGENTE"));
-        return getEntityManager().createQuery(cq).getResultList();
+        return findFilhosPorParametro("ANO_VIGENTE", Parametrizacao.class);
     }
-    
+
     public List<Parametrizacao> findStatusAlunoTurma() {
+        return findFilhosPorParametro("STATUS_ALUNO_TURMA", Parametrizacao.class);
+    }
+
+    public List<Parametrizacao> findTipoAtividade() {
+        return findFilhosPorParametro("TIPO_ATIVIDADE", Parametrizacao.class);
+    }
+
+    private List<Parametrizacao> findFilhosPorParametro(String parametro, Class c) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         //cq.select(cq.from(Parametrizacao.class));
-        Root<Parametrizacao> root = cq.from(Parametrizacao.class);
-        cq.where(root.get("seqParametrizacaoPai").isNotNull(),root.get("codParametro").in("STATUS_ALUNO_TURMA"));
+        Root<Parametrizacao> root = cq.from(c);
+        cq.where(root.get(SEQ_PARAMETRIZACAO_PAI).isNotNull(), root.get(COD_PARAMETRO).in(parametro));
         return getEntityManager().createQuery(cq).getResultList();
     }
+
 }

@@ -52,6 +52,8 @@ public class DisciplinaAno implements Serializable {
     @JoinColumn(name = "TBL_ANO_SEQ_ANO", referencedColumnName = "SEQ_ANO")
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Ano tblAnoSeqAno;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplinaAno",fetch = FetchType.LAZY)
+    private List<Atividade> atividadeList;
 
     public DisciplinaAno() {
     }
@@ -97,6 +99,15 @@ public class DisciplinaAno implements Serializable {
         //return tblAnoSeqAno.getNumAnoVigente() + '.'+ tblDisciplinaSeqDisciplina.getDesNomeDisciplina();
         return tblDisciplinaSeqDisciplina.getDesNomeDisciplina() + '.'+ tblAnoSeqAno.getAnoFormatado();
         
+    }
+    
+    @XmlTransient
+    public List<Atividade> getAtividadeList() {
+        return atividadeList;
+    }
+
+    public void setAtividadeList(List<Atividade> atividadeList) {
+        this.atividadeList = atividadeList;
     }
 
     @Override

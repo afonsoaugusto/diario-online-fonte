@@ -16,13 +16,13 @@
                 <p:menuitem value="#{messages.Delete}" onclick="document.getElementById('AtividadeListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
                 <p:menuitem value="#{messages.AtividadeMenuItem_seqParameTipo}" icon="ui-icon-search"  actionListener="#{atividadeController.prepareSeqParameTipo}" update=":ParametrizacaoViewForm" oncomplete="PF('ParametrizacaoViewDialog').show()" disabled="#{empty atividadeController.selected.seqParameTipo}"/>  
-                <p:menuitem value="#{messages.AtividadeMenuItem_seqDisciplina}" icon="ui-icon-search"  actionListener="#{atividadeController.prepareSeqDisciplina}" update=":DisciplinaViewForm" oncomplete="PF('DisciplinaViewDialog').show()" disabled="#{empty atividadeController.selected.seqDisciplina}"/>  
+                <p:menuitem value="#{messages.AtividadeMenuItem_seqDisciplina}" icon="ui-icon-search"  actionListener="#{atividadeController.prepareSeqDisciplinaAno}" update=":DisciplinaAnoViewForm" oncomplete="PF('DisciplinaAnoViewDialog').show()" disabled="#{empty atividadeController.selected.seqDisciplinaAno}"/>  
                 <p:menuitem value="#{messages.AtividadeMenuItem_notasList}" icon="ui-icon-search"  action="#{atividadeController.navigateNotasList}" disabled="#{empty atividadeController.selected.notasList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{atividadeController.items}"
                          var="item"
-                         rowKey="#{item.seqAtividade}"
+                         rowKey="#{item.datAplicacao}"
                          paginator="true"
                          rows="10"
                          rowsPerPageTemplate="10,20,30,40,50"
@@ -33,14 +33,6 @@
                 <p:ajax event="rowUnselect" update=":AtividadeListForm:createButton :AtividadeListForm:viewButton :AtividadeListForm:editButton :AtividadeListForm:deleteButton :AtividadeListForm:AtividadeDataTableContextMenu" listener="#{atividadeController.resetParents}"/>
                 <p:ajax event="contextMenu" update=" :AtividadeListForm:createButton :AtividadeListForm:viewButton :AtividadeListForm:editButton :AtividadeListForm:deleteButton" listener="#{atividadeController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('AtividadeListForm:viewButton').click();"/>
-
-                <p:column sortBy="#{item.seqAtividade}" filterBy="#{item.seqAtividade}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListAtividadeTitle_seqAtividade}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqAtividade}"/>
-                </p:column>
-
 
                 <p:column sortBy="#{item.nomAtividade}" filterBy="#{item.nomAtividade}">
                     <f:facet name="header">
@@ -63,24 +55,24 @@
                         <h:outputText value="#{messages.ListAtividadeTitle_datAplicacao}"/>
                     </f:facet>
                     <h:outputText value="#{item.datAplicacao}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqParameTipo.seqParametrizacao}" filterBy="#{item.seqParameTipo.seqParametrizacao}">
+                <p:column sortBy="#{item.seqParameTipo.desValorParametro}" filterBy="#{item.seqParameTipo.desValorParametro}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAtividadeTitle_seqParameTipo}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqParameTipo.seqParametrizacao}"/>
+                    <h:outputText value="#{item.seqParameTipo.desValorParametro}"/>
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqDisciplina.seqDisciplina}" filterBy="#{item.seqDisciplina.seqDisciplina}">
+                <p:column sortBy="#{item.seqDisciplinaAno.getDisciplinaAnoFormatado()}" filterBy="#{item.seqDisciplinaAno.getDisciplinaAnoFormatado()}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAtividadeTitle_seqDisciplina}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqDisciplina.seqDisciplina}"/>
+                    <h:outputText value="#{item.seqDisciplinaAno.getDisciplinaAnoFormatado()}"/>
                 </p:column>
 
 

@@ -15,9 +15,6 @@
                 <h:panelGroup id="display" rendered="#{atividadeController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateAtividadeLabel_seqAtividade}" for="seqAtividade" />
-                        <p:inputText id="seqAtividade" value="#{atividadeController.selected.seqAtividade}" title="#{messages.CreateAtividadeTitle_seqAtividade}" required="true" requiredMessage="#{messages.CreateAtividadeRequiredMessage_seqAtividade}"/>
-
                         <p:outputLabel value="#{messages.CreateAtividadeLabel_nomAtividade}" for="nomAtividade" />
                         <p:inputText id="nomAtividade" value="#{atividadeController.selected.nomAtividade}" title="#{messages.CreateAtividadeTitle_nomAtividade}" required="true" requiredMessage="#{messages.CreateAtividadeRequiredMessage_nomAtividade}" size="80" maxlength="80"/>
 
@@ -25,26 +22,26 @@
                         <p:inputText id="numValor" value="#{atividadeController.selected.numValor}" title="#{messages.CreateAtividadeTitle_numValor}" required="true" requiredMessage="#{messages.CreateAtividadeRequiredMessage_numValor}" size="2" maxlength="2"/>
 
                         <p:outputLabel value="#{messages.CreateAtividadeLabel_datAplicacao}" for="datAplicacao" />
-                        <p:calendar id="datAplicacao" pattern="MM/dd/yyyy HH:mm:ss" value="#{atividadeController.selected.datAplicacao}" title="#{messages.CreateAtividadeTitle_datAplicacao}" required="true" requiredMessage="#{messages.CreateAtividadeRequiredMessage_datAplicacao}" showOn="button"/>
+                        <p:calendar id="datAplicacao" pattern="MM/dd/yyyy" value="#{atividadeController.selected.datAplicacao}" title="#{messages.CreateAtividadeTitle_datAplicacao}" required="true" requiredMessage="#{messages.CreateAtividadeRequiredMessage_datAplicacao}" showOn="button"/>
 
                         <p:outputLabel value="#{messages.CreateAtividadeLabel_seqParameTipo}" for="seqParameTipo" />
                         <p:selectOneMenu id="seqParameTipo" value="#{atividadeController.selected.seqParameTipo}" required="true" requiredMessage="#{messages.CreateAtividadeRequiredMessage_seqParameTipo}" converter="parametrizacaoConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{parametrizacaoController.items}"
+                            <f:selectItems value="#{parametrizacaoController.tipoAtividade}"
                                            var="seqParameTipoItem"
                                            itemValue="#{seqParameTipoItem}"
-                                           itemLabel="#{seqParameTipoItem.seqParametrizacao.toString()}"
+                                           itemLabel="#{seqParameTipoItem.desValorParametro.toString()}"
                                            />
 
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="#{messages.CreateAtividadeLabel_seqDisciplina}" for="seqDisciplina" />
-                        <p:selectOneMenu id="seqDisciplina" value="#{atividadeController.selected.seqDisciplina}" required="true" requiredMessage="#{messages.CreateAtividadeRequiredMessage_seqDisciplina}" converter="disciplinaConverter">
+                        <p:outputLabel value="#{messages.CreateAtividadeLabel_seqDisciplina}" for="seqDisciplinaAno" />
+                        <p:selectOneMenu id="seqDisciplinaAno" value="#{atividadeController.selected.seqDisciplinaAno}" required="true" requiredMessage="#{messages.CreateAtividadeRequiredMessage_seqDisciplina}" converter="disciplinaAnoConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{disciplinaController.items}"
-                                           var="seqDisciplinaItem"
-                                           itemValue="#{seqDisciplinaItem}"
-                                           itemLabel="#{seqDisciplinaItem.seqDisciplina.toString()}"
+                            <f:selectItems value="#{disciplinaAnoController.items}"
+                                           var="seqDisciplinaAnoItem"
+                                           itemValue="#{seqDisciplinaAnoItem}"
+                                           itemLabel="#{seqDisciplinaAnoItem.getDisciplinaAnoFormatado().toString()}"
                                            />
 
                         </p:selectOneMenu>

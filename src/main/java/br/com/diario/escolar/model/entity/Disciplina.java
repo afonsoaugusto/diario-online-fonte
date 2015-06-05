@@ -54,8 +54,6 @@ public class Disciplina implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina",fetch = FetchType.LAZY)
     private List<Fechamento> fechamentoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina",fetch = FetchType.LAZY)
-    private List<Atividade> atividadeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seqDisciplina",fetch = FetchType.LAZY)
     private List<Presenca> presencaList;   
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tblDisciplinaSeqDisciplina",fetch = FetchType.LAZY)
     private List<DisciplinaAno> disciplinaAnoList;
@@ -98,15 +96,6 @@ public class Disciplina implements Serializable {
 
     public void setFechamentoList(List<Fechamento> fechamentoList) {
         this.fechamentoList = fechamentoList;
-    }
-
-    @XmlTransient
-    public List<Atividade> getAtividadeList() {
-        return atividadeList;
-    }
-
-    public void setAtividadeList(List<Atividade> atividadeList) {
-        this.atividadeList = atividadeList;
     }
 
     @XmlTransient

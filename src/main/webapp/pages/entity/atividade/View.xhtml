@@ -14,10 +14,7 @@
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{atividadeController.selected != null}">
-
-                        <h:outputText value="#{messages.ViewAtividadeLabel_seqAtividade}"/>
-                        <h:outputText value="#{atividadeController.selected.seqAtividade}" title="#{messages.ViewAtividadeTitle_seqAtividade}"/>
-
+                        
                         <h:outputText value="#{messages.ViewAtividadeLabel_nomAtividade}"/>
                         <h:outputText value="#{atividadeController.selected.nomAtividade}" title="#{messages.ViewAtividadeTitle_nomAtividade}"/>
 
@@ -26,14 +23,14 @@
 
                         <h:outputText value="#{messages.ViewAtividadeLabel_datAplicacao}"/>
                         <h:outputText value="#{atividadeController.selected.datAplicacao}" title="#{messages.ViewAtividadeTitle_datAplicacao}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
 
                         <h:outputText value="#{messages.ViewAtividadeLabel_seqParameTipo}"/>
-                        <h:outputText value="#{atividadeController.selected.seqParameTipo.seqParametrizacao}"/>
+                        <h:outputText value="#{atividadeController.selected.seqParameTipo.desValorParametro}"/>
 
                         <h:outputText value="#{messages.ViewAtividadeLabel_seqDisciplina}"/>
-                        <h:outputText value="#{atividadeController.selected.seqDisciplina.seqDisciplina}"/>
+                        <h:outputText value="#{atividadeController.selected.seqDisciplinaAno.getDisciplinaAnoFormatado()}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('AtividadeViewDialog').hide()"/>
                 </h:panelGroup>
