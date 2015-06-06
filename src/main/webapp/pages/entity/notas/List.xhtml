@@ -57,7 +57,7 @@
                         <h:outputText value="#{messages.ListNotasTitle_datLancamento}"/>
                     </f:facet>
                     <h:outputText value="#{item.datLancamento}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
                 </p:column>
 
@@ -84,23 +84,6 @@
                     </f:facet>
                     <h:outputText value="#{item.seqAtividade.seqAtividade}"/>
                 </p:column>
-
-                <!--
-                                    <p:column sortBy="#{item.seqAno.seqAno}" filterBy="#{item.seqAno.seqAno}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListNotasTitle_seqAno}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqAno.seqAno}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListNotasTitle_seqAluno}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqAluno.seqAluno}"/>
-                                    </p:column>
-                -->
 
             </p:dataTable>
 

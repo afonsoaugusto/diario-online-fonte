@@ -34,14 +34,14 @@
                 <p:ajax event="contextMenu" update=" :AlunoTurmaListForm:createButton :AlunoTurmaListForm:viewButton :AlunoTurmaListForm:editButton :AlunoTurmaListForm:deleteButton" listener="#{alunoTurmaController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('AlunoTurmaListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
+                <p:column sortBy="#{item.seqAluno.nomAluno}" filterBy="#{item.seqAluno.nomAluno}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAlunoTurmaTitle_seqAluno}"/>
                     </f:facet>
                     <h:outputText value="#{item.seqAluno.nomAluno}"/>
                 </p:column>
 
-                <p:column sortBy="#{item.seqSituacao.seqSituacao}" filterBy="#{item.seqSituacao.seqSituacao}">
+                <p:column sortBy="#{item.seqSituacao.desSituacao}" filterBy="#{item.seqSituacao.desSituacao}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAlunoTurmaTitle_seqSituacao}"/>
                     </f:facet>
@@ -56,7 +56,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqTurma.seqTurma}" filterBy="#{item.seqTurma.seqTurma}">
+                <p:column sortBy="#{item.seqTurma.getTurmaFormatada()}" filterBy="#{item.seqTurma.getTurmaFormatada()}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAlunoTurmaTitle_seqTurma}"/>
                     </f:facet>

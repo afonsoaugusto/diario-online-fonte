@@ -62,7 +62,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqTurno.seqTurno}" filterBy="#{item.seqTurno.seqTurno}">
+                <p:column sortBy="#{item.seqTurno.desTurno}" filterBy="#{item.seqTurno.desTurno}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListTurmaTitle_seqTurno}"/>
                     </f:facet>
@@ -70,7 +70,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqAno.seqAno}" filterBy="#{item.seqAno.seqAno}">
+                <p:column sortBy="#{item.seqAno.getAnoFormatado()}" filterBy="#{item.seqAno.getAnoFormatado()}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListTurmaTitle_seqAno}"/>
                     </f:facet>

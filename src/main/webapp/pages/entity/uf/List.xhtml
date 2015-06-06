@@ -73,15 +73,6 @@
                     </h:outputText>
                 </p:column>
 
-                <!--
-                                    <p:column sortBy="#{item.nomUfFormatado}" filterBy="#{item.nomUfFormatado}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListUfTitle_nomUfFormatado}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.nomUfFormatado}"/>
-                                    </p:column>
-                -->
-
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{ufController.prepareCreate}" update=":UfCreateForm" oncomplete="PF('UfCreateDialog').show()"/>

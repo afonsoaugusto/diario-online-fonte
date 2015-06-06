@@ -79,55 +79,6 @@
                     <h:outputText value="#{item.numCep}"/>
                 </p:column>
 
-                <!--
-                                    <p:column sortBy="#{item.numCasa}" filterBy="#{item.numCasa}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListPessoaTitle_numCasa}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.numCasa}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.numTel}" filterBy="#{item.numTel}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListPessoaTitle_numTel}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.numTel}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.numCel}" filterBy="#{item.numCel}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListPessoaTitle_numCel}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.numCel}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.flgAtivo}" filterBy="#{item.flgAtivo}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListPessoaTitle_flgAtivo}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.flgAtivo}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqCidade.codMunicipio}" filterBy="#{item.seqCidade.codMunicipio}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListPessoaTitle_seqCidade}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqCidade.codMunicipio}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.usuario.seqUsuario}" filterBy="#{item.usuario.seqUsuario}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListPessoaTitle_usuario}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.usuario.seqUsuario}"/>
-                                    </p:column>
-                -->
-
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{pessoaController.prepareCreate}" update=":PessoaCreateForm" oncomplete="PF('PessoaCreateDialog').show()"/>

@@ -73,46 +73,6 @@
                     </h:outputText>
                 </p:column>
 
-
-                <!--p:column sortBy="#{item.numLonSede}" filterBy="#{item.numLonSede}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListMunicipioTitle_numLonSede}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.numLonSede}"/>
-                </p:column-->
-
-
-                <!--p:column sortBy="#{item.numLatSede}" filterBy="#{item.numLatSede}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListMunicipioTitle_numLatSede}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.numLatSede}"/>
-                </p:column-->
-
-                <!--
-                                    <p:column sortBy="#{item.codUnidadeArrecadacao}" filterBy="#{item.codUnidadeArrecadacao}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListMunicipioTitle_codUnidadeArrecadacao}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.codUnidadeArrecadacao}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqUnidadeArrecadacao}" filterBy="#{item.seqUnidadeArrecadacao}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListMunicipioTitle_seqUnidadeArrecadacao}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqUnidadeArrecadacao}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.nomMunicipioFormatado}" filterBy="#{item.nomMunicipioFormatado}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListMunicipioTitle_nomMunicipioFormatado}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.nomMunicipioFormatado}"/>
-                                    </p:column>
-                -->
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{municipioController.prepareCreate}" update=":MunicipioCreateForm" oncomplete="PF('MunicipioCreateDialog').show()"/>

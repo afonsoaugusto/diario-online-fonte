@@ -84,31 +84,6 @@
                     <h:outputText value="#{item.seqSituacao.seqSituacao}"/>
                 </p:column>
 
-                <!--
-                                    <p:column sortBy="#{item.seqFechamento.seqFechamento}" filterBy="#{item.seqFechamento.seqFechamento}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListFechamentoAlunoTitle_seqFechamento}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqFechamento.seqFechamento}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqAno.seqAno}" filterBy="#{item.seqAno.seqAno}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListFechamentoAlunoTitle_seqAno}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqAno.seqAno}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListFechamentoAlunoTitle_seqAluno}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqAluno.seqAluno}"/>
-                                    </p:column>
-                -->
-
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{fechamentoAlunoController.prepareCreate}" update=":FechamentoAlunoCreateForm" oncomplete="PF('FechamentoAlunoCreateDialog').show()"/>

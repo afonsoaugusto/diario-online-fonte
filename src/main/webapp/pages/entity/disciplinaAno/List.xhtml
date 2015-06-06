@@ -35,7 +35,7 @@
                 <p:ajax event="contextMenu" update=" :DisciplinaAnoListForm:createButton :DisciplinaAnoListForm:viewButton :DisciplinaAnoListForm:editButton :DisciplinaAnoListForm:deleteButton" listener="#{disciplinaAnoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('DisciplinaAnoListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.tblDisciplinaSeqDisciplina.seqDisciplina}" filterBy="#{item.tblDisciplinaSeqDisciplina.seqDisciplina}">
+                <p:column sortBy="#{item.tblDisciplinaSeqDisciplina.desNomeDisciplina}" filterBy="#{item.tblDisciplinaSeqDisciplina.desNomeDisciplina}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListDisciplinaAnoTitle_tblDisciplinaSeqDisciplina}"/>
                     </f:facet>
@@ -43,7 +43,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.tblAnoSeqAno.seqAno}" filterBy="#{item.tblAnoSeqAno.seqAno}">
+                <p:column sortBy="#{item.tblAnoSeqAno.getAnoFormatado()}" filterBy="#{item.tblAnoSeqAno.getAnoFormatado()}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListDisciplinaAnoTitle_tblAnoSeqAno}"/>
                     </f:facet>

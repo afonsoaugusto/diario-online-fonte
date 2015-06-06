@@ -33,7 +33,7 @@
                 <p:ajax event="contextMenu" update=" :PerfilFuncionalidadeAcaoListForm:createButton :PerfilFuncionalidadeAcaoListForm:viewButton :PerfilFuncionalidadeAcaoListForm:editButton :PerfilFuncionalidadeAcaoListForm:deleteButton" listener="#{perfilFuncionalidadeAcaoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('PerfilFuncionalidadeAcaoListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqPerfil.seqPerfil}" filterBy="#{item.seqPerfil.seqPerfil}">
+                <p:column sortBy="#{item.seqPerfil.nomPerfil}" filterBy="#{item.seqPerfil.nomPerfil}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListPerfilFuncionalidadeAcaoTitle_seqPerfil}"/>
                     </f:facet>
@@ -41,7 +41,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqFuncionalidadeAcao.seqFuncionalidadeAcao}" filterBy="#{item.seqFuncionalidadeAcao.seqFuncionalidadeAcao}">
+                <p:column sortBy="#{item.seqFuncionalidadeAcao.getFuncionalidadeAcaoFormatado()}" filterBy="#{item.seqFuncionalidadeAcao.getFuncionalidadeAcaoFormatado()}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListPerfilFuncionalidadeAcaoTitle_seqFuncionalidadeAcao}"/>
                     </f:facet>

@@ -35,7 +35,7 @@
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('DisciplinaProfessorListForm:viewButton').click();"/>
 
 
-                <p:column sortBy="#{item.seqPessoa.seqPessoa}" filterBy="#{item.seqPessoa.seqPessoa}">
+                <p:column sortBy="#{item.seqPessoa.desNome}" filterBy="#{item.seqPessoa.desNome}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListDisciplinaProfessorTitle_seqPessoa}"/>
                     </f:facet>
@@ -43,7 +43,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqDisciplinaAno.seqDisciplinaAno}" filterBy="#{item.seqDisciplinaAno.seqDisciplinaAno}">
+                <p:column sortBy="#{item.seqDisciplinaAno.getDisciplinaAnoFormatado()}" filterBy="#{item.seqDisciplinaAno.getDisciplinaAnoFormatado()}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListDisciplinaProfessorTitle_seqDisciplinaAno}"/>
                     </f:facet>

@@ -59,7 +59,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqTurma.seqTurma}" filterBy="#{item.seqTurma.seqTurma}">
+                <p:column sortBy="#{item.seqTurma.getTurmaFormatada()}" filterBy="#{item.seqTurma.getTurmaFormatada()}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListPlanoEnsinoTitle_seqTurma}"/>
                     </f:facet>
@@ -67,7 +67,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqDisciplinaProfessor.seqDisciplinaProfessor}" filterBy="#{item.seqDisciplinaProfessor.seqDisciplinaProfessor}">
+                <p:column sortBy="#{item.seqDisciplinaProfessor.getDisciplinaProfessorFormatado()}" filterBy="#{item.seqDisciplinaProfessor.getDisciplinaProfessorFormatado()}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListAtuacaoProfessorTitle_seqDisciplinaProfessor}"/>
                     </f:facet>

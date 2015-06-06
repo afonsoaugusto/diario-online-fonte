@@ -86,47 +86,6 @@
                     </h:outputText>
                 </p:column>
 
-                <!--
-                                    <p:column sortBy="#{item.seqTurma.seqTurma}" filterBy="#{item.seqTurma.seqTurma}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListFechamentoTitle_seqTurma}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqTurma.seqTurma}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqPessoa.seqPessoa}" filterBy="#{item.seqPessoa.seqPessoa}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListFechamentoTitle_seqPessoa}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqPessoa.seqPessoa}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqPessoaFechamento.seqPessoa}" filterBy="#{item.seqPessoaFechamento.seqPessoa}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListFechamentoTitle_seqPessoaFechamento}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqPessoaFechamento.seqPessoa}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqEscola.seqEscola}" filterBy="#{item.seqEscola.seqEscola}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListFechamentoTitle_seqEscola}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqEscola.seqEscola}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqDisciplina.seqDisciplina}" filterBy="#{item.seqDisciplina.seqDisciplina}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListFechamentoTitle_seqDisciplina}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqDisciplina.seqDisciplina}"/>
-                                    </p:column>
-                -->
-
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{fechamentoController.prepareCreate}" update=":FechamentoCreateForm" oncomplete="PF('FechamentoCreateDialog').show()"/>

@@ -79,23 +79,6 @@
                     <h:outputText value="#{item.sitAtivo}"/>
                 </p:column>
 
-                <!--
-                                    <p:column sortBy="#{item.txtUrl}" filterBy="#{item.txtUrl}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListMenuTitle_txtUrl}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.txtUrl}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.seqMenuPai.seqMenu}" filterBy="#{item.seqMenuPai.seqMenu}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{messages.ListMenuTitle_seqMenuPai}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.seqMenuPai.seqMenu}"/>
-                                    </p:column>
-                -->
-
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{menuController.prepareCreate}" update=":MenuCreateForm" oncomplete="PF('MenuCreateDialog').show()"/>
