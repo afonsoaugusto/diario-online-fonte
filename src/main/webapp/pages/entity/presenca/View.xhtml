@@ -16,16 +16,16 @@
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{presencaController.selected != null}">
 
                         <h:outputText value="#{messages.ViewPresencaLabel_seqDisciplina}"/>
-                        <h:outputText value="#{presencaController.selected.seqDisciplina.seqDisciplina}"/>
+                        <h:outputText value="#{presencaController.selected.desNomeDisciplina.seqDisciplina}"/>
 
                         <h:outputText value="#{messages.ViewPresencaLabel_seqAluno}"/>
-                        <h:outputText value="#{presencaController.selected.seqAluno.seqAluno}"/>
+                        <h:outputText value="#{presencaController.selected.seqAluno.nomAluno}"/>
                         <h:outputText value="#{messages.ViewPresencaLabel_flgPresente}"/>
                         <h:outputText value="#{presencaController.selected.flgPresente}" title="#{messages.ViewPresencaTitle_flgPresente}"/>
 
                         <h:outputText value="#{messages.ViewPresencaLabel_datDataPresenca}"/>
                         <h:outputText value="#{presencaController.selected.datDataPresenca}" title="#{messages.ViewPresencaTitle_datDataPresenca}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
 
                         <h:outputText value="#{messages.CreatePresencaLabel_Ocorrencia}"/>

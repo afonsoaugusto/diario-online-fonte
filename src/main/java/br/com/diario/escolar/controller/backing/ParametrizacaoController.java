@@ -135,5 +135,12 @@ public class ParametrizacaoController extends AbstractController<Parametrizacao>
         }
         return super.items;
     }
+    
+    public Collection<Parametrizacao> getTipoNota() {
+        if (super.items == null) {
+            super.items = this.ejbFacade.findTipoNota();
+        }
+        return super.items;
+    }
 
 }

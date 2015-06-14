@@ -1,13 +1,18 @@
 package br.com.diario.escolar.controller.backing;
 
+import br.com.diario.escolar.model.entity.AlunoTurma;
 import br.com.diario.escolar.model.entity.Notas;
+import br.com.diario.escolar.model.entity.Presenca;
 import br.com.diario.escolar.view.session.NotasFacade;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
+import org.primefaces.event.CellEditEvent;
 
 @ManagedBean(name = "notasController")
 @ViewScoped
@@ -20,6 +25,11 @@ public class NotasController extends AbstractController<Notas> {
     private AtividadeController seqAtividadeController;
     private AnoController seqAnoController;
     private AlunoController seqAlunoController;
+    private AlunoTurmaController alunoTurmaController;
+    private TurmaController seqTurmaController;
+    private List<Notas> listNotas;
+    private List<String> options;
+    
 
     /**
      * Initialize the concrete Notas controller bean. The AbstractController
@@ -39,6 +49,17 @@ public class NotasController extends AbstractController<Notas> {
         seqAtividadeController = context.getApplication().evaluateExpressionGet(context, "#{atividadeController}", AtividadeController.class);
         seqAnoController = context.getApplication().evaluateExpressionGet(context, "#{anoController}", AnoController.class);
         seqAlunoController = context.getApplication().evaluateExpressionGet(context, "#{alunoController}", AlunoController.class);
+        alunoTurmaController = context.getApplication().evaluateExpressionGet(context, "#{alunoTurmaController}", AlunoTurmaController.class);
+        seqTurmaController = context.getApplication().evaluateExpressionGet(context, "#{turmaController}", TurmaController.class);
+        initListaPresenca();
+    }
+    
+    public List<Notas> getListPresenca() {
+        return listNotas;
+    }
+
+    public void setListPresenca(List<Notas> listNotas) {
+        this.listNotas = listNotas;
     }
 
     public NotasController() {
@@ -55,6 +76,8 @@ public class NotasController extends AbstractController<Notas> {
         seqAtividadeController.setSelected(null);
         seqAnoController.setSelected(null);
         seqAlunoController.setSelected(null);
+        alunoTurmaController.setSelected(null);
+        seqTurmaController.setSelected(null);
     }
 
     /**
@@ -119,4 +142,54 @@ public class NotasController extends AbstractController<Notas> {
             seqAlunoController.setSelected(this.getSelected().getSeqAluno());
         }
     }
+     
+    
+    public Notas prepareCreateNotas(ActionEvent event) {
+        return super.prepareCreate(event); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void saveTurma(ActionEvent event) {
+        for (Notas item : listNotas) {
+            this.ejbFacade.create(item);
+        }
+        if (!isValidationFailed()) {
+            items = null; // Invalidate list of items to trigger re-query.
+        }
+    }
+
+    public List<Notas> prepareCreatePresenca(ActionEvent event) {
+        return listNotas;
+    }
+
+    public void populaListaPresenca() {
+        alunoTurmaController.getAlunosTurma(seqTurmaController.getSelected().getSeqTurma());
+        initListaPresenca();
+        for (AlunoTurma alunoTurma : alunoTurmaController.getItems()) {
+            Notas presenca = new Notas(null,super.getSelected().getDatLancamento());
+            presenca.setSeqAluno(alunoTurma.getSeqAluno());
+            listNotas.add(presenca);
+        }
+    }
+    
+    
+    private void initListaPresenca() {
+        listNotas = new ArrayList<Notas>();
+        options = new ArrayList<String>();
+        options.add("S");
+        options.add("N");
+    }
+
+    public void onCellEdit(CellEditEvent event) {
+        Object newValue = event.getNewValue();
+        //listNotas.get(event.getRowIndex()).setFlgPresente(newValue.toString());
+    }
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
+     
 }

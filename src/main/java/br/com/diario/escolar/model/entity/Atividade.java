@@ -145,6 +145,10 @@ public class Atividade implements Serializable {
     public void setNotasList(List<Notas> notasList) {
         this.notasList = notasList;
     }
+    
+    public String getAtividadeFormatada(){
+        return this.nomAtividade + " - " +this.numValor + " - " +this.getSeqDisciplinaAno().getDisciplinaAnoFormatado();
+    }
 
     @Override
     public int hashCode() {

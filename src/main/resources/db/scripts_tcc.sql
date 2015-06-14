@@ -42,6 +42,7 @@
       Fechamento
       Fechamento Aluno
   */		
+  DELETE FROM tbl_presenca;
   DELETE FROM TBL_ATIVIDADE;
   delete from TBL_ALUNO_TURMA;
   delete from tbl_situacao;
@@ -73,7 +74,7 @@
   insert into tbl_usuario values (100,'Dica','Login','Senha',100);
   insert into tbl_acao values (100,'CRIAR','Criar');
   insert into tbl_acao values (101,'EDITAR','Editar');
-  insert into tbl_acao values (102,'VIZUALIZAR','Vizualizar');
+  insert into tbl_acao values (102,'VISUALIZAR','Visualizar');
   insert into tbl_acao values (103,'DELETAR','Deletar');
   
   insert into tbl_funcionalidade values (100,'UF','UF');
@@ -262,6 +263,10 @@
   insert into tbl_parametrizacao values (110,'TIPO_ATIVIDADE','Avaliação Trimestral','10', 108);
   insert into tbl_parametrizacao values (111,'TIPO_ATIVIDADE','Avaliação em Sala','10', 108);
   insert into tbl_parametrizacao values (112,'TIPO_ATIVIDADE','Ponto-Extra','10', 108);
+  insert into tbl_parametrizacao values (113,'TIPO_NOTA',null,null, null);
+  insert into tbl_parametrizacao values (114,'TIPO_NOTA','Nota simples','10', 113);
+  insert into tbl_parametrizacao values (115,'TIPO_NOTA','Nota composta','10', 113);
+  insert into tbl_parametrizacao values (116,'TIPO_NOTA','Nota substitutiva','10', 113);
     
   INSERT INTO TBL_ESCOLA (SEQ_ESCOLA, DES_BAIRRO, DES_NOME, DES_RUA, DES_SIGLA, NUM_CEP, NUM_CNPJ, NUM_ESCOLA, NUM_TEL, SEQ_CIDADE) VALUES (100, 'Bairro', 'Calos', 'Rua', 'CDA', 987, 987, 987, 100, 100);
   insert into tbl_ano values (100,2015,2015,102);

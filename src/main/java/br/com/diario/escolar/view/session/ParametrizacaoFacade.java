@@ -6,6 +6,7 @@
 package br.com.diario.escolar.view.session;
 
 import br.com.diario.escolar.model.entity.Parametrizacao;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -44,6 +45,10 @@ public class ParametrizacaoFacade extends AbstractFacade<Parametrizacao> {
 
     public List<Parametrizacao> findTipoAtividade() {
         return findFilhosPorParametro("TIPO_ATIVIDADE", Parametrizacao.class);
+    }
+    
+    public Collection<Parametrizacao> findTipoNota() {
+        return findFilhosPorParametro("TIPO_NOTA", Parametrizacao.class);
     }
 
     private List<Parametrizacao> findFilhosPorParametro(String parametro, Class c) {

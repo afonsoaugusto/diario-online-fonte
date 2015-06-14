@@ -21,7 +21,7 @@
                             <f:selectItems value="#{disciplinaController.items}"
                                            var="seqDisciplinaItem"
                                            itemValue="#{seqDisciplinaItem}"
-                                           itemLabel="#{seqDisciplinaItem.seqDisciplina.toString()}"
+                                           itemLabel="#{seqDisciplinaItem.desNomeDisciplina.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -32,13 +32,16 @@
                             <f:selectItems value="#{alunoController.items}"
                                            var="seqAlunoItem"
                                            itemValue="#{seqAlunoItem}"
-                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
+                                           itemLabel="#{seqAlunoItem.nomAluno.toString()}"
                                            />
 
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="#{messages.CreatePresencaLabel_flgPresente}" for="flgPresente" />
-                        <p:inputText id="flgPresente" value="#{presencaController.selected.flgPresente}" title="#{messages.CreatePresencaTitle_flgPresente}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_flgPresente}"/>
+                        <p:selectOneRadio id="flgPresente" value="#{presencaController.selected.flgPresente}"  required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_flgPresente}">
+                            <f:selectItem itemLabel="S" itemValue="S"/>
+                            <f:selectItem itemLabel="N" itemValue="N"/>
+                        </p:selectOneRadio>
 
                         <p:outputLabel value="#{messages.CreatePresencaLabel_datDataPresenca}" for="datDataPresenca" />
                         <p:calendar id="datDataPresenca" pattern="dd/MM/yyyy" value="#{presencaController.selected.datDataPresenca}" title="#{messages.CreatePresencaTitle_datDataPresenca}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_datDataPresenca}" showOn="button"/>
