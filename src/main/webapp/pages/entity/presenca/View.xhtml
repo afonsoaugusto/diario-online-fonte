@@ -15,9 +15,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{presencaController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewPresencaLabel_seqPresenca}"/>
-                        <h:outputText value="#{presencaController.selected.seqPresenca}" title="#{messages.ViewPresencaTitle_seqPresenca}"/>
+                        <h:outputText value="#{messages.ViewPresencaLabel_seqDisciplina}"/>
+                        <h:outputText value="#{presencaController.selected.seqDisciplina.seqDisciplina}"/>
 
+                        <h:outputText value="#{messages.ViewPresencaLabel_seqAluno}"/>
+                        <h:outputText value="#{presencaController.selected.seqAluno.seqAluno}"/>
                         <h:outputText value="#{messages.ViewPresencaLabel_flgPresente}"/>
                         <h:outputText value="#{presencaController.selected.flgPresente}" title="#{messages.ViewPresencaTitle_flgPresente}"/>
 
@@ -26,11 +28,10 @@
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
 
-                        <h:outputText value="#{messages.ViewPresencaLabel_seqDisciplina}"/>
-                        <h:outputText value="#{presencaController.selected.seqDisciplina.seqDisciplina}"/>
+                        <h:outputText value="#{messages.CreatePresencaLabel_Ocorrencia}"/>
+                        <h:outputText value="#{presencaController.selected.ocorrencia}"/>
 
-                        <h:outputText value="#{messages.ViewPresencaLabel_seqAluno}"/>
-                        <h:outputText value="#{presencaController.selected.seqAluno.seqAluno}"/>
+
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('PresencaViewDialog').hide()"/>
                 </h:panelGroup>

@@ -15,15 +15,6 @@
                 <h:panelGroup id="display" rendered="#{presencaController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreatePresencaLabel_seqPresenca}" for="seqPresenca" />
-                        <p:inputText id="seqPresenca" value="#{presencaController.selected.seqPresenca}" title="#{messages.CreatePresencaTitle_seqPresenca}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_seqPresenca}"/>
-
-                        <p:outputLabel value="#{messages.CreatePresencaLabel_flgPresente}" for="flgPresente" />
-                        <p:inputText id="flgPresente" value="#{presencaController.selected.flgPresente}" title="#{messages.CreatePresencaTitle_flgPresente}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_flgPresente}"/>
-
-                        <p:outputLabel value="#{messages.CreatePresencaLabel_datDataPresenca}" for="datDataPresenca" />
-                        <p:calendar id="datDataPresenca" pattern="MM/dd/yyyy HH:mm:ss" value="#{presencaController.selected.datDataPresenca}" title="#{messages.CreatePresencaTitle_datDataPresenca}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_datDataPresenca}" showOn="button"/>
-
                         <p:outputLabel value="#{messages.CreatePresencaLabel_seqDisciplina}" for="seqDisciplina" />
                         <p:selectOneMenu id="seqDisciplina" value="#{presencaController.selected.seqDisciplina}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_seqDisciplina}" converter="disciplinaConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
@@ -45,6 +36,16 @@
                                            />
 
                         </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_flgPresente}" for="flgPresente" />
+                        <p:inputText id="flgPresente" value="#{presencaController.selected.flgPresente}" title="#{messages.CreatePresencaTitle_flgPresente}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_flgPresente}"/>
+
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_datDataPresenca}" for="datDataPresenca" />
+                        <p:calendar id="datDataPresenca" pattern="dd/MM/yyyy" value="#{presencaController.selected.datDataPresenca}" title="#{messages.CreatePresencaTitle_datDataPresenca}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_datDataPresenca}" showOn="button"/>
+                        
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_Ocorrencia}" for="desOcorrencia" />
+                        <p:inputTextarea rows="10" cols="40" id="desOcorrencia" value="#{presencaController.selected.ocorrencia}" />
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{presencaController.saveNew}" value="#{messages.Save}" update="display,:PresencaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PresencaCreateDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>

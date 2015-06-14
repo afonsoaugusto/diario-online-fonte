@@ -29,7 +29,7 @@ public abstract class AbstractController<T> implements Serializable {
     private T selected;
     protected Collection<T> items;
 
-    private enum PersistAction {
+    protected enum PersistAction {
 
         CREATE,
         DELETE,

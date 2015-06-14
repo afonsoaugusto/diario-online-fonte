@@ -5,10 +5,15 @@
  */
 package br.com.diario.escolar.view.session;
 
+import br.com.diario.escolar.model.entity.Aluno;
 import br.com.diario.escolar.model.entity.AlunoTurma;
+import br.com.diario.escolar.model.entity.Parametrizacao;
+import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -27,5 +32,14 @@ public class AlunoTurmaFacade extends AbstractFacade<AlunoTurma> {
     public AlunoTurmaFacade() {
         super(AlunoTurma.class);
     }
+    
+    public List<AlunoTurma> findByTurma(BigDecimal seqTurma){
+        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        //cq.select(cq.from(Parametrizacao.class));
+        Root<AlunoTurma> root = cq.from(AlunoTurma.class);
+        cq.where(root.get("seqTurma").in(seqTurma),root.get("flgTurmaAtual").in("S"));
+        return getEntityManager().createQuery(cq).getResultList();
+    }
+    
     
 }

@@ -48,12 +48,14 @@ public class Presenca implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "FLG_PRESENTE")
-    private Character flgPresente;
+    private String flgPresente;
     @Basic(optional = false)
     @NotNull
     @Column(name = "DAT_DATA_PRESENCA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datDataPresenca;
+    @Column(name = "OCORRENCIA")
+    private String ocorrencia;
     @JoinColumn(name = "SEQ_DISCIPLINA", referencedColumnName = "SEQ_DISCIPLINA")
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     private Disciplina seqDisciplina;
@@ -62,16 +64,35 @@ public class Presenca implements Serializable {
     private Aluno seqAluno;
 
     public Presenca() {
+        init();
     }
 
     public Presenca(BigDecimal seqPresenca) {
         this.seqPresenca = seqPresenca;
+        init();
     }
 
-    public Presenca(BigDecimal seqPresenca, Character flgPresente, Date datDataPresenca) {
+    public Presenca(BigDecimal seqPresenca, String flgPresente, Date datDataPresenca) {
+        init();
         this.seqPresenca = seqPresenca;
         this.flgPresente = flgPresente;
         this.datDataPresenca = datDataPresenca;
+    }
+    
+    public Presenca(BigDecimal seqPresenca, String flgPresente, Date datDataPresenca, String ocorrencia) {
+        init();
+        this.seqPresenca = seqPresenca;
+        this.flgPresente = flgPresente;
+        this.datDataPresenca = datDataPresenca;
+        this.ocorrencia = ocorrencia;
+    }
+
+    public String getOcorrencia() {
+        return ocorrencia;
+    }
+
+    public void setOcorrencia(String ocorrencia) {
+        this.ocorrencia = ocorrencia;
     }
 
     public BigDecimal getSeqPresenca() {
@@ -82,11 +103,11 @@ public class Presenca implements Serializable {
         this.seqPresenca = seqPresenca;
     }
 
-    public Character getFlgPresente() {
+    public String getFlgPresente() {
         return flgPresente;
     }
 
-    public void setFlgPresente(Character flgPresente) {
+    public void setFlgPresente(String flgPresente) {
         this.flgPresente = flgPresente;
     }
 
@@ -114,6 +135,11 @@ public class Presenca implements Serializable {
         this.seqAluno = seqAluno;
     }
 
+    public void init(){
+        this.flgPresente = "S";
+        this.datDataPresenca = new Date();
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

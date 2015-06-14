@@ -15,14 +15,16 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{presencaController.selected != null}">
 
 
-                        <h:outputLabel value="#{messages.EditPresencaLabel_seqPresenca}" for="seqPresenca" />
-                        <h:outputText id="seqPresenca" value="#{presencaController.selected.seqPresenca}" />
+                        <p:outputLabel value="#{messages.EditPresencaLabel_seqAluno}" for="seqAluno" />
+                        <p:selectOneMenu id="seqAluno" value="#{presencaController.selected.seqAluno}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_seqAluno}" converter="alunoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{alunoController.items}"
+                                           var="seqAlunoItem"
+                                           itemValue="#{seqAlunoItem}"
+                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
+                                           />
 
-                        <p:outputLabel value="#{messages.EditPresencaLabel_flgPresente}" for="flgPresente" />
-                        <p:inputText id="flgPresente" value="#{presencaController.selected.flgPresente}" title="#{messages.EditPresencaTitle_flgPresente}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_flgPresente}"/>
-
-                        <p:outputLabel value="#{messages.EditPresencaLabel_datDataPresenca}" for="datDataPresenca" />
-                        <p:calendar id="datDataPresenca" pattern="MM/dd/yyyy HH:mm:ss" value="#{presencaController.selected.datDataPresenca}" title="#{messages.EditPresencaTitle_datDataPresenca}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_datDataPresenca}" showOn="button"/>
+                        </p:selectOneMenu>
 
                         <p:outputLabel value="#{messages.EditPresencaLabel_seqDisciplina}" for="seqDisciplina" />
                         <p:selectOneMenu id="seqDisciplina" value="#{presencaController.selected.seqDisciplina}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_seqDisciplina}" converter="disciplinaConverter">
@@ -34,17 +36,14 @@
                                            />
 
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{messages.EditPresencaLabel_flgPresente}" for="flgPresente" />
+                        <p:inputText id="flgPresente" value="#{presencaController.selected.flgPresente}" title="#{messages.EditPresencaTitle_flgPresente}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_flgPresente}"/>
 
-                        <p:outputLabel value="#{messages.EditPresencaLabel_seqAluno}" for="seqAluno" />
-                        <p:selectOneMenu id="seqAluno" value="#{presencaController.selected.seqAluno}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_seqAluno}" converter="alunoConverter">
-                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{alunoController.items}"
-                                           var="seqAlunoItem"
-                                           itemValue="#{seqAlunoItem}"
-                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
-                                           />
+                        <p:outputLabel value="#{messages.EditPresencaLabel_datDataPresenca}" for="datDataPresenca" />
+                        <p:calendar id="datDataPresenca" pattern="MM/dd/yyyy HH:mm:ss" value="#{presencaController.selected.datDataPresenca}" title="#{messages.EditPresencaTitle_datDataPresenca}" required="true" requiredMessage="#{messages.EditPresencaRequiredMessage_datDataPresenca}" showOn="button"/>
 
-                        </p:selectOneMenu>
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_Ocorrencia}" for="desOcorrencia" />
+                        <p:inputTextarea rows="10" cols="40" id="desOcorrencia" value="#{presencaController.selected.ocorrencia}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{presencaController.save}" value="#{messages.Save}" update="display,:PresencaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PresencaEditDialog'));">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmEditMessage}" icon="ui-icon-alert"/>

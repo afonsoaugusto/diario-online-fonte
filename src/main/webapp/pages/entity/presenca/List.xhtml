@@ -33,13 +33,21 @@
                 <p:ajax event="contextMenu" update=" :PresencaListForm:createButton :PresencaListForm:viewButton :PresencaListForm:editButton :PresencaListForm:deleteButton" listener="#{presencaController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('PresencaListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqPresenca}" filterBy="#{item.seqPresenca}">
+                <p:column sortBy="#{item.seqAluno.nomAluno}" filterBy="#{item.seqAluno.nomAluno}">
                     <f:facet name="header">
-                        <h:outputText value="#{messages.ListPresencaTitle_seqPresenca}"/>
+                        <h:outputText value="#{messages.ListPresencaTitle_seqAluno}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqPresenca}"/>
+                    <h:outputText value="#{item.seqAluno.nomAluno}"/>
                 </p:column>
 
+                <p:column sortBy="#{item.datDataPresenca}" filterBy="#{item.datDataPresenca}">
+                    <f:facet name="header">
+                        <h:outputText value="#{messages.ListPresencaTitle_datDataPresenca}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.datDataPresenca}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:column>
 
                 <p:column sortBy="#{item.flgPresente}" filterBy="#{item.flgPresente}">
                     <f:facet name="header">
@@ -48,32 +56,12 @@
                     <h:outputText value="#{item.flgPresente}"/>
                 </p:column>
 
-
-                <p:column sortBy="#{item.datDataPresenca}" filterBy="#{item.datDataPresenca}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListPresencaTitle_datDataPresenca}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.datDataPresenca}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                </p:column>
-
-
-                <p:column sortBy="#{item.seqDisciplina.seqDisciplina}" filterBy="#{item.seqDisciplina.seqDisciplina}">
+                <p:column sortBy="#{item.seqDisciplina.desNomeDisciplina}" filterBy="#{item.seqDisciplina.desNomeDisciplina}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListPresencaTitle_seqDisciplina}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqDisciplina.seqDisciplina}"/>
+                    <h:outputText value="#{item.seqDisciplina.desNomeDisciplina}"/>
                 </p:column>
-
-
-                <p:column sortBy="#{item.seqAluno.seqAluno}" filterBy="#{item.seqAluno.seqAluno}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListPresencaTitle_seqAluno}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqAluno.seqAluno}"/>
-                </p:column>
-
 
             </p:dataTable>
 
@@ -88,5 +76,7 @@
         </p:panel>
         <ui:include src="/pages/generic/confirmation.xhtml"/>
     </h:form>
+
+    <ui:include src="/pages/entity//presenca/CreatePresencaTurma.xhtml"/>
 
 </ui:composition>

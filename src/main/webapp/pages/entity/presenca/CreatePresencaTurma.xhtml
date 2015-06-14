@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PresencaTurmaCreateDialog" widgetVar="PresencaTurmaCreateDialog"  resizable="false"  header="#{messages.CreateTurmaTitle}" closeOnEscape="true" modal="true" appendTo="@(body)">
+            <h:form id="PresencaTurmaCreateForm">
+                <h:panelGroup id="display" rendered="#{presencaController.selected != null}">
+                    <p:panelGrid columns="6">
+
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_datDataPresenca}" for="datDataPresenca" />
+                        <p:calendar id="datDataPresenca" pattern="dd/MM/yyyy" value="#{presencaController.selected.datDataPresenca}" title="#{messages.CreatePresencaTitle_datDataPresenca}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_datDataPresenca}" showOn="button"/>
+
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_seqTurma}" for="seqTurma" />
+                        <p:selectOneMenu id="seqTurma" value="#{turmaController.selected}" required="false" converter="turmaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{turmaController.items}"
+                                           var="seqTurmaItem"
+                                           itemValue="#{seqTurmaItem}"
+                                           itemLabel="#{seqTurmaItem.turmaFormatada.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreatePresencaLabel_seqDisciplina}" for="seqDisciplina" />
+                        <p:selectOneMenu id="seqDisciplina" value="#{disciplinaController.selected}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_seqDisciplina}" converter="disciplinaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{disciplinaController.items}"
+                                           var="seqDisciplinaItem"
+                                           itemValue="#{seqDisciplinaItem}"
+                                           itemLabel="#{seqDisciplinaItem.desNomeDisciplina.toString()}"
+                                           />
+                            <p:ajax update=":PresencaTurmaCreateForm:display" process="@form" event="change"  listener="#{presencaController.populaListaPresenca}"/>
+                        </p:selectOneMenu>
+
+                    </p:panelGrid>
+                    <p:panelGrid id="panel" >
+
+
+                        <p:dataTable id="datalist"
+                                     value="#{presencaController.listPresenca}"
+                                     var="item"
+                                     editable="true"
+                                     editMode="cell"
+                                     rendered="#{turmaController.selected != null}"
+                                     widgetVar="cellItens"
+                                     >
+                            <p:ajax event="cellEdit" process="@form" listener="#{presencaController.onCellEdit}"  update=":PresencaTurmaCreateForm:panel,flgPresenteOut,datalist"/>
+
+                            <p:column sortBy="#{item.seqAluno.nomAluno}" filterBy="#{item.seqAluno.nomAluno}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{messages.ListPresencaTitle_seqAluno}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.seqAluno.nomAluno}"/>
+                            </p:column>
+
+
+                            <p:column id="columnPresente" sortBy="#{item.flgPresente}" filterBy="#{item.flgPresente}" styleClass="ui-editable-column" >
+
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText id="flgPresenteOut" value="#{item.flgPresente}" /> </f:facet>
+                                    <f:facet name="input">
+                                        
+                                        <h:selectOneMenu value="#{item.flgPresente}" style="width:100%">
+                                            <f:selectItems value="#{presencaController.options}" var="man" itemLabel="#{man}" itemValue="#{man}" />
+                                        </h:selectOneMenu>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{presencaController.saveTurma}" value="#{messages.Save}" update="display,:PresencaTurmaCreateForm,@this" oncomplete="handleSubmit(xhr,status,args,PF('PresencaTurmaCreateDialog'));" rendered="#{turmaController.selected != null}">
+                        <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PresencaTurmaCreateDialog').hide()" rendered="#{turmaController.selected != null}"/>
+                </h:panelGroup>                    
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

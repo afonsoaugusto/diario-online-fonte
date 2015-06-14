@@ -2,6 +2,8 @@ package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.AlunoTurma;
 import br.com.diario.escolar.view.session.AlunoTurmaFacade;
+import java.math.BigDecimal;
+import java.util.Collection;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -87,4 +89,13 @@ public class AlunoTurmaController extends AbstractController<AlunoTurma> {
             seqAlunoController.setSelected(this.getSelected().getSeqAluno());
         }
     }
+
+    public Collection<AlunoTurma> getAlunosTurma(BigDecimal seqTurma) {
+        if (super.items == null) {
+            super.items = this.ejbFacade.findByTurma(seqTurma);
+        }
+        return super.items;
+        
+    }
+
 }
