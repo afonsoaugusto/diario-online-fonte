@@ -8,13 +8,13 @@
 
     <ui:composition>
 
-        <p:dialog id="PresencaTurmaCreateDialog" widgetVar="PresencaTurmaCreateDialog"  resizable="false"  header="#{messages.CreateTurmaTitle}" closeOnEscape="true" modal="true" appendTo="@(body)">
-            <h:form id="PresencaTurmaCreateForm">
-                <h:panelGroup id="display" rendered="#{presencaController.selected != null}">
+        <p:dialog id="NotasTurmaCreateDialog" widgetVar="NotasTurmaCreateDialog"  resizable="false"  header="#{messages.CreateNotasTitle}" closeOnEscape="true" modal="true" appendTo="@(body)">
+            <h:form id="NotasTurmaCreateForm">
+                <h:panelGroup id="display" rendered="#{notasController.selected != null}">
                     <p:panelGrid columns="6">
 
-                        <p:outputLabel value="#{messages.CreatePresencaLabel_datDataPresenca}" for="datDataPresenca" />
-                        <p:calendar id="datDataPresenca" pattern="dd/MM/yyyy" value="#{presencaController.selected.datDataPresenca}" title="#{messages.CreatePresencaTitle_datDataPresenca}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_datDataPresenca}" showOn="button"/>
+                        <p:outputLabel value="#{messages.CreateNotasLabel_datLancamento}" for="datLancamento" />
+                        <p:calendar id="datLancamento" pattern="dd/MM/yyyy" value="#{notasController.selected.datLancamento}" title="#{messages.CreateNotasTitle_datLancamento}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_datLancamento}" showOn="button"/>
 
                         <p:outputLabel value="#{messages.CreatePresencaLabel_seqTurma}" for="seqTurma" />
                         <p:selectOneMenu id="seqTurma" value="#{turmaController.selected}" required="false" converter="turmaConverter">
@@ -27,6 +27,54 @@
 
                         </p:selectOneMenu>
 
+                        <p:outputLabel value="#{messages.CreateNotasLabel_seqPessoa}" for="seqPessoa" />
+                        <p:selectOneMenu id="seqPessoa" value="#{notasController.selected.seqPessoa}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_seqPessoa}" converter="pessoaConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{pessoaController.items}"
+                                           var="seqPessoaItem"
+                                           itemValue="#{seqPessoaItem}"
+                                           itemLabel="#{seqPessoaItem.desNome.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateNotasLabel_seqParamePeriodo}" for="seqParamePeriodo" />
+                        <p:selectOneMenu id="seqParamePeriodo" value="#{notasController.selected.seqParamePeriodo}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_seqParamePeriodo}" converter="parametrizacaoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{parametrizacaoController.tipoNota}"
+                                           var="seqParamePeriodoItem"
+                                           itemValue="#{seqParamePeriodoItem}"
+                                           itemLabel="#{seqParamePeriodoItem.desValorParametro.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+
+
+                        <p:outputLabel value="#{messages.CreateNotasLabel_seqAtividade}" for="seqAtividade" />
+                        <p:selectOneMenu id="seqAtividade" value="#{notasController.selected.seqAtividade}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_seqAtividade}" converter="atividadeConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{atividadeController.items}"
+                                           var="seqAtividadeItem"
+                                           itemValue="#{seqAtividadeItem}"
+                                           itemLabel="#{seqAtividadeItem.getAtividadeFormatada().toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{messages.CreateNotasLabel_seqAno}" for="seqAno" />
+                        <p:selectOneMenu id="seqAno" value="#{notasController.selected.seqAno}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_seqAno}" converter="anoConverter">
+                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                            <f:selectItems value="#{anoController.items}"
+                                           var="seqAnoItem"
+                                           itemValue="#{seqAnoItem}"
+                                           itemLabel="#{seqAnoItem.getAnoFormatado().toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
                         <p:outputLabel value="#{messages.CreatePresencaLabel_seqDisciplina}" for="seqDisciplina" />
                         <p:selectOneMenu id="seqDisciplina" value="#{disciplinaController.selected}" required="true" requiredMessage="#{messages.CreatePresencaRequiredMessage_seqDisciplina}" converter="disciplinaConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
@@ -35,7 +83,7 @@
                                            itemValue="#{seqDisciplinaItem}"
                                            itemLabel="#{seqDisciplinaItem.desNomeDisciplina.toString()}"
                                            />
-                            <p:ajax update=":PresencaTurmaCreateForm:display" process="@form" event="change"  listener="#{presencaController.populaListaPresenca}"/>
+                            <p:ajax update=":NotasTurmaCreateForm:display" process="@form" event="change"  listener="#{notasController.populaListaPresenca}"/>
                         </p:selectOneMenu>
 
                     </p:panelGrid>
@@ -43,14 +91,14 @@
 
 
                         <p:dataTable id="datalist"
-                                     value="#{presencaController.listPresenca}"
+                                     value="#{notasController.listNotas}"
                                      var="item"
                                      editable="true"
                                      editMode="cell"
                                      rendered="#{turmaController.selected != null}"
                                      widgetVar="cellItens"
                                      >
-                            <p:ajax event="cellEdit" process="@form" listener="#{presencaController.onCellEdit}"  update=":PresencaTurmaCreateForm:panel,flgPresenteOut,datalist"/>
+                            <p:ajax event="cellEdit" process="@form" listener="#{notasController.onCellEdit}"  update=":NotasTurmaCreateForm:panel,datalist"/>
 
                             <p:column sortBy="#{item.seqAluno.nomAluno}" filterBy="#{item.seqAluno.nomAluno}">
                                 <f:facet name="header">
@@ -59,27 +107,23 @@
                                 <h:outputText value="#{item.seqAluno.nomAluno}"/>
                             </p:column>
 
-
-                            <p:column id="columnPresente" sortBy="#{item.flgPresente}" filterBy="#{item.flgPresente}" styleClass="ui-editable-column" >
-
+                            <p:column sortBy="#{item.numValor}" filterBy="#{item.numValor}">                    
                                 <p:cellEditor>
-                                    <f:facet name="output"><h:outputText id="flgPresenteOut" value="#{item.flgPresente}" /> </f:facet>
-                                    <f:facet name="input">
-                                        
-                                        <h:selectOneMenu value="#{item.flgPresente}" style="width:100%">
-                                            <f:selectItems value="#{presencaController.options}" var="man" itemLabel="#{man}" itemValue="#{man}" />
-                                        </h:selectOneMenu>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{messages.ListNotasTitle_numValor}"/>
                                     </f:facet>
-                                </p:cellEditor>
-                            </p:column>
+                                    <f:facet name="output"><h:outputText value="#{item.numValor}" /></f:facet>
+                                    <f:facet name="input"><p:inputText id="numValor" value="#{item.numValor}" style="width:96%"/></f:facet>
+                                </p:cellEditor> 
+                            </p:column>                            
 
                         </p:dataTable>
 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{presencaController.saveTurma}" value="#{messages.Save}" update="display,:PresencaTurmaCreateForm,@this" oncomplete="handleSubmit(xhr,status,args,PF('PresencaTurmaCreateDialog'));" rendered="#{turmaController.selected != null}">
+                    <p:commandButton actionListener="#{notasController.saveTurma}" value="#{messages.Save}" update="display,:NotasTurmaCreateForm,@this" oncomplete="handleSubmit(xhr,status,args,PF('NotasTurmaCreateDialog'));" rendered="#{turmaController.selected != null}">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{messages.Cancel}" onclick="PF('PresencaTurmaCreateDialog').hide()" rendered="#{turmaController.selected != null}"/>
+                    <p:commandButton value="#{messages.Cancel}" onclick="PF('NotasTurmaCreateDialog').hide()" rendered="#{turmaController.selected != null}"/>
                 </h:panelGroup>                    
             </h:form>
         </p:dialog>

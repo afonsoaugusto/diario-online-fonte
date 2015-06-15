@@ -2,7 +2,6 @@ package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.AlunoTurma;
 import br.com.diario.escolar.model.entity.Notas;
-import br.com.diario.escolar.model.entity.Presenca;
 import br.com.diario.escolar.view.session.NotasFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,6 @@ public class NotasController extends AbstractController<Notas> {
     private AlunoTurmaController alunoTurmaController;
     private TurmaController seqTurmaController;
     private List<Notas> listNotas;
-    private List<String> options;
     
 
     /**
@@ -54,11 +52,11 @@ public class NotasController extends AbstractController<Notas> {
         initListaPresenca();
     }
     
-    public List<Notas> getListPresenca() {
+    public List<Notas> getListNotas() {
         return listNotas;
     }
 
-    public void setListPresenca(List<Notas> listNotas) {
+    public void setListNotas(List<Notas> listNotas) {
         this.listNotas = listNotas;
     }
 
@@ -150,6 +148,10 @@ public class NotasController extends AbstractController<Notas> {
 
     public void saveTurma(ActionEvent event) {
         for (Notas item : listNotas) {
+            item.setSeqParamePeriodo(this.getSelected().getSeqParamePeriodo());
+            item.setSeqAtividade(this.getSelected().getSeqAtividade());
+            item.setSeqAno(this.getSelected().getSeqAno());
+            item.setSeqPessoa(this.getSelected().getSeqPessoa());
             this.ejbFacade.create(item);
         }
         if (!isValidationFailed()) {
@@ -165,31 +167,20 @@ public class NotasController extends AbstractController<Notas> {
         alunoTurmaController.getAlunosTurma(seqTurmaController.getSelected().getSeqTurma());
         initListaPresenca();
         for (AlunoTurma alunoTurma : alunoTurmaController.getItems()) {
-            Notas presenca = new Notas(null,super.getSelected().getDatLancamento());
-            presenca.setSeqAluno(alunoTurma.getSeqAluno());
-            listNotas.add(presenca);
+            Notas notas = new Notas(null,super.getSelected().getDatLancamento());
+            notas.setSeqAluno(alunoTurma.getSeqAluno());
+            listNotas.add(notas);
         }
     }
     
     
     private void initListaPresenca() {
         listNotas = new ArrayList<Notas>();
-        options = new ArrayList<String>();
-        options.add("S");
-        options.add("N");
     }
 
     public void onCellEdit(CellEditEvent event) {
         Object newValue = event.getNewValue();
         //listNotas.get(event.getRowIndex()).setFlgPresente(newValue.toString());
-    }
-
-    public List<String> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<String> options) {
-        this.options = options;
     }
      
 }

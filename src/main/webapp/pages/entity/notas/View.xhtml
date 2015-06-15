@@ -15,31 +15,28 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{notasController.selected != null}">
 
-                        <h:outputText value="#{messages.ViewNotasLabel_seqNotas}"/>
-                        <h:outputText value="#{notasController.selected.seqNotas}" title="#{messages.ViewNotasTitle_seqNotas}"/>
-
                         <h:outputText value="#{messages.ViewNotasLabel_numValor}"/>
                         <h:outputText value="#{notasController.selected.numValor}" title="#{messages.ViewNotasTitle_numValor}"/>
 
                         <h:outputText value="#{messages.ViewNotasLabel_datLancamento}"/>
                         <h:outputText value="#{notasController.selected.datLancamento}" title="#{messages.ViewNotasTitle_datLancamento}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
 
-                        <h:outputText value="#{messages.ViewNotasLabel_seqPessoa}"/>
-                        <h:outputText value="#{notasController.selected.seqPessoa.seqPessoa}"/>
-
                         <h:outputText value="#{messages.ViewNotasLabel_seqParamePeriodo}"/>
-                        <h:outputText value="#{notasController.selected.seqParamePeriodo.seqParametrizacao}"/>
+                        <h:outputText value="#{notasController.selected.seqParamePeriodo.desValorParametro}"/>
 
                         <h:outputText value="#{messages.ViewNotasLabel_seqAtividade}"/>
-                        <h:outputText value="#{notasController.selected.seqAtividade.seqAtividade}"/>
+                        <h:outputText value="#{notasController.selected.seqAtividade.getAtividadeFormatada()}"/>
 
                         <h:outputText value="#{messages.ViewNotasLabel_seqAno}"/>
-                        <h:outputText value="#{notasController.selected.seqAno.seqAno}"/>
+                        <h:outputText value="#{notasController.selected.seqAno.getAnoFormatado()}"/>
 
                         <h:outputText value="#{messages.ViewNotasLabel_seqAluno}"/>
-                        <h:outputText value="#{notasController.selected.seqAluno.seqAluno}"/>
+                        <h:outputText value="#{notasController.selected.seqAluno.nomAluno}"/>
+                        
+                        <h:outputText value="#{messages.ViewNotasLabel_seqPessoa}"/>
+                        <h:outputText value="#{notasController.selected.seqPessoa.desNome}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{messages.Close}" onclick="PF('NotasViewDialog').hide()"/>
                 </h:panelGroup>

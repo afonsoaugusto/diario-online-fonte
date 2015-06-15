@@ -15,9 +15,6 @@
                 <h:panelGroup id="display" rendered="#{notasController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{messages.CreateNotasLabel_numValor}" for="numValor" />
-                        <p:inputText id="numValor" value="#{notasController.selected.numValor}" title="#{messages.CreateNotasTitle_numValor}"/>
-
                         <p:outputLabel value="#{messages.CreateNotasLabel_datLancamento}" for="datLancamento" />
                         <p:calendar id="datLancamento" pattern="dd/MM/yyyy" value="#{notasController.selected.datLancamento}" title="#{messages.CreateNotasTitle_datLancamento}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_datLancamento}" showOn="button"/>
 
@@ -43,29 +40,37 @@
 
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="#{messages.CreateNotasLabel_seqAtividade}" for="seqAtividade" />
-                        <p:selectOneMenu id="seqAtividade" value="#{notasController.selected.seqAtividade}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_seqAtividade}" converter="atividadeConverter">
-                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{atividadeController.items}"
-                                           var="seqAtividadeItem"
-                                           itemValue="#{seqAtividadeItem}"
-                                           itemLabel="#{seqAtividadeItem.getAtividadeFormatada().toString()}"
-                                           />
 
-                        </p:selectOneMenu>
+                       
 
-                        <p:outputLabel value="#{messages.CreateNotasLabel_seqAno}" for="seqAno" />
-                        <p:selectOneMenu id="seqAno" value="#{notasController.selected.seqAno}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_seqAno}" converter="anoConverter">
-                            <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{anoController.items}"
-                                           var="seqAnoItem"
-                                           itemValue="#{seqAnoItem}"
-                                           itemLabel="#{seqAnoItem.getAnoFormatado().toString()}"
-                                           />
+                            <p:outputLabel value="#{messages.CreateNotasLabel_seqAtividade}" for="seqAtividade" />
+                            <p:selectOneMenu id="seqAtividade" value="#{notasController.selected.seqAtividade}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_seqAtividade}" converter="atividadeConverter">
+                                <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                                <f:selectItems value="#{atividadeController.items}"
+                                               var="seqAtividadeItem"
+                                               itemValue="#{seqAtividadeItem}"
+                                               itemLabel="#{seqAtividadeItem.getAtividadeFormatada().toString()}"
+                                               />
 
-                        </p:selectOneMenu>
+                            </p:selectOneMenu>
 
-                        <p:outputLabel value="#{messages.CreateNotasLabel_seqAluno}" for="seqAluno" />
+                            <p:outputLabel value="#{messages.CreateNotasLabel_seqAno}" for="seqAno" />
+                            <p:selectOneMenu id="seqAno" value="#{notasController.selected.seqAno}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_seqAno}" converter="anoConverter">
+                                <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
+                                <f:selectItems value="#{anoController.items}"
+                                               var="seqAnoItem"
+                                               itemValue="#{seqAnoItem}"
+                                               itemLabel="#{seqAnoItem.getAnoFormatado().toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+
+
+
+                            <p:outputLabel value="#{messages.CreateNotasLabel_numValor}" for="numValor" />
+                            <p:inputText id="numValor" value="#{notasController.selected.numValor}" title="#{messages.CreateNotasTitle_numValor}"/>
+                            
+                             <p:outputLabel value="#{messages.CreateNotasLabel_seqAluno}" for="seqAluno" />
                         <p:selectOneMenu id="seqAluno" value="#{notasController.selected.seqAluno}" required="true" requiredMessage="#{messages.CreateNotasRequiredMessage_seqAluno}" converter="alunoConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
                             <f:selectItems value="#{alunoController.items}"

@@ -36,13 +36,17 @@
                 <p:ajax event="contextMenu" update=" :NotasListForm:createButton :NotasListForm:viewButton :NotasListForm:editButton :NotasListForm:deleteButton" listener="#{notasController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('NotasListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.seqNotas}" filterBy="#{item.seqNotas}">
+                
+                
+                <p:column sortBy="#{item.seqAluno.nomAluno}" filterBy="#{item.seqAluno.nomAluno}">
                     <f:facet name="header">
-                        <h:outputText value="#{messages.ListNotasTitle_seqNotas}"/>
+                        <h:outputText value="#{messages.ListNotasTitle_seqAluno}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqNotas}"/>
+                    <h:outputText value="#{item.seqAluno.nomAluno}"/>
                 </p:column>
-
+                
+                
+                
 
                 <p:column sortBy="#{item.numValor}" filterBy="#{item.numValor}">
                     <f:facet name="header">
@@ -62,32 +66,25 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqPessoa.seqPessoa}" filterBy="#{item.seqPessoa.seqPessoa}">
-                    <f:facet name="header">
-                        <h:outputText value="#{messages.ListNotasTitle_seqPessoa}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.seqPessoa.seqPessoa}"/>
-                </p:column>
-
-
-                <p:column sortBy="#{item.seqParamePeriodo.seqParametrizacao}" filterBy="#{item.seqParamePeriodo.seqParametrizacao}">
+                <p:column sortBy="#{item.seqParamePeriodo.desValorParametro}" filterBy="#{item.seqParamePeriodo.desValorParametro}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListNotasTitle_seqParamePeriodo}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqParamePeriodo.seqParametrizacao}"/>
+                    <h:outputText value="#{item.seqParamePeriodo.desValorParametro}"/>
                 </p:column>
 
 
-                <p:column sortBy="#{item.seqAtividade.seqAtividade}" filterBy="#{item.seqAtividade.seqAtividade}">
+                <p:column sortBy="#{item.seqAtividade.getAtividadeFormatada()}" filterBy="#{item.seqAtividade.getAtividadeFormatada()}">
                     <f:facet name="header">
                         <h:outputText value="#{messages.ListNotasTitle_seqAtividade}"/>
                     </f:facet>
-                    <h:outputText value="#{item.seqAtividade.seqAtividade}"/>
+                    <h:outputText value="#{item.seqAtividade.getAtividadeFormatada()}"/>
                 </p:column>
 
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{notasController.prepareCreate}" update=":NotasCreateForm" oncomplete="PF('NotasCreateDialog').show()"/>
+            <p:commandButton id="createButtonNotas"                        icon="ui-icon-plus"   value="#{messages.CreateNotas}" actionListener="#{notasController.prepareCreateNotas}" update=":NotasTurmaCreateForm" oncomplete="PF('NotasTurmaCreateDialog').show()"/>
             <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":NotasViewForm" oncomplete="PF('NotasViewDialog').show()" disabled="#{empty notasController.selected}"/>
             <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":NotasEditForm" oncomplete="PF('NotasEditDialog').show()" disabled="#{empty notasController.selected}"/>
             <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{notasController.delete}" update=":growl,datalist" disabled="#{empty notasController.selected}">

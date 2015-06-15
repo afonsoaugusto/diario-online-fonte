@@ -15,14 +15,11 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{notasController.selected != null}">
 
 
-                        <h:outputLabel value="#{messages.EditNotasLabel_seqNotas}" for="seqNotas" />
-                        <h:outputText id="seqNotas" value="#{notasController.selected.seqNotas}" />
-
                         <p:outputLabel value="#{messages.EditNotasLabel_numValor}" for="numValor" />
                         <p:inputText id="numValor" value="#{notasController.selected.numValor}" title="#{messages.EditNotasTitle_numValor}"/>
 
                         <p:outputLabel value="#{messages.EditNotasLabel_datLancamento}" for="datLancamento" />
-                        <p:calendar id="datLancamento" pattern="MM/dd/yyyy HH:mm:ss" value="#{notasController.selected.datLancamento}" title="#{messages.EditNotasTitle_datLancamento}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_datLancamento}" showOn="button"/>
+                        <p:calendar id="datLancamento" pattern="dd/MM/yyyy" value="#{notasController.selected.datLancamento}" title="#{messages.EditNotasTitle_datLancamento}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_datLancamento}" showOn="button"/>
 
                         <p:outputLabel value="#{messages.EditNotasLabel_seqPessoa}" for="seqPessoa" />
                         <p:selectOneMenu id="seqPessoa" value="#{notasController.selected.seqPessoa}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_seqPessoa}" converter="pessoaConverter">
@@ -30,7 +27,7 @@
                             <f:selectItems value="#{pessoaController.items}"
                                            var="seqPessoaItem"
                                            itemValue="#{seqPessoaItem}"
-                                           itemLabel="#{seqPessoaItem.seqPessoa.toString()}"
+                                           itemLabel="#{seqPessoaItem.desNome.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -38,10 +35,10 @@
                         <p:outputLabel value="#{messages.EditNotasLabel_seqParamePeriodo}" for="seqParamePeriodo" />
                         <p:selectOneMenu id="seqParamePeriodo" value="#{notasController.selected.seqParamePeriodo}" required="true" requiredMessage="#{messages.EditNotasRequiredMessage_seqParamePeriodo}" converter="parametrizacaoConverter">
                             <f:selectItem itemLabel="#{messages.SelectOneMessage}"/>
-                            <f:selectItems value="#{parametrizacaoController.items}"
+                            <f:selectItems value="#{parametrizacaoController.tipoNota}"
                                            var="seqParamePeriodoItem"
                                            itemValue="#{seqParamePeriodoItem}"
-                                           itemLabel="#{seqParamePeriodoItem.seqParametrizacao.toString()}"
+                                           itemLabel="#{seqParamePeriodoItem.desValorParametro.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -52,7 +49,7 @@
                             <f:selectItems value="#{atividadeController.items}"
                                            var="seqAtividadeItem"
                                            itemValue="#{seqAtividadeItem}"
-                                           itemLabel="#{seqAtividadeItem.seqAtividade.toString()}"
+                                           itemLabel="#{seqAtividadeItem.getAtividadeFormatada().toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -63,7 +60,7 @@
                             <f:selectItems value="#{anoController.items}"
                                            var="seqAnoItem"
                                            itemValue="#{seqAnoItem}"
-                                           itemLabel="#{seqAnoItem.seqAno.toString()}"
+                                           itemLabel="#{seqAnoItem.getAnoFormatado().toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -74,7 +71,7 @@
                             <f:selectItems value="#{alunoController.items}"
                                            var="seqAlunoItem"
                                            itemValue="#{seqAlunoItem}"
-                                           itemLabel="#{seqAlunoItem.seqAluno.toString()}"
+                                           itemLabel="#{seqAlunoItem.nomAluno.toString()}"
                                            />
 
                         </p:selectOneMenu>
