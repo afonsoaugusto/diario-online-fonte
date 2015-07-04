@@ -120,7 +120,7 @@
                         </p:dataTable>
 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{notasController.saveTurma}" value="#{messages.Save}" update="display,:NotasTurmaCreateForm,@this" oncomplete="handleSubmit(xhr,status,args,PF('NotasTurmaCreateDialog'));" rendered="#{turmaController.selected != null}">
+                    <p:commandButton actionListener="#{notasController.saveTurma}" value="#{messages.Save}" update="display,:NotasListForm:datalist,:growl,@this" oncomplete="handleSubmit(xhr,status,args,PF('NotasTurmaCreateDialog'));" rendered="#{turmaController.selected != null}">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
                     <p:commandButton value="#{messages.Cancel}" onclick="PF('NotasTurmaCreateDialog').hide()" rendered="#{turmaController.selected != null}"/>

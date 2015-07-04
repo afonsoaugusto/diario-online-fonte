@@ -1,7 +1,7 @@
 package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.DisciplinaAno;
-import br.com.diario.escolar.view.session.DisciplinaAnoFacade;
+import br.com.diario.escolar.controller.session.DisciplinaAnoFacade;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;

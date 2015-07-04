@@ -1,7 +1,7 @@
 package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.Parametrizacao;
-import br.com.diario.escolar.view.session.ParametrizacaoFacade;
+import br.com.diario.escolar.controller.session.ParametrizacaoFacade;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

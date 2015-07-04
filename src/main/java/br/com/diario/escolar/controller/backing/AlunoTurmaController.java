@@ -1,7 +1,7 @@
 package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.AlunoTurma;
-import br.com.diario.escolar.view.session.AlunoTurmaFacade;
+import br.com.diario.escolar.controller.session.AlunoTurmaFacade;
 import java.math.BigDecimal;
 import java.util.Collection;
 import javax.faces.bean.ManagedBean;

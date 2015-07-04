@@ -1,7 +1,7 @@
 package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.Fechamento;
-import br.com.diario.escolar.view.session.FechamentoFacade;
+import br.com.diario.escolar.controller.session.FechamentoFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;

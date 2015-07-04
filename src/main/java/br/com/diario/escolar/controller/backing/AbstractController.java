@@ -1,6 +1,6 @@
 package br.com.diario.escolar.controller.backing;
 
-import br.com.diario.escolar.view.session.AbstractFacade;
+import br.com.diario.escolar.controller.session.AbstractFacade;
 import br.com.diario.escolar.controller.backing.util.JsfUtil;
 import java.io.Serializable;
 import java.util.Collection;

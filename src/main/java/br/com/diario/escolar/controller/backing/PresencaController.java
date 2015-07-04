@@ -3,7 +3,7 @@ package br.com.diario.escolar.controller.backing;
 import br.com.diario.escolar.model.entity.AlunoTurma;
 import br.com.diario.escolar.model.entity.Presenca;
 import br.com.diario.escolar.model.entity.Turma;
-import br.com.diario.escolar.view.session.PresencaFacade;
+import br.com.diario.escolar.controller.session.PresencaFacade;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;

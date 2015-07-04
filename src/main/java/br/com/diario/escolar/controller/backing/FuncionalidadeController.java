@@ -1,7 +1,7 @@
 package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.Funcionalidade;
-import br.com.diario.escolar.view.session.FuncionalidadeFacade;
+import br.com.diario.escolar.controller.session.FuncionalidadeFacade;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;

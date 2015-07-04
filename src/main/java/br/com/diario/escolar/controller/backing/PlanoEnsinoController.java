@@ -1,7 +1,7 @@
 package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.PlanoEnsino;
-import br.com.diario.escolar.view.session.PlanoEnsinoFacade;
+import br.com.diario.escolar.controller.session.PlanoEnsinoFacade;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;

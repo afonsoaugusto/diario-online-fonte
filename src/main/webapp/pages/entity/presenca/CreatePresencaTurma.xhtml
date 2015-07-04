@@ -76,7 +76,7 @@
                         </p:dataTable>
 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{presencaController.saveTurma}" value="#{messages.Save}" update="display,:PresencaTurmaCreateForm,@this" oncomplete="handleSubmit(xhr,status,args,PF('PresencaTurmaCreateDialog'));" rendered="#{turmaController.selected != null}">
+                    <p:commandButton actionListener="#{presencaController.saveTurma}" value="#{messages.Save}" update="display,:PresencaListForm:datalist,:growl,@this" oncomplete="handleSubmit(xhr,status,args,PF('PresencaTurmaCreateDialog'));" rendered="#{turmaController.selected != null}">
                         <p:confirm header="#{messages.ConfirmationHeader}" message="#{messages.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
                     <p:commandButton value="#{messages.Cancel}" onclick="PF('PresencaTurmaCreateDialog').hide()" rendered="#{turmaController.selected != null}"/>

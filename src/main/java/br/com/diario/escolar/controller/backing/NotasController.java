@@ -2,7 +2,7 @@ package br.com.diario.escolar.controller.backing;
 
 import br.com.diario.escolar.model.entity.AlunoTurma;
 import br.com.diario.escolar.model.entity.Notas;
-import br.com.diario.escolar.view.session.NotasFacade;
+import br.com.diario.escolar.controller.session.NotasFacade;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
