@@ -42,6 +42,7 @@
       Fechamento
       Fechamento Aluno
   */		
+  DELETE FROM tbl_notas;
   DELETE FROM tbl_presenca;
   DELETE FROM TBL_ATIVIDADE;
   delete from TBL_ALUNO_TURMA;
@@ -68,9 +69,9 @@
   delete from uf ;
   
   
-  insert into uf values (100, null, 'Minas', 'Minas Gerais', 'MG', 'N');
-  insert into municipio values (100, null, null, 'BH', 'BH', NULL,NULL,NULL,'N',100);
-  insert into tbl_pessoa (SEQ_PESSOA,DES_NOME,FLG_ATIVO,SEQ_CIDADE) values (100,'José ..','S',100);
+  insert into uf values (100, null, 'Minas Garais', 'Minas Gerais', 'MG', 'N');
+  insert into municipio values (100, null, null, 'BH', 'Belo Horizonte', NULL,NULL,NULL,'N',100);
+  insert into tbl_pessoa (SEQ_PESSOA,DES_NOME,FLG_ATIVO,SEQ_CIDADE) values (100,'José Fransico da Silva','S',100);
   insert into tbl_usuario values (100,'Dica','Login','Senha',100);
   insert into tbl_acao values (100,'CRIAR','Criar');
   insert into tbl_acao values (101,'EDITAR','Editar');
@@ -268,7 +269,8 @@
   insert into tbl_parametrizacao values (115,'TIPO_NOTA','Nota composta','10', 113);
   insert into tbl_parametrizacao values (116,'TIPO_NOTA','Nota substitutiva','10', 113);
     
-  INSERT INTO TBL_ESCOLA (SEQ_ESCOLA, DES_BAIRRO, DES_NOME, DES_RUA, DES_SIGLA, NUM_CEP, NUM_CNPJ, NUM_ESCOLA, NUM_TEL, SEQ_CIDADE) VALUES (100, 'Bairro', 'Calos', 'Rua', 'CDA', 987, 987, 987, 100, 100);
+  INSERT INTO TBL_ESCOLA (SEQ_ESCOLA, DES_BAIRRO, DES_NOME, DES_RUA, DES_SIGLA, NUM_CEP, NUM_CNPJ, NUM_ESCOLA, NUM_TEL, SEQ_CIDADE)
+  VALUES (100, 'Floramar', 'Calos Drummond de Andrade', 'Professora Gabriela Varella', 'CDA', 987, 987, 987, 100, 100);
   insert into tbl_ano values (100,2015,2015,102);
   INSERT INTO TBL_DISCIPLINA (SEQ_DISCIPLINA, DES_CONTEUDO, DES_NOME_DISCIPLINA) VALUES (100, 'Disciplina de teste', 'Matematica');
   INSERT INTO TBL_DISCIPLINA_ANO (SEQ_DISCIPLINA_ANO, TBL_ANO_SEQ_ANO, TBL_DISCIPLINA_SEQ_DISCIPLINA) VALUES (100,100,100);
@@ -277,7 +279,8 @@
   INSERT INTO TBL_DISCIPLINA_PROFESSOR (SEQ_DISCIPLINA_PROFESSOR, SEQ_DISCIPLINA_ANO, SEQ_PESSOA) VALUES (100, 100, 100);
   INSERT INTO TBL_TURNO (SEQ_TURNO, DES_TURNO) VALUES (100, 'Noite');
   INSERT INTO TBL_TURMA (SEQ_TURMA, FLG_TURMA_FECHADA, NUM_TUMRA, SEQ_ANO, SEQ_ESCOLA, SEQ_PESSOA, SEQ_TURNO) VALUES (100, 'N', 501, 100, 100, 100, 100);
-  INSERT INTO TBL_ALUNO (SEQ_ALUNO, DAT_NASCIMENTO, DES_OBSERVACAO, FLG_ATIVO, NOM_ALUNO, NOM_CONTATO, NUM_CEL, NUM_TEL, NUM_TEL_CONTATO) VALUES (100, null, 'Observação', 'S', 'Jose´ Real', 'Rweter Real', '32', '23', '23');
+  INSERT INTO TBL_ALUNO (SEQ_ALUNO, DAT_NASCIMENTO, DES_OBSERVACAO, FLG_ATIVO, NOM_ALUNO, NOM_CONTATO, NUM_CEL, NUM_TEL, NUM_TEL_CONTATO) 
+  VALUES (100, null, 'Observação', 'S', 'André Real da Silva', 'Rweter Real', '32', '23', '23');
   INSERT INTO TBL_SITUACAO (SEQ_SITUACAO, DES_SITUACAO) VALUES (100, 'Normal');
   INSERT INTO TBL_SITUACAO (SEQ_SITUACAO, DES_SITUACAO) VALUES (101, 'Transferido');
   INSERT INTO TBL_SITUACAO (SEQ_SITUACAO, DES_SITUACAO) VALUES (102, 'Cursando parcialmente');

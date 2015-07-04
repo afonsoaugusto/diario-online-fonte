@@ -58,7 +58,9 @@
 
             </p:dataTable>
 
+            <p:growl id="growl2" showDetail="true" sticky="true" />  
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{messages.Create}" actionListener="#{acaoController.prepareCreate}" update=":AcaoCreateForm" oncomplete="PF('AcaoCreateDialog').show()"/>
+            <p:commandButton id="createButtonTest"                         icon="ui-icon-plus"   value="Teste de " actionListener="#{acaoController.addMessage}" update=":growl"/>
             <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{messages.View}" update=":AcaoViewForm" oncomplete="PF('AcaoViewDialog').show()" disabled="#{empty acaoController.selected}"/>
             <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{messages.Edit}" update=":AcaoEditForm" oncomplete="PF('AcaoEditDialog').show()" disabled="#{empty acaoController.selected}"/>
             <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{messages.Delete}" actionListener="#{acaoController.delete}" update=":growl,datalist" disabled="#{empty acaoController.selected}">

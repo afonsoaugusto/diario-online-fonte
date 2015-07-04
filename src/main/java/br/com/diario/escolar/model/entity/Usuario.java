@@ -5,6 +5,8 @@
  */
 package br.com.diario.escolar.model.entity;
 
+import br.com.diario.escolar.model.entity.util.HashGenerationException;
+import br.com.diario.escolar.model.entity.util.HashGeneratorUtils;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -55,7 +57,7 @@ public class Usuario implements Serializable {
     private String desLogin;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 32)
     @Column(name = "DES_PASSWORD")
     private String desPassword;
     @Size(max = 40)
@@ -74,10 +76,10 @@ public class Usuario implements Serializable {
         this.seqUsuario = seqUsuario;
     }
 
-    public Usuario(BigDecimal seqUsuario, String desLogin, String desPassword) {
+    public Usuario(BigDecimal seqUsuario, String desLogin, String desPassword) throws HashGenerationException {
         this.seqUsuario = seqUsuario;
         this.desLogin = desLogin;
-        this.desPassword = desPassword;
+        this.setDesPassword(desPassword);
     }
 
     public BigDecimal getSeqUsuario() {
@@ -100,8 +102,8 @@ public class Usuario implements Serializable {
         return desPassword;
     }
 
-    public void setDesPassword(String desPassword) {
-        this.desPassword = desPassword;
+    public void setDesPassword(String desPassword) throws HashGenerationException {
+        this.desPassword = HashGeneratorUtils.generateMD5(desPassword);
     }
 
     public String getDesDica() {

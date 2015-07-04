@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="PresencaTurmaCreateDialog" widgetVar="PresencaTurmaCreateDialog"  resizable="false"  header="#{messages.CreateTurmaTitle}" closeOnEscape="true" modal="true" appendTo="@(body)">
+        <p:dialog id="PresencaTurmaCreateDialog" widgetVar="PresencaTurmaCreateDialog"  resizable="false"  header="#{messages.CreatePresencaTitle}" closeOnEscape="true" modal="true" appendTo="@(body)">
             <h:form id="PresencaTurmaCreateForm">
                 <h:panelGroup id="display" rendered="#{presencaController.selected != null}">
                     <p:panelGrid columns="6">
@@ -39,7 +39,7 @@
                         </p:selectOneMenu>
 
                     </p:panelGrid>
-                    <p:panelGrid id="panel" columns="6">
+                    <p:panelGrid id="panel" >
 
 
                         <p:dataTable id="datalist"

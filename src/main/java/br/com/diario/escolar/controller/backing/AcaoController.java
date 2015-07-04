@@ -1,5 +1,6 @@
 package br.com.diario.escolar.controller.backing;
 
+import br.com.diario.escolar.controller.backing.util.JsfUtil;
 import br.com.diario.escolar.model.entity.Acao;
 import br.com.diario.escolar.view.session.AcaoFacade;
 import javax.faces.bean.ManagedBean;
@@ -7,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 @ManagedBean(name = "acaoController")
@@ -55,4 +57,11 @@ public class AcaoController extends AbstractController<Acao> {
         }
         return "/pages/prime/funcionalidadeAcao/index";
     }
+
+    public void addMessage(ActionEvent event) {
+        System.out.println("Teste de mensagem");
+        JsfUtil.addSuccessMessage("Teste de mensagem");
+    }
+    
+    
 }
